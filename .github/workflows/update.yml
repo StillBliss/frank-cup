@@ -1,0 +1,54 @@
+name: Weekly Yahoo refresh
+
+on:
+  schedule:
+    # Tuesdays 11:00 UTC (4 AM Pacific), after Yahoo finalizes Monday's stats
+    - cron: "0 11 * * 2"
+  workflow_dispatch:   # adds a "Run workflow" button for testing
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: yahoo-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Pull from Yahoo and rebuild data.js
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        run: python scripts/update.py
+
+      - name: Commit if anything changed
+        id: commit
+        run: |
+          git config user.name "frank-cup-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.js raw league_config.json
+          if git diff --cached --quiet; then
+            echo "No changes this week."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            git commit -m "Weekly Yahoo refresh $(date -u +%Y-%m-%d)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Ask GitHub Pages to republish
+        if: steps.commit.outputs.changed == 'true'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/pages/builds"
