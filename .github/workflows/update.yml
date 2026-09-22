@@ -6,7 +6,12 @@ on:
   # so 4 AM Pacific = 11:00 UTC. Months limited to Mar-Oct.
   schedule:
     - cron: "0 11 * 3-10 1"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      redo_news:
+        description: "Rewrite the newest Gazette issue"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -30,11 +35,20 @@ jobs:
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
         run: python scripts/update.py
 
+      - name: Write the Gazette
+        # the news can never break the data refresh
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NEWS_REDO: ${{ inputs.redo_news && 'latest' || '' }}
+        run: python scripts/news.py
+
       - name: Commit changes if any
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add data.js raw league_config.json
+          if [ -f news.js ]; then git add news.js; fi
           if git diff --cached --quiet; then
             echo "No changes."
           else
