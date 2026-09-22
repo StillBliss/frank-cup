@@ -410,6 +410,10 @@ td.recs{white-space:normal;min-width:240px}
 
 /* playoff cut in the standings */
 table.stand tbody tr.cut td{border-bottom:3px solid var(--bulb)}
+/* the Last 5 cell must stay a real table cell; as a flex box it was laid out
+   outside the row and its borders drifted off the rest of the line */
+table.stand td.form{display:table-cell;text-align:center;white-space:nowrap}
+table.stand td.form span{margin:0 2px}
 /* the expected rank and expected GB columns cost width, so the cells give it back */
 table.stand th,table.stand td{padding:8px 4px}
 table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
@@ -417,6 +421,7 @@ table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
   table.stand th,table.stand td{padding:8px 2px;font-size:13px}
   table.stand .form span{width:16px;height:16px;line-height:16px;font-size:10px}
   table.stand .form{gap:2px}
+  table.stand td.form span{margin:0 1px}
 }
 
 /* radar charts on a manager page */
@@ -424,6 +429,56 @@ table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
 .radar{background:rgba(10,16,12,.74);border:1px solid var(--rule);border-radius:3px;padding:12px 10px 6px}
 .radar h3{font-size:15px;letter-spacing:.05em;text-align:center}
 .radar p{margin:2px 0 6px;color:var(--bone-faint);font-size:11.5px;text-align:center}
+
+/* ---------- The Frank Cup Gazette ---------- */
+.gz{max-width:760px;margin:0 auto}
+.gz-mast{text-align:center;border-bottom:3px double var(--rule);padding:6px 0 12px;margin-bottom:14px}
+.gz-mast h2{font-size:40px;letter-spacing:.08em;line-height:1.05}
+.gz-mast h2 span{color:var(--bulb)}
+.gz-mast .sub{font-size:13px;color:var(--bone-dim);margin-top:4px}
+.gz-mast .ai{display:inline-block;margin-top:8px;font-size:11.5px;color:var(--bone-faint);
+  border:1px solid var(--rule);border-radius:3px;padding:1px 7px}
+.gz-issues{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 0 16px}
+.gz-issues button{font-family:var(--num);font-size:13px;background:var(--panel);color:var(--bone-dim);
+  border:1px solid var(--rule);border-radius:3px;padding:4px 10px;cursor:pointer}
+.gz-issues button[aria-pressed="true"]{background:var(--bulb);color:#241A05;border-color:var(--bulb)}
+.gz-toc{border:1px solid var(--rule);border-radius:4px;padding:10px 14px;margin-bottom:22px;background:var(--panel)}
+.gz-toc h3{font-size:13px;letter-spacing:.12em;color:var(--bone-faint);margin-bottom:4px}
+.gz-toc a{display:flex;gap:10px;align-items:baseline;color:var(--bone);text-decoration:none;padding:4px 0;
+  border-top:1px solid rgba(255,255,255,.06)}
+.gz-toc a:first-of-type{border-top:0}
+.gz-toc a:hover .h{color:var(--bulb)}
+.gz-toc .gz-w{flex:0 0 150px;font-size:12.5px;color:var(--bone-faint)}
+.gz-art{padding:4px 0 26px;margin-bottom:22px;border-bottom:1px solid var(--rule);scroll-margin-top:150px}
+.gz-by{display:block;font-family:var(--cond);font-size:14px;letter-spacing:.08em;color:var(--bone-dim)}
+.gz-by i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;vertical-align:0}
+.gz-by span{color:var(--bone-faint)}
+.gz-art h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:27px;line-height:1.2;
+  letter-spacing:0;margin:8px 0 6px}
+.gz-dek{font-family:Georgia,serif;font-style:italic;color:var(--bone-dim);font-size:16px;margin:0 0 14px}
+.gz-body p{font-family:Georgia,"Times New Roman",serif;font-size:16.5px;line-height:1.65;margin:0 0 13px;color:var(--bone)}
+.gz-bit{border:1px solid var(--rule);border-left:3px solid var(--c,var(--bulb));border-radius:3px;
+  background:rgba(255,255,255,.035);padding:12px 14px;margin-top:16px}
+.gz-bit h4{margin:0 0 8px;font-family:var(--cond);font-weight:400;font-size:15px;letter-spacing:.1em;color:var(--c,var(--bulb))}
+.gz-bit p{margin:0 0 8px;font-size:14.5px;line-height:1.55}
+.gz-bit p:last-child{margin-bottom:0}
+.gz-bit .q{font-weight:600}
+.gz-bit .sm{font-size:12.5px;color:var(--bone-faint)}
+.gz-bit table{font-size:13.5px;margin:4px 0 10px}
+.gz-bit td,.gz-bit th{padding:4px 6px;border-bottom:1px solid rgba(255,255,255,.07)}
+.gz-bit th{position:static;background:transparent}
+.gz-bit .up{color:#7fd08a}.gz-bit .dn{color:#e07a7a}
+.gz-mu{padding:7px 0;border-top:1px solid rgba(255,255,255,.07);font-size:14px}
+.gz-mu:first-of-type{border-top:0}
+.gz-mu b{font-weight:600}
+.gz-mu .k{font-size:11px;letter-spacing:.08em;color:var(--bone-faint);text-transform:uppercase}
+.gz-empty{text-align:center;color:var(--bone-dim);padding:40px 10px}
+@media (max-width:640px){
+  .gz-mast h2{font-size:30px}
+  .gz-art h3{font-size:23px}
+  .gz-body p{font-size:16px}
+  .gz-toc .gz-w{flex-basis:108px}
+}
 </style>
 </head>
 <body data-season="2026">
@@ -436,6 +491,7 @@ table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
   <nav id="nav" aria-label="Sections"></nav>
 </header>
 <main>
+  <section class="view" id="v-news"></section>
   <section class="view on" id="v-standings"></section>
   <section class="view" id="v-matchups"></section>
   <section class="view" id="v-trends"></section>
@@ -445,7 +501,13 @@ table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
   <section class="view" id="v-manager"></section>
 </main>
 <footer id="foot"></footer>
-<script src="data.js"></script>
+<script>
+/* GitHub Pages lets browsers keep data files for ten minutes. A fresh query
+   string on every load means a normal refresh always gets the latest numbers. */
+(function(){var v=Date.now();
+  document.write('<script src="data.js?v='+v+'"><\/script>');
+  document.write('<script src="news.js?v='+v+'" onerror="window.NEWS=null"><\/script>');})();
+</script>
 <script>
 const PARK_NAMES = {};
 (function(){
@@ -454,7 +516,7 @@ const D=LEAGUE_DATA, ALLK=D.allTimeKey||"ALL", SEASONS=Object.keys(D.seasons).so
 let season=String(D.meta.currentSeason), view="standings";
 let week=null, statMode="raw", who=null, backTo="standings", bwMode="all";
 let sortCol=null, sortDir=-1;
-let mMode="week", mTeam=null;
+let mMode="week", mTeam=null, issueId=null;
 const hidden=new Set(), lower=new Set(D.lowerBetter);
 
 const col=m=>"#"+D.colors[m];
@@ -462,7 +524,7 @@ const rec=(w,l,t)=>w+"-"+l+"-"+t;
 const pct3=p=>p.toFixed(3).replace(/^0/,"");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const el=id=>document.getElementById(id);
-const VIEWS=[["standings","Standings"],["matchups","Matchups"],["trends","Trends"],
+const VIEWS=[["news","News"],["standings","Standings"],["matchups","Matchups"],["trends","Trends"],
  ["stats","Team stats"],["bracket","Bracket"],["history","History"],["manager","Managers"]];
 
 /* innings: decimal thirds -> baseball notation */
@@ -1193,7 +1255,10 @@ function openPop(mode,a,b,x,y){
   closePop();
   const wantPO = mode==="po";
   const rows=YEARS.map(s=>{
-    const gs=D.seasons[s].matchups.filter(m=>(wantPO?m.stage!=="Regular"&&!m.live:m.stage==="Regular")&&
+    /* playoff mode counts championship bracket games only, never consolation */
+    const champ=new Set(((D.bracket||{})[s]||{}).live||[]);
+    const inChamp=m=>champ.has(`${m.week}|${m.a}|${m.b}`)||champ.has(`${m.week}|${m.b}|${m.a}`);
+    const gs=D.seasons[s].matchups.filter(m=>(wantPO?m.stage!=="Regular"&&!m.live&&inChamp(m):m.stage==="Regular")&&
       ((m.a===a&&m.b===b)||(m.a===b&&m.b===a)));
     let w=0,l=0,t=0,cw=0,cl=0,ct=0;
     gs.forEach(m=>{const me=m.a===a?{w:m.aw,l:m.al}:{w:m.al,l:m.aw};
@@ -1438,7 +1503,7 @@ function vHistory(){
     <h2 class="sec">Head to head, regular season</h2><div id="h2h-reg"></div>
     <h2 class="sec">Head to head, playoffs</h2><div id="h2h-po"></div>`;
   h2hGrid(D.h2h, "Every pairing, regular season only, all seasons combined. Read across a row for that manager's record. Click any cell for the season by season breakdown.", "h2h-reg");
-  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Playoff and consolation games only. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
+  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Championship bracket games only, consolation left out. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
 }
 
 /* ---------- manager ---------- */
@@ -1614,6 +1679,69 @@ function vManager(){
     h.onclick=ev=>{ev.stopPropagation();openRadarPop(who,h.dataset.cat,ev.clientX,ev.clientY);};});
 }
 
+/* ---------- news: The Frank Cup Gazette ---------- */
+function gzText(t){
+  return String(t||"").split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean)
+    .map(p=>"<p>"+esc(p).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")+"</p>").join("");
+}
+function gzBit(a){
+  const b=a.bit||{}, d=b.data||{}, txt=b.text?gzText(b.text):"";
+  let inner="";
+  if(b.type==="trivia"){
+    if(d.last_q) inner+=`<p class="sm">Last week: ${esc(d.last_q)}</p><p><b>Answer:</b> ${esc(d.last_a)}</p>`;
+    if(d.question) inner+=`<p class="q">This week: ${esc(d.question)}</p><p class="sm">Answer in next week's column.</p>`;
+  }else if(b.type==="odds"&&d.odds){
+    const po=/^playoffs/i.test(d.phase||"");
+    const rows=Object.entries(d.odds).sort((x,y)=>y[1].title-x[1].title||y[1].po-x[1].po);
+    const pr=d.prev||{};
+    const f=v=>v>=99.95?"100%":v===0?"\u2014":v<0.05?"<0.1%":(v<1?v.toFixed(1):Math.round(v))+"%";
+    const mv=(m,v)=>{const p=pr[m];if(!p||p.title==null)return"";const dd=Math.round(v-p.title);
+      return dd?`<span class="${dd>0?"up":"dn"}"> ${dd>0?"▲":"▼"}${Math.abs(dd)}</span>`:"";};
+    inner+=`<table><thead><tr><th class="l">Manager</th>${po?"":"<th>Playoffs</th><th>Bye</th>"}<th>Final</th><th>Title</th></tr></thead><tbody>${
+      rows.map(([m,o])=>`<tr><td class="l"><span class="dot" style="background:${col(m)}"></span>${esc(m)}</td>${
+        po?"":`<td>${f(o.po)}</td><td>${f(o.bye)}</td>`}<td>${f(o.final)}</td><td><b>${f(o.title)}</b>${mv(m,o.title)}</td></tr>`).join("")}</tbody></table>
+      <p class="sm">2,000 simulated finishes, every category played out from each team's season-long category win rates.</p>`;
+  }else if(b.type==="dud"&&d.name){
+    inner+=`<p class="q">${esc(d.name)} <span class="sm">(${esc(d.mlb||"")}, owned by ${esc(d.owner)})</span></p><p>${esc(d.line)}</p>`;
+  }else if(b.type==="matchups"&&Array.isArray(d)&&d.length){
+    inner+=d.map(m=>`<div class="gz-mu"><div class="k">${esc(m.kind)}</div>
+      <b>${esc(m.a)}</b> vs <b>${esc(m.b)}</b>${m.n?` <span class="sm">· all-time ${esc(m.rec)}</span>
+      <div class="sm">Ugliest beatdown: ${esc(m.worst)}</div>`:` <span class="sm">· first meeting</span>`}</div>`).join("");
+  }else if(b.type==="rumor"&&d.a){
+    inner+=`<p class="q">${d.a_gives&&d.b_gives?`${esc(d.a)} sends ${esc(d.a_gives)} to ${esc(d.b)} for ${esc(d.b_gives)}`:`${esc(d.a)} and ${esc(d.b)} talking`}</p>
+      <p class="sm">${esc(d.a)} needs ${esc(d.a_needs)}; ${esc(d.b)} needs ${esc(d.b_needs)}. Speculation, not a real deal.</p>`;
+  }
+  return `<div class="gz-bit" style="--c:${esc(a.color||"var(--bulb)")}"><h4>${esc(b.name||"")}</h4>${inner}${txt}</div>`;
+}
+function vNews(){
+  const N=window.NEWS, iss=(N&&N.issues)||[];
+  const done=iss.filter(i=>i.articles&&i.articles.length);
+  if(!done.length){
+    el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2></div>
+      <p class="gz-empty">The first edition is on the presses. It prints with the next data refresh.</p></div>`;return;}
+  const cur=done.find(i=>i.id===issueId)||done[done.length-1];
+  issueId=cur.id;
+  const day=new Date(cur.date+"T12:00:00").toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric",year:"numeric"});
+  const phase=cur.phase?cur.phase.charAt(0).toUpperCase()+cur.phase.slice(1):"";
+  const picks=done.map(i=>`<button type="button" data-iss="${esc(i.id)}" aria-pressed="${i.id===cur.id}">${
+    i.season!==cur.season||done.some(j=>j.season!==i.season)?i.season+" ":""}Wk ${i.week}</button>`).join("");
+  const toc=cur.articles.map(a=>`<a href="#gz-${esc(a.writer)}" data-jump="gz-${esc(a.writer)}"><span class="gz-w">${esc(a.name)}</span><span class="h">${esc(a.headline)}</span></a>`).join("");
+  const arts=cur.articles.map(a=>`<article class="gz-art" id="gz-${esc(a.writer)}">
+      <div class="gz-by"><i style="background:${esc(a.color)}"></i>${esc(a.name.toUpperCase())} <span>· ${esc(a.desk)}</span></div>
+      <h3>${esc(a.headline)}</h3>${a.dek?`<p class="gz-dek">${esc(a.dek)}</p>`:""}
+      <div class="gz-body">${gzText(a.body)}</div>${gzBit(a)}</article>`).join("");
+  el("v-news").innerHTML=`<div class="gz">
+    <div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2>
+      <div class="sub">${esc(day)} · Week ${cur.week}, ${cur.season} · ${esc(phase)}</div>
+      <div class="ai">Written by AI from the league's real numbers. The writers are fictional; the stats aren't.</div></div>
+    <div class="gz-issues" role="group" aria-label="Issue">${picks}</div>
+    <div class="gz-toc" role="navigation" aria-label="In this issue"><h3>IN THIS ISSUE</h3>${toc}</div>${arts}</div>`;
+  el("v-news").querySelector(".gz-issues").onclick=e=>{const b=e.target.closest("button[data-iss]");if(!b)return;
+    issueId=b.dataset.iss;vNews();window.scrollTo({top:0});};
+  el("v-news").querySelector(".gz-toc").onclick=e=>{const a=e.target.closest("a[data-jump]");if(!a)return;
+    e.preventDefault();el(a.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"});};
+}
+
 function render(){
   document.body.setAttribute("data-season",season);
   closePop();
@@ -1624,7 +1752,7 @@ function render(){
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));
   el("v-"+view).classList.add("on");
   ({standings:vStandings,matchups:vMatchups,trends:vTrends,stats:vStats,
-    bracket:vBracket,history:vHistory,manager:vManager})[view]();
+    bracket:vBracket,history:vHistory,manager:vManager,news:vNews})[view]();
 }
 buildChrome();render();
 })();
