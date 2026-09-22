@@ -184,9 +184,15 @@ def main():
             pull_season(y, lg, full=not os.path.isdir(os.path.join(RAW, s)))
         elif not os.path.exists(os.path.join(RAW, s, "standings.json")):
             pull_season(y, lg, full=True)
+    sys.path.insert(0, HERE)
+    # player-level detail for the news desk; never allowed to break the refresh
+    try:
+        import players
+        players.pull_recent(y, cur["season"], RAW)
+    except Exception as e:  # noqa: BLE001
+        print("player pull skipped:", repr(e))
     print(f"{y.calls} Yahoo requests")
 
-    sys.path.insert(0, HERE)
     import build
     D = build.build(RAW, cfg)
     build.write_js(D, os.path.join(ROOT, "data.js"))
