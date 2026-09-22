@@ -75,12 +75,35 @@ class Season:
         at = len(self.scoring) - aw - al
         return a["m"], b["m"], aw, al, at
 
+    def split(self, m):
+        """team a's (w,l,t) in hitting and in pitching categories, per Yahoo's stat winners"""
+        a = m["teams"][0]
+        h, p = [0,0,0], [0,0,0]
+        for c in self.scoring:
+            g = h if c["group"] == "batting" else p
+            w = m["stat_winners"].get(c["id"])
+            if w == "tie" or w is None: g[2] += 1
+            elif w == a["key"]: g[0] += 1
+            else: g[1] += 1
+        return h, p
+
     def matchup_rows(self):
+        seeds = self.seeds()
         out = []
         for m in self.ms:
             a, b, aw, al, at = self.res(m)
-            out.append({"week": m["week"], "stage": "Playoff" if m["playoffs"] else "Regular",
-                        "a": a, "b": b, "aw": aw, "al": al, "at": at})
+            h, p = self.split(m)
+            r = {"week": m["week"], "stage": "Playoff" if m["playoffs"] else "Regular",
+                 "a": a, "b": b, "aw": aw, "al": al, "at": at, "ah": h, "ap": p}
+            if m["status"] != "postevent": r["live"] = True
+            if m["playoffs"] and m["status"] == "postevent":
+                # playoff games never tie: Yahoo names a winner, else the better seed advances
+                win = self.mgr.get(m["winner"]) if m["winner"] else None
+                if win is None:
+                    if aw != al: win = a if aw > al else b
+                    else: win = a if seeds.get(a, 99) <= seeds.get(b, 99) else b
+                r["win"] = win
+            out.append(r)
         return out
 
 def gb_of(rec, lead):
@@ -124,12 +147,14 @@ def h2h_tables(managers, all_rows, stage_filter, cats=False, include_live=True):
     tab = {a: {b: {"w":0,"l":0,"t":0} for b in managers if b != a} for a in managers}
     for r in all_rows:
         if not stage_filter(r): continue
-        if not include_live and not r.get("final", True): continue
+        if not include_live and r.get("live"): continue
         for me, op, w, l, t in ((r["a"], r["b"], r["aw"], r["al"], r["at"]),
                                 (r["b"], r["a"], r["al"], r["aw"], r["at"])):
             x = tab[me][op]
             if cats:
                 x["w"]+=w; x["l"]+=l; x["t"]+=t
+            elif r.get("win"):
+                x["w" if r["win"] == me else "l"] += 1
             else:
                 if w>l: x["w"]+=1
                 elif l>w: x["l"]+=1
@@ -295,9 +320,11 @@ def postseason_and_bracket(S):
                 else: win = a if seeds.get(a, 99) <= seeds.get(b, 99) else b
             lose = b if win == a else a
             ws, ls = (aw, al) if win == a else (al, aw)
-            post.append({"season": S.year, "week": wk, "stage": "Playoff",
-                         "game": labels.get(wk, "Playoff"), "winner": win, "ws": ws,
-                         "loser": lose, "ls": ls})
+            g = {"season": S.year, "week": wk, "stage": "Playoff",
+                 "game": labels.get(wk, "Playoff"), "winner": win, "ws": ws,
+                 "loser": lose, "ls": ls}
+            if m["status"] != "postevent": g["live"] = True
+            post.append(g)
             key = f"{wk}|{a}|{b}"
             if a in alive and b in alive and not m["consolation"]:
                 live.append(key)
@@ -484,7 +511,7 @@ def build(raw_dir, cfg):
                  "updated": cfg.get("_updated")}
     if D["meta"]["updated"] is None: del D["meta"]["updated"]
     D["h2h"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Regular")
-    D["h2hPlayoff"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Playoff")
+    D["h2hPlayoff"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Playoff", include_live=False)
     D["h2hCats"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Regular", cats=True)
     D["weekAllPlay"] = wap_all
     D["trades"] = trades
