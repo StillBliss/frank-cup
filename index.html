@@ -1487,21 +1487,32 @@ function tradeBlock(m){
 }
 
 function bwBlock(m){
+  /* Ranked by the week grade (Grade, Hitting+ or Pitching+), finished weeks only.
+     Consolation games are left out; the category record rides along beside it. */
+  const K=bwMode==="hit"?"H":bwMode==="pit"?"P":"G";
   const pick=x=>bwMode==="hit"?x.ah:bwMode==="pit"?x.ap:[x.aw,x.al,x.at];
   const g=[];
-  SEASONS.forEach(s=>D.seasons[s].matchups.forEach(x=>{
-    if(x.live||(x.a!==m&&x.b!==m)) return;
-    const r=pick(x); if(!r) return;
-    const me=x.a===m?[r[0],r[1],r[2]]:[r[1],r[0],r[2]];
-    g.push({s:+s,wk:x.week,po:x.stage!=="Regular",opp:x.a===m?x.b:x.a,w:me[0],l:me[1],t:me[2]});}));
+  SEASONS.forEach(s=>{
+    const br=(D.bracket||{})[s]||{}, champ=new Set(br.live||[]);
+    D.seasons[s].matchups.forEach(x=>{
+      if(x.live||(x.a!==m&&x.b!==m)) return;
+      if(x.stage!=="Regular"&&!champ.has(`${x.week}|${x.a}|${x.b}`)&&!champ.has(`${x.week}|${x.b}|${x.a}`)) return;
+      const p=(plusWeek(s,String(x.week))||{})[m]; if(!p||p[K]==null) return;
+      const r=pick(x);
+      const me=r?(x.a===m?[r[0],r[1],r[2]]:[r[1],r[0],r[2]]):null;
+      g.push({s:+s,wk:x.week,po:x.stage!=="Regular",opp:x.a===m?x.b:x.a,v:p[K],me});
+    });
+  });
   const recent=(a,b)=>b.s-a.s||b.wk-a.wk;
-  const best=[...g].sort((a,b)=>(b.w-b.l)-(a.w-a.l)||b.w-a.w||recent(a,b)).slice(0,5);
-  const worst=[...g].sort((a,b)=>(a.w-a.l)-(b.w-b.l)||a.w-b.w||recent(a,b)).slice(0,5);
-  const tb=rows=>`<div class="scroll"><table><thead><tr><th class="l">Record</th><th>Season</th><th>Week</th><th class="l">Opponent</th></tr></thead><tbody>${
-    rows.map(r=>`<tr><td class="l" style="font-weight:600">${rec(r.w,r.l,r.t)}</td><td>${r.s}</td>
+  const best=[...g].sort((a,b)=>b.v-a.v||recent(a,b)).slice(0,5);
+  const worst=[...g].sort((a,b)=>a.v-b.v||recent(a,b)).slice(0,5);
+  const lbl=K==="H"?"Hitting+":K==="P"?"Pitching+":"Grade";
+  const tb=rows=>`<div class="scroll"><table><thead><tr><th class="l">${lbl}</th><th>Record</th><th>Season</th><th>Week</th><th class="l">Opponent</th></tr></thead><tbody>${
+    rows.map(r=>`<tr><td class="l"><span class="grade ramped" style="background:${plusBg(r.v)}">${plusFmt(r.v)}</span></td>
+      <td>${r.me?rec(r.me[0],r.me[1],r.me[2]):"\u2014"}</td><td>${r.s}</td>
       <td>${r.wk}${r.po?` <span class="sub">PO</span>`:""}</td><td class="l">${nameBtn(r.opp)}</td></tr>`).join("")}</tbody></table></div>`;
   const b=(k,l)=>`<button type="button" data-bw="${k}" aria-pressed="${bwMode===k}">${l}</button>`;
-  return `<div class="toggle" role="group" aria-label="Which categories">${b("all","Overall")}${b("hit","Hitting")}${b("pit","Pitching")}</div>
+  return `<div class="toggle" role="group" aria-label="Which grade">${b("all","Overall")}${b("hit","Hitting")}${b("pit","Pitching")}</div>
     ${g.length?`<div class="bwgrid"><div><h3>BEST FIVE</h3>${tb(best)}</div><div><h3>WORST FIVE</h3>${tb(worst)}</div></div>`
       :`<p class="empty">No finished weeks yet.</p>`}`;
 }
