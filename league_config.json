@@ -1,0 +1,116 @@
+{
+  "leagueName": "The Frank Cup",
+  "managers": [
+    "Benny",
+    "Andrew",
+    "Jacob",
+    "Brian",
+    "Heidi",
+    "Ben",
+    "Austin",
+    "Todd",
+    "Barak",
+    "Gabe"
+  ],
+  "colors": {
+    "Benny": "1F4E79",
+    "Andrew": "C00000",
+    "Jacob": "2E7D32",
+    "Brian": "7030A0",
+    "Heidi": "C2185B",
+    "Ben": "00838F",
+    "Austin": "E36C0A",
+    "Todd": "6B4423",
+    "Barak": "9E9D24",
+    "Gabe": "616161"
+  },
+  "lowerBetter": [
+    "E",
+    "L",
+    "ERA",
+    "WHIP"
+  ],
+  "payoutRules": {
+    "reg1": 350,
+    "reg2": 250,
+    "reg3": 100,
+    "champ": 300
+  },
+  "awards": {
+    "2023": {
+      "AL MVP": "Shohei Ohtani",
+      "NL MVP": "Ronald Acuña Jr.",
+      "AL Cy Young": "Gerrit Cole",
+      "NL Cy Young": "Blake Snell",
+      "AL ROY": "Gunnar Henderson",
+      "NL ROY": "Corbin Carroll"
+    },
+    "2024": {
+      "AL MVP": "Aaron Judge",
+      "NL MVP": "Shohei Ohtani",
+      "AL Cy Young": "Tarik Skubal",
+      "NL Cy Young": "Chris Sale",
+      "AL ROY": "Luis Gil",
+      "NL ROY": "Paul Skenes"
+    },
+    "2025": {
+      "AL MVP": "Aaron Judge",
+      "NL MVP": "Shohei Ohtani",
+      "AL Cy Young": "Tarik Skubal",
+      "NL Cy Young": "Paul Skenes",
+      "AL ROY": "Nick Kurtz",
+      "NL ROY": "Drake Baldwin"
+    },
+    "2026": {}
+  },
+  "teamIds": {
+    "2023": {
+      "1": "Benny",
+      "2": "Heidi",
+      "3": "Ben",
+      "4": "Jacob",
+      "5": "Austin",
+      "6": "Andrew",
+      "7": "Brian",
+      "8": "Gabe",
+      "9": "Barak",
+      "10": "Todd"
+    },
+    "2024": {
+      "1": "Benny",
+      "2": "Austin",
+      "3": "Barak",
+      "4": "Andrew",
+      "5": "Gabe",
+      "6": "Heidi",
+      "7": "Jacob",
+      "8": "Brian",
+      "9": "Ben",
+      "10": "Todd"
+    },
+    "2025": {
+      "1": "Benny",
+      "2": "Austin",
+      "3": "Andrew",
+      "4": "Todd",
+      "5": "Barak",
+      "6": "Heidi",
+      "7": "Jacob",
+      "8": "Brian",
+      "9": "Ben",
+      "10": "Gabe"
+    },
+    "2026": {
+      "1": "Benny",
+      "2": "Austin",
+      "3": "Andrew",
+      "4": "Todd",
+      "5": "Barak",
+      "6": "Heidi",
+      "7": "Jacob",
+      "8": "Brian",
+      "9": "Ben",
+      "10": "Gabe"
+    }
+  }
+}
