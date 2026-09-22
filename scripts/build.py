@@ -463,6 +463,7 @@ def build(raw_dir, cfg):
     D = {"managers": managers, "colors": cfg["colors"]}
     seasons, ap_all, wap_all, per, drawC, drawW = {}, {}, {}, {}, {}, {}
     rows_all, post_all, trades, moves, pbs, wdet = [], [], [], {}, {}, {}
+    champ_rows = []  # championship bracket games only, consolation excluded
     brackets, finals, seeds_done, pay_in, sdata, ev = {}, {}, {}, [], [], []
     S_last = None
     for y in years:
@@ -480,6 +481,10 @@ def build(raw_dir, cfg):
         drawC[str(y)], drawW[str(y)] = draws(S, ap_all[str(y)]["season"], wap_all[str(y)]["season"], lower)
         post, br = postseason_and_bracket(S)
         post_all += post; brackets[str(y)] = br
+        ck = set(br["live"])
+        for r in blk["rows"]:
+            if r["stage"] == "Playoff" and (f"{r['week']}|{r['a']}|{r['b']}" in ck or f"{r['week']}|{r['b']}|{r['a']}" in ck):
+                champ_rows.append(r)
         done = season_done(S)
         if done:
             finals[str(y)] = final_places(S); seeds_done[str(y)] = br["seeds"]
@@ -511,7 +516,7 @@ def build(raw_dir, cfg):
                  "updated": cfg.get("_updated")}
     if D["meta"]["updated"] is None: del D["meta"]["updated"]
     D["h2h"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Regular")
-    D["h2hPlayoff"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Playoff", include_live=False)
+    D["h2hPlayoff"] = h2h_tables(managers, champ_rows, lambda r: True, include_live=False)
     D["h2hCats"] = h2h_tables(managers, rows_all, lambda r: r["stage"] == "Regular", cats=True)
     D["weekAllPlay"] = wap_all
     D["trades"] = trades
