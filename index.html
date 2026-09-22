@@ -169,6 +169,8 @@ table.catline th.eq,table.catline td.eq{width:64px;min-width:64px;max-width:64px
 .tie .row .sc{font-family:var(--num);font-size:16px;font-weight:600;flex:none}
 .tie .row.lo{color:var(--bone-faint)}
 .tie .tiebreak{font-size:11px;color:var(--bulb);padding:5px 9px;border-top:1px solid var(--rule)}
+.tie.inprog{border-color:var(--bulb)}
+.tie .liveflag{font-size:11px;color:var(--bulb);padding:5px 9px;border-top:1px solid var(--rule);letter-spacing:.04em}
 .byebox{border:1px dashed var(--rule);border-radius:3px;padding:7px 9px;font-size:13px;color:var(--bone-faint);
   display:flex;align-items:center;gap:7px}
 .champbox{border:1px solid var(--bulb);border-radius:3px;padding:14px 10px;text-align:center;background:rgba(232,166,46,.12)}
@@ -178,11 +180,23 @@ table.catline th.eq,table.catline td.eq{width:64px;min-width:64px;max-width:64px
 /* manager */
 .mghead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .mgname{font-family:var(--cond);font-size:38px;line-height:1;letter-spacing:.03em}
-.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(126px,1fr));gap:1px;background:var(--rule);
+.kpis{display:flex;flex-wrap:wrap;gap:1px;background:var(--rule);
   border:1px solid var(--rule);border-radius:3px;margin:18px 0 8px;overflow:hidden}
-.kpi{background:rgba(10,16,12,.85);padding:12px 13px}
+.kpi{background:rgba(10,16,12,.85);padding:12px 13px;flex:1 1 auto;min-width:96px}
 .kpi .k{font-family:var(--cond);font-size:12px;letter-spacing:.08em;color:var(--bone-faint)}
-.kpi .v{font-family:var(--num);font-size:21px;font-weight:600;line-height:1.2;margin-top:3px;letter-spacing:-.01em}
+.kpi .v{font-family:var(--num);font-size:21px;font-weight:600;line-height:1.2;margin-top:3px;letter-spacing:-.01em;white-space:nowrap}
+.kpi .k{white-space:nowrap}
+.kpi .sub{white-space:nowrap}
+.mgpick{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.mgpick button{display:inline-flex;align-items:center;gap:6px;font-family:var(--cond);font-size:14px;letter-spacing:.04em;
+  background:transparent;color:var(--bone-dim);border:1px solid var(--rule);border-radius:2px;padding:6px 11px;cursor:pointer}
+.mgpick button[aria-pressed="true"]{background:var(--bulb);color:#241A05;border-color:var(--bulb)}
+.mgpick .dot{width:9px;height:9px}
+.bwgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.bwgrid h3{font-size:14px;letter-spacing:.05em;margin:0 0 6px;color:var(--bone-dim)}
+.rhit{cursor:pointer}
+.rpop .rv{display:flex;justify-content:space-between;gap:18px;font-size:14px;padding:4px 0}
+.rpop .rv b{font-family:var(--num);font-size:16px}
 .namerow{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule);font-size:14px}
 .namerow .yr{font-family:var(--cond);color:var(--bone-faint);width:70px;flex:none}
 .back{background:transparent;border:1px solid var(--rule);color:var(--bone-dim);border-radius:2px;
@@ -438,7 +452,7 @@ const PARK_NAMES = {};
 const D=LEAGUE_DATA, ALLK=D.allTimeKey||"ALL", SEASONS=Object.keys(D.seasons).sort(),
   YEARS=Object.keys(D.seasons).filter(s=>s!==(D.allTimeKey||"ALL")).sort();
 let season=String(D.meta.currentSeason), view="standings";
-let week=null, statMode="raw", who=null, backTo="standings";
+let week=null, statMode="raw", who=null, backTo="standings", bwMode="all";
 let sortCol=null, sortDir=-1;
 let mMode="week", mTeam=null;
 const hidden=new Set(), lower=new Set(D.lowerBetter);
@@ -449,7 +463,7 @@ const pct3=p=>p.toFixed(3).replace(/^0/,"");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const el=id=>document.getElementById(id);
 const VIEWS=[["standings","Standings"],["matchups","Matchups"],["trends","Trends"],
- ["stats","Team stats"],["bracket","Bracket"],["history","History"]];
+ ["stats","Team stats"],["bracket","Bracket"],["history","History"],["manager","Managers"]];
 
 /* innings: decimal thirds -> baseball notation */
 function ipFmt(v){
@@ -591,12 +605,14 @@ function buildChrome(){
   el("seasonPick").innerHTML=SEASONS.map(s=>`<button type="button" data-s="${s}" aria-pressed="${s===season}">${s}</button>`).join("");
   el("seasonPick").onclick=e=>{const b=e.target.closest("button");if(!b)return;season=b.dataset.s;week=null;sortCol=null;render();};
   el("nav").innerHTML=VIEWS.map(([k,l])=>`<button type="button" data-v="${k}" aria-current="${k===view?"page":"false"}">${l}</button>`).join("");
-  el("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;view=b.dataset.v;sortCol=null;render();};
+  el("nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;view=b.dataset.v;sortCol=null;
+    if(view==="manager"){who=D.managers[Math.floor(Math.random()*D.managers.length)];backTo=null;}
+    render();};
   el("foot").innerHTML=esc(D.meta.note)+" 🏵 regular-season champion · 👑 playoff champion.";
   document.addEventListener("click",e=>{
     const b=e.target.closest(".who");
     if(b){who=b.dataset.mgr;backTo=view==="manager"?backTo:view;view="manager";render();return;}
-    if(!e.target.closest(".pop")&&!e.target.closest(".cell")) closePop();
+    if(!e.target.closest(".pop")&&!e.target.closest(".cell")&&!e.target.closest(".rhit")) closePop();
   });
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop();});
 }
@@ -1142,11 +1158,14 @@ function svgRadar(cats,pts,color){
   const shape=pts.map((v,i)=>at(i,Math.max(0.03,v==null?0:v)).map(x=>x.toFixed(1)).join(",")).join(" ");
   let p=`<polygon points="${shape}" fill="${color}38" stroke="${color}" stroke-width="2" stroke-linejoin="round"/>`;
   pts.forEach((v,i)=>{const [x,y]=at(i,Math.max(0.03,v==null?0:v));
-    p+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.7" fill="${color}"><title>${esc(cats[i])} — ${v==null?"no data":Math.round(v*100)}</title></circle>`;});
+    p+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.7" fill="${color}"/>`;});
+  /* big invisible tap targets, one per spoke, sitting on the point */
+  pts.forEach((v,i)=>{const [x,y]=at(i,Math.max(0.03,v==null?0:v));
+    p+=`<circle class="rhit" data-cat="${esc(cats[i])}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="13" fill="transparent"/>`;});
   let lb="";
   cats.forEach((c,i)=>{const [x,y]=at(i,1.21);
     const anchor=Math.abs(x-cx)<7?"middle":(x>cx?"start":"end");
-    lb+=`<text x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" fill="#828C84" font-size="10.5" text-anchor="${anchor}">${esc(c)}${lower.has(c)?" ↓":""}</text>`;});
+    lb+=`<text class="rhit" data-cat="${esc(c)}" x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" fill="#828C84" font-size="10.5" text-anchor="${anchor}">${esc(c)}${lower.has(c)?" ↓":""}</text>`;});
   return `<svg viewBox="0 0 ${W} ${H}" role="img" style="width:100%;height:auto;display:block">${g}${p}${lb}</svg>`;
 }
 function radarBlock(m){
@@ -1161,7 +1180,7 @@ function radarBlock(m){
   const vals=cs=>cs.map(c=>{const t=sh[m+"|"+c]; return t==null?null:t;});
   const c=col(m);
   return `<h2 class="sec">Category profile, ${esc(season)}</h2>
-    <p class="lede">Each spoke is the share of the league beaten in that category. Out at the rim is best in the league, in at the middle is worst. The four arrowed categories are flipped, so further out is always better.</p>
+    <p class="lede">Tap any point or category name for the percentile and season total. Each spoke is the share of the league beaten in that category. Out at the rim is best in the league, in at the middle is worst. The four arrowed categories are flipped, so further out is always better.</p>
     <div class="radars">
       <div class="radar"><h3>Hitting</h3><p>${HIT.length} categories</p>${svgRadar(HIT,vals(HIT),c)}</div>
       <div class="radar"><h3>Pitching</h3><p>${PIT.length} categories</p>${svgRadar(PIT,vals(PIT),c)}</div>
@@ -1174,14 +1193,15 @@ function openPop(mode,a,b,x,y){
   closePop();
   const wantPO = mode==="po";
   const rows=YEARS.map(s=>{
-    const gs=D.seasons[s].matchups.filter(m=>(wantPO?m.stage!=="Regular":m.stage==="Regular")&&
+    const gs=D.seasons[s].matchups.filter(m=>(wantPO?m.stage!=="Regular"&&!m.live:m.stage==="Regular")&&
       ((m.a===a&&m.b===b)||(m.a===b&&m.b===a)));
     let w=0,l=0,t=0,cw=0,cl=0,ct=0;
     gs.forEach(m=>{const me=m.a===a?{w:m.aw,l:m.al}:{w:m.al,l:m.aw};
       cw+=me.w;cl+=me.l;ct+=m.at;
-      if(me.w>me.l)w++;else if(me.w<me.l)l++;else t++;});
+      if(m.win){if(m.win===a)w++;else l++;}
+      else if(me.w>me.l)w++;else if(me.w<me.l)l++;else t++;});
     if(!gs.length) return `<tr><td>${s}</td><td colspan="2" style="color:var(--bone-faint)">—</td></tr>`;
-    return `<tr><td>${s}</td><td>${rec(w,l,t)}</td><td style="color:var(--bone-dim)">${cw}-${cl}-${ct}</td></tr>`;
+    return `<tr><td>${s}</td><td>${wantPO?w+"-"+l:rec(w,l,t)}</td><td style="color:var(--bone-dim)">${cw}-${cl}-${ct}</td></tr>`;
   }).join("");
   const d=document.createElement("div");
   d.className="pop";
@@ -1225,14 +1245,15 @@ function openApPop(sea,wk,me,x,y){
 }
 
 function h2hGrid(src,note,host,mode){
+  const rec2=mode==="po"?(w,l)=>w+"-"+l:rec;
   const rows=D.managers.map(a=>{let W=0,L=0,T=0;
     const cells=D.managers.map(b=>{
       if(a===b) return `<td style="color:var(--bone-faint)">—</td>`;
       const r=src[a][b];W+=r.w;L+=r.l;T+=r.t;
       const cls=r.w>r.l?"w":r.l>r.w?"l":"e";
       return `<td class="cell ${cls}" data-a="${esc(a)}" data-b="${esc(b)}" tabindex="0"
-        title="${esc(a)} vs ${esc(b)} — click for season detail">${rec(r.w,r.l,r.t)}</td>`;}).join("");
-    return `<tr><td class="l">${nameBtn(a)}</td>${cells}<td style="font-weight:600">${rec(W,L,T)}</td></tr>`;}).join("");
+        title="${esc(a)} vs ${esc(b)} — click for season detail">${rec2(r.w,r.l,r.t)}</td>`;}).join("");
+    return `<tr><td class="l">${nameBtn(a)}</td>${cells}<td style="font-weight:600">${rec2(W,L,T)}</td></tr>`;}).join("");
   el(host).innerHTML=`<p class="lede">${note}</p>
     <div class="ramp"><span class="key"><i style="background:rgba(196,47,69,.7)"></i>winning record</span>
       <span class="key"><i style="background:rgba(49,89,158,.7)"></i>losing record</span>
@@ -1282,6 +1303,13 @@ function vBracket(){
   const sdOf=m=>seeds[m]||"";
   const tie=g=>{
     if(!g) return `<div class="byebox">—</div>`;
+    if(g.live){
+      /* in progress: no winner yet, better seed on top */
+      const [x,xs,y,ys]=(seeds[g.winner]||99)<=(seeds[g.loser]||99)?[g.winner,g.ws,g.loser,g.ls]:[g.loser,g.ls,g.winner,g.ws];
+      const r=(m,sc)=>`<div class="row"><span class="sd">${sdOf(m)}</span><span class="dot" style="background:${col(m)}"></span>
+        <span class="nm">${nameBare(m)}</span><span class="sc">${sc}</span></div>`;
+      return `<div class="tie inprog">${r(x,xs)}${r(y,ys)}<div class="liveflag">In progress, live score</div></div>`;
+    }
     const isTie=g.ws===g.ls;
     return `<div class="tie">
       <div class="row w"><span class="sd">${sdOf(g.winner)}</span><span class="dot" style="background:${col(g.winner)}"></span>
@@ -1309,12 +1337,12 @@ function vBracket(){
     <div class="brcol"><div class="rndlbl">SEMIFINAL</div>${tie(H.semi)}</div>`;
   const pending=`<div class="byebox" style="justify-content:center">not played yet</div>`;
   el("v-bracket").innerHTML=`<p class="lede">Championship bracket. The top two seeds sat out the first round; the small number beside each name is their seed.${
-    fin?"":` The ${esc(season)} final has not been played.`}</p>
+    !fin?` The ${esc(season)} final has not been played.`:fin.live?` The ${esc(season)} final is in progress.`:""}</p>
     <div class="bracket bracket5">
       ${sideCol(H1)}
       <div class="brcol">
         <div class="rndlbl">FINAL</div>${fin?tie(fin):pending}
-        ${fin?`<div class="champbox"><div class="lb">CHAMPION</div>
+        ${fin&&!fin.live?`<div class="champbox"><div class="lb">CHAMPION</div>
           <div class="nm"><span class="dot" style="background:${col(fin.winner)};width:12px;height:12px"></span>${esc(fin.winner)} \u{1F451}</div></div>`:""}
         ${third?`<div class="rndlbl" style="margin-top:14px">THIRD PLACE</div>${tie(third)}`:""}
       </div>
@@ -1361,17 +1389,36 @@ function allTimeStreaks(m){
     else {run=0;skid=0;}});
   return {run:bestRun,skid:worstSkid};
 }
+/* championship bracket games only (not consolation), finished weeks only */
+function playoffRecord(m){
+  const c=[0,0,0],w=[0,0,0];
+  YEARS.forEach(s=>{
+    const S=D.seasons[s],br=(D.bracket||{})[s]; if(!S||!br) return;
+    const live=new Set(br.live||[]);
+    S.matchups.forEach(x=>{
+      if(x.stage==="Regular"||x.live||(x.a!==m&&x.b!==m)) return;
+      if(!live.has(`${x.week}|${x.a}|${x.b}`)&&!live.has(`${x.week}|${x.b}|${x.a}`)) return;
+      const me=x.a===m?[x.aw,x.al]:[x.al,x.aw];
+      c[0]+=me[0];c[1]+=me[1];c[2]+=x.at;
+      const won=x.win?x.win===m:me[0]>me[1];
+      w[won?0:1]++;
+    });
+  });
+  return {cat:c,match:w};
+}
 function vHistory(){
   const life=[...D.lifetime].sort((a,b)=>(b.matchPct||0)-(a.matchPct||0));
   const held=allTimeRecords();
   const lifeRows=life.map(r=>{
     const st=allTimeStreaks(r.manager);
+    const po=playoffRecord(r.manager);
     const mine=held[r.manager]||[];
     const recs=mine.length
       ? mine.map(x=>`<span class="rectag" title="${esc(x.cat)} record, set in ${esc(x.season)}">${esc(x.cat)}<i>${esc(String(x.season).slice(2))}</i></span>`).join("")
       : `<span class="sub">—</span>`;
     return `<tr><td class="l">${nameBtn(r.manager)}</td>
     <td>${rec(...r.cat)}</td><td>${rec(...r.match)}</td>
+    <td>${po.match[0]+po.match[1]?rec(...po.cat):"\u2014"}</td><td>${po.match[0]+po.match[1]?po.match[0]+"-"+po.match[1]:"\u2014"}</td>
     <td>${st.run}</td><td>${st.skid}</td>
     <td class="l recs">${recs}</td></tr>`;}).join("");
   const pay=D.managers.map(m=>({m,...D.payouts[m]})).sort((a,b)=>b.total-a.total);
@@ -1379,8 +1426,9 @@ function vHistory(){
     YEARS.map(s=>`<td>${p.bySeason[s]?"$"+p.bySeason[s]:"—"}</td>`).join("")}
     <td style="font-weight:600">${p.total?"$"+p.total.toLocaleString():"—"}</td></tr>`).join("");
   el("v-history").innerHTML=`<h2 class="sec">Lifetime records</h2>
-    <p class="lede">Every regular season week and category, all seasons combined. Runs and skids carry straight across season boundaries. Held is every category where that manager owns the best single season the league has seen, with the year it was set.</p>
+    <p class="lede">Every regular season week and category, all seasons combined. The playoff columns count championship bracket games only, and a playoff week is never a tie since the better seed advances. Runs and skids carry straight across season boundaries. Held is every category where that manager owns the best single season the league has seen, with the year it was set.</p>
     <div class="scroll"><table><thead><tr><th class="l">Manager</th><th>Categories</th><th>Weeks</th>
+      <th title="Championship bracket games only">Playoff categories</th><th title="Championship bracket games only, never a tie">Playoff weeks</th>
       <th title="Longest run of winning weeks, all seasons">Best run</th>
       <th title="Longest run of losing weeks, all seasons">Worst skid</th>
       <th class="l">Records held</th></tr></thead><tbody>${lifeRows}</tbody></table></div>
@@ -1390,7 +1438,7 @@ function vHistory(){
     <h2 class="sec">Head to head, regular season</h2><div id="h2h-reg"></div>
     <h2 class="sec">Head to head, playoffs</h2><div id="h2h-po"></div>`;
   h2hGrid(D.h2h, "Every pairing, regular season only, all seasons combined. Read across a row for that manager's record. Click any cell for the season by season breakdown.", "h2h-reg");
-  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Playoff and consolation games only. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
+  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Playoff and consolation games only. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
 }
 
 /* ---------- manager ---------- */
@@ -1438,18 +1486,59 @@ function tradeBlock(m){
     <p class="lede">${all.length} trade${all.length>1?"s":""} on record, newest season first.</p>${blocks}`;
 }
 
+function bwBlock(m){
+  const pick=x=>bwMode==="hit"?x.ah:bwMode==="pit"?x.ap:[x.aw,x.al,x.at];
+  const g=[];
+  SEASONS.forEach(s=>D.seasons[s].matchups.forEach(x=>{
+    if(x.live||(x.a!==m&&x.b!==m)) return;
+    const r=pick(x); if(!r) return;
+    const me=x.a===m?[r[0],r[1],r[2]]:[r[1],r[0],r[2]];
+    g.push({s:+s,wk:x.week,po:x.stage!=="Regular",opp:x.a===m?x.b:x.a,w:me[0],l:me[1],t:me[2]});}));
+  const recent=(a,b)=>b.s-a.s||b.wk-a.wk;
+  const best=[...g].sort((a,b)=>(b.w-b.l)-(a.w-a.l)||b.w-a.w||recent(a,b)).slice(0,5);
+  const worst=[...g].sort((a,b)=>(a.w-a.l)-(b.w-b.l)||a.w-b.w||recent(a,b)).slice(0,5);
+  const tb=rows=>`<div class="scroll"><table><thead><tr><th class="l">Record</th><th>Season</th><th>Week</th><th class="l">Opponent</th></tr></thead><tbody>${
+    rows.map(r=>`<tr><td class="l" style="font-weight:600">${rec(r.w,r.l,r.t)}</td><td>${r.s}</td>
+      <td>${r.wk}${r.po?` <span class="sub">PO</span>`:""}</td><td class="l">${nameBtn(r.opp)}</td></tr>`).join("")}</tbody></table></div>`;
+  const b=(k,l)=>`<button type="button" data-bw="${k}" aria-pressed="${bwMode===k}">${l}</button>`;
+  return `<div class="toggle" role="group" aria-label="Which categories">${b("all","Overall")}${b("hit","Hitting")}${b("pit","Pitching")}</div>
+    ${g.length?`<div class="bwgrid"><div><h3>BEST FIVE</h3>${tb(best)}</div><div><h3>WORST FIVE</h3>${tb(worst)}</div></div>`
+      :`<p class="empty">No finished weeks yet.</p>`}`;
+}
+function openRadarPop(m,c,x,y){
+  closePop();
+  const sh=pctlFor(season)||{},S=D.seasons[season],j=D.cats.indexOf(c);
+  const p=sh[m+"|"+c], v=S&&S.seasonStats&&S.seasonStats[m]?S.seasonStats[m][j]:null;
+  const ord=n=>{const r=n%100;return n+((r>10&&r<14)?"th":({1:"st",2:"nd",3:"rd"}[n%10]||"th"));};
+  const d=document.createElement("div");
+  d.className="pop rpop";
+  d.innerHTML=`<button class="cls" aria-label="Close">×</button>
+    <h4><span class="dot" style="background:${col(m)}"></span>${esc(c)}${lower.has(c)?" <span style=\"color:var(--bone-faint);font-size:12px\">lower is better</span>":""}</h4>
+    <div class="rv"><span>Percentile</span><b>${p==null?"\u2014":ord(Math.round(p*100))}</b></div>
+    <div class="rv"><span>${esc(season)} total</span><b>${fmtStat(c,v)}</b></div>`;
+  document.body.appendChild(d);
+  const r=d.getBoundingClientRect();
+  d.style.left=Math.max(8,Math.min(x+12,window.innerWidth-r.width-12))+"px";
+  d.style.top=Math.max(8,Math.min(y+12,window.innerHeight-r.height-12))+"px";
+  d.querySelector(".cls").onclick=closePop;
+}
 function vManager(){
   if(!who){el("v-manager").innerHTML=`<p class="empty">Pick a manager.</p>`;return;}
   const life=D.lifetime.find(x=>x.manager===who);
   const reg=[];
   SEASONS.forEach(s=>D.seasons[s].matchups.forEach(m=>{
-    if(m.stage!=="Regular")return;
+    if(m.stage!=="Regular"||m.live)return;
     if(m.a===who)reg.push({s:+s,wk:m.week,opp:m.b,w:m.aw,l:m.al});
     else if(m.b===who)reg.push({s:+s,wk:m.week,opp:m.a,w:m.al,l:m.aw});}));
   reg.sort((a,b)=>a.s-b.s||a.wk-b.wk);
   const best=reg.reduce((a,b)=>(b.w-b.l)>(a.w-a.l)?b:a);
   const worst=reg.reduce((a,b)=>(b.w-b.l)<(a.w-a.l)?b:a);
-  let cur=0,bestStreak=0;reg.forEach(g=>{if(g.w>g.l){cur++;bestStreak=Math.max(bestStreak,cur);}else cur=0;});
+  let cur=0,bestStreak=0,runFrom=null,runStart=null,runSpan=null;
+  reg.forEach(g=>{if(g.w>g.l){if(!cur)runFrom=g;cur++;
+      if(cur>=bestStreak){bestStreak=cur;runSpan=[runFrom,g];}}else cur=0;});
+  const spanTxt=runSpan?(runSpan[0].s===runSpan[1].s
+      ?`${runSpan[0].s} wk ${runSpan[0].wk} to ${runSpan[1].wk}`
+      :`${runSpan[0].s} wk ${runSpan[0].wk} to ${runSpan[1].s} wk ${runSpan[1].wk}`):"";
   const titles=SEASONS.filter(s=>(D.finalPlace[s]||[])[0]===who).length;
   const reg1=SEASONS.filter(s=>D.seasons[s].standings[0].manager===who).length;
   const pay=D.payouts[who];
@@ -1474,22 +1563,27 @@ function vManager(){
     <td>${c?rec(c.w,c.l,c.t):"\u2014"}</td>
     <td>${cp==null?"\u2014":pct3(cp)}</td></tr>`;}).join("");
   el("v-manager").innerHTML=`
-    <button type="button" class="back" id="mgBack">← Back</button>
+    ${backTo?`<button type="button" class="back" id="mgBack">← Back</button>`:""}
+    <div class="mgpick" id="mgPick">${D.managers.map(m=>`<button type="button" data-pick="${esc(m)}" aria-pressed="${m===who}">
+      <span class="dot" style="background:${col(m)}"></span>${esc(m)}</button>`).join("")}</div>
     <div class="mghead"><span class="dot" style="background:${col(who)};width:20px;height:20px"></span>
       <span class="mgname">${esc(who)}</span><span>${crowns(who)}</span></div>
     <p class="lede">${esc(D.seasons[String(D.meta.currentSeason)].teamNames[who])} — four seasons in The Frank Cup.</p>
     <div class="kpis">
       <div class="kpi"><div class="k">WEEKS W-L-T</div><div class="v">${rec(...life.match)}</div></div>
       <div class="kpi"><div class="k">WIN PCT</div><div class="v">${pct3(life.matchPct)}</div></div>
-      <div class="kpi"><div class="k">CATEGORIES</div><div class="v">${rec(...life.cat)}</div></div>
+      <div class="kpi wide"><div class="k">CATEGORIES</div><div class="v">${rec(...life.cat)}</div></div>
       <div class="kpi"><div class="k">TITLES</div><div class="v">${titles}</div></div>
       <div class="kpi"><div class="k">REG. SEASON #1</div><div class="v">${reg1}</div></div>
       <div class="kpi"><div class="k">EARNINGS</div><div class="v">${pay.total?"$"+pay.total.toLocaleString():"$0"}</div></div>
-      <div class="kpi"><div class="k">LONGEST RUN</div><div class="v">${bestStreak}<span style="font-size:13px;color:var(--bone-faint)"> wks</span></div></div>
+      <div class="kpi"><div class="k">LONGEST RUN</div><div class="v">${bestStreak}<span style="font-size:13px;color:var(--bone-faint)"> wks</span></div>${spanTxt?`<div class="sub">${spanTxt}</div>`:""}</div>
       <div class="kpi"><div class="k">BEST WEEK</div><div class="v">${best.w}–${best.l}</div><div class="sub">${best.s} wk ${best.wk} v ${esc(best.opp)}</div></div>
       <div class="kpi"><div class="k">WORST WEEK</div><div class="v">${worst.w}–${worst.l}</div><div class="sub">${worst.s} wk ${worst.wk} v ${esc(worst.opp)}</div></div>
     </div>
     ${radarBlock(who)}
+    <h2 class="sec">Best and worst weeks</h2>
+    <p class="lede">Every finished week, regular season and playoffs, all seasons. Ranked by categories won minus lost against that week's opponent.</p>
+    <div id="bwBox">${bwBlock(who)}</div>
     <h2 class="sec">Season by season</h2>
     <div class="scroll"><table><thead><tr><th class="l">Season</th><th class="l">Team</th><th>Reg. finish</th>
       <th>Categories</th><th>Pct</th><th>Weeks</th><th>Final</th><th>Won</th></tr></thead><tbody>${finishes}</tbody></table></div>
@@ -1501,7 +1595,12 @@ function vManager(){
       <th>Categories</th><th>Pct</th></tr></thead><tbody>${oppRows}</tbody></table></div>
     ${playerBlocks(who)}
     ${tradeBlock(who)}`;
-  el("mgBack").onclick=()=>{view=backTo;render();};
+  if(el("mgBack")) el("mgBack").onclick=()=>{view=backTo;render();};
+  el("mgPick").onclick=e=>{const b=e.target.closest("button");if(!b)return;who=b.dataset.pick;render();};
+  el("bwBox").onclick=e=>{const b=e.target.closest("button[data-bw]");if(!b)return;
+    bwMode=b.dataset.bw;el("bwBox").innerHTML=bwBlock(who);};
+  el("v-manager").querySelectorAll(".rhit").forEach(h=>{
+    h.onclick=ev=>{ev.stopPropagation();openRadarPop(who,h.dataset.cat,ev.clientX,ev.clientY);};});
 }
 
 function render(){
