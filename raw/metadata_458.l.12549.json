@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/458.l.12549/metadata",
+  "league": [
+   {
+    "league_key": "458.l.12549",
+    "league_id": "12549",
+    "name": "The Frank Cup",
+    "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/recordbook?layout=webview&device=smartphone",
+    "logo_url": "https://s.yimg.com/ep/cx/blendr/v2/image-foam-finger-png_1721252412344.png",
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "10",
+    "edit_key": "2025-09-28",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1759133209",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "431_12618",
+    "renewed": "469_34466",
+    "felo_tier": "gold",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 25,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 25,
+    "start_week": "1",
+    "start_date": "2025-03-18",
+    "end_week": "25",
+    "end_date": "2025-09-28",
+    "is_finished": 1,
+    "current_date": "2025-09-28",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2025"
+   }
+  ],
+  "time": "58.496952056885ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

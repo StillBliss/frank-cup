@@ -1,0 +1,2480 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/431.l.12618/standings",
+  "league": [
+   {
+    "league_key": "431.l.12618",
+    "league_id": "12618",
+    "name": "The Frank Cup",
+    "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/recordbook?layout=webview&device=smartphone",
+    "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/feffecd1387fd88b53156d3fba45e5531235e2252d599cfcbff0f4413f1628d9.jpg",
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "10",
+    "edit_key": "2024-09-30",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1727770974",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "422_112556",
+    "renewed": "458_12549",
+    "felo_tier": "gold",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 25,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 25,
+    "start_week": "1",
+    "start_date": "2024-03-20",
+    "end_week": "25",
+    "end_date": "2024-09-30",
+    "is_finished": 1,
+    "current_date": "2024-09-30",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2024"
+   },
+   {
+    "standings": [
+     {
+      "teams": {
+       "0": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.1"
+          },
+          {
+           "team_id": "1"
+          },
+          {
+           "name": "The Commissioner 1x"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/1"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8dff9c799a91b71bb4c48d52d7a807f0e1b50589a6fd7e443e13f2aae35f0526.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 1
+          },
+          [],
+          {
+           "waiver_priority": 8
+          },
+          [],
+          {
+           "number_of_moves": 81
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "4"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "1",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "854",
+              "felo_tier": "platinum"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "924"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "42"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "272"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "874"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "224"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "650"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1181"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".253"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".785"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "581"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "2180.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "152"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "117"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "73"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "2282"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "34"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.70"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.29"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "156"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 1,
+           "playoff_seed": "1",
+           "outcome_totals": {
+            "wins": "277",
+            "losses": "157",
+            "ties": "50",
+            "percentage": ".624"
+           },
+           "games_back": "-"
+          }
+         }
+        ]
+       },
+       "1": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.5"
+          },
+          {
+           "team_id": "5"
+          },
+          {
+           "name": "Yankees"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/5"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11_g.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 8
+          },
+          [],
+          {
+           "waiver_priority": 2
+          },
+          [],
+          {
+           "number_of_moves": 91
+          },
+          {
+           "number_of_trades": "3"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "4"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "5",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "813",
+              "felo_tier": "platinum"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "856"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "222"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "764"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "128"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "651"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1274"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".266"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".794"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "534"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "2164.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "135"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "111"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "6"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "6"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "2089"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "41"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.87"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.22"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.93"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "151"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 2,
+           "playoff_seed": "2",
+           "outcome_totals": {
+            "wins": "260",
+            "losses": "168",
+            "ties": "56",
+            "percentage": ".595"
+           },
+           "games_back": "14"
+          }
+         }
+        ]
+       },
+       "2": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.3"
+          },
+          {
+           "team_id": "3"
+          },
+          {
+           "name": "Get Some Is Back"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/3"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 10
+          },
+          [],
+          {
+           "waiver_priority": 4
+          },
+          [],
+          {
+           "number_of_moves": 62
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "3",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "693",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "843"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "22"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "231"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "747"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "156"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "541"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1676"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "99"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".269"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".780"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "542"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1958.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "128"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "112"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "51"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1968"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "6"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.88"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "157"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 3,
+           "playoff_seed": "4",
+           "outcome_totals": {
+            "wins": "228",
+            "losses": "201",
+            "ties": "55",
+            "percentage": ".528"
+           },
+           "games_back": "46.5"
+          }
+         }
+        ]
+       },
+       "3": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.4"
+          },
+          {
+           "team_id": "4"
+          },
+          {
+           "name": "Franzia"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/4"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/0a6ce177563b05a6366ae70a54ca1ab3c8cba08101513021087cfce4105e5033.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 4
+          },
+          [],
+          {
+           "waiver_priority": 9
+          },
+          [],
+          {
+           "number_of_moves": 94
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "4",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "681",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "850"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "298"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "907"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "87"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "641"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1365"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "60"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".263"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".816"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "601"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "2286.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "137"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "139"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "46"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "2090"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.96"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.26"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "154"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 4,
+           "playoff_seed": "3",
+           "outcome_totals": {
+            "wins": "222",
+            "losses": "194",
+            "ties": "68",
+            "percentage": ".529"
+           },
+           "games_back": "46"
+          }
+         }
+        ]
+       },
+       "4": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.8"
+          },
+          {
+           "team_id": "8"
+          },
+          {
+           "name": "NOLA TALENT"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/8"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3d378368b6121426187a3f0f1d51ad40f4459252927a2c37218bf9cdf7534e27.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 5
+          },
+          [],
+          {
+           "waiver_priority": 5
+          },
+          [],
+          {
+           "number_of_moves": 89
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "8",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "923",
+              "felo_tier": "diamond"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "832"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "44"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "201"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "766"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "191"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "522"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1911"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "80"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".265"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".761"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "562"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1963.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "124"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "102"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "4"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "92"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1841"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.09"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.28"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.00"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "139"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 5,
+           "playoff_seed": "5",
+           "outcome_totals": {
+            "wins": "219",
+            "losses": "211",
+            "ties": "54",
+            "percentage": ".508"
+           },
+           "games_back": "56"
+          }
+         }
+        ]
+       },
+       "5": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.6"
+          },
+          {
+           "team_id": "6"
+          },
+          {
+           "name": "GIRL ON FIRE AGAIN"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/6"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23310414027_7439a2.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 6
+          },
+          [],
+          {
+           "waiver_priority": 7
+          },
+          [],
+          {
+           "number_of_moves": 81
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "6",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "597",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "824"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "35"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "217"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "777"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "155"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "573"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1399"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "85"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".256"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".768"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "553"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1898.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "114"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "123"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "51"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1779"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "55"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.28"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.24"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.20"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "114"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 6,
+           "playoff_seed": "6",
+           "outcome_totals": {
+            "wins": "197",
+            "losses": "227",
+            "ties": "60",
+            "percentage": ".469"
+           },
+           "games_back": "75"
+          }
+         }
+        ]
+       },
+       "6": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.9"
+          },
+          {
+           "team_id": "9"
+          },
+          {
+           "name": "Railriders"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/9"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_b.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 9
+          },
+          [],
+          {
+           "waiver_priority": 10
+          },
+          [],
+          {
+           "number_of_moves": 90
+          },
+          {
+           "number_of_trades": "5"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "1"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "9",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "692",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "720"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "214"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "765"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "102"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "506"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1185"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "71"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".247"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".729"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "495"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1979.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "129"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "130"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "26"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1911"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.87"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.92"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "143"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 7,
+           "playoff_seed": "8",
+           "outcome_totals": {
+            "wins": "184",
+            "losses": "236",
+            "ties": "64",
+            "percentage": ".446"
+           },
+           "games_back": "86"
+          }
+         }
+        ]
+       },
+       "7": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.2"
+          },
+          {
+           "team_id": "2"
+          },
+          {
+           "name": "austin's Phenomenal Team"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/2"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1_a.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 2
+          },
+          [],
+          {
+           "waiver_priority": 6
+          },
+          [],
+          {
+           "number_of_moves": 60
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "2",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "610",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "798"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "31"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "241"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "780"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "186"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "584"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "738"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "71"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".249"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".766"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "561"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1928.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "119"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "103"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "58"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1895"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "5"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.03"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.25"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.04"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "137"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 8,
+           "playoff_seed": "7",
+           "outcome_totals": {
+            "wins": "188",
+            "losses": "235",
+            "ties": "61",
+            "percentage": ".451"
+           },
+           "games_back": "83.5"
+          }
+         }
+        ]
+       },
+       "8": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.10"
+          },
+          {
+           "team_id": "10"
+          },
+          {
+           "name": "GELOF MY LAWN"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/10"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23531371067_1ba013.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 3
+          },
+          [],
+          {
+           "waiver_priority": 1
+          },
+          [],
+          {
+           "number_of_moves": 14
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "1"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "10",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "601",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "672"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "13"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "213"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "686"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "115"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "427"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1570"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "70"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".256"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".760"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "491"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1538.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "110"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "86"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "130"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1696"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.38"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.66"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "106"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 9,
+           "playoff_seed": "9",
+           "outcome_totals": {
+            "wins": "175",
+            "losses": "247",
+            "ties": "62",
+            "percentage": ".426"
+           },
+           "games_back": "96"
+          }
+         }
+        ]
+       },
+       "9": {
+        "team": [
+         [
+          {
+           "team_key": "431.l.12618.t.7"
+          },
+          {
+           "team_id": "7"
+          },
+          {
+           "name": "Jacob Winn's Notable Team"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2024/b1/12618/7"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_j.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 7
+          },
+          [],
+          {
+           "waiver_priority": 3
+          },
+          [],
+          {
+           "number_of_moves": 49
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          [],
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "7",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "568",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2024",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "60",
+              "value": ""
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "745"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "218"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "711"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "94"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "501"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1308"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "72"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".251"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".746"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "488"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1729.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "101"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "107"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "90"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1719"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "7"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.69"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.46"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "114"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2024",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 10,
+           "playoff_seed": "10",
+           "outcome_totals": {
+            "wins": "179",
+            "losses": "253",
+            "ties": "52",
+            "percentage": ".424"
+           },
+           "games_back": "97"
+          }
+         }
+        ]
+       },
+       "count": 10
+      }
+     }
+    ]
+   }
+  ],
+  "time": "159.36303138733ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

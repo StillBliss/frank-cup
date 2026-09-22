@@ -1,0 +1,685 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/458.l.12549/settings",
+  "league": [
+   {
+    "league_key": "458.l.12549",
+    "league_id": "12549",
+    "name": "The Frank Cup",
+    "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/recordbook?layout=webview&device=smartphone",
+    "logo_url": "https://s.yimg.com/ep/cx/blendr/v2/image-foam-finger-png_1721252412344.png",
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "10",
+    "edit_key": "2025-09-28",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1759133209",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "431_12618",
+    "renewed": "469_34466",
+    "felo_tier": "gold",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 25,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 25,
+    "start_week": "1",
+    "start_date": "2025-03-18",
+    "end_week": "25",
+    "end_date": "2025-09-28",
+    "is_finished": 1,
+    "current_date": "2025-09-28",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2025"
+   },
+   {
+    "settings": [
+     {
+      "draft_type": "live",
+      "is_auction_draft": "0",
+      "scoring_type": "head",
+      "scoring_label": "H2H Cat",
+      "custom_scoring_preset_name": "",
+      "custom_scoring_preset_logo": "",
+      "is_highscore": false,
+      "invite_permission": "commissioner",
+      "uses_playoff": "1",
+      "has_playoff_consolation_games": true,
+      "playoff_start_week": "23",
+      "uses_playoff_reseeding": 1,
+      "uses_lock_eliminated_teams": 1,
+      "num_playoff_teams": "6",
+      "num_playoff_consolation_teams": 6,
+      "has_multiweek_championship": 0,
+      "uses_roster_import": "1",
+      "roster_import_deadline": "2025-03-15",
+      "waiver_type": "R",
+      "waiver_rule": "all",
+      "uses_faab": "0",
+      "draft_time": "1742175300",
+      "draft_pick_time": "90",
+      "post_draft_players": "W",
+      "max_teams": "10",
+      "waiver_time": "2",
+      "trade_end_date": "2025-08-07",
+      "trade_ratify_type": "commish",
+      "trade_reject_time": "2",
+      "player_pool": "ALL",
+      "cant_cut_list": "yahoo",
+      "draft_together": 0,
+      "can_trade_draft_picks": "1",
+      "sendbird_channel_url": "7c4bd85e2b50c5414fd26bdd6a91486e",
+      "roster_positions": [
+       {
+        "roster_position": {
+         "position": "C",
+         "position_type": "B",
+         "count": 1,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "1B",
+         "position_type": "B",
+         "count": 1,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "2B",
+         "position_type": "B",
+         "count": 1,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "3B",
+         "position_type": "B",
+         "count": 1,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "SS",
+         "position_type": "B",
+         "count": 1,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "OF",
+         "position_type": "B",
+         "count": 3,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "Util",
+         "position_type": "B",
+         "count": 2,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "SP",
+         "position_type": "P",
+         "count": 3,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "RP",
+         "position_type": "P",
+         "count": 2,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "P",
+         "position_type": "P",
+         "count": 4,
+         "is_starting_position": 1
+        }
+       },
+       {
+        "roster_position": {
+         "position": "BN",
+         "count": 5,
+         "is_starting_position": 0
+        }
+       },
+       {
+        "roster_position": {
+         "position": "IL",
+         "count": 2,
+         "is_starting_position": 0
+        }
+       },
+       {
+        "roster_position": {
+         "position": "NA",
+         "count": 1,
+         "is_starting_position": 0
+        }
+       }
+      ],
+      "stat_categories": {
+       "stats": [
+        {
+         "stat": {
+          "stat_id": 60,
+          "enabled": "1",
+          "name": "Hits / At Bats",
+          "display_name": "H/AB",
+          "group": "batting",
+          "abbr": "H/AB",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B",
+             "is_only_display_stat": "1"
+            }
+           }
+          ],
+          "is_only_display_stat": "1"
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 7,
+          "enabled": "1",
+          "name": "Runs",
+          "display_name": "R",
+          "group": "batting",
+          "abbr": "R",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 11,
+          "enabled": "1",
+          "name": "Triples",
+          "display_name": "3B",
+          "group": "batting",
+          "abbr": "3B",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 12,
+          "enabled": "1",
+          "name": "Home Runs",
+          "display_name": "HR",
+          "group": "batting",
+          "abbr": "HR",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 13,
+          "enabled": "1",
+          "name": "Runs Batted In",
+          "display_name": "RBI",
+          "group": "batting",
+          "abbr": "RBI",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 16,
+          "enabled": "1",
+          "name": "Stolen Bases",
+          "display_name": "SB",
+          "group": "batting",
+          "abbr": "SB",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 18,
+          "enabled": "1",
+          "name": "Walks",
+          "display_name": "BB",
+          "group": "batting",
+          "abbr": "BB",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 52,
+          "enabled": "1",
+          "name": "Assists",
+          "display_name": "A",
+          "group": "batting",
+          "abbr": "A",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 53,
+          "enabled": "1",
+          "name": "Errors",
+          "display_name": "E",
+          "group": "batting",
+          "abbr": "E",
+          "sort_order": "0",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 3,
+          "enabled": "1",
+          "name": "Batting Average",
+          "display_name": "AVG",
+          "group": "batting",
+          "abbr": "AVG",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 55,
+          "enabled": "1",
+          "name": "On-base + Slugging Percentage",
+          "display_name": "OPS",
+          "group": "batting",
+          "abbr": "OPS",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 61,
+          "enabled": "1",
+          "name": "Extra Base Hits",
+          "display_name": "XBH",
+          "group": "batting",
+          "abbr": "XBH",
+          "sort_order": "1",
+          "position_type": "B",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "B"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 50,
+          "enabled": "1",
+          "name": "Innings Pitched",
+          "display_name": "IP",
+          "group": "pitching",
+          "abbr": "IP",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 28,
+          "enabled": "1",
+          "name": "Wins",
+          "display_name": "W",
+          "group": "pitching",
+          "abbr": "W",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 29,
+          "enabled": "1",
+          "name": "Losses",
+          "display_name": "L",
+          "group": "pitching",
+          "abbr": "L",
+          "sort_order": "0",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 30,
+          "enabled": "1",
+          "name": "Complete Games",
+          "display_name": "CG",
+          "group": "pitching",
+          "abbr": "CG",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 32,
+          "enabled": "1",
+          "name": "Saves",
+          "display_name": "SV",
+          "group": "pitching",
+          "abbr": "SV",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 42,
+          "enabled": "1",
+          "name": "Strikeouts",
+          "display_name": "K",
+          "group": "pitching",
+          "abbr": "K",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 48,
+          "enabled": "1",
+          "name": "Holds",
+          "display_name": "HLD",
+          "group": "pitching",
+          "abbr": "HLD",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 26,
+          "enabled": "1",
+          "name": "Earned Run Average",
+          "display_name": "ERA",
+          "group": "pitching",
+          "abbr": "ERA",
+          "sort_order": "0",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 27,
+          "enabled": "1",
+          "name": "(Walks + Hits)/ Innings Pitched",
+          "display_name": "WHIP",
+          "group": "pitching",
+          "abbr": "WHIP",
+          "sort_order": "0",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 56,
+          "enabled": "1",
+          "name": "Strikeouts per Walk Ratio",
+          "display_name": "K/BB",
+          "group": "pitching",
+          "abbr": "K/BB",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "stat": {
+          "stat_id": 83,
+          "enabled": "1",
+          "name": "Quality Starts",
+          "display_name": "QS",
+          "group": "pitching",
+          "abbr": "QS",
+          "sort_order": "1",
+          "position_type": "P",
+          "stat_position_types": [
+           {
+            "stat_position_type": {
+             "position_type": "P"
+            }
+           }
+          ]
+         }
+        }
+       ],
+       "groups": [
+        {
+         "group": {
+          "group_name": "batting",
+          "group_display_name": "Batting",
+          "group_abbr": "Batting"
+         }
+        },
+        {
+         "group": {
+          "group_name": "pitching",
+          "group_display_name": "Pitching",
+          "group_abbr": "Pitching"
+         }
+        }
+       ]
+      },
+      "max_weekly_adds": "4",
+      "uses_median_score": false,
+      "league_premium_features": []
+     },
+     {
+      "season_type": "full",
+      "min_innings_pitched": "20",
+      "week_has_enough_qualifying_days": {
+       "1": 1,
+       "2": 1,
+       "3": 1,
+       "4": 1,
+       "5": 1,
+       "6": 1,
+       "7": 1,
+       "8": 1,
+       "9": 1,
+       "10": 1,
+       "11": 1,
+       "12": 1,
+       "13": 1,
+       "14": 1,
+       "15": 1,
+       "16": 1,
+       "17": 1,
+       "18": 1,
+       "19": 1,
+       "20": 1,
+       "21": 1,
+       "22": 1,
+       "23": 1,
+       "24": 1,
+       "25": 1
+      }
+     }
+    ]
+   }
+  ],
+  "time": "110.47720909119ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

@@ -1,0 +1,836 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/458.l.12549/teams",
+  "league": [
+   {
+    "league_key": "458.l.12549",
+    "league_id": "12549",
+    "name": "The Frank Cup",
+    "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/recordbook?layout=webview&device=smartphone",
+    "logo_url": "https://s.yimg.com/ep/cx/blendr/v2/image-foam-finger-png_1721252412344.png",
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "10",
+    "edit_key": "2025-09-28",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1759133209",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "431_12618",
+    "renewed": "469_34466",
+    "felo_tier": "gold",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 25,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 25,
+    "start_week": "1",
+    "start_date": "2025-03-18",
+    "end_week": "25",
+    "end_date": "2025-09-28",
+    "is_finished": 1,
+    "current_date": "2025-09-28",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2025"
+   },
+   {
+    "teams": {
+     "0": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.1"
+        },
+        {
+         "team_id": "1"
+        },
+        {
+         "name": "The Commissioner 2X"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/1"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8dff9c799a91b71bb4c48d52d7a807f0e1b50589a6fd7e443e13f2aae35f0526.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 1
+        },
+        [],
+        {
+         "waiver_priority": 9
+        },
+        [],
+        {
+         "number_of_moves": 77
+        },
+        {
+         "number_of_trades": "1"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "1",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "855",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "1": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.2"
+        },
+        {
+         "team_id": "2"
+        },
+        {
+         "name": "austin's Phenomenal Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/2"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1_a.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 8
+        },
+        [],
+        {
+         "waiver_priority": 3
+        },
+        [],
+        {
+         "number_of_moves": 63
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "2",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "605",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "2": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.3"
+        },
+        {
+         "team_id": "3"
+        },
+        {
+         "name": "Franzia"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/3"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/0a6ce177563b05a6366ae70a54ca1ab3c8cba08101513021087cfce4105e5033.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 4
+        },
+        [],
+        {
+         "waiver_priority": 4
+        },
+        [],
+        {
+         "number_of_moves": 88
+        },
+        {
+         "number_of_trades": "2"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "3",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "750",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "3": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.4"
+        },
+        {
+         "team_id": "4"
+        },
+        {
+         "name": "Too Legit to Witt"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/4"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23531371067_1ba013.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 9
+        },
+        [],
+        {
+         "waiver_priority": 5
+        },
+        [],
+        {
+         "number_of_moves": 19
+        },
+        {
+         "number_of_trades": "2"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "4",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "764",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "4": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.5"
+        },
+        {
+         "team_id": "5"
+        },
+        {
+         "name": "Get Some Is Back"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/5"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 3
+        },
+        [],
+        {
+         "waiver_priority": 7
+        },
+        [],
+        {
+         "number_of_moves": 78
+        },
+        {
+         "number_of_trades": "3"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "5",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "658",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "5": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.6"
+        },
+        {
+         "team_id": "6"
+        },
+        {
+         "name": "GIRL ON FIRE"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/6"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23310414027_7439a2.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 6
+        },
+        [],
+        {
+         "waiver_priority": 6
+        },
+        [],
+        {
+         "number_of_moves": 63
+        },
+        {
+         "number_of_trades": "1"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "6",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "599",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "6": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.7"
+        },
+        {
+         "team_id": "7"
+        },
+        {
+         "name": "Jacob Winn's Notable Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/7"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_j.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 10
+        },
+        [],
+        {
+         "waiver_priority": 2
+        },
+        [],
+        {
+         "number_of_moves": 70
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "7",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "518",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "7": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.8"
+        },
+        {
+         "team_id": "8"
+        },
+        {
+         "name": "O-O-O-O RILEY AUSTIN GREENE"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/8"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3d378368b6121426187a3f0f1d51ad40f4459252927a2c37218bf9cdf7534e27.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 5
+        },
+        [],
+        {
+         "waiver_priority": 8
+        },
+        [],
+        {
+         "number_of_moves": 100
+        },
+        {
+         "number_of_trades": "4"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "4"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "8",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "877",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "8": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.9"
+        },
+        {
+         "team_id": "9"
+        },
+        {
+         "name": "Railriders"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/9"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_b.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 7
+        },
+        [],
+        {
+         "waiver_priority": 10
+        },
+        [],
+        {
+         "number_of_moves": 61
+        },
+        {
+         "number_of_trades": "5"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "4"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "9",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "848",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "9": {
+      "team": [
+       [
+        {
+         "team_key": "458.l.12549.t.10"
+        },
+        {
+         "team_id": "10"
+        },
+        {
+         "name": "Yankees"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/10"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/ep/cx/blendr/v2/image-doughnut-png_1736291599755.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 2
+        },
+        [],
+        {
+         "waiver_priority": 1
+        },
+        [],
+        {
+         "number_of_moves": 24
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "10",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "663",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "count": 10
+    }
+   }
+  ],
+  "time": "95.154047012329ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

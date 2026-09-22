@@ -1,0 +1,3201 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/458.l.12549/scoreboard;week=20",
+  "league": [
+   {
+    "league_key": "458.l.12549",
+    "league_id": "12549",
+    "name": "The Frank Cup",
+    "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/recordbook?layout=webview&device=smartphone",
+    "logo_url": "https://s.yimg.com/ep/cx/blendr/v2/image-foam-finger-png_1721252412344.png",
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "10",
+    "edit_key": "2025-09-28",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1759133209",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "431_12618",
+    "renewed": "469_34466",
+    "felo_tier": "gold",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 25,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 25,
+    "start_week": "1",
+    "start_date": "2025-03-18",
+    "end_week": "25",
+    "end_date": "2025-09-28",
+    "is_finished": 1,
+    "current_date": "2025-09-28",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2025"
+   },
+   {
+    "scoreboard": {
+     "week": "20",
+     "0": {
+      "matchups": {
+       "0": {
+        "matchup": {
+         "week": "20",
+         "week_start": "2025-08-18",
+         "week_end": "2025-08-24",
+         "status": "postevent",
+         "is_playoffs": "0",
+         "is_consolation": "0",
+         "is_matchup_of_the_week": "0",
+         "is_tied": 0,
+         "winner_team_key": "458.l.12549.t.1",
+         "stat_winners": [
+          {
+           "stat_winner": {
+            "stat_id": "7",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "11",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "12",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "13",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "16",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "18",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "52",
+            "winner_team_key": "458.l.12549.t.10"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "53",
+            "winner_team_key": "458.l.12549.t.10"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "3",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "55",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "61",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "50",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "28",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "29",
+            "winner_team_key": "458.l.12549.t.10"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "30",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "32",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "42",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "48",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "26",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "27",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "56",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "83",
+            "winner_team_key": "458.l.12549.t.1"
+           }
+          }
+         ],
+         "0": {
+          "teams": {
+           "0": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.1"
+              },
+              {
+               "team_id": "1"
+              },
+              {
+               "name": "The Commissioner 2X"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/1"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/8dff9c799a91b71bb4c48d52d7a807f0e1b50589a6fd7e443e13f2aae35f0526.jpg"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 1
+              },
+              [],
+              {
+               "waiver_priority": 9
+              },
+              [],
+              {
+               "number_of_moves": 77
+              },
+              {
+               "number_of_trades": "1"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              {
+               "clinched_playoffs": 1
+              },
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "1",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "855",
+                  "felo_tier": "platinum"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "60/216"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "41"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "13"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "30"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "32"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "47"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".278"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".957"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "33"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "83.0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "6"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "83"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "3.80"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.24"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "2.52"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "6"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "17"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 124
+               }
+              }
+             }
+            ]
+           },
+           "1": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.10"
+              },
+              {
+               "team_id": "10"
+              },
+              {
+               "name": "Yankees"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/10"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://s.yimg.com/ep/cx/blendr/v2/image-doughnut-png_1736291599755.png"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 2
+              },
+              [],
+              {
+               "waiver_priority": 1
+              },
+              [],
+              {
+               "number_of_moves": 24
+              },
+              {
+               "number_of_trades": 0
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              [],
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "10",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "663",
+                  "felo_tier": "silver"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "55/225"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "32"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "10"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "27"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "22"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "57"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".244"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".744"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "20"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "35.0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "25"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "5.66"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.54"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "1.56"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "1"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "3"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 123
+               }
+              }
+             }
+            ]
+           },
+           "count": 2
+          }
+         }
+        }
+       },
+       "1": {
+        "matchup": {
+         "week": "20",
+         "week_start": "2025-08-18",
+         "week_end": "2025-08-24",
+         "status": "postevent",
+         "is_playoffs": "0",
+         "is_consolation": "0",
+         "is_matchup_of_the_week": "0",
+         "is_tied": 0,
+         "winner_team_key": "458.l.12549.t.9",
+         "stat_winners": [
+          {
+           "stat_winner": {
+            "stat_id": "7",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "11",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "12",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "13",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "16",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "18",
+            "winner_team_key": "458.l.12549.t.2"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "52",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "53",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "3",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "55",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "61",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "50",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "28",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "29",
+            "winner_team_key": "458.l.12549.t.2"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "30",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "32",
+            "winner_team_key": "458.l.12549.t.2"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "42",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "48",
+            "winner_team_key": "458.l.12549.t.2"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "26",
+            "winner_team_key": "458.l.12549.t.2"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "27",
+            "winner_team_key": "458.l.12549.t.2"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "56",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "83",
+            "winner_team_key": "458.l.12549.t.9"
+           }
+          }
+         ],
+         "0": {
+          "teams": {
+           "0": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.2"
+              },
+              {
+               "team_id": "2"
+              },
+              {
+               "name": "austin's Phenomenal Team"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/2"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1_a.png"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 8
+              },
+              [],
+              {
+               "waiver_priority": 3
+              },
+              [],
+              {
+               "number_of_moves": 63
+              },
+              {
+               "number_of_trades": 0
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              {
+               "clinched_playoffs": 1
+              },
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "2",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "605",
+                  "felo_tier": "silver"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "56/230"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "35"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "8"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "27"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "35"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "58"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".243"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".749"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "20"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "69.1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "63"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "3.76"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.11"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "3.15"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "5"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "6"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 126
+               }
+              }
+             }
+            ]
+           },
+           "1": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.9"
+              },
+              {
+               "team_id": "9"
+              },
+              {
+               "name": "Railriders"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/9"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_b.png"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 7
+              },
+              [],
+              {
+               "waiver_priority": 10
+              },
+              [],
+              {
+               "number_of_moves": 61
+              },
+              {
+               "number_of_trades": "5"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "4"
+               }
+              },
+              {
+               "clinched_playoffs": 1
+              },
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "9",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "848",
+                  "felo_tier": "platinum"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "65/228"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "39"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "15"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "44"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "25"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "62"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".285"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".894"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "26"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "93.1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "9"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "122"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "4.34"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.28"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "4.52"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "10"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "13"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 121
+               }
+              }
+             }
+            ]
+           },
+           "count": 2
+          }
+         }
+        }
+       },
+       "2": {
+        "matchup": {
+         "week": "20",
+         "week_start": "2025-08-18",
+         "week_end": "2025-08-24",
+         "status": "postevent",
+         "is_playoffs": "0",
+         "is_consolation": "0",
+         "is_matchup_of_the_week": "0",
+         "is_tied": 0,
+         "winner_team_key": "458.l.12549.t.3",
+         "stat_winners": [
+          {
+           "stat_winner": {
+            "stat_id": "7",
+            "winner_team_key": "458.l.12549.t.5"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "11",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "12",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "13",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "16",
+            "winner_team_key": "458.l.12549.t.5"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "18",
+            "winner_team_key": "458.l.12549.t.5"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "52",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "53",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "3",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "55",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "61",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "50",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "28",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "29",
+            "winner_team_key": "458.l.12549.t.5"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "30",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "32",
+            "winner_team_key": "458.l.12549.t.5"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "42",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "48",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "26",
+            "winner_team_key": "458.l.12549.t.5"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "27",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "56",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "83",
+            "winner_team_key": "458.l.12549.t.3"
+           }
+          }
+         ],
+         "0": {
+          "teams": {
+           "0": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.3"
+              },
+              {
+               "team_id": "3"
+              },
+              {
+               "name": "Franzia"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/3"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/0a6ce177563b05a6366ae70a54ca1ab3c8cba08101513021087cfce4105e5033.jpg"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 4
+              },
+              [],
+              {
+               "waiver_priority": 4
+              },
+              [],
+              {
+               "number_of_moves": 88
+              },
+              {
+               "number_of_trades": "2"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              {
+               "clinched_playoffs": 1
+              },
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "3",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "750",
+                  "felo_tier": "gold"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "57/223"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "30"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "9"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "31"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "6"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "27"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "75"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".256"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".791"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "25"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "99.0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "90"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "4.55"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.25"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "2.50"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "8"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "13"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 121
+               }
+              }
+             }
+            ]
+           },
+           "1": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.5"
+              },
+              {
+               "team_id": "5"
+              },
+              {
+               "name": "Get Some Is Back"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/5"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 3
+              },
+              [],
+              {
+               "waiver_priority": 7
+              },
+              [],
+              {
+               "number_of_moves": 78
+              },
+              {
+               "number_of_trades": "3"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              [],
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "5",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "658",
+                  "felo_tier": "silver"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "58/236"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "36"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "8"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "29"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "10"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "28"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "62"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".246"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".747"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "23"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "86.2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "78"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "4.36"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.29"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "2.17"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "5"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "6"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 126
+               }
+              }
+             }
+            ]
+           },
+           "count": 2
+          }
+         }
+        }
+       },
+       "3": {
+        "matchup": {
+         "week": "20",
+         "week_start": "2025-08-18",
+         "week_end": "2025-08-24",
+         "status": "postevent",
+         "is_playoffs": "0",
+         "is_consolation": "0",
+         "is_matchup_of_the_week": "0",
+         "is_tied": 0,
+         "winner_team_key": "458.l.12549.t.4",
+         "stat_winners": [
+          {
+           "stat_winner": {
+            "stat_id": "7",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "11",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "12",
+            "winner_team_key": "458.l.12549.t.6"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "13",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "16",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "18",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "52",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "53",
+            "winner_team_key": "458.l.12549.t.6"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "3",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "55",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "61",
+            "winner_team_key": "458.l.12549.t.6"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "50",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "28",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "29",
+            "winner_team_key": "458.l.12549.t.6"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "30",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "32",
+            "winner_team_key": "458.l.12549.t.6"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "42",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "48",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "26",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "27",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "56",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "83",
+            "winner_team_key": "458.l.12549.t.4"
+           }
+          }
+         ],
+         "0": {
+          "teams": {
+           "0": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.4"
+              },
+              {
+               "team_id": "4"
+              },
+              {
+               "name": "Too Legit to Witt"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/4"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23531371067_1ba013.jpg"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 9
+              },
+              [],
+              {
+               "waiver_priority": 5
+              },
+              [],
+              {
+               "number_of_moves": 19
+              },
+              {
+               "number_of_trades": "2"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              {
+               "clinched_playoffs": 1
+              },
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "4",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "764",
+                  "felo_tier": "gold"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "70/245"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "40"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "8"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "32"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "6"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "33"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "98"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".286"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".802"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "19"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "93.1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "100"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "2.41"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "0.95"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "4.35"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "10"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "15"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 127
+               }
+              }
+             }
+            ]
+           },
+           "1": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.6"
+              },
+              {
+               "team_id": "6"
+              },
+              {
+               "name": "GIRL ON FIRE"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/6"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23310414027_7439a2.jpg"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 6
+              },
+              [],
+              {
+               "waiver_priority": 6
+              },
+              [],
+              {
+               "number_of_moves": 63
+              },
+              {
+               "number_of_trades": "1"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              [],
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "6",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "599",
+                  "felo_tier": "bronze"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "46/213"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "36"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "12"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "29"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "32"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "49"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".216"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".749"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "21"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "69.0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "70"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "4.17"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.30"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "2.50"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "5"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "5"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 121
+               }
+              }
+             }
+            ]
+           },
+           "count": 2
+          }
+         }
+        }
+       },
+       "4": {
+        "matchup": {
+         "week": "20",
+         "week_start": "2025-08-18",
+         "week_end": "2025-08-24",
+         "status": "postevent",
+         "is_playoffs": "0",
+         "is_consolation": "0",
+         "is_matchup_of_the_week": "0",
+         "is_tied": 0,
+         "winner_team_key": "458.l.12549.t.8",
+         "stat_winners": [
+          {
+           "stat_winner": {
+            "stat_id": "7",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "11",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "12",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "13",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "16",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "18",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "52",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "53",
+            "winner_team_key": "458.l.12549.t.7"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "3",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "55",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "61",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "50",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "28",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "29",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "30",
+            "is_tied": 1
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "32",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "42",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "48",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "26",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "27",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "56",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          },
+          {
+           "stat_winner": {
+            "stat_id": "83",
+            "winner_team_key": "458.l.12549.t.8"
+           }
+          }
+         ],
+         "0": {
+          "teams": {
+           "0": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.7"
+              },
+              {
+               "team_id": "7"
+              },
+              {
+               "name": "Jacob Winn's Notable Team"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/7"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_j.png"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 10
+              },
+              [],
+              {
+               "waiver_priority": 2
+              },
+              [],
+              {
+               "number_of_moves": 70
+              },
+              {
+               "number_of_trades": 0
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "0"
+               }
+              },
+              [],
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "7",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "518",
+                  "felo_tier": "bronze"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "40/196"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "21"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "23"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "11"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "35"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".204"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".606"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "15"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "60.1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "1"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "54"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "4.48"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.36"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "2.35"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "4"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "1"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 121
+               }
+              }
+             }
+            ]
+           },
+           "1": {
+            "team": [
+             [
+              {
+               "team_key": "458.l.12549.t.8"
+              },
+              {
+               "team_id": "8"
+              },
+              {
+               "name": "O-O-O-O RILEY AUSTIN GREENE"
+              },
+              [],
+              {
+               "url": "https://baseball.fantasysports.yahoo.com/2025/b1/12549/8"
+              },
+              {
+               "team_logos": [
+                {
+                 "team_logo": {
+                  "size": "large",
+                  "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/3d378368b6121426187a3f0f1d51ad40f4459252927a2c37218bf9cdf7534e27.jpg"
+                 }
+                }
+               ]
+              },
+              {
+               "previous_season_team_rank": 5
+              },
+              [],
+              {
+               "waiver_priority": 8
+              },
+              [],
+              {
+               "number_of_moves": 100
+              },
+              {
+               "number_of_trades": "4"
+              },
+              {
+               "roster_adds": {
+                "coverage_type": "week",
+                "coverage_value": 25,
+                "value": "4"
+               }
+              },
+              {
+               "clinched_playoffs": 1
+              },
+              {
+               "league_scoring_type": "head"
+              },
+              [],
+              [],
+              {
+               "has_draft_grade": 0
+              },
+              [],
+              [],
+              [],
+              [],
+              [],
+              {
+               "managers": [
+                {
+                 "manager": {
+                  "manager_id": "8",
+                  "nickname": "--hidden--",
+                  "guid": "--hidden--",
+                  "felo_score": "877",
+                  "felo_tier": "platinum"
+                 }
+                }
+               ]
+              }
+             ],
+             {
+              "team_stats": {
+               "coverage_type": "week",
+               "week": "20",
+               "stats": [
+                {
+                 "stat": {
+                  "stat_id": "60",
+                  "value": "52/234"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "7",
+                  "value": "30"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "11",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "12",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "13",
+                  "value": "26"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "16",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "18",
+                  "value": "27"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "52",
+                  "value": "79"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "53",
+                  "value": "5"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "3",
+                  "value": ".222"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "55",
+                  "value": ".657"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "61",
+                  "value": "16"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "50",
+                  "value": "94.2"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "28",
+                  "value": "7"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "29",
+                  "value": "4"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "30",
+                  "value": "0"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "32",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "42",
+                  "value": "83"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "48",
+                  "value": "3"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "26",
+                  "value": "3.99"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "27",
+                  "value": "1.26"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "56",
+                  "value": "3.07"
+                 }
+                },
+                {
+                 "stat": {
+                  "stat_id": "83",
+                  "value": "5"
+                 }
+                }
+               ]
+              },
+              "team_points": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": "17"
+              },
+              "team_remaining_games": {
+               "coverage_type": "week",
+               "week": "20",
+               "total": {
+                "remaining_games": 0,
+                "live_games": 0,
+                "completed_games": 123
+               }
+              }
+             }
+            ]
+           },
+           "count": 2
+          }
+         }
+        }
+       },
+       "count": 5
+      }
+     }
+    }
+   }
+  ],
+  "time": "447.70693778992ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

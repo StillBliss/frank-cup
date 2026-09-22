@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/422.l.112556/metadata",
+  "league": [
+   {
+    "league_key": "422.l.112556",
+    "league_id": "112556",
+    "name": "The Frank Cup",
+    "url": "https://baseball.fantasysports.yahoo.com/2023/b1/112556",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2023/b1/112556/recordbook?layout=webview&device=smartphone",
+    "logo_url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/feffecd1387fd88b53156d3fba45e5531235e2252d599cfcbff0f4413f1628d9.jpg",
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "10",
+    "edit_key": "2023-10-01",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1696234134",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "",
+    "renewed": "431_12618",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 25,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 25,
+    "start_week": "1",
+    "start_date": "2023-03-30",
+    "end_week": "25",
+    "end_date": "2023-10-01",
+    "is_finished": 1,
+    "current_date": "2023-10-01",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2023"
+   }
+  ],
+  "time": "1342.9601192474ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}
