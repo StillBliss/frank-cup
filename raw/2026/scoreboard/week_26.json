@@ -72,13 +72,13 @@
           {
            "stat_winner": {
             "stat_id": "12",
-            "is_tied": 1
+            "winner_team_key": "469.l.34466.t.1"
            }
           },
           {
            "stat_winner": {
             "stat_id": "13",
-            "is_tied": 1
+            "winner_team_key": "469.l.34466.t.1"
            }
           },
           {
@@ -282,13 +282,13 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "1/13"
+                  "value": "2/15"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "7",
-                  "value": 1
+                  "value": 2
                  }
                 },
                 {
@@ -300,13 +300,13 @@
                 {
                  "stat": {
                   "stat_id": "12",
-                  "value": 0
+                  "value": 1
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "13",
-                  "value": 0
+                  "value": 1
                  }
                 },
                 {
@@ -336,19 +336,19 @@
                 {
                  "stat": {
                   "stat_id": "3",
-                  "value": ".077"
+                  "value": ".133"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "55",
-                  "value": ".297"
+                  "value": ".588"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "61",
-                  "value": 1
+                  "value": 2
                  }
                 },
                 {
@@ -422,14 +422,14 @@
               "team_points": {
                "coverage_type": "week",
                "week": "26",
-               "total": "6"
+               "total": "8"
               },
               "team_remaining_games": {
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 111,
-                "live_games": 0,
+                "remaining_games": 107,
+                "live_games": 4,
                 "completed_games": 6
                }
               }
@@ -522,7 +522,7 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "0/0"
+                  "value": "0/2"
                  }
                 },
                 {
@@ -576,13 +576,13 @@
                 {
                  "stat": {
                   "stat_id": "3",
-                  "value": null
+                  "value": ".000"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "55",
-                  "value": null
+                  "value": ".000"
                  }
                 },
                 {
@@ -594,7 +594,7 @@
                 {
                  "stat": {
                   "stat_id": "50",
-                  "value": "3.2"
+                  "value": "6.1"
                  }
                 },
                 {
@@ -624,7 +624,7 @@
                 {
                  "stat": {
                   "stat_id": "42",
-                  "value": 4
+                  "value": 10
                  }
                 },
                 {
@@ -636,13 +636,13 @@
                 {
                  "stat": {
                   "stat_id": "26",
-                  "value": "4.91"
+                  "value": "2.84"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "27",
-                  "value": "1.36"
+                  "value": "0.95"
                  }
                 },
                 {
@@ -668,8 +668,8 @@
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 112,
-                "live_games": 0,
+                "remaining_games": 107,
+                "live_games": 5,
                 "completed_games": 4
                }
               }
@@ -760,7 +760,7 @@
           {
            "stat_winner": {
             "stat_id": "50",
-            "is_tied": 1
+            "winner_team_key": "469.l.34466.t.2"
            }
           },
           {
@@ -790,7 +790,7 @@
           {
            "stat_winner": {
             "stat_id": "42",
-            "is_tied": 1
+            "winner_team_key": "469.l.34466.t.2"
            }
           },
           {
@@ -802,13 +802,13 @@
           {
            "stat_winner": {
             "stat_id": "26",
-            "is_tied": 1
+            "winner_team_key": "469.l.34466.t.2"
            }
           },
           {
            "stat_winner": {
             "stat_id": "27",
-            "is_tied": 1
+            "winner_team_key": "469.l.34466.t.2"
            }
           },
           {
@@ -910,7 +910,7 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "6/17"
+                  "value": "6/18"
                  }
                 },
                 {
@@ -964,13 +964,13 @@
                 {
                  "stat": {
                   "stat_id": "3",
-                  "value": ".353"
+                  "value": ".333"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "55",
-                  "value": "1.186"
+                  "value": "1.122"
                  }
                 },
                 {
@@ -982,7 +982,7 @@
                 {
                  "stat": {
                   "stat_id": "50",
-                  "value": "0.0"
+                  "value": "2.0"
                  }
                 },
                 {
@@ -1012,7 +1012,7 @@
                 {
                  "stat": {
                   "stat_id": "42",
-                  "value": 0
+                  "value": 4
                  }
                 },
                 {
@@ -1024,13 +1024,13 @@
                 {
                  "stat": {
                   "stat_id": "26",
-                  "value": null
+                  "value": "0.00"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "27",
-                  "value": null
+                  "value": "0.00"
                  }
                 },
                 {
@@ -1050,14 +1050,14 @@
               "team_points": {
                "coverage_type": "week",
                "week": "26",
-               "total": "8"
+               "total": "12"
               },
               "team_remaining_games": {
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 109,
-                "live_games": 0,
+                "remaining_games": 104,
+                "live_games": 5,
                 "completed_games": 6
                }
               }
@@ -1294,8 +1294,8 @@
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 109,
-                "live_games": 0,
+                "remaining_games": 104,
+                "live_games": 5,
                 "completed_games": 3
                }
               }
@@ -1536,7 +1536,7 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "0/4"
+                  "value": "0/5"
                  }
                 },
                 {
@@ -1682,8 +1682,8 @@
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 94,
-                "live_games": 0,
+                "remaining_games": 89,
+                "live_games": 5,
                 "completed_games": 6
                }
               }
@@ -1774,7 +1774,7 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "3/12"
+                  "value": "3/16"
                  }
                 },
                 {
@@ -1816,7 +1816,7 @@
                 {
                  "stat": {
                   "stat_id": "52",
-                  "value": 1
+                  "value": 3
                  }
                 },
                 {
@@ -1828,13 +1828,13 @@
                 {
                  "stat": {
                   "stat_id": "3",
-                  "value": ".250"
+                  "value": ".188"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "55",
-                  "value": ".750"
+                  "value": ".562"
                  }
                 },
                 {
@@ -1920,8 +1920,8 @@
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 111,
-                "live_games": 0,
+                "remaining_games": 104,
+                "live_games": 7,
                 "completed_games": 5
                }
               }
@@ -2164,7 +2164,7 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "1/11"
+                  "value": "1/12"
                  }
                 },
                 {
@@ -2218,13 +2218,13 @@
                 {
                  "stat": {
                   "stat_id": "3",
-                  "value": ".091"
+                  "value": ".083"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "55",
-                  "value": ".182"
+                  "value": ".167"
                  }
                 },
                 {
@@ -2236,7 +2236,7 @@
                 {
                  "stat": {
                   "stat_id": "50",
-                  "value": "10.0"
+                  "value": "11.0"
                  }
                 },
                 {
@@ -2266,7 +2266,7 @@
                 {
                  "stat": {
                   "stat_id": "42",
-                  "value": 12
+                  "value": 14
                  }
                 },
                 {
@@ -2278,19 +2278,19 @@
                 {
                  "stat": {
                   "stat_id": "26",
-                  "value": "1.80"
+                  "value": "1.64"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "27",
-                  "value": "0.90"
+                  "value": "0.91"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "56",
-                  "value": "6.00"
+                  "value": "7.00"
                  }
                 },
                 {
@@ -2310,8 +2310,8 @@
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 104,
-                "live_games": 0,
+                "remaining_games": 101,
+                "live_games": 3,
                 "completed_games": 13
                }
               }
@@ -2404,7 +2404,7 @@
                 {
                  "stat": {
                   "stat_id": "60",
-                  "value": "3/4"
+                  "value": "4/9"
                  }
                 },
                 {
@@ -2446,7 +2446,7 @@
                 {
                  "stat": {
                   "stat_id": "52",
-                  "value": 4
+                  "value": 5
                  }
                 },
                 {
@@ -2458,13 +2458,13 @@
                 {
                  "stat": {
                   "stat_id": "3",
-                  "value": ".750"
+                  "value": ".444"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "55",
-                  "value": "2.750"
+                  "value": "1.444"
                  }
                 },
                 {
@@ -2476,7 +2476,7 @@
                 {
                  "stat": {
                   "stat_id": "50",
-                  "value": "0.0"
+                  "value": "1.0"
                  }
                 },
                 {
@@ -2506,7 +2506,7 @@
                 {
                  "stat": {
                   "stat_id": "42",
-                  "value": 0
+                  "value": 2
                  }
                 },
                 {
@@ -2518,13 +2518,13 @@
                 {
                  "stat": {
                   "stat_id": "26",
-                  "value": null
+                  "value": "9.00"
                  }
                 },
                 {
                  "stat": {
                   "stat_id": "27",
-                  "value": null
+                  "value": "2.00"
                  }
                 },
                 {
@@ -2550,8 +2550,8 @@
                "coverage_type": "week",
                "week": "26",
                "total": {
-                "remaining_games": 112,
-                "live_games": 0,
+                "remaining_games": 102,
+                "live_games": 10,
                 "completed_games": 2
                }
               }
@@ -2569,7 +2569,7 @@
     }
    }
   ],
-  "time": "143.9049243927ms",
+  "time": "117.72012710571ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }
