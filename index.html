@@ -330,12 +330,27 @@ table.stand th[aria-sort]{color:var(--bulb)}
 .tr-badges{display:flex;align-items:center;gap:2px;white-space:nowrap}
 .trow .catbox{margin-top:10px;border-top:1px solid var(--rule);padding-top:10px}
 @media(max-width:720px){
-  .tr-main{grid-template-columns:24px 22px 58px minmax(0,1fr);row-gap:6px}
-  .tr-hp:nth-of-type(1){grid-column:1/2}
-  .tr-hp:nth-of-type(2){grid-column:2/3}
-  .tr-gr{grid-column:3/4;justify-content:flex-end}
-  .tr-ap{grid-column:4/-1;justify-content:flex-end}
+  .trow{padding:6px 10px}
+  .tr-main{grid-template-columns:24px 22px 58px minmax(0,1fr);row-gap:5px}
+  .tr-hp{display:none}
+  .tr-gr{grid-column:3/4;justify-content:flex-start}
+  .tr-ap{grid-column:4/-1;justify-content:flex-start}
   .tr-opp{font-size:14px}
+}
+/* phones: each game becomes a two-line scoreboard */
+.gm{display:none}
+@media (max-width:760px){
+  .game{display:block;padding:10px 12px}
+  .game>.side,.game>.tally{display:none}
+  .gm{display:grid;gap:6px}
+  .gm-tag .stagetag{margin:0}
+  .gm-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto 34px;align-items:center;gap:6px}
+  .gm-nm{min-width:0;font-weight:600;font-size:15px;line-height:1.15}
+  .gm-nm .tm{color:var(--bone-faint);font-size:12px;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .gm-gr .grade,.gm-ap .apw{margin:0}
+  .gm-v{font-family:var(--num);font-size:24px;font-weight:600;text-align:right;color:var(--bone-faint);line-height:1}
+  .gm-v.win{color:var(--bone)}
+  .game .catbox{margin-top:10px;border-top:1px solid var(--rule);padding-top:10px}
 }
 .pop .ap-W{color:var(--win);font-weight:700}
 .pop .ap-L{color:var(--loss);font-weight:700}
@@ -883,6 +898,10 @@ function vMatchups(){
         <div class="tally"><span class="v ${m.aw>m.al?"win":""}">${m.aw}</span><i>–</i><span class="v ${m.al>m.aw?"win":""}">${m.al}</span></div>
         <div class="side b"><div class="nm">${apBadge(m.b,week)}${gradeBadge(m.b,week)}${nameBtn(m.b)}</div>
           <div class="tm">${esc(S.teamNames[m.b]||"")}</div></div>
+        <div class="gm">${tag?`<div class="gm-tag">${tag}</div>`:""}${[[m.a,m.aw,m.al],[m.b,m.al,m.aw]].map(([who,v,o])=>`<div class="gm-row">
+          <div class="gm-nm">${nameBtn(who)}<div class="tm">${esc(S.teamNames[who]||"")}</div></div>
+          <div class="gm-gr">${gradeBadge(who,week)}</div><div class="gm-ap">${apBadge(who,week)}</div>
+          <div class="gm-v ${v>o?"win":""}">${v}</div></div>`).join("")}</div>
         ${grid?`<div style="grid-column:1/-1">${grid}</div>`:""}</div>`;
     }).join("");
     lede=`Every matchup, week by week. The score is categories won. Beside each name is the week grade, where 100 is league average, and that week's record against the other nine managers. Tap a name badge for the all-play detail, or the matchup itself for the full category line. Playoff weeks are marked in gold, and show championship games only.`;
