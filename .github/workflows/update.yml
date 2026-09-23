@@ -1,17 +1,26 @@
-name: Weekly Yahoo refresh
+name: Daily Yahoo refresh
 
 on:
-  # 4:00 AM Pacific, Mondays, during baseball season only.
+  # 4:00 AM Pacific, every day, during baseball season only.
   # GitHub runs on UTC. Pacific is UTC-7 (PDT) most of the season,
   # so 4 AM Pacific = 11:00 UTC. Months limited to Mar-Oct.
+  # Mondays write the full Gazette issue; Tue-Sun write The Morning Wire.
   schedule:
-    - cron: "0 11 * 3-10 1"
+    - cron: "0 11 * 3-10 *"
   workflow_dispatch:
     inputs:
       redo_news:
         description: "Rewrite the newest Gazette issue"
         type: boolean
         default: false
+      redo_daily:
+        description: "Rewrite yesterday's Morning Wire"
+        type: boolean
+        default: false
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
 
 permissions:
   contents: write
@@ -21,6 +30,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -33,15 +43,15 @@ jobs:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
-        run: python scripts/update.py
+        run: python -u scripts/update.py
 
       - name: Write the Gazette
         # the news can never break the data refresh
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          NEWS_REDO: ${{ inputs.redo_news && 'latest' || '' }}
-        run: python scripts/news.py
+          NEWS_REDO: ${{ format('{0} {1}', inputs.redo_news && 'latest' || '', inputs.redo_daily && 'daily' || '') }}
+        run: python -u scripts/news.py
 
       - name: Commit changes if any
         run: |
@@ -52,7 +62,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes."
           else
-            git commit -m "Weekly data refresh"
+            git commit -m "Daily data refresh"
             git push
           fi
 
