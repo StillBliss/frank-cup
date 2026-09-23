@@ -473,6 +473,26 @@ table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
 .gz-mu b{font-weight:600}
 .gz-mu .k{font-size:11px;letter-spacing:.08em;color:var(--bone-faint);text-transform:uppercase}
 .gz-empty{text-align:center;color:var(--bone-dim);padding:40px 10px}
+
+.gz-wire{border:1px solid var(--rule);border-top:3px solid var(--c);border-radius:4px;background:rgba(255,255,255,.035);
+  padding:10px 14px;margin:0 0 18px}
+.gz-wire summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.gz-wire summary::-webkit-details-marker{display:none}
+.gz-wire summary .lb{font-family:var(--cond);letter-spacing:.12em;font-size:13px;color:var(--c)}
+.gz-wire summary .d{font-size:12px;color:var(--bone-faint)}
+.gz-wire summary .h{flex:1 1 100%;font-family:Georgia,serif;font-weight:700;font-size:19px;line-height:1.25}
+.gz-wire[open] summary{margin-bottom:10px}
+.gz-wire .gz-body p{font-size:15.5px;line-height:1.6}
+.gz-days{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.gz-days button{font-family:var(--num);font-size:12px;background:var(--panel);color:var(--bone-dim);border:1px solid var(--rule);
+  border-radius:3px;padding:3px 8px;cursor:pointer}
+.gz-days button[aria-pressed="true"]{border-color:var(--c);color:var(--bone)}
+.gz-rk{width:100%}
+.gz-rk td{vertical-align:top}
+.gz-rk td.n{width:22px;font-weight:700;color:var(--bone)}
+.gz-rk td.mv{width:34px;font-size:12px}
+.gz-list{margin:2px 0 10px;padding-left:18px;font-size:14px;line-height:1.5}
+.gz-list li{margin:3px 0}
 @media (max-width:640px){
   .gz-mast h2{font-size:30px}
   .gz-art h3{font-size:23px}
@@ -516,7 +536,7 @@ const D=LEAGUE_DATA, ALLK=D.allTimeKey||"ALL", SEASONS=Object.keys(D.seasons).so
 let season=String(D.meta.currentSeason), view="standings";
 let week=null, statMode="raw", who=null, backTo="standings", bwMode="all";
 let sortCol=null, sortDir=-1;
-let mMode="week", mTeam=null, issueId=null;
+let mMode="week", mTeam=null, issueId=null, wireDay=null;
 const hidden=new Set(), lower=new Set(D.lowerBetter);
 
 const col=m=>"#"+D.colors[m];
@@ -1711,6 +1731,19 @@ function gzBit(a){
     inner+=`<p class="q">${d.a_gives&&d.b_gives?`${esc(d.a)} sends ${esc(d.a_gives)} to ${esc(d.b)} for ${esc(d.b_gives)}`:`${esc(d.a)} and ${esc(d.b)} talking`}</p>
       <p class="sm">${esc(d.a)} needs ${esc(d.a_needs)}; ${esc(d.b)} needs ${esc(d.b_needs)}. Speculation, not a real deal.</p>`;
   }
+  else if(b.type==="rankings"&&d.rows&&d.rows.length){
+    inner+=`<table class="gz-rk"><tbody>${d.rows.map(r=>{
+      const mv=r.prev?r.prev-r.rank:0;
+      return `<tr><td class="n">${r.rank}</td><td class="mv">${mv>0?`<span class="up">\u25b2${mv}</span>`:mv<0?`<span class="dn">\u25bc${-mv}</span>`:""}</td>
+        <td class="l"><span class="dot" style="background:${col(r.m)}"></span><b>${esc(r.m)}</b>${r.line?`<div class="sm">${esc(r.line)}</div>`:""}</td></tr>`;}).join("")}</tbody></table>`;
+  }else if(b.type==="history"&&d.items&&d.items.length){
+    inner+=`<ul class="gz-list">${d.items.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
+  }else if(b.type==="waiver"&&d&&(d.hitters||d.pitchers)){
+    const li=p=>`<li><b>${esc(p.name)}</b> <span class="sm">${esc(p.tm||"")} ${esc(p.pos||"")}${p.own?` · ${esc(p.own)}% owned`:""}${p.delta&&!/^[-+]?0$/.test(p.delta)?` (${esc(p.delta)})`:""}</span><div class="sm">${esc(p.line)}</div></li>`;
+    if((d.hitters||[]).length) inner+=`<p class="sm">Best available bats, last week</p><ul class="gz-list">${d.hitters.slice(0,3).map(li).join("")}</ul>`;
+    if((d.pitchers||[]).length) inner+=`<p class="sm">Best available arms, last week</p><ul class="gz-list">${d.pitchers.slice(0,3).map(li).join("")}</ul>`;
+    if((d.two_start||[]).length) inner+=`<p class="sm">Two-start pitchers next week</p><ul class="gz-list">${d.two_start.map(t=>`<li><b>${esc(t.who)}</b> <span class="sm">${esc(t.team||"")} · ${esc(t.owner)}</span></li>`).join("")}</ul>`;
+  }
   return `<div class="gz-bit" style="--c:${esc(a.color||"var(--bulb)")}"><h4>${esc(b.name||"")}</h4>${inner}${txt}</div>`;
 }
 function vNews(){
@@ -1730,14 +1763,27 @@ function vNews(){
       <div class="gz-by"><i style="background:${esc(a.color)}"></i>${esc(a.name.toUpperCase())} <span>· ${esc(a.desk)}</span></div>
       <h3>${esc(a.headline)}</h3>${a.dek?`<p class="gz-dek">${esc(a.dek)}</p>`:""}
       <div class="gz-body">${gzText(a.body)}</div>${gzBit(a)}</article>`).join("");
+  const dl=(N.daily||[]).slice().sort((x,y)=>x.date<y.date?1:-1);
+  const dcur=dl.find(x=>x.date===wireDay)||dl[0];
+  const fmtD=s=>new Date(s+"T12:00:00").toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});
+  const wire=dcur?`<details class="gz-wire" style="--c:${esc(dcur.color||"#E07A3F")}"${dcur.date>=cur.date||wireDay?" open":""}>
+      <summary><span class="lb">THE MORNING WIRE</span><span class="d">${esc(fmtD(dcur.date))} games</span>
+        <span class="h">${esc(dcur.headline)}</span></summary>
+      <div class="gz-by"><i style="background:${esc(dcur.color||"#E07A3F")}"></i>${esc((dcur.name||"").toUpperCase())} <span>· ${esc(dcur.desk||"")}</span></div>
+      <div class="gz-body">${gzText(dcur.body)}</div>
+      ${dl.length>1?`<div class="gz-days">${dl.slice(0,7).map(x=>`<button type="button" data-day="${esc(x.date)}" aria-pressed="${x.date===dcur.date}">${esc(fmtD(x.date))}</button>`).join("")}</div>`:""}
+    </details>`:"";
   el("v-news").innerHTML=`<div class="gz">
     <div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2>
       <div class="sub">${esc(day)} · Week ${cur.week}, ${cur.season} · ${esc(phase)}</div>
       <div class="ai">Written by AI from the league's real numbers. The writers are fictional; the stats aren't.</div></div>
+    ${wire}
     <div class="gz-issues" role="group" aria-label="Issue">${picks}</div>
     <div class="gz-toc" role="navigation" aria-label="In this issue"><h3>IN THIS ISSUE</h3>${toc}</div>${arts}</div>`;
   el("v-news").querySelector(".gz-issues").onclick=e=>{const b=e.target.closest("button[data-iss]");if(!b)return;
     issueId=b.dataset.iss;vNews();window.scrollTo({top:0});};
+  const dd=el("v-news").querySelector(".gz-days");
+  if(dd) dd.onclick=e=>{const b=e.target.closest("button[data-day]");if(!b)return;wireDay=b.dataset.day;vNews();};
   el("v-news").querySelector(".gz-toc").onclick=e=>{const a=e.target.closest("a[data-jump]");if(!a)return;
     e.preventDefault();el(a.dataset.jump).scrollIntoView({behavior:"smooth",block:"start"});};
 }
