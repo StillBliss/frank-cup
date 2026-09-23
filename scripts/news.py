@@ -33,6 +33,7 @@ RAW = os.environ.get("FRANK_RAW") or os.path.join(ROOT, "raw")
 NEWS_JS = os.environ.get("FRANK_NEWS") or os.path.join(ROOT, "news.js")
 sys.path.insert(0, HERE)
 import build, build_core as bc  # noqa: E402
+import sources, players  # noqa: E402
 
 BACKFILL = 4
 MAX_ADDS_DEFAULT = 4
@@ -201,7 +202,13 @@ STAT_KEYS = {"H/AB": "HAB", "R": "R", "3B": "3B", "HR": "HR", "RBI": "RBI", "SB"
              "IP": "IP", "W": "W", "L": "L", "CG": "CG", "SV": "SV", "K": "K", "HLD": "HLD",
              "ERA": "ERA", "WHIP": "WHIP", "K/BB": "KBB", "QS": "QS"}
 INACTIVE = {"BN", "IL", "IL+", "IL10", "IL15", "IL60", "NA", "DL", None}
-HURT = ("IL", "O", "NA", "DL", "SUSP")
+HURT = ("IL", "O", "DL", "SUSP")
+# personal, paternity, bereavement and family leave are short absences, not injuries
+LEAVE = re.compile(r"personal|paternity|bereavement|family|restricted", re.I)
+
+
+def on_leave(st, inj):
+    return bool(LEAVE.search(f"{st or ''} {inj or ''}"))
 
 
 def day_stats(raw, idmap):
@@ -276,6 +283,8 @@ class PlayerWeek:
         S = L.S(y)
         self.mgr = S.mgr
         idmap = {c["id"]: STAT_KEYS.get(c["abbr"]) for c in S.cats}
+        self.idmap = idmap
+        self.daylog = defaultdict(list)   # date -> every player line that day (for the daily report)
         # starting slots per position type
         need = {"B": 0, "P": 0}
         for rp in S.settings.get("roster_positions", []):
@@ -307,7 +316,7 @@ class PlayerWeek:
                         "tm": pl.get("tm"), "act": {}, "bench": {}, "act_days": 0, "games": 0})
                     rec["st"] = pl.get("st"); rec["inj"] = pl.get("inj")
                     st = (pl.get("st") or "").upper()
-                    if active and st.startswith(HURT):
+                    if active and st.startswith(HURT) and not on_leave(st, pl.get("inj")) and not pl.get("s"):
                         self.hurt_active[owner][pl.get("n")] += 1
                     if active: rec["act_days"] += 1
                     if not pl.get("s"): continue
@@ -316,6 +325,9 @@ class PlayerWeek:
                     played = (s.get("AB", 0) or 0) > 0 or (s.get("IP", 0) or 0) > 0 or s.get("BB")
                     if played: rec["games"] += 1
                     add_into(rec["act" if active else "bench"], s)
+                    if played:
+                        self.daylog[d].append({"owner": owner, "name": pl.get("n"), "tm": pl.get("tm"),
+                                               "pt": pt, "bench": not active, "s": s})
                     note = self._big_day(s, pt)
                     if note:
                         self.days.append({"date": d, "owner": owner, "name": pl.get("n"),
@@ -794,8 +806,17 @@ class Notebook:
         else: self.phase = "the championship is decided; season over"
         self.pw = PlayerWeek(L, y, w)
         self.pprev = [PlayerWeek(L, y, ww) for ww in (w - 2, w - 1)]
+        # in the playoffs only the championship bracket is covered; consolation teams are left alone
+        if w >= self.po:
+            self.focus = {m for r in L.rows(y) if r["week"] == w and L.in_champ(y, r) for m in (r["a"], r["b"])}
+        else:
+            self.focus = set(L.managers)
+        self.src = sources.load_recent(y, RAW, upto=self.date, days=3)
         self.sections = {}
         self.build()
+
+    def ok(self, m):
+        return m in self.focus
 
     # ---------------------------------------------------------------- sections
     def build(self):
@@ -816,7 +837,7 @@ class Notebook:
         # results
         res = []
         self.results = []
-        for r in sorted([r for r in L.rows(y) if r["week"] == w], key=lambda r: (r["stage"] != "Playoff" or not L.in_champ(y, r), r["a"])):
+        for r in sorted([r for r in L.rows(y) if r["week"] == w and (r["stage"] == "Regular" or L.in_champ(y, r))], key=lambda r: r["a"]):
             a, b = r["a"], r["b"]
             win = L.winner(r)
             det = cat_detail(L, y, w, a, b)
@@ -892,7 +913,7 @@ class Notebook:
 
         # streaks
         sk = streaks(L, y, w)
-        s_lines = [f"{m}: {'won' if k == 'W' else 'lost' if k == 'L' else 'tied'} {n} straight" for m, (k, n) in sorted(sk.items(), key=lambda kv: -kv[1][1]) if n >= 3]
+        s_lines = [f"{m}: {'won' if k == 'W' else 'lost' if k == 'L' else 'tied'} {n} straight" for m, (k, n) in sorted(sk.items(), key=lambda kv: -kv[1][1]) if n >= 3 and self.ok(m)]
         if s_lines: self.sections["Streaks (matchups, carried across seasons)"] = s_lines
 
         rec = weekly_records(L, y, w)
@@ -903,8 +924,9 @@ class Notebook:
         # players
         if self.pw.ok:
             self.player_notes()
-        # MLB wire
+        # MLB wire and outside news
         self.mlb_notes()
+        self.outside_notes()
         # league history
         hist = []
         for yy in L.seasons():
@@ -918,12 +940,15 @@ class Notebook:
     def tx_notes(self):
         L, y, w = self.L, self.y, self.w
         wr = build.week_ranges(L.S(y))
+        def pt_week(ts):
+            d = pt_date(ts)
+            return next((ww for ww, (a, b) in wr.items() if a <= d <= b), None)
         adds = defaultdict(list); drops = defaultdict(list); trades = []
         self.added_by = {}   # player name -> (manager, week)
         self.dropped_by = {}
         for t in L.txs(y):
             if t["status"] != "successful": continue
-            ww = build.ts_week(t["ts"], wr)
+            ww = pt_week(t["ts"])     # Yahoo weeks run Monday to Sunday, Pacific time
             if ww is None or ww > w: continue
             if t["type"] == "trade":
                 if ww == w: trades.append(t)
@@ -942,7 +967,8 @@ class Notebook:
         mx = int(L.S(y).settings.get("max_weekly_adds") or MAX_ADDS_DEFAULT)
         lines = []
         for m in L.managers:
-            used = self.pw.adds.get(m) if self.pw.ok and m in self.pw.adds else len(adds.get(m, []))
+            if not self.ok(m): continue
+            used = len(adds.get(m, []))
             s = f"{m}: {used} of {mx} adds used"
             if adds.get(m): s += f"; added {', '.join(adds[m])}"
             if drops.get(m): s += f"; dropped {', '.join(drops[m])}"
@@ -954,7 +980,7 @@ class Notebook:
         for res in self.results:
             r, det, win = res["r"], res["det"], res["win"]
             for side, other in ((r["a"], r["b"]), (r["b"], r["a"])):
-                used = self.pw.adds.get(side) if self.pw.ok and side in self.pw.adds else len(adds.get(side, []))
+                used = len(adds.get(side, []))
                 if used >= mx or win == side: continue
                 closes = [d for d in det if d["close"] and ((d["res"] == "L") == (side == r["a"]))]
                 if closes or win is not None:
@@ -968,8 +994,8 @@ class Notebook:
         L, y, w, pw = self.L, self.y, self.w, self.pw
         if pw.have_stats:
             # top and bottom performers
-            hit = [r for r in pw.rows() if r["pt"] == "B" and r["act"].get("AB", 0) >= 10]
-            pit = [r for r in pw.rows() if r["pt"] == "P" and r["act"].get("IP", 0) >= 3]
+            hit = [r for r in pw.rows() if r["pt"] == "B" and r["act"].get("AB", 0) >= 10 and self.ok(r["owner"])]
+            pit = [r for r in pw.rows() if r["pt"] == "P" and r["act"].get("IP", 0) >= 3 and self.ok(r["owner"])]
             hot = sorted(hit, key=lambda r: -hit_prod(r["act"]))[:6] + sorted(pit, key=lambda r: -pit_prod(r["act"]))[:5]
             self.sections["Hottest players this week (in active lineups)"] = [
                 f"{r['name']} ({r['tm']}, {r['owner']}): {hit_line(r['act']) if r['pt'] == 'B' else pit_line(r['act'])}{self._trend(r)}" for r in hot]
@@ -977,7 +1003,7 @@ class Notebook:
             cold_p = sorted([r for r in pit], key=lambda r: pit_prod(r["act"]))[:4]
             self.sections["Coldest players this week (in active lineups)"] = [
                 f"{r['name']} ({r['tm']}, {r['owner']}): {hit_line(r['act']) if r['pt'] == 'B' else pit_line(r['act'])}{self._trend(r)}" for r in cold_h + cold_p]
-            big = sorted(pw.days, key=lambda d: -d["score"])
+            big = sorted([d for d in pw.days if self.ok(d["owner"])], key=lambda d: -d["score"])
             good = [d for d in big if not d["bad"]][:10]
             bad = [d for d in big if d["bad"]][:4]
             if good:
@@ -1006,6 +1032,7 @@ class Notebook:
             # waiver hits and drops that bit back
             wh, haunt = [], []
             for r in pw.rows():
+                if not self.ok(r["owner"]): continue
                 ab = self.added_by.get(r["name"])
                 prod = hit_prod(r["act"]) if r["pt"] == "B" else pit_prod(r["act"])
                 line = hit_line(r["act"]) if r["pt"] == "B" else pit_line(r["act"])
@@ -1019,18 +1046,24 @@ class Notebook:
         # lineup neglect
         neg = []
         for m in self.L.managers:
+            if not self.ok(m): continue
             e = pw.empty.get(m)
             if e and (e["B"] + e["P"]) > 0:
                 neg.append(f"{m} left {e['B']} hitter slot-days and {e['P']} pitcher slot-days empty")
         for m, pl in pw.hurt_active.items():
+            if not self.ok(m): continue
             for n, d in pl.items():
                 neg.append(f"{m} started {n} while on the injured list / out for {d} day(s)")
         if neg: self.sections["Lineup neglect"] = neg
         # injured list snapshot
         inj = []
         for r in pw.rows():
+            if not self.ok(r["owner"]) or r["games"] > 0: continue   # he played, so the tag is stale
             st = (r.get("st") or "").upper()
-            if st.startswith(("IL", "O", "DTD")):
+            if on_leave(st, r.get("inj")):
+                inj.append(f"{r['name']} ({r['owner']}): away on {r.get('inj') or 'personal'} leave. A short absence, "
+                           f"not an injury, and no fault of the manager.")
+            elif st.startswith(("IL", "O", "DTD")):
                 inj.append(f"{r['name']} ({r['owner']}): {r['st']}{' - ' + r['inj'] if r.get('inj') else ''}")
         if inj: self.sections["Injury report (league rosters, end of week)"] = inj[:20]
 
@@ -1059,13 +1092,55 @@ class Notebook:
         out = []
         for t in tx:
             o = owners.get(norm_name(t.get("who")))
-            if o: out.append(f"{t['date']} ({o}'s player): {t['desc']}")
+            if o and self.ok(o):
+                tag = " [short leave, not an injury; usually 1 to 7 days]" if on_leave("", t.get("desc")) else ""
+                out.append(f"{t['date']} ({o}'s player): {t['desc']}{tag}")
         if out: self.sections["MLB transaction wire (players on league rosters)"] = out[:25]
+
+    def outside_notes(self):
+        """ESPN injury details, news headlines from ESPN, MLB.com, CBS and Yahoo Sports that
+        mention league players, and the real MLB playoff race."""
+        src = self.src or {}
+        if not src: return
+        own = {}
+        if self.pw.ok:
+            for r in self.pw.rows():
+                if self.ok(r["owner"]):
+                    own[fold(re.sub(r"\s*\(.*\)", "", r["name"] or ""))] = (r["owner"], r["name"])
+        inj = []
+        for x in src.get("espn_injuries") or []:
+            o = own.get(fold(x.get("who")))
+            if not o: continue
+            s = f"{x['who']} ({o[0]}): {x.get('status') or 'injured'}"
+            if x.get("what"): s += f", {x['what']}"
+            if x.get("back"): s += f", expected back {x['back']}"
+            if x.get("note"): s += f". {x['note']}"
+            if on_leave("", f"{x.get('status')} {x.get('what')} {x.get('note')}"): s += " [short leave, not an injury]"
+            inj.append(s)
+        if inj: self.sections["Injury details (ESPN) for league players"] = inj[:15]
+        news = []
+        for it in src.get("feeds") or []:
+            txt = fold(it["title"] + " " + it.get("summary", "") + " " + " ".join(it.get("players") or []))
+            hits = [v for k, v in own.items() if len(k) > 6 and k in txt]
+            if hits:
+                news.append(f"[{it['src']}, {it.get('date')}] {it['title']}. {it.get('summary', '')[:220]} "
+                            f"(league: {', '.join(f'{h[1]} of {h[0]}' for h in hits[:3])})")
+        if news: self.sections["MLB news mentioning league players (ESPN, MLB.com, CBS, Yahoo Sports)"] = news[:15]
+        st = src.get("standings") or []
+        if st:
+            clinched = [t["team"] for t in st if t.get("clinch")]
+            hunt = [f"{t['team']} ({t['w']}-{t['l']}, {t.get('wc_gb')} GB of a wild card)" for t in st
+                    if not t.get("clinch") and t.get("elim") not in ("E",) and str(t.get("wc_gb")) not in ("-",) and
+                    (fnum(t.get("wc_gb")) or 99) <= 4]
+            lines = []
+            if clinched: lines.append("Clinched a playoff spot: " + ", ".join(clinched))
+            if hunt: lines.append("Still in the wild card hunt: " + "; ".join(hunt))
+            if lines: self.sections["Real MLB playoff race (teams resting or pushing players)"] = lines
 
     # ---------------------------------------------------------------- features
     def next_matchups(self):
         L, y, w = self.L, self.y, self.w
-        nxt = [r for r in L.rows(y) if r["week"] == w + 1]
+        nxt = [r for r in L.rows(y) if r["week"] == w + 1 and (r["stage"] == "Regular" or L.in_champ(y, r))]
         out = []
         for r in nxt:
             a, b = r["a"], r["b"]
@@ -1082,6 +1157,7 @@ class Notebook:
         if not pw.ok or not pw.have_stats: return None
         c = []
         for r in pw.rows():
+            if not self.ok(r["owner"]): continue
             if r["pt"] == "B" and r["act"].get("AB", 0) >= 12:
                 c.append((hit_prod(r["act"]), r, hit_line(r["act"])))
             elif r["pt"] == "P" and r["act"].get("IP", 0) >= 3:
@@ -1105,6 +1181,10 @@ class Notebook:
 
 # ============================================================== AI
 class NoAI(Exception): pass
+class TimeUp(Exception): pass
+
+# stop starting new articles after this many minutes; the rest wait for the next run
+DEADLINE = time.time() + 60 * float(os.environ.get("NEWS_BUDGET_MIN", "30"))
 
 
 def http_json(url, body, headers, timeout=120):
@@ -1113,67 +1193,95 @@ def http_json(url, body, headers, timeout=120):
         return json.loads(r.read().decode())
 
 
-_gemini_model = None
+class OutOfAI(Exception):
+    """every model is used up or unavailable for this run"""
+
+
+_pool = None          # models to try, best first
+_dead = set()         # out of daily quota (or missing) for the rest of this run
+_busy = {}            # model -> consecutive 'server busy' answers
+
 
 def gemini_models(key):
     req = urllib.request.Request("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200",
                                  headers={"x-goog-api-key": key})
     with urllib.request.urlopen(req, timeout=60) as r:
         d = json.loads(r.read().decode())
-    names = []
+    full, lite = [], []
     for m in d.get("models", []):
         n = m.get("name", "").split("/")[-1]
-        if "generateContent" in (m.get("supportedGenerationMethods") or []) and "flash" in n \
-                and not any(x in n for x in ("lite", "image", "tts", "live", "exp", "preview", "audio", "thinking")):
-            names.append(n)
+        if "generateContent" not in (m.get("supportedGenerationMethods") or []) or "flash" not in n:
+            continue
+        if any(x in n for x in ("image", "tts", "live", "exp", "preview", "audio", "thinking", "latest")):
+            continue
+        (lite if "lite" in n else full).append(n)
     def ver(n):
         v = re.findall(r"(\d+(?:\.\d+)?)", n)
         return float(v[0]) if v else 0
-    return sorted(names, key=ver, reverse=True)
+    # newest full Flash models first; the lighter ones are a last resort
+    return sorted(full, key=ver, reverse=True) + sorted(lite, key=ver, reverse=True)
+
+
+def gemini_pool(key):
+    global _pool
+    if _pool is None:
+        want = os.environ.get("GEMINI_MODEL")
+        try:
+            _pool = gemini_models(key)
+        except Exception as e:  # noqa: BLE001
+            print("   could not list Gemini models:", e)
+            _pool = []
+        if want: _pool = [want] + [m for m in _pool if m != want]
+        if not _pool: _pool = ["gemini-flash-latest"]
+        print("   Gemini models, in order:", ", ".join(_pool))
+    return _pool
 
 
 def call_gemini(system, user, key):
-    global _gemini_model
-    tries = [_gemini_model] if _gemini_model else [os.environ.get("GEMINI_MODEL") or "gemini-flash-latest"]
+    """Try models in order. A model out of its daily allowance is dropped for the
+    rest of the run; a busy model gets one quick retry, then we move on."""
     body = {"systemInstruction": {"parts": [{"text": system}]},
             "contents": [{"role": "user", "parts": [{"text": user}]}],
             "generationConfig": {"temperature": 1.0, "responseMimeType": "application/json", "maxOutputTokens": 8192}}
-    listed = False
-    i = 0
-    while i < len(tries):
-        model = tries[i]
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-        for attempt in range(4):
-            try:
-                d = http_json(url, body, {"x-goog-api-key": key})
-                parts = d["candidates"][0]["content"]["parts"]
-                _gemini_model = model
-                return "".join(p.get("text", "") for p in parts if not p.get("thought"))
-            except urllib.error.HTTPError as e:
-                msg = e.read().decode(errors="replace")[:300]
-                if e.code == 429 and re.search(r"per ?day|PerDay|daily", msg, re.I):
-                    print(f"   {model}: daily free quota used up, trying another model")
+    for rnd in range(2):       # two passes over the pool, in case everything was momentarily busy
+        live = [m for m in gemini_pool(key) if m not in _dead]
+        if not live: break
+        live.sort(key=lambda m: _busy.get(m, 0))      # models that have been busy go to the back
+        for model in live:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+            for attempt in range(2):
+                try:
+                    d = http_json(url, body, {"x-goog-api-key": key})
+                    parts = d["candidates"][0]["content"]["parts"]
+                    _busy[model] = 0
+                    return "".join(p.get("text", "") for p in parts if not p.get("thought")), model
+                except urllib.error.HTTPError as e:
+                    msg = e.read().decode(errors="replace")
+                    if e.code == 429 and re.search(r"PerDay|per day|daily", msg, re.I):
+                        print(f"   {model}: out of free requests for today, dropping it")
+                        _dead.add(model); break
+                    if e.code == 429:       # per-minute limit: a short pause fixes it
+                        print(f"   {model}: per-minute limit, pausing 20s")
+                        time.sleep(20); continue
+                    if e.code in (500, 502, 503, 504):
+                        _busy[model] = _busy.get(model, 0) + 1
+                        if attempt == 0:
+                            print(f"   {model}: Google busy ({e.code}), one retry in 10s")
+                            time.sleep(10); continue
+                        print(f"   {model}: still busy, trying the next model")
+                        break
+                    print(f"   {model}: HTTP {e.code} {msg[:200]}, dropping it")
+                    _dead.add(model); break
+                except (KeyError, IndexError):
+                    print(f"   {model}: empty answer, trying the next model")
                     break
-                if e.code == 429 or e.code >= 500:
-                    wait = 30 * (attempt + 1)
-                    print(f"   {model}: {e.code}, waiting {wait}s")
-                    time.sleep(wait); continue
-                print(f"   {model}: HTTP {e.code} {msg}")
-                break
-            except (KeyError, IndexError) as e:
-                print(f"   {model}: odd response ({e}), retrying")
-                time.sleep(5); continue
-            except (urllib.error.URLError, TimeoutError) as e:
-                time.sleep(10); continue
-        if not listed:
-            listed = True
-            try:
-                tries += [m for m in gemini_models(key) if m not in tries][:4]
-                print("   trying Gemini models:", ", ".join(tries[i + 1:]))
-            except Exception as e:  # noqa: BLE001
-                print("   could not list Gemini models:", e)
-        i += 1
-    raise RuntimeError("no Gemini model answered")
+                except (urllib.error.URLError, TimeoutError):
+                    print(f"   {model}: no response, trying the next model")
+                    break
+        if rnd == 0:
+            print("   every model busy or used up; one more pass in 60s")
+            time.sleep(60)
+    raise OutOfAI("no Gemini model available")
 
 
 def call_anthropic(system, user, key):
@@ -1196,7 +1304,7 @@ def ai(system, user):
     if os.environ.get("NEWS_FAKE_AI"):
         return fake_ai(system, user)
     g = os.environ.get("GEMINI_API_KEY"); a = os.environ.get("ANTHROPIC_API_KEY")
-    if g: return call_gemini(system, user, g)
+    if g: return call_gemini(system, user, g)[0]
     if a: return call_anthropic(system, user, a)
     raise NoAI()
 
@@ -1228,18 +1336,40 @@ def parse_json(txt):
 RULES = """HARD RULES
 - Use only facts from the reporter's notebook below. Never invent stats, scores, injuries, trades, transactions, lineup moves, or player performances. If it isn't in the notebook, don't state it as fact.
 - Managers are referred to by first name exactly as given. 'Benny' and 'Ben' are two different managers; never mix them up.
-- Opinions, jokes, hot takes, predictions and running bits are encouraged. Invented anonymous 'sources' are allowed only for Anonymous Sauce, and must stay obviously playful.
+- A player away on personal, paternity, bereavement or family leave is not injured and his manager did nothing wrong by keeping him. Never call that wasted roster space.
+- Opinions, jokes, hot takes, predictions and running bits are encouraged. Invented anonymous 'sources' are allowed only for Tony Russo, and must stay obviously playful.
 - Keep it PG-13 and strictly about fantasy baseball: never comment on anyone's real life, looks, job, family, or relationships.
 - Do not use em dashes.
-- Report like a beat writer who watches every detail: specific numbers, specific players, specific category margins. Pick the best 3-5 storylines for your voice rather than listing everything.
+- Headlines in normal title case. Never write a headline or sentence in all capital letters.
+- Never open with a stock line such as "Welcome to", "What a week", "Buckle up", "Well, well, well", "Another week" or "Let's dive in". Open on a specific fact, image, or line only you would write.
+- Report like a beat writer who watches every detail: specific numbers, specific players, specific category margins. Pick the best 3 to 5 storylines on YOUR beat rather than listing everything.
+- Stay on your beat. Your colleagues own theirs (listed below); touch their stories only in passing, and never lead with one.
 - Continuity matters. When it fits naturally, call back to earlier Gazette columns in the ledger (yours or a colleague's): follow up on predictions, keep grudges and running jokes alive, admit when you were wrong. Don't force it.
 - Body: 350 to 550 words, short paragraphs separated by blank lines. You may use **bold** sparingly.
-Return only JSON: {"headline": "...", "dek": "one-sentence subhead", "body": "...", "bit": "text for your weekly feature box, 2 to 5 sentences", "ledger": "one or two sentences recording the specific claims, predictions, jokes or grudges in this column, for future callbacks"}"""
+Return only JSON: {"headline": "...", "dek": "one-sentence subhead", "body": "...", "bit": "text for your weekly feature box, 2 to 5 sentences", "ledger": "one or two sentences recording the specific claims, predictions, jokes or grudges in this column, for future callbacks"EXTRA}"""
 
 
-def writer_prompt(wr, nb, feature, own_prev, ledger):
+def staff_text(cfg, me):
+    rows = [f"- {w['name']} ({w['desk']}): {w['beat']}" for w in cfg["monday"] if w["id"] != me]
+    return "THE REST OF THE GAZETTE STAFF THIS ISSUE (their beats, not yours):\n" + "\n".join(rows)
+
+
+def notes_text(cfg, allow_cody):
+    out = ["LEAGUE NOTES:"] + [f"- {n}" for n in cfg.get("league_notes", [])]
+    for c in cfg.get("characters", []):
+        if allow_cody:
+            out.append(f"- {c['name']}: {c['about']} This issue you may quote or briefly interview him if it fits; "
+                       f"skip him if it doesn't.")
+        else:
+            out.append(f"- {c['name']} exists, but another writer has him this issue; don't use him.")
+    return "\n".join(out)
+
+
+def writer_prompt(cfg, wr, nb, feature, own_prev, ledger, allow_cody):
+    extra = ', "rankings": {"Manager": "one-line blurb", ...} (one entry for every ranked team)' if wr["bit"] == "rankings" else ""
     system = (f"You are {wr['name']}, columnist for The Frank Cup Gazette ({wr['desk']}), the weekly paper of a "
-              f"10-manager fantasy baseball league among friends. VOICE: {wr['voice']}\n\n{RULES}")
+              f"10-manager fantasy baseball league among friends.\nVOICE: {wr['voice']}\nYOUR BEAT: {wr['beat']}\n\n"
+              f"{RULES.replace('EXTRA', extra)}\n\n{notes_text(cfg, allow_cody)}\n\n{staff_text(cfg, wr['id'])}")
     parts = [nb.text(), f"\n\n# YOUR WEEKLY FEATURE: {wr['bit_name']}", feature]
     if own_prev:
         parts.append("\n# YOUR RECENT COLUMNS (most recent last)")
@@ -1252,7 +1382,95 @@ def writer_prompt(wr, nb, feature, own_prev, ledger):
     return system, "\n".join(parts)
 
 
-def feature_for(wr, nb, state, L):
+# ============================================================== new features
+def power_rankings(L, y, w, nb):
+    """Blend of season-long quality, recent form and the standings."""
+    st = {r["m"]: r for r in standings_at(L, y, w)}
+    po, end = L.po_start(y), L.end_week(y)
+    alive = set(L.managers)
+    if po <= w < end:
+        alive = {L.winner(r) for r in L.rows(y) if r["week"] == w and L.in_champ(y, r)}
+        if w == po:
+            seeds = ((L.D.get("bracket") or {}).get(str(y)) or {}).get("seeds") or {}
+            alive |= {m for m, sd in seeds.items() if sd <= 2}
+    recent = defaultdict(list)
+    for ww in L.completed_weeks(y):
+        if w - 3 < ww <= w:
+            for m, v in (L.grades(y, ww) or {}).items():
+                if v["G"] is not None: recent[m].append(v["G"])
+    rows = []
+    for m in L.managers:
+        if m not in alive: continue
+        c = st.get(m, {}).get("cat", [0, 0, 0])
+        pct = (c[0] + c[2] / 2) / max(1, sum(c))
+        sg, rg = nb.avg_g.get(m, 100), (sum(recent[m]) / len(recent[m]) if recent[m] else nb.avg_g.get(m, 100))
+        rows.append({"m": m, "score": round(.45 * sg + .35 * rg + .20 * pct * 200, 1), "season": round(sg),
+                     "last3": round(rg), "cat": rec_str(c), "wk": rec_str(st.get(m, {}).get("wk", [0, 0, 0]))})
+    rows.sort(key=lambda r: -r["score"])
+    for i, r in enumerate(rows): r["rank"] = i + 1
+    return rows
+
+
+def history_items(L, y, w, nb):
+    items = list(weekly_records(L, y, w))
+    for yy in L.seasons():
+        if yy >= y: continue
+        rs = [r for r in L.rows(yy) if r["week"] == w and not r.get("live") and (r["stage"] == "Regular" or L.in_champ(yy, r))]
+        if not rs: continue
+        r = max(rs, key=lambda r: abs(r["aw"] - r["al"]))
+        win = L.winner(r) or r["a"]; lose = r["b"] if win == r["a"] else r["a"]
+        who = " (the previous Jacob)" if "Jacob" in (win, lose) and yy < 2026 else ""
+        items.append(f"Week {w}, {yy}: {win} beat {lose} {max(r['aw'], r['al'])}-{min(r['aw'], r['al'])}-{r['at']}, the most lopsided result that week{who}")
+    for res in nb.results:
+        r = res["r"]
+        h = history_pair(L, y, w, r["a"], r["b"])
+        if h: items.append(f"{r['a']} vs {r['b']} all time: {h['n']} meetings, {h['rec']}; ugliest: {h['worst']}")
+    for yy in L.seasons():
+        if yy >= y: continue
+        fp = (L.D.get("finalPlace") or {}).get(str(yy))
+        if fp: items.append(f"{yy} champion: {fp[0]}")
+    return items
+
+
+def fold(s):
+    return unicodedata.normalize("NFKD", s or "").encode("ascii", "ignore").decode().lower()
+
+
+def fa_line(p, idmap):
+    s = day_stats(p.get("s") or {}, idmap)
+    return pit_line(s) if (s.get("IP") or 0) > 0 or p.get("pos", "").endswith("P") else hit_line(s)
+
+
+def waiver_data(L, y, w, nb):
+    src = nb.src or {}
+    S = L.S(y)
+    idmap = {c["id"]: STAT_KEYS.get(c["abbr"]) for c in S.cats}
+    out = {"hitters": [], "pitchers": [], "two_start": []}
+    fa = src.get("free_agents") or {}
+    for key, pos in (("hitters", "B"), ("pitchers", "P")):
+        for p in (fa.get(pos) or [])[:6]:
+            out[key].append({"name": p.get("n"), "tm": p.get("tm"), "pos": p.get("pos"), "line": fa_line(p, idmap),
+                             "own": p.get("own"), "delta": p.get("delta"), "st": p.get("st")})
+    nxt = L.week_range(y, w + 1)
+    pro = src.get("probables") or []
+    if nxt and pro:
+        starts = defaultdict(list)
+        for g in pro:
+            if nxt[0] <= g["date"] <= nxt[1]: starts[g["who"]].append(g)
+        owners = {}
+        if nb.pw.ok:
+            for r in nb.pw.rows(): owners[fold(r["name"])] = r["owner"]
+        fa_names = {fold(p.get("n")) for p in (fa.get("P") or [])}
+        for who, gs in starts.items():
+            if len(gs) >= 2:
+                o = owners.get(fold(who))
+                out["two_start"].append({"who": who, "team": gs[0]["team"],
+                                         "owner": o or ("free agent" if fold(who) in fa_names else "unknown"),
+                                         "vs": [g["vs"] for g in gs]})
+    return out
+
+
+def feature_for(cfg, wr, nb, state, L):
     y, w = nb.y, nb.w
     bit = {"type": wr["bit"], "name": wr["bit_name"]}
     if wr["bit"] == "trivia":
@@ -1322,14 +1540,201 @@ def feature_for(wr, nb, state, L):
                          f"{rm['b_needs']}. {rm['why']}{who}{note} Pitch it in the bit field as a rumor from your "
                          f"sources. It is speculation, not a real deal."), None
         return bit, "No rumor data this week; in the bit field, tease that your sources have gone quiet.", None
+    if wr["bit"] == "rankings":
+        rows = power_rankings(L, y, w, nb)
+        prev = state.get("rank_prev") or {}
+        for r in rows:
+            r["prev"] = prev.get(r["m"])
+        bit["data"] = {"rows": rows}
+        scope = ("every team" if len(rows) == 10 else "the teams still alive in the championship bracket")
+        lines = [f"- #{r['rank']} {r['m']}" + (f" (last week #{r['prev']})" if r["prev"] else "") +
+                 f": season grade {r['season']}, last 3 weeks {r['last3']}, categories {r['cat']}, weeks {r['wk']}"
+                 for r in rows]
+        return bit, (f"This week's power rankings, computed from season grade (45%), the last three weeks (35%) and the "
+                     f"standings (20%). They cover {scope}:\n" + "\n".join(lines) +
+                     "\nWrite one sharp blurb per ranked team in the rankings field. In the bit field, name your "
+                     "riser and faller of the week."), None
+    if wr["bit"] == "history":
+        items = history_items(L, y, w, nb)
+        bit["data"] = {"items": items[:8]}
+        return bit, ("Material for This Week in Frank Cup History:\n" + "\n".join(f"- {x}" for x in items) +
+                     "\nIn the bit field, tell one short historical tale from this material."), None
+    if wr["bit"] == "waiver":
+        wd = waiver_data(L, y, w, nb)
+        bit["data"] = wd
+        if not (wd["hitters"] or wd["pitchers"] or wd["two_start"]):
+            return bit, ("No free agent data this week. Work from the transactions, waiver hits and drops in the notebook. "
+                         "In the bit field, name the best pickup of the week from those."), None
+        rows = []
+        for k, lbl in (("hitters", "Best available hitters (last week)"), ("pitchers", "Best available pitchers (last week)")):
+            if wd[k]:
+                rows.append(lbl + ":")
+                rows += [f"  - {p['name']} ({p['tm']}, {p['pos']}): {p['line']}; {p.get('own') or '?'}% owned across Yahoo"
+                         f"{', trending ' + str(p['delta']) if p.get('delta') not in (None, '', '0', '-') else ''}"
+                         f"{', status ' + p['st'] if p.get('st') else ''}" for p in wd[k]]
+        if wd["two_start"]:
+            rows.append("Two-start pitchers next week:")
+            rows += [f"  - {t['who']} ({t['team']}), {t['owner']}, vs {' and '.join(t['vs'])}" for t in wd["two_start"]]
+        return bit, ("\n".join(rows) + "\nIn the bit field, name your Pickup of the Week and why, using only these numbers."), None
     return bit, "", None
 
 
-def load_state():
+# ============================================================== daily report (Buck)
+def pt_date(ts):
+    try:
+        from zoneinfo import ZoneInfo
+        return dt.datetime.fromtimestamp(ts, ZoneInfo("America/Los_Angeles")).date().isoformat()
+    except Exception:  # noqa: BLE001
+        return (dt.datetime.utcfromtimestamp(ts) - dt.timedelta(hours=7)).date().isoformat()
+
+
+class DailyNotebook:
+    def __init__(self, L, y, w, day):
+        self.L, self.y, self.w, self.day = L, y, w, day
+        rng = L.week_range(y, w)
+        self.start, self.stop = rng
+        po = L.po_start(y)
+        rows = [r for r in L.rows(y) if r["week"] == w]
+        if w >= po:
+            rows = [r for r in rows if L.in_champ(y, r)]
+        self.rows = rows
+        self.focus = {m for r in rows for m in (r["a"], r["b"])}
+        self.pw = PlayerWeek(L, y, w)
+        self.src = sources.load_recent(y, RAW, upto=(dt.date.fromisoformat(day) + dt.timedelta(days=1)).isoformat(), days=1)
+        self.sections = {}
+        self.build()
+
+    def build(self):
+        L, y, w, day = self.L, self.y, self.w, self.day
+        left = (dt.date.fromisoformat(self.stop) - dt.date.fromisoformat(day)).days
+        phase = "championship bracket" if w >= L.po_start(y) else "regular season"
+        live = []
+        for r in self.rows:
+            det = cat_detail(L, y, w, r["a"], r["b"])
+            close = [f"{d['cat']} {fmt_val(d['cat'], d['a'])}-{fmt_val(d['cat'], d['b'])}" for d in det if d["close"]]
+            live.append(f"{r['a']} {r['aw']}-{r['al']}-{r['at']} {r['b']} ({phase}, {left} day(s) left)"
+                        + (f"; tight categories: {', '.join(close)}" if close else ""))
+        self.sections["Live matchups, current score"] = live
+        if self.pw.ok:
+            big, bad = [], []
+            for x in self.pw.daylog.get(day, []):
+                if x["owner"] not in self.focus: continue
+                note = PlayerWeek._big_day(x["s"], x["pt"])
+                if note:
+                    t = f"{x['name']} ({x['tm']}, {x['owner']}){' ON THE BENCH' if x['bench'] else ''}: {note[0]}"
+                    (bad if note[2] else big).append((note[1], t))
+            if big: self.sections[f"Big days on {day}"] = [t for _, t in sorted(big, reverse=True)[:8]]
+            if bad: self.sections[f"Blowups on {day}"] = [t for _, t in sorted(bad, reverse=True)[:5]]
+        moves = []
+        for t in L.txs(y):
+            if t["status"] != "successful" or pt_date(t["ts"]) != day: continue
+            for p in t["players"]:
+                if t["type"] == "trade":
+                    m = L.S(y).mgr.get(p.get("destination_team_key")); verb = "acquired in a trade"
+                elif p["type"] == "add":
+                    m = L.S(y).mgr.get(p.get("destination_team_key")); verb = "added"
+                else:
+                    m = L.S(y).mgr.get(p.get("source_team_key")); verb = "dropped"
+                if m and m in self.focus: moves.append(f"{m} {verb} {p['name']} ({p.get('pos') or ''})")
+        if moves: self.sections[f"League moves on {day}"] = moves
+        owners = {}
+        if self.pw.ok:
+            for r in self.pw.rows():
+                if r["owner"] in self.focus: owners[fold(r["name"])] = (r["owner"], r["name"])
+        wire = []
+        for t in self.src.get("mlb_tx", []) or []:
+            o = owners.get(fold(t.get("who")))
+            if o:
+                tag = " [short leave, not an injury]" if on_leave("", t.get("desc")) else ""
+                wire.append(f"{o[0]}'s player: {t['desc']}{tag}")
+        for x in self.src.get("espn_injuries", []) or []:
+            o = owners.get(fold(x.get("who")))
+            if o and x.get("date", "") >= (dt.date.fromisoformat(day) - dt.timedelta(days=1)).isoformat():
+                wire.append(f"{x['who']} ({o[0]}): {x.get('status')}{', ' + x['what'] if x.get('what') else ''}"
+                            f"{', expected back ' + x['back'] if x.get('back') else ''}")
+        for it in self.src.get("feeds", []) or []:
+            if it.get("date", "") < day: continue
+            txt = fold(it["title"] + " " + it.get("summary", ""))
+            hits = [v for k, v in owners.items() if len(k) > 6 and k in txt]
+            if hits:
+                wire.append(f"[{it['src']}] {it['title']}. {it.get('summary', '')[:200]} (league: {', '.join(f'{h[1]} of {h[0]}' for h in hits[:3])})")
+        if wire: self.sections["MLB news involving league players"] = wire[:12]
+
+    def text(self):
+        out = [f"THE FRANK CUP MORNING WIRE for {dt.date.fromisoformat(self.day) + dt.timedelta(days=1)}. Covers "
+               f"{self.day}, during week {self.w} of the {self.y} season ({self.start} to {self.stop}). "
+               f"Scores are categories won-lost-tied so far this week."]
+        for k, v in self.sections.items():
+            if v:
+                out.append(f"\n## {k}")
+                out += [f"- {x}" for x in v]
+        return "\n".join(out)
+
+
+DAILY_RULES = """HARD RULES
+- Use only facts in the notebook. Never invent stats, scores, injuries or moves.
+- 'Benny' and 'Ben' are two different managers. Personal, paternity and family leave are not injuries.
+- Keep it PG-13 and about fantasy baseball only. No em dashes. No all-caps sentences or headlines.
+- Structure: a punchy open, then short segments in this order when there's material: the big days, the blowups, the moves, the MLB wire, and a quick run through every live matchup's score. Use a short bold tag to start each segment, like **Big Bats**.
+- 200 to 350 words. It's a quick morning update, not a column. The Monday Gazette does the deep analysis.
+Return only JSON: {"headline": "...", "body": "...", "ledger": "one sentence noting anything worth calling back to"}"""
+
+
+def write_daily(L, cfg, state, y, w, day):
+    if any(x["date"] == day for x in state.get("daily", [])):
+        return False
+    dn = DailyNotebook(L, y, w, day)
+    if not dn.rows:
+        print(f"daily {day}: no championship games to cover"); return False
+    wr = cfg["daily"]
+    prev = [x for x in state.get("daily", []) if x["date"] < day][-3:]
+    system = (f"You are {wr['name']}, host of {wr['desk']} for The Frank Cup Gazette, a fantasy baseball league among "
+              f"friends.\nVOICE: {wr['voice']}\n\n{DAILY_RULES}\n\n{notes_text(cfg, False)}")
+    user = dn.text()
+    if prev:
+        user += "\n\n# YOUR LAST FEW REPORTS\n" + "\n".join(f"- {x['date']}: \"{x['headline']}\". {x.get('ledger', '')}" for x in prev)
+    user += "\n\nDo this morning's report now."
+    d = parse_json(ai(system, user))
+    state.setdefault("daily", []).append({"date": day, "season": y, "week": w, "writer": wr["id"], "name": wr["name"],
+                                          "desk": wr["desk"], "color": wr["color"], "headline": d["headline"],
+                                          "body": d["body"], "ledger": d.get("ledger", "")})
+    state["daily"] = sorted(state["daily"], key=lambda x: x["date"])[-90:]
+    print(f"daily {day}: \"{d['headline']}\"")
+    return True
+
+
+# ============================================================== state
+RENAMES = [("Rosie Outlook", "Rosie Callahan"), ("Norm Distribution", "Norm Becker"), ("Seymour Burns", "Sam Kessler"),
+           ("Doug Graves", "Doug Mercer"), ("Anonymous Sauce", "Tony Russo"), ("Seymour", "Sam")]
+
+
+def load_state(cfg=None):
     if not os.path.exists(NEWS_JS):
-        return {"issues": [], "ledger": [], "trivia_used": []}
+        return {"issues": [], "ledger": [], "trivia_used": [], "daily": []}
     s = open(NEWS_JS, encoding="utf-8").read()
-    return json.loads(s[s.index("{"):s.rindex("}") + 1])
+    st = json.loads(s[s.index("{"):s.rindex("}") + 1])
+    if cfg and "names2" not in st.get("migrations", []):
+        # the writers got ordinary names; carry old columns and callbacks over
+        byid = {w["id"]: w for w in cfg["monday"]}
+        def fix(t):
+            for a, b in RENAMES:
+                t = t.replace(a, b)
+            return t
+        for i in st.get("issues", []):
+            i.setdefault("roster", [a["writer"] for a in i["articles"]])
+            for a in i["articles"]:
+                w = byid.get(a["writer"])
+                if w: a.update(name=w["name"], desk=w["desk"], color=w["color"])
+                for k in ("headline", "dek", "body"):
+                    a[k] = fix(a.get(k) or "")
+                if a.get("bit"):
+                    a["bit"]["text"] = fix(a["bit"].get("text") or "")
+                    if a["bit"].get("type") == "matchups": a["bit"]["name"] = "Upset Alert"
+        for x in st.get("ledger", []):
+            x["line"] = fix(x["line"])
+            if x["writer"] in byid: x["name"] = byid[x["writer"]]["name"]
+        st.setdefault("migrations", []).append("names2")
+    return st
 
 
 def save_state(state):
@@ -1343,19 +1748,26 @@ def excerpt(body, n=60):
     return " ".join(words[:n]) + ("..." if len(words) > n else "")
 
 
-def write_issue(L, writers, state, y, w):
+def write_issue(L, cfg, state, y, w):
+    writers = cfg["monday"]
     iid = f"{y}-{w:02d}"
     nb = Notebook(L, y, w)
     issue = next((i for i in state["issues"] if i["id"] == iid), None)
     if issue is None:
-        issue = {"id": iid, "season": y, "week": w, "date": nb.date, "phase": nb.phase, "articles": []}
+        issue = {"id": iid, "season": y, "week": w, "date": nb.date, "phase": nb.phase, "articles": [],
+                 "roster": [x["id"] for x in writers]}
         state["issues"].append(issue)
         state["issues"].sort(key=lambda i: i["id"])
+    roster = issue.get("roster") or [x["id"] for x in writers]
     have = {a["writer"] for a in issue["articles"]}
-    print(f"issue {iid} ({nb.phase}); player data: {'yes' if nb.pw.ok else 'no'}; notebook ~{len(nb.text()) // 4} tokens")
+    cody = random.Random(f"cody-{iid}").choice(roster)    # one writer per issue may bring in Cody
+    print(f"issue {iid} ({nb.phase}); player data: {'yes' if nb.pw.ok else 'no'}; "
+          f"outside news: {'yes' if nb.src else 'no'}; notebook ~{len(nb.text()) // 4} tokens")
     for wr in writers:
-        if wr["id"] in have: continue
-        bit, feat, trivia_q = feature_for(wr, nb, state, L)
+        if wr["id"] in have or wr["id"] not in roster: continue
+        if time.time() > DEADLINE:
+            raise TimeUp()
+        bit, feat, trivia_q = feature_for(cfg, wr, nb, state, L)
         own = [dict(season=i["season"], week=i["week"], headline=a["headline"], excerpt=excerpt(a["body"]))
                for i in state["issues"] if i["id"] < iid for a in i["articles"] if a["writer"] == wr["id"]][-2:]
         led = [x for x in state["ledger"] if (x["season"], x["week"]) < (y, w)]
@@ -1363,18 +1775,22 @@ def write_issue(L, writers, state, y, w):
         recent = [x for x in led if (x["season"], x["week"]) >= (y, w - 2)]
         pick = {id(x): x for x in mine[-12:] + recent}
         led = sorted(pick.values(), key=lambda x: (x["season"], x["week"]))
-        system, user = writer_prompt(wr, nb, feat, own, led)
+        system, user = writer_prompt(cfg, wr, nb, feat, own, led, wr["id"] == cody)
         try:
             d = parse_json(ai(system, user))
-        except NoAI:
+        except (NoAI, OutOfAI, TimeUp):
             raise
         except Exception as e:  # noqa: BLE001
             print(f"   {wr['name']}: failed ({e}); will retry next run")
             continue
         bit["text"] = d.get("bit", "")
+        if wr["bit"] == "rankings" and isinstance(d.get("rankings"), dict):
+            for r in bit["data"]["rows"]:
+                r["line"] = d["rankings"].get(r["m"], "")
         issue["articles"].append({"writer": wr["id"], "name": wr["name"], "desk": wr["desk"], "color": wr["color"],
                                   "headline": d["headline"], "dek": d.get("dek", ""), "body": d["body"], "bit": bit})
-        issue["articles"].sort(key=lambda a: [x["id"] for x in writers].index(a["writer"]))
+        order = [x["id"] for x in writers]
+        issue["articles"].sort(key=lambda a: order.index(a["writer"]) if a["writer"] in order else 99)
         state["ledger"].append({"season": y, "week": w, "writer": wr["id"], "name": wr["name"],
                                 "line": d.get("ledger") or d["headline"]})
         if wr["bit"] == "trivia" and trivia_q:
@@ -1385,53 +1801,84 @@ def write_issue(L, writers, state, y, w):
             state["odds_prev"] = bit["data"]["odds"]
         if wr["bit"] == "rumor" and bit.get("data"):
             state["rumor_prev"] = [bit["data"]["a"], bit["data"]["b"]]
+        if wr["bit"] == "rankings":
+            state["rank_prev"] = {r["m"]: r["rank"] for r in bit["data"]["rows"]}
         print(f"   {wr['name']}: \"{d['headline']}\"")
         save_state(state)
         if not os.environ.get("NEWS_FAKE_AI"):
-            time.sleep(int(os.environ.get("NEWS_PAUSE", "8")))
+            time.sleep(int(os.environ.get("NEWS_PAUSE", "13")))   # free tier allows 5 a minute
     state["ledger"] = state["ledger"][-400:]
     return issue
 
 
+def redo_latest(state):
+    last = state["issues"].pop()
+    state["ledger"] = [x for x in state["ledger"] if (x["season"], x["week"]) != (last["season"], last["week"])]
+    # roll the weekly features back to where they stood before that issue
+    log = state.get("trivia_log", {})
+    gone = log.pop(last["id"], None)
+    if gone and gone["id"] in state.get("trivia_used", []): state["trivia_used"].remove(gone["id"])
+    prev = state["issues"][-1] if state["issues"] else None
+    state["trivia_open"] = log.get(prev["id"]) if prev else None
+    state["odds_prev"] = state["rumor_prev"] = state["rank_prev"] = None
+    for a in (prev or {}).get("articles", []):
+        dd = (a.get("bit") or {}).get("data") or {}
+        t = (a.get("bit") or {}).get("type")
+        if t == "odds": state["odds_prev"] = dd.get("odds")
+        if t == "rumor": state["rumor_prev"] = [dd["a"], dd["b"]] if dd else None
+        if t == "rankings": state["rank_prev"] = {r["m"]: r["rank"] for r in dd.get("rows", [])}
+    print("rewriting", last["id"])
+
+
 def main():
-    writers = json.load(open(os.path.join(HERE, "writers.json"), encoding="utf-8"))
+    sys.stdout.reconfigure(line_buffering=True)   # show progress live in the Actions log
+    cfg = json.load(open(os.path.join(HERE, "writers.json"), encoding="utf-8"))
     if not (os.environ.get("GEMINI_API_KEY") or os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("NEWS_FAKE_AI")):
         print("No GEMINI_API_KEY secret yet, so no news this run.")
         return
     L = League()
-    state = load_state()
+    state = load_state(cfg)
     y = L.seasons()[-1]
     done = L.completed_weeks(y)
-    if not done:
-        print("No finished weeks yet."); return
-    if os.environ.get("NEWS_REDO") == "latest" and state["issues"]:
-        last = state["issues"].pop()
-        state["ledger"] = [x for x in state["ledger"] if (x["season"], x["week"]) != (last["season"], last["week"])]
-        # roll the weekly features back to where they stood before that issue
-        log = state.get("trivia_log", {})
-        gone = log.pop(last["id"], None)
-        if gone and gone["id"] in state.get("trivia_used", []): state["trivia_used"].remove(gone["id"])
-        prev = state["issues"][-1] if state["issues"] else None
-        state["trivia_open"] = log.get(prev["id"]) if prev else None
-        for a in (prev or {}).get("articles", []):
-            dd = (a.get("bit") or {}).get("data") or {}
-            if a["bit"]["type"] == "odds": state["odds_prev"] = dd.get("odds")
-            if a["bit"]["type"] == "rumor": state["rumor_prev"] = [dd["a"], dd["b"]] if dd else None
-        if not prev: state["odds_prev"] = None; state["rumor_prev"] = None
-        print("rewriting", last["id"])
-    have = {i["id"] for i in state["issues"] if len(i["articles"]) == len(writers)}
-    if not state["issues"]:
-        todo = done[-BACKFILL:]
-    else:
-        latest = max(i["week"] for i in state["issues"] if i["season"] == y) if any(i["season"] == y for i in state["issues"]) else 0
-        todo = [w for w in done if w > latest] + [i["week"] for i in state["issues"] if i["season"] == y and i["id"] not in have]
-        todo = sorted(set(todo))
-    if not todo:
-        print("News is up to date."); return
-    for w in todo:
-        write_issue(L, writers, state, y, w)
+    redo = os.environ.get("NEWS_REDO", "")
+    if "latest" in redo and state["issues"]:
+        redo_latest(state)
+    if "daily" in redo and state.get("daily"):
+        gone = state["daily"].pop()
+        print("rewriting daily", gone["date"])
+    try:
+        # 1) the Monday issue for any finished week that doesn't have one yet
+        def complete(i):
+            return set(i.get("roster") or [a["writer"] for a in i["articles"]]) <= {a["writer"] for a in i["articles"]}
+        if done:
+            if not state["issues"]:
+                todo = done[-BACKFILL:]
+            else:
+                mine = [i for i in state["issues"] if i["season"] == y]
+                latest = max((i["week"] for i in mine), default=0)
+                todo = sorted({w for w in done if w > latest} | {i["week"] for i in mine if not complete(i)})
+            for w in todo:
+                write_issue(L, cfg, state, y, w)
+        # 2) the morning wire for yesterday, Tuesday through Sunday
+        day = players.yesterday_pt()
+        today = dt.date.fromisoformat(day) + dt.timedelta(days=1)
+        if today.weekday() != 0 or os.environ.get("NEWS_DAILY_ANYDAY"):
+            wr = build.week_ranges(L.S(y))
+            wk = next((ww for ww, (a, b) in wr.items() if a <= day <= b), None)
+            if wk is None:
+                print(f"daily {day}: not a fantasy game day")
+            else:
+                if time.time() > DEADLINE: raise TimeUp()
+                write_daily(L, cfg, state, y, wk, day)
+    except OutOfAI:
+        print("Gemini is used up or unavailable for now; the rest will be written next run.")
+    except TimeUp:
+        print("Time budget reached; the rest will be written next run.")
+    except NoAI:
+        print("No AI key.")
     save_state(state)
-    print("news.js written:", ", ".join(i["id"] for i in state["issues"]))
+    n = sum(len(i["articles"]) for i in state["issues"])
+    print(f"{n} articles and {len(state.get('daily', []))} daily reports on file.")
 
 
 if __name__ == "__main__":

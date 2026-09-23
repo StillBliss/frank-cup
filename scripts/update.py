@@ -191,6 +191,11 @@ def main():
         players.pull_recent(y, cur["season"], RAW)
     except Exception as e:  # noqa: BLE001
         print("player pull skipped:", repr(e))
+    try:
+        import sources
+        sources.pull_all(cur["season"], RAW, y, cur["key"])
+    except Exception as e:  # noqa: BLE001
+        print("news sources skipped:", repr(e))
     print(f"{y.calls} Yahoo requests")
 
     import build

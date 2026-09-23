@@ -87,16 +87,35 @@ def _days(start, end):
         a += dt.timedelta(days=1)
 
 
-def pull_week(y, season, week, start, end, team_keys, raw):
-    """Pull every team for every day of one finished week. y is the Yahoo client
-    from update.py (y.get(path) -> json or None)."""
+def yesterday_pt():
+    try:
+        from zoneinfo import ZoneInfo
+        today = dt.datetime.now(ZoneInfo("America/Los_Angeles")).date()
+    except Exception:  # noqa: BLE001
+        today = (dt.datetime.utcnow() - dt.timedelta(hours=7)).date()
+    return (today - dt.timedelta(days=1)).isoformat()
+
+
+def pull_week(y, season, week, start, end, team_keys, raw, final=True):
+    """Pull every team for every finished day of one week. A week still in
+    progress is saved as partial and topped up on each run; once the week is
+    final and every day is in, it is never pulled again."""
     rel = os.path.join(raw, str(season), "players", f"week_{week:02d}.json")
+    have = {"days": {}}
     if os.path.exists(rel):
+        have = json.load(open(rel, encoding="utf-8"))
+        if not have.get("partial"):
+            return False
+    last = min(end, yesterday_pt())
+    todo = [d for d in _days(start, last) if len(have["days"].get(d, {})) < len(team_keys)]
+    if not todo and not (final and have.get("partial")):
         return False
-    days, fails, no_stats = {}, 0, 0
-    for d in _days(start, end):
-        days[d] = {}
+    days = have["days"]
+    fails, no_stats = 0, 0
+    for d in todo:
+        days.setdefault(d, {})
         for tk in team_keys:
+            if tk in days[d]: continue
             obj = y.get(f"team/{tk}/roster;date={d}/players/stats;type=date;date={d}")
             if obj is None:
                 # fall back to the roster alone, so lineup facts still work
@@ -110,14 +129,13 @@ def pull_week(y, season, week, start, end, team_keys, raw):
                     return None
                 continue
             days[d][tk] = r
-    if fails > len(team_keys):
-        print(f"   players week {week}: {fails} team-days failed, not saving")
-        return False
+    complete = final and last == end and all(len(days.get(d, {})) >= len(team_keys) for d in _days(start, end))
     os.makedirs(os.path.dirname(rel), exist_ok=True)
     with open(rel, "w", encoding="utf-8") as f:
-        json.dump({"season": season, "week": week, "start": start, "end": end,
+        json.dump({"season": season, "week": week, "start": start, "end": end, "partial": not complete,
                    "days": days}, f, separators=(",", ":"), ensure_ascii=False)
-    print(f"   players week {week}: saved ({no_stats} team-days without stats)")
+    print(f"   players week {week}: {len(todo)} day(s) added{'' if complete else ' (week in progress)'}"
+          f"{f', {no_stats} team-days without stats' if no_stats else ''}")
     return True
 
 
@@ -164,7 +182,7 @@ def pull_recent(y, season, raw, weeks_back=6):
     teams = json.load(open(os.path.join(raw, str(season), "teams.json"), encoding="utf-8"))
     tl = teams["fantasy_content"]["league"][1]["teams"]
     team_keys = [_flat(tl[k]["team"][0])["team_key"] for k in tl if str(k).isdigit()]
-    done = []
+    done, live = [], []
     for f in sorted(os.listdir(sb_dir)):
         obj = json.load(open(os.path.join(sb_dir, f), encoding="utf-8"))
         try:
@@ -175,11 +193,19 @@ def pull_recent(y, season, raw, weeks_back=6):
             continue
         if st and all(s == "postevent" for s in st):
             done.append((int(first["week"]), first["week_start"], first["week_end"]))
+        elif st and any(s == "midevent" for s in st):
+            live.append((int(first["week"]), first["week_start"], first["week_end"]))
     done.sort()
     for wk, a, b in done[-weeks_back:]:
         if pull_week(y, season, wk, a, b, team_keys, raw) is None:
-            break
+            return
         pull_mlb_week(season, wk, a, b, raw)
+    # the week in progress, day by day, for the daily report
+    for wk, a, b in live:
+        if a <= yesterday_pt():
+            if pull_week(y, season, wk, a, b, team_keys, raw, final=False) is None:
+                return
+    done += live
     # keep the repo lean: the news desk only ever looks a few weeks back
     keep = {f"week_{wk:02d}.json" for wk, _, _ in done[-(weeks_back + 2):]}
     pdir = os.path.join(raw, str(season), "players")
