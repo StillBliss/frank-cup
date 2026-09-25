@@ -14,10 +14,10 @@
     "draft_status": "postdraft",
     "num_teams": 10,
     "max_teams": "10",
-    "edit_key": "2026-09-25",
+    "edit_key": "2026-09-26",
     "weekly_deadline": "",
     "roster_type": "date",
-    "league_update_timestamp": "1790236779",
+    "league_update_timestamp": "1790323197",
     "scoring_type": "head",
     "scoring_label": "H2H Cat",
     "league_type": "private",
@@ -37,7 +37,7 @@
     "start_date": "2026-03-25",
     "end_week": "26",
     "end_date": "2026-09-27",
-    "current_date": "2026-09-24",
+    "current_date": "2026-09-25",
     "is_plus_league": "0",
     "game_code": "mlb",
     "season": "2026"
@@ -140,7 +140,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "858"
+            "value": "862"
            }
           },
           {
@@ -158,25 +158,25 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "838"
+            "value": "841"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "153"
+            "value": "155"
            }
           },
           {
            "stat": {
             "stat_id": "18",
-            "value": "695"
+            "value": "700"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1407"
+            "value": "1409"
            }
           },
           {
@@ -188,7 +188,7 @@
           {
            "stat": {
             "stat_id": "3",
-            "value": ".251"
+            "value": ".252"
            }
           },
           {
@@ -200,7 +200,7 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "587"
+            "value": "589"
            }
           },
           {
@@ -369,7 +369,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "820"
+            "value": "823"
            }
           },
           {
@@ -381,37 +381,37 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "233"
+            "value": "234"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "799"
+            "value": "800"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "86"
+            "value": "87"
            }
           },
           {
            "stat": {
             "stat_id": "18",
-            "value": "592"
+            "value": "596"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1088"
+            "value": "1091"
            }
           },
           {
            "stat": {
             "stat_id": "53",
-            "value": "76"
+            "value": "77"
            }
           },
           {
@@ -429,13 +429,13 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "524"
+            "value": "525"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1709.1"
+            "value": "1710.1"
            }
           },
           {
@@ -459,13 +459,13 @@
           {
            "stat": {
             "stat_id": "32",
-            "value": "73"
+            "value": "74"
            }
           },
           {
            "stat": {
             "stat_id": "42",
-            "value": "1760"
+            "value": "1763"
            }
           },
           {
@@ -489,7 +489,7 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "2.95"
+            "value": "2.96"
            }
           },
           {
@@ -600,13 +600,13 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "848"
+            "value": "858"
            }
           },
           {
            "stat": {
             "stat_id": "11",
-            "value": "36"
+            "value": "37"
            }
           },
           {
@@ -618,25 +618,25 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "816"
+            "value": "821"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "168"
+            "value": "170"
            }
           },
           {
            "stat": {
             "stat_id": "18",
-            "value": "623"
+            "value": "630"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1348"
+            "value": "1354"
            }
           },
           {
@@ -660,13 +660,13 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "560"
+            "value": "563"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "2227.1"
+            "value": "2235.1"
            }
           },
           {
@@ -678,7 +678,7 @@
           {
            "stat": {
             "stat_id": "29",
-            "value": "123"
+            "value": "124"
            }
           },
           {
@@ -696,7 +696,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "2166"
+            "value": "2176"
            }
           },
           {
@@ -708,7 +708,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.70"
+            "value": "3.69"
            }
           },
           {
@@ -829,7 +829,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "753"
+            "value": "756"
            }
           },
           {
@@ -841,31 +841,31 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "220"
+            "value": "222"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "718"
+            "value": "727"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "101"
+            "value": "103"
            }
           },
           {
            "stat": {
             "stat_id": "18",
-            "value": "574"
+            "value": "575"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1570"
+            "value": "1584"
            }
           },
           {
@@ -883,19 +883,19 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".755"
+            "value": ".754"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "469"
+            "value": "472"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1631.1"
+            "value": "1641.2"
            }
           },
           {
@@ -907,7 +907,7 @@
           {
            "stat": {
             "stat_id": "29",
-            "value": "91"
+            "value": "92"
            }
           },
           {
@@ -919,13 +919,13 @@
           {
            "stat": {
             "stat_id": "32",
-            "value": "97"
+            "value": "99"
            }
           },
           {
            "stat": {
             "stat_id": "42",
-            "value": "1665"
+            "value": "1681"
            }
           },
           {
@@ -937,7 +937,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.72"
+            "value": "3.74"
            }
           },
           {
@@ -949,7 +949,7 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "3.28"
+            "value": "3.27"
            }
           },
           {
@@ -1058,7 +1058,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "819"
+            "value": "821"
            }
           },
           {
@@ -1070,13 +1070,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "265"
+            "value": "267"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "775"
+            "value": "779"
            }
           },
           {
@@ -1088,13 +1088,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "709"
+            "value": "716"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1250"
+            "value": "1259"
            }
           },
           {
@@ -1118,13 +1118,13 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "560"
+            "value": "562"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1959.1"
+            "value": "1967.1"
            }
           },
           {
@@ -1148,13 +1148,13 @@
           {
            "stat": {
             "stat_id": "32",
-            "value": "47"
+            "value": "48"
            }
           },
           {
            "stat": {
             "stat_id": "42",
-            "value": "1924"
+            "value": "1936"
            }
           },
           {
@@ -1166,7 +1166,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "4.01"
+            "value": "4.00"
            }
           },
           {
@@ -1178,13 +1178,13 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "2.68"
+            "value": "2.69"
            }
           },
           {
            "stat": {
             "stat_id": "83",
-            "value": "131"
+            "value": "132"
            }
           }
          ]
@@ -1289,43 +1289,43 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "835"
+            "value": "839"
            }
           },
           {
            "stat": {
             "stat_id": "11",
-            "value": "19"
+            "value": "20"
            }
           },
           {
            "stat": {
             "stat_id": "12",
-            "value": "222"
+            "value": "224"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "707"
+            "value": "709"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "121"
+            "value": "122"
            }
           },
           {
            "stat": {
             "stat_id": "18",
-            "value": "648"
+            "value": "651"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1024"
+            "value": "1029"
            }
           },
           {
@@ -1343,19 +1343,19 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".772"
+            "value": ".773"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "509"
+            "value": "513"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1955.0"
+            "value": "1956.0"
            }
           },
           {
@@ -1379,13 +1379,13 @@
           {
            "stat": {
             "stat_id": "32",
-            "value": "76"
+            "value": "77"
            }
           },
           {
            "stat": {
             "stat_id": "42",
-            "value": "1895"
+            "value": "1896"
            }
           },
           {
@@ -1520,7 +1520,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "836"
+            "value": "841"
            }
           },
           {
@@ -1532,13 +1532,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "230"
+            "value": "231"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "750"
+            "value": "753"
            }
           },
           {
@@ -1550,13 +1550,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "726"
+            "value": "728"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "994"
+            "value": "999"
            }
           },
           {
@@ -1580,19 +1580,19 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "534"
+            "value": "536"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1998.0"
+            "value": "2009.0"
            }
           },
           {
            "stat": {
             "stat_id": "28",
-            "value": "136"
+            "value": "137"
            }
           },
           {
@@ -1616,7 +1616,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1917"
+            "value": "1924"
            }
           },
           {
@@ -1628,7 +1628,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.69"
+            "value": "3.70"
            }
           },
           {
@@ -1646,7 +1646,7 @@
           {
            "stat": {
             "stat_id": "83",
-            "value": "148"
+            "value": "149"
            }
           }
          ]
@@ -1694,7 +1694,7 @@
         },
         [],
         {
-         "number_of_moves": 94
+         "number_of_moves": 95
         },
         {
          "number_of_trades": "2"
@@ -1703,7 +1703,7 @@
          "roster_adds": {
           "coverage_type": "week",
           "coverage_value": 26,
-          "value": "2"
+          "value": "3"
          }
         },
         {
@@ -1751,7 +1751,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "796"
+            "value": "799"
            }
           },
           {
@@ -1763,43 +1763,43 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "169"
+            "value": "170"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "674"
+            "value": "676"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "188"
+            "value": "190"
            }
           },
           {
            "stat": {
             "stat_id": "18",
-            "value": "582"
+            "value": "584"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1902"
+            "value": "1915"
            }
           },
           {
            "stat": {
             "stat_id": "53",
-            "value": "101"
+            "value": "102"
            }
           },
           {
            "stat": {
             "stat_id": "3",
-            "value": ".246"
+            "value": ".247"
            }
           },
           {
@@ -1811,7 +1811,7 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "465"
+            "value": "468"
            }
           },
           {
@@ -1982,7 +1982,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "768"
+            "value": "773"
            }
           },
           {
@@ -1994,19 +1994,19 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "193"
+            "value": "195"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "673"
+            "value": "678"
            }
           },
           {
            "stat": {
             "stat_id": "16",
-            "value": "132"
+            "value": "133"
            }
           },
           {
@@ -2018,13 +2018,13 @@
           {
            "stat": {
             "stat_id": "52",
-            "value": "1015"
+            "value": "1020"
            }
           },
           {
            "stat": {
             "stat_id": "53",
-            "value": "43"
+            "value": "45"
            }
           },
           {
@@ -2036,19 +2036,19 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".746"
+            "value": ".748"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "454"
+            "value": "459"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "2056.0"
+            "value": "2070.0"
            }
           },
           {
@@ -2060,7 +2060,7 @@
           {
            "stat": {
             "stat_id": "29",
-            "value": "120"
+            "value": "121"
            }
           },
           {
@@ -2078,7 +2078,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "2032"
+            "value": "2053"
            }
           },
           {
@@ -2102,13 +2102,13 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "3.01"
+            "value": "3.02"
            }
           },
           {
            "stat": {
             "stat_id": "83",
-            "value": "125"
+            "value": "127"
            }
           }
          ]
@@ -2211,7 +2211,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "767"
+            "value": "769"
            }
           },
           {
@@ -2223,13 +2223,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "195"
+            "value": "196"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "714"
+            "value": "716"
            }
           },
           {
@@ -2241,13 +2241,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "547"
+            "value": "549"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1879"
+            "value": "1886"
            }
           },
           {
@@ -2265,25 +2265,25 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".753"
+            "value": ".754"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "463"
+            "value": "467"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1204.1"
+            "value": "1218.1"
            }
           },
           {
            "stat": {
             "stat_id": "28",
-            "value": "65"
+            "value": "67"
            }
           },
           {
@@ -2307,7 +2307,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1214"
+            "value": "1228"
            }
           },
           {
@@ -2319,7 +2319,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "4.18"
+            "value": "4.14"
            }
           },
           {
@@ -2331,13 +2331,13 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "2.77"
+            "value": "2.78"
            }
           },
           {
            "stat": {
             "stat_id": "83",
-            "value": "65"
+            "value": "66"
            }
           }
          ]
@@ -2354,7 +2354,7 @@
     }
    }
   ],
-  "time": "73.148012161255ms",
+  "time": "88.057041168213ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }
