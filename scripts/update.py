@@ -200,6 +200,11 @@ def main():
 
     import build
     D = build.build(RAW, cfg)
+    try:  # playoff odds after each week, for the Trends page; never allowed to break the refresh
+        import odds_history
+        D["oddsByWeek"] = odds_history.history(D, cfg, RAW)
+    except Exception as e:  # noqa: BLE001
+        print("playoff odds skipped:", repr(e))
     build.write_js(D, os.path.join(ROOT, "data.js"))
     with open(CFG, "w", encoding="utf-8") as f:
         json.dump(cfg, f, indent=2, ensure_ascii=False)

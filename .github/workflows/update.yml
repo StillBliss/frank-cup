@@ -1,12 +1,13 @@
 name: Daily Yahoo refresh
 
 on:
-  # 4:00 AM Pacific, every day, during baseball season only.
+  # 3:17 AM Pacific, every day, during baseball season only.
   # GitHub runs on UTC. Pacific is UTC-7 (PDT) most of the season,
-  # so 4 AM Pacific = 11:00 UTC. Months limited to Mar-Oct.
+  # so 3:17 AM Pacific = 10:17 UTC. Months limited to Mar-Oct.
+  # An odd minute, because GitHub often skips jobs scheduled on the hour.
   # Mondays write the full Gazette issue; Tue-Sun write The Morning Wire.
   schedule:
-    - cron: "0 11 * 3-10 *"
+    - cron: "17 10 * 3-10 *"
   workflow_dispatch:
     inputs:
       redo_news:

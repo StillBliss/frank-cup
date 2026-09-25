@@ -71,10 +71,12 @@ def monday_after(day):
 
 # ============================================================== the league
 class League:
-    def __init__(self):
-        with open(os.path.join(ROOT, "league_config.json"), encoding="utf-8") as f:
-            self.cfg = json.load(f)
-        self.D = build.build(RAW, self.cfg)
+    def __init__(self, D=None, cfg=None):
+        if cfg is None:
+            with open(os.path.join(ROOT, "league_config.json"), encoding="utf-8") as f:
+                cfg = json.load(f)
+        self.cfg = cfg
+        self.D = D if D is not None else build.build(RAW, self.cfg)
         D = self.D
         self.managers = D["managers"]
         self.cats = D["cats"]
@@ -484,7 +486,7 @@ def weekly_records(L, y, w):
 
 
 # ============================================================== odds (Norm)
-def cat_model(L, y, w):
+def cat_model(L, y, w, shrink=0):
     share = defaultdict(lambda: defaultdict(lambda: [0.0, 0]))
     ties = defaultdict(lambda: [0, 0])
     for ww in L.completed_weeks(y):
@@ -505,14 +507,21 @@ def cat_model(L, y, w):
                     ties[i][1] += 1
     P = {m: {i: min(.95, max(.05, share[m][i][0] / share[m][i][1])) if share[m][i][1] else .5
              for i in L.score_idx} for m in L.managers}
+    if shrink:
+        # few weeks played: pull each team's rates toward even, fading as weeks pile up
+        nw = len([ww for ww in L.completed_weeks(y) if ww <= w])
+        f = nw / (nw + shrink)
+        P = {m: {i: .5 + (p - .5) * f for i, p in P[m].items()} for m in P}
     T = {i: (ties[i][0] / ties[i][1]) if ties[i][1] else .05 for i in L.score_idx}
     return P, T
 
 
-def sim_odds(L, y, w, n=2000):
+def sim_odds(L, y, w, n=2000, shrink=0, wk_sd=0.0, team_sd=0.0):
+    """wk_sd: a team's hot/cold swing across all categories in one week.
+    team_sd: doubt about a team's true level, fading with weeks played. Both 0 = original model."""
     po, end = L.po_start(y), L.end_week(y)
     if w >= end: return None
-    P, T = cat_model(L, y, w)
+    P, T = cat_model(L, y, w, shrink)
     pair = {}
     def probs(a, b):
         if (a, b) not in pair:
@@ -522,12 +531,17 @@ def sim_odds(L, y, w, n=2000):
                 v.append((T[i], pa * (1 - pb) / (pa * (1 - pb) + pb * (1 - pa))))
             pair[(a, b)] = v
         return pair[(a, b)]
+    nw = max(1, len([ww for ww in L.completed_weeks(y) if ww <= w]))
+    lvl = {}
     def play(a, b, rnd):
+        sh = 0.0
+        if wk_sd or team_sd:
+            sh = (lvl.get(a, 0) + rnd.gauss(0, wk_sd)) - (lvl.get(b, 0) + rnd.gauss(0, wk_sd))
         wa = wb = 0
         for t, p in probs(a, b):
             r = rnd.random()
             if r < t: continue
-            if rnd.random() < p: wa += 1
+            if rnd.random() < min(.98, max(.02, p + sh)): wa += 1
             else: wb += 1
         return wa, wb
     st = standings_at(L, y, w)
@@ -547,6 +561,8 @@ def sim_odds(L, y, w, n=2000):
     nteams = 6
     ncat = len(L.score_idx)
     for _ in range(n):
+        if team_sd:
+            lvl = {m: rnd.gauss(0, team_sd / math.sqrt(nw)) for m in L.managers}
         if actual_seeds:
             seeds = dict(actual_seeds)
         else:

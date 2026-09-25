@@ -986,18 +986,20 @@ function vMatchups(){
 }
 
 function svgLine(o){
-  const {series,labels,yMin,yMax,invert,yTitle}=o;
+  const {series,labels,yMin,yMax,invert,yTitle,ref,fmt}=o, nt=o.ticks||5;
   const W=760,H=300,ml=46,mr=14,mt=12,mb=34,iw=W-ml-mr,ih=H-mt-mb,n=labels.length;
   const xAt=i=>ml+(n<=1?iw/2:iw*i/(n-1));
   const yAt=v=>{const t=(v-yMin)/((yMax-yMin)||1);return mt+(invert?t*ih:(1-t)*ih);};
   let g="";
-  for(let k=0;k<=5;k++){const v=yMin+(yMax-yMin)*k/5,y=yAt(v);
+  for(let k=0;k<=nt;k++){const v=yMin+(yMax-yMin)*k/nt,y=yAt(v);
     g+=`<line x1="${ml}" y1="${y.toFixed(1)}" x2="${W-mr}" y2="${y.toFixed(1)}" stroke="rgba(255,255,255,.10)"/>`;
     g+=`<text x="${ml-8}" y="${(y+4).toFixed(1)}" fill="#828C84" font-size="11" text-anchor="end">${Math.round(v)}</text>`;}
   const step=n>16?Math.ceil(n/12):1;
   labels.forEach((lb,i)=>{if(i%step===0||i===n-1)
     g+=`<text x="${xAt(i).toFixed(1)}" y="${H-12}" fill="#828C84" font-size="11" text-anchor="middle">${lb}</text>`;});
   g+=`<text x="13" y="${(mt+ih/2).toFixed(1)}" fill="#828C84" font-size="11" text-anchor="middle" transform="rotate(-90 13 ${(mt+ih/2).toFixed(1)})">${yTitle}</text>`;
+  if(ref!=null&&ref>yMin&&ref<yMax){const y=yAt(ref).toFixed(1);
+    g+=`<line x1="${ml}" y1="${y}" x2="${W-mr}" y2="${y}" stroke="rgba(237,234,224,.45)" stroke-dasharray="4 4"/>`;}
   let p="";
   series.forEach(s=>{if(s.hidden)return;
     p+=`<path d="${s.data.map((v,i)=>(i?"L":"M")+xAt(i).toFixed(1)+" "+yAt(v).toFixed(1)).join(" ")}" fill="none" stroke="${s.color}" stroke-width="${s.width}" stroke-linejoin="round"/>`;
@@ -1008,7 +1010,7 @@ function svgLine(o){
   labels.forEach((lb,i)=>{
     const rows=shown.map(s=>({name:s.name||"",color:s.color,v:s.data[i],y:yAt(s.data[i])}))
       .sort((a,b)=>b.v-a.v);
-    const payload=rows.map(r=>`${r.name}\u0001${r.color}\u0001${r.v}\u0001${r.y.toFixed(1)}`).join("\u0002");
+    const payload=rows.map(r=>`${r.name}\u0001${r.color}\u0001${fmt?fmt(r.v):r.v}\u0001${r.y.toFixed(1)}`).join("\u0002");
     hit+=`<rect class="hit" x="${(xAt(i)-(iw/Math.max(1,n-1))/2).toFixed(1)}" y="${mt}"
       width="${(iw/Math.max(1,n-1)).toFixed(1)}" height="${ih}" fill="transparent"
       data-lb="${esc(String(lb))}" data-rows="${esc(payload)}"/>`;
@@ -1075,6 +1077,76 @@ function wireHover(host){
     wrap.addEventListener("mouseleave",hide);
   });
 }
+/* weekly grade (100 = league average that week), regular season */
+let gradeMode="week";
+function gradeChart(labels){
+  const raw=D.managers.map(m=>labels.map(w=>{const p=(plusWeek(season,String(w))||{})[m];return p&&p.G!=null?p.G:100;}));
+  const smooth=a=>a.map((v,i)=>{const s=a.slice(Math.max(0,i-2),i+1);return s.reduce((t,x)=>t+x,0)/s.length;});
+  const series=D.managers.map((m,k)=>({name:m,color:col(m),hidden:hidden.has(m),width:m==="Benny"?3:1.6,
+    data:(gradeMode==="avg"?smooth(raw[k]):raw[k]).map(v=>Math.round(v))}));
+  const all=series.flatMap(s=>s.data);
+  const dev=Math.max(40,...all.map(v=>Math.abs(v-100))), step=Math.ceil(dev/2/10)*10;
+  return `<div class="chartbox"><h3>Weekly grade</h3>
+    <p>Each week's overall grade: how a team's categories stacked up against all nine others that week. 100 is league average (dashed line).</p>
+    <div class="toggle" role="group" aria-label="Grade view" id="gradeToggle">
+      <button type="button" data-g="week" aria-pressed="${gradeMode==="week"}">Every week</button>
+      <button type="button" data-g="avg" aria-pressed="${gradeMode==="avg"}">3-week average</button></div>
+    ${svgLine({series,labels,yMin:100-2*step,yMax:100+2*step,ticks:4,ref:100,yTitle:"Grade"})}</div>`;
+}
+
+/* Hitting+ (x) vs Pitching+ (y), season averages over regular-season weeks */
+function quadrantChart(labels){
+  const pts=D.managers.map(m=>{const H=[],P=[];
+    labels.forEach(w=>{const p=(plusWeek(season,String(w))||{})[m];
+      if(p){ if(p.H!=null)H.push(p.H); if(p.P!=null)P.push(p.P);} });
+    const av=a=>a.length?a.reduce((t,v)=>t+v,0)/a.length:null;
+    return {m,h:av(H),p:av(P)};}).filter(d=>d.h!=null&&d.p!=null);
+  if(!pts.length) return "";
+  const W=760,Hh=460,ml=46,mr=20,mt=16,mb=40,iw=W-ml-mr,ih=Hh-mt-mb;
+  const dev=Math.max(20,...pts.flatMap(d=>[Math.abs(d.h-100),Math.abs(d.p-100)]));
+  const span=Math.ceil((dev+6)/10)*10, lo=100-span, hi=100+span;
+  const xAt=v=>ml+(v-lo)/(hi-lo)*iw, yAt=v=>mt+(1-(v-lo)/(hi-lo))*ih;
+  let g="";
+  for(let v=lo;v<=hi;v+=span/2){
+    g+=`<line x1="${xAt(v).toFixed(1)}" y1="${mt}" x2="${xAt(v).toFixed(1)}" y2="${mt+ih}" stroke="rgba(255,255,255,.08)"/>`;
+    g+=`<line x1="${ml}" y1="${yAt(v).toFixed(1)}" x2="${W-mr}" y2="${yAt(v).toFixed(1)}" stroke="rgba(255,255,255,.08)"/>`;
+    g+=`<text x="${xAt(v).toFixed(1)}" y="${Hh-20}" fill="#828C84" font-size="11" text-anchor="middle">${Math.round(v)}</text>`;
+    g+=`<text x="${ml-8}" y="${(yAt(v)+4).toFixed(1)}" fill="#828C84" font-size="11" text-anchor="end">${Math.round(v)}</text>`;}
+  g+=`<line x1="${xAt(100).toFixed(1)}" y1="${mt}" x2="${xAt(100).toFixed(1)}" y2="${mt+ih}" stroke="rgba(237,234,224,.45)" stroke-dasharray="4 4"/>`;
+  g+=`<line x1="${ml}" y1="${yAt(100).toFixed(1)}" x2="${W-mr}" y2="${yAt(100).toFixed(1)}" stroke="rgba(237,234,224,.45)" stroke-dasharray="4 4"/>`;
+  g+=`<text x="${(ml+iw/2).toFixed(1)}" y="${Hh-4}" fill="#828C84" font-size="11" text-anchor="middle">Hitting+ (right is better)</text>`;
+  g+=`<text x="13" y="${(mt+ih/2).toFixed(1)}" fill="#828C84" font-size="11" text-anchor="middle" transform="rotate(-90 13 ${(mt+ih/2).toFixed(1)})">Pitching+ (up is better)</text>`;
+  const corner=(x,y,a,t)=>`<text x="${x}" y="${y}" fill="#E8A62E" font-size="12" letter-spacing="1" text-anchor="${a}" opacity=".8">${t}</text>`;
+  g+=corner(W-mr-6,mt+16,"end","DOES IT ALL")+corner(ml+6,mt+16,"start","PITCHING TEAM")
+    +corner(W-mr-6,mt+ih-8,"end","HITTING TEAM")+corner(ml+6,mt+ih-8,"start","BELOW PAR BOTH WAYS");
+  // labels: nudge apart when two teams sit close together
+  const shown=pts.map(d=>({...d,x:xAt(d.h),y:yAt(d.p),ly:yAt(d.p)+4,off:hidden.has(d.m)}));
+  const byY=[...shown].sort((a,b)=>a.ly-b.ly);
+  for(let i=1;i<byY.length;i++){const a=byY[i-1],b=byY[i];
+    if(Math.abs(a.x-b.x)<90&&b.ly-a.ly<13) b.ly=a.ly+13;}
+  let dots="";
+  shown.forEach(d=>{const op=d.off?.18:1, left=d.x>W-mr-80;
+    dots+=`<g opacity="${op}"><title>${esc(d.m)}: Hitting+ ${Math.round(d.h)}, Pitching+ ${Math.round(d.p)}</title>
+      <circle cx="${d.x.toFixed(1)}" cy="${d.y.toFixed(1)}" r="${d.m==="Benny"?7:5.5}" fill="${col(d.m)}" stroke="#0B1610" stroke-width="1.5"/>
+      <text x="${(d.x+(left?-10:10)).toFixed(1)}" y="${d.ly.toFixed(1)}" fill="#EDEAE0" font-size="12" text-anchor="${left?"end":"start"}">${esc(d.m)} <tspan fill="#828C84">${Math.round(d.h)}/${Math.round(d.p)}</tspan></text></g>`;});
+  return `<div class="chartbox"><h3>Hitting+ vs Pitching+</h3>
+    <p>Each team's average weekly Hitting+ and Pitching+ this season. 100 is league average on both, so the dashed lines split the league into four kinds of team.</p>
+    <div class="chartwrap"><svg viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Teams plotted by Hitting+ and Pitching+" style="width:100%;height:auto;display:block">${g}${dots}</svg></div></div>`;
+}
+
+/* playoff odds after each regular-season week (Monte Carlo, computed in the refresh) */
+function oddsChart(){
+  const O=(D.oddsByWeek||{})[season];
+  if(!O) return "";
+  const wks=Object.keys(O).map(Number).sort((a,b)=>a-b);
+  if(wks.length<2) return "";
+  const series=D.managers.map(m=>({name:m,color:col(m),hidden:hidden.has(m),width:m==="Benny"?3:1.6,
+    data:wks.map(w=>Math.round((O[String(w)]||{})[m]??0))}));
+  return `<div class="chartbox"><h3>Playoff odds</h3>
+    <p>Chance of finishing in the top six, recalculated after every week by simulating the rest of the regular season 1,000 times from each team's category results so far.</p>
+    ${svgLine({series,labels:wks,yMin:0,yMax:100,yTitle:"Playoff odds %",fmt:v=>v+"%"})}</div>`;
+}
+
 function vTrends(){
   const S=D.seasons[season],labels=S.progression.map(p=>p.week);
   const mk=k=>D.managers.map(m=>({name:m,color:col(m),hidden:hidden.has(m),width:m==="Benny"?3:1.6,
@@ -1086,10 +1158,15 @@ function vTrends(){
       ${svgLine({series:gb,labels,yMin:0,yMax:Math.max(10,Math.ceil(gbMax/10)*10),invert:true,yTitle:"Games behind"})}</div>
     <div class="chartbox"><h3>League position</h3><p>Standings position after every week.</p>
       ${svgLine({series:mk("rank"),labels,yMin:1,yMax:10,invert:true,yTitle:"Position"})}</div>
+    ${oddsChart()}
+    ${gradeChart(labels)}
+    ${quadrantChart(labels)}
     ${movesChart(labels)}`;
   el("legend").innerHTML=D.managers.map(m=>`<button type="button" data-m="${esc(m)}" aria-pressed="${!hidden.has(m)}"><span class="dot" style="background:${col(m)}"></span>${esc(m)}</button>`).join("");
   el("legend").onclick=e=>{const b=e.target.closest("button");if(!b)return;
     const m=b.dataset.m;hidden.has(m)?hidden.delete(m):hidden.add(m);render();};
+  const gt=el("gradeToggle");
+  if(gt) gt.onclick=e=>{const b=e.target.closest("button");if(!b)return;gradeMode=b.dataset.g;render();};
   wireHover("v-trends");
 }
 

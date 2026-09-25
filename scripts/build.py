@@ -554,6 +554,11 @@ if __name__ == "__main__":
         cfg = json.load(f)
     raw = sys.argv[1] if len(sys.argv) > 1 else os.path.join(root, "raw")
     D = build(raw, cfg)
+    try:
+        import odds_history
+        D["oddsByWeek"] = odds_history.history(D, cfg, raw)
+    except Exception as e:  # noqa: BLE001
+        print("playoff odds skipped:", repr(e))
     write_js(D, os.path.join(root, "data.js"))
     with open(cfg_path, "w", encoding="utf-8") as f:
         json.dump(cfg, f, indent=2, ensure_ascii=False)
