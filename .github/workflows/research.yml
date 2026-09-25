@@ -1,12 +1,14 @@
 name: Research pull (manual)
 
-# One-off: saves Yahoo player rankings with stats as a downloadable zip.
-# Only runs when started by hand. Commits nothing to the site.
+# Manual research pull for the personal ranking tool (not the site):
+# Yahoo player rankings with stats + MLB Stats API season stats.
+# Only runs when started by hand. Output goes to the "research" branch
+# (replaced each run), never to main, so the site is untouched.
 on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   pull:
@@ -24,11 +26,20 @@ jobs:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
           YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        continue-on-error: true
         run: python -u scripts/yahoo_ranks.py
 
-      - name: Save as a download
-        uses: actions/upload-artifact@v4
-        with:
-          name: yahoo-ranks
-          path: research_out
-          retention-days: 7
+      - name: Pull MLB stats
+        run: python -u scripts/mlb_stats.py
+
+      - name: Commit output to the research branch
+        run: |
+          mv research_out "$RUNNER_TEMP/research_out"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout --orphan research-tmp
+          git rm -rf -q .
+          mv "$RUNNER_TEMP/research_out" research_out
+          git add research_out
+          git commit -q -m "Research pull $(date -u +%F)"
+          git push -f origin HEAD:research
