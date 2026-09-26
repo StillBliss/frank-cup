@@ -14,10 +14,10 @@
     "draft_status": "postdraft",
     "num_teams": 10,
     "max_teams": "10",
-    "edit_key": "2026-09-26",
+    "edit_key": "2026-09-27",
     "weekly_deadline": "",
     "roster_type": "date",
-    "league_update_timestamp": "1790323197",
+    "league_update_timestamp": "1790409577",
     "scoring_type": "head",
     "scoring_label": "H2H Cat",
     "league_type": "private",
@@ -37,7 +37,7 @@
     "start_date": "2026-03-25",
     "end_week": "26",
     "end_date": "2026-09-27",
-    "current_date": "2026-09-25",
+    "current_date": "2026-09-26",
     "is_plus_league": "0",
     "game_code": "mlb",
     "season": "2026"
@@ -844,7 +844,7 @@
     }
    }
   ],
-  "time": "68.564891815186ms",
+  "time": "74.089050292969ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }
