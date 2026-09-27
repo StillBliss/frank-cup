@@ -17,7 +17,7 @@
     "edit_key": "2026-09-27",
     "weekly_deadline": "",
     "roster_type": "date",
-    "league_update_timestamp": "1790409577",
+    "league_update_timestamp": "1790495958",
     "scoring_type": "head",
     "scoring_label": "H2H Cat",
     "league_type": "private",
@@ -37,7 +37,7 @@
     "start_date": "2026-03-25",
     "end_week": "26",
     "end_date": "2026-09-27",
-    "current_date": "2026-09-26",
+    "current_date": "2026-09-27",
     "is_plus_league": "0",
     "game_code": "mlb",
     "season": "2026"
@@ -241,7 +241,7 @@
         },
         [],
         {
-         "number_of_moves": 86
+         "number_of_moves": 87
         },
         {
          "number_of_trades": 0
@@ -250,7 +250,7 @@
          "roster_adds": {
           "coverage_type": "week",
           "coverage_value": 26,
-          "value": "3"
+          "value": "4"
          }
         },
         {
@@ -637,7 +637,7 @@
         },
         [],
         {
-         "number_of_moves": 95
+         "number_of_moves": 96
         },
         {
          "number_of_trades": "2"
@@ -646,7 +646,7 @@
          "roster_adds": {
           "coverage_type": "week",
           "coverage_value": 26,
-          "value": "3"
+          "value": "4"
          }
         },
         {
@@ -844,7 +844,7 @@
     }
    }
   ],
-  "time": "73.786020278931ms",
+  "time": "62.904834747314ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }
