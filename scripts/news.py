@@ -38,6 +38,12 @@ import build, build_core as bc  # noqa: E402
 import sources, players  # noqa: E402
 
 BACKFILL = 4
+RUNLOG = []           # the last run's messages, saved into news.js so a failed run can be diagnosed
+
+
+def log(*a):
+    msg = " ".join(str(x) for x in a)
+    print(msg); RUNLOG.append(msg)
 MAX_ADDS_DEFAULT = 4
 
 # ============================================================== small helpers
@@ -1497,11 +1503,11 @@ def gemini_pool(key):
         try:
             _pool = gemini_models(key)
         except Exception as e:  # noqa: BLE001
-            print("   could not list Gemini models:", e)
+            log("   could not list Gemini models:", e)
             _pool = []
         if want: _pool = [want] + [m for m in _pool if m != want]
         if not _pool: _pool = ["gemini-flash-latest"]
-        print("   Gemini models, in order:", ", ".join(_pool))
+        log("   Gemini models, in order:", ", ".join(_pool))
     return _pool
 
 
@@ -1526,28 +1532,28 @@ def call_gemini(system, user, key):
                 except urllib.error.HTTPError as e:
                     msg = e.read().decode(errors="replace")
                     if e.code == 429 and re.search(r"PerDay|per day|daily", msg, re.I):
-                        print(f"   {model}: out of free requests for today, dropping it")
+                        log(f"   {model}: out of free requests for today, dropping it")
                         _dead.add(model); break
                     if e.code == 429:       # per-minute limit: a short pause fixes it
-                        print(f"   {model}: per-minute limit, pausing 20s")
+                        log(f"   {model}: per-minute limit, pausing 20s")
                         time.sleep(20); continue
                     if e.code in (500, 502, 503, 504):
                         _busy[model] = _busy.get(model, 0) + 1
                         if attempt == 0:
-                            print(f"   {model}: Google busy ({e.code}), one retry in 10s")
+                            log(f"   {model}: Google busy ({e.code}), one retry in 10s")
                             time.sleep(10); continue
-                        print(f"   {model}: still busy, trying the next model")
+                        log(f"   {model}: still busy, trying the next model")
                         break
-                    print(f"   {model}: HTTP {e.code} {msg[:200]}, dropping it")
+                    log(f"   {model}: HTTP {e.code} {msg[:200]}, dropping it")
                     _dead.add(model); break
                 except (KeyError, IndexError):
-                    print(f"   {model}: empty answer, trying the next model")
+                    log(f"   {model}: empty answer, trying the next model")
                     break
                 except (urllib.error.URLError, TimeoutError):
-                    print(f"   {model}: no response, trying the next model")
+                    log(f"   {model}: no response, trying the next model")
                     break
         if rnd == 0:
-            print("   every model busy or used up; one more pass in 60s")
+            log("   every model busy or used up; one more pass in 60s")
             time.sleep(60)
     raise OutOfAI("no Gemini model available")
 
@@ -1996,7 +2002,7 @@ def write_daily(L, cfg, state, y, w, day):
         return False
     dn = DailyNotebook(L, y, w, day)
     if not dn.rows:
-        print(f"daily {day}: no championship games to cover"); return False
+        log(f"daily {day}: no championship games to cover"); return False
     wr = cfg["daily"]
     prev = [x for x in state.get("daily", []) if x["date"] < day][-3:]
     system = (f"You are {wr['name']}, host of {wr['desk']} for The Frank Cup Gazette, a fantasy baseball league of family "
@@ -2010,7 +2016,7 @@ def write_daily(L, cfg, state, y, w, day):
                                           "desk": wr["desk"], "color": wr["color"], "headline": d["headline"],
                                           "body": d["body"], "ledger": d.get("ledger", "")})
     state["daily"] = sorted(state["daily"], key=lambda x: x["date"])[-90:]
-    print(f"daily {day}: \"{d['headline']}\"")
+    log(f"daily {day}: \"{d['headline']}\"")
     return True
 
 
@@ -2050,6 +2056,7 @@ def load_state(cfg=None):
 
 def save_state(state):
     state["updated"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    if RUNLOG: state["runLog"] = RUNLOG[-60:]
     with open(NEWS_JS, "w", encoding="utf-8") as f:
         f.write("window.NEWS = " + json.dumps(state, ensure_ascii=False, separators=(",", ":")) + ";\n")
 
@@ -2099,7 +2106,7 @@ def write_issue(L, cfg, state, y, w, day="monday"):
         except (NoAI, OutOfAI, TimeUp):
             raise
         except Exception as e:  # noqa: BLE001
-            print(f"   {wr['name']}: failed ({e}); will retry next run")
+            log(f"   {wr['name']}: failed ({e}); will retry next run")
             continue
         bit["text"] = d.get("bit", "")
         if wr["bit"] == "rankings" and isinstance(d.get("rankings"), dict):
@@ -2194,16 +2201,19 @@ def main():
         wr = build.week_ranges(L.S(y))
         wk = next((ww for ww, (a, b) in wr.items() if a <= day <= b), None)
         if wk is None:
-            print(f"daily {day}: not a fantasy game day")
+            log(f"daily {day}: not a fantasy game day")
         else:
             if time.time() > DEADLINE: raise TimeUp()
             write_daily(L, cfg, state, y, wk, day)
     except OutOfAI:
-        print("Gemini is used up or unavailable for now; the rest will be written next run.")
+        log("Gemini is used up or unavailable for now; the rest will be written next run.")
     except TimeUp:
-        print("Time budget reached; the rest will be written next run.")
+        log("Time budget reached; the rest will be written next run.")
     except NoAI:
-        print("No AI key.")
+        log("No AI key.")
+    except Exception as e:  # noqa: BLE001
+        import traceback
+        log("Gazette crashed:", "".join(traceback.format_exception(e))[-1500:])
     save_state(state)
     n = sum(len(i["articles"]) for i in state["issues"])
     print(f"{n} articles and {len(state.get('daily', []))} daily reports on file.")
