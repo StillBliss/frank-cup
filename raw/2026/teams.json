@@ -17,7 +17,7 @@
     "edit_key": "2026-09-27",
     "weekly_deadline": "",
     "roster_type": "date",
-    "league_update_timestamp": "1790495958",
+    "league_update_timestamp": "1790582572",
     "scoring_type": "head",
     "scoring_label": "H2H Cat",
     "league_type": "private",
@@ -37,6 +37,7 @@
     "start_date": "2026-03-25",
     "end_week": "26",
     "end_date": "2026-09-27",
+    "is_finished": 1,
     "current_date": "2026-09-27",
     "is_plus_league": "0",
     "game_code": "mlb",
@@ -119,7 +120,7 @@
             "is_commissioner": "1",
             "is_current_login": "1",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "686",
+            "felo_score": "691",
             "felo_tier": "silver"
            }
           }
@@ -197,7 +198,7 @@
             "nickname": "austin",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "586",
+            "felo_score": "592",
             "felo_tier": "bronze"
            }
           }
@@ -277,7 +278,7 @@
             "nickname": "Andrew Frank",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "854",
+            "felo_score": "852",
             "felo_tier": "platinum"
            }
           }
@@ -355,8 +356,8 @@
             "nickname": "Todd",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "711",
-            "felo_tier": "gold"
+            "felo_score": "696",
+            "felo_tier": "silver"
            }
           }
          ]
@@ -433,7 +434,7 @@
             "nickname": "Get Some",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/4561/38069634420_39ecc7_64sq.jpg",
-            "felo_score": "656",
+            "felo_score": "645",
             "felo_tier": "silver"
            }
           }
@@ -593,7 +594,7 @@
             "nickname": "Jacob",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "686",
+            "felo_score": "699",
             "felo_tier": "silver"
            }
           }
@@ -673,7 +674,7 @@
             "nickname": "BUELLER54",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "863",
+            "felo_score": "850",
             "felo_tier": "platinum"
            }
           }
@@ -831,7 +832,7 @@
             "nickname": "Gabe Frank",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "563",
+            "felo_score": "567",
             "felo_tier": "bronze"
            }
           }
@@ -844,7 +845,7 @@
     }
    }
   ],
-  "time": "74.743986129761ms",
+  "time": "93.21403503418ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }

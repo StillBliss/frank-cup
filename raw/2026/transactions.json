@@ -17,7 +17,7 @@
     "edit_key": "2026-09-27",
     "weekly_deadline": "",
     "roster_type": "date",
-    "league_update_timestamp": "1790495958",
+    "league_update_timestamp": "1790582572",
     "scoring_type": "head",
     "scoring_label": "H2H Cat",
     "league_type": "private",
@@ -37,6 +37,7 @@
     "start_date": "2026-03-25",
     "end_week": "26",
     "end_date": "2026-09-27",
+    "is_finished": 1,
     "current_date": "2026-09-27",
     "is_plus_league": "0",
     "game_code": "mlb",
@@ -69297,7 +69298,7 @@
     }
    }
   ],
-  "time": "185.3449344635ms",
+  "time": "344.71797943115ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }

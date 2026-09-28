@@ -17,7 +17,7 @@
     "edit_key": "2026-09-27",
     "weekly_deadline": "",
     "roster_type": "date",
-    "league_update_timestamp": "1790495958",
+    "league_update_timestamp": "1790582572",
     "scoring_type": "head",
     "scoring_label": "H2H Cat",
     "league_type": "private",
@@ -37,6 +37,7 @@
     "start_date": "2026-03-25",
     "end_week": "26",
     "end_date": "2026-09-27",
+    "is_finished": 1,
     "current_date": "2026-09-27",
     "is_plus_league": "0",
     "game_code": "mlb",
@@ -119,7 +120,7 @@
             "is_commissioner": "1",
             "is_current_login": "1",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "686",
+            "felo_score": "691",
             "felo_tier": "silver"
            }
           }
@@ -140,13 +141,13 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "872"
+            "value": "875"
            }
           },
           {
            "stat": {
             "stat_id": "11",
-            "value": "44"
+            "value": "45"
            }
           },
           {
@@ -158,7 +159,7 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "854"
+            "value": "858"
            }
           },
           {
@@ -170,13 +171,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "709"
+            "value": "710"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1419"
+            "value": "1420"
            }
           },
           {
@@ -200,25 +201,25 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "595"
+            "value": "599"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "2119.0"
+            "value": "2133.0"
            }
           },
           {
            "stat": {
             "stat_id": "28",
-            "value": "114"
+            "value": "115"
            }
           },
           {
            "stat": {
             "stat_id": "29",
-            "value": "145"
+            "value": "146"
            }
           },
           {
@@ -230,13 +231,13 @@
           {
            "stat": {
             "stat_id": "32",
-            "value": "74"
+            "value": "75"
            }
           },
           {
            "stat": {
             "stat_id": "42",
-            "value": "1926"
+            "value": "1941"
            }
           },
           {
@@ -248,7 +249,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "4.16"
+            "value": "4.15"
            }
           },
           {
@@ -260,13 +261,13 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "2.64"
+            "value": "2.66"
            }
           },
           {
            "stat": {
             "stat_id": "83",
-            "value": "145"
+            "value": "146"
            }
           }
          ]
@@ -348,7 +349,7 @@
             "nickname": "austin",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "586",
+            "felo_score": "592",
             "felo_tier": "bronze"
            }
           }
@@ -369,7 +370,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "835"
+            "value": "838"
            }
           },
           {
@@ -387,7 +388,7 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "812"
+            "value": "815"
            }
           },
           {
@@ -399,13 +400,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "611"
+            "value": "612"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1099"
+            "value": "1103"
            }
           },
           {
@@ -429,13 +430,13 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "532"
+            "value": "533"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1736.1"
+            "value": "1746.1"
            }
           },
           {
@@ -447,7 +448,7 @@
           {
            "stat": {
             "stat_id": "29",
-            "value": "101"
+            "value": "102"
            }
           },
           {
@@ -465,7 +466,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1785"
+            "value": "1793"
            }
           },
           {
@@ -477,7 +478,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.61"
+            "value": "3.62"
            }
           },
           {
@@ -489,7 +490,7 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "2.96"
+            "value": "2.97"
            }
           },
           {
@@ -579,7 +580,7 @@
             "nickname": "Andrew Frank",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "854",
+            "felo_score": "852",
             "felo_tier": "platinum"
            }
           }
@@ -600,7 +601,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "876"
+            "value": "879"
            }
           },
           {
@@ -612,13 +613,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "270"
+            "value": "271"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "833"
+            "value": "836"
            }
           },
           {
@@ -630,13 +631,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "643"
+            "value": "646"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1373"
+            "value": "1377"
            }
           },
           {
@@ -654,31 +655,31 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".778"
+            "value": ".777"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "573"
+            "value": "574"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "2259.0"
+            "value": "2276.0"
            }
           },
           {
            "stat": {
             "stat_id": "28",
-            "value": "142"
+            "value": "144"
            }
           },
           {
            "stat": {
             "stat_id": "29",
-            "value": "125"
+            "value": "126"
            }
           },
           {
@@ -696,7 +697,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "2207"
+            "value": "2221"
            }
           },
           {
@@ -726,7 +727,7 @@
           {
            "stat": {
             "stat_id": "83",
-            "value": "146"
+            "value": "147"
            }
           }
          ]
@@ -808,8 +809,8 @@
             "nickname": "Todd",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "711",
-            "felo_tier": "gold"
+            "felo_score": "696",
+            "felo_tier": "silver"
            }
           }
          ]
@@ -829,7 +830,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "766"
+            "value": "767"
            }
           },
           {
@@ -847,7 +848,7 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "737"
+            "value": "738"
            }
           },
           {
@@ -859,13 +860,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "581"
+            "value": "584"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1615"
+            "value": "1623"
            }
           },
           {
@@ -877,25 +878,25 @@
           {
            "stat": {
             "stat_id": "3",
-            "value": ".247"
+            "value": ".246"
            }
           },
           {
            "stat": {
             "stat_id": "55",
-            "value": ".752"
+            "value": ".751"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "475"
+            "value": "476"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1652.2"
+            "value": "1654.2"
            }
           },
           {
@@ -925,7 +926,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1699"
+            "value": "1700"
            }
           },
           {
@@ -937,7 +938,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.75"
+            "value": "3.74"
            }
           },
           {
@@ -1037,7 +1038,7 @@
             "nickname": "Get Some",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/4561/38069634420_39ecc7_64sq.jpg",
-            "felo_score": "656",
+            "felo_score": "645",
             "felo_tier": "silver"
            }
           }
@@ -1058,7 +1059,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "831"
+            "value": "833"
            }
           },
           {
@@ -1076,7 +1077,7 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "787"
+            "value": "789"
            }
           },
           {
@@ -1088,13 +1089,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "726"
+            "value": "731"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1271"
+            "value": "1272"
            }
           },
           {
@@ -1112,25 +1113,25 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".787"
+            "value": ".786"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "569"
+            "value": "570"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1979.2"
+            "value": "1986.0"
            }
           },
           {
            "stat": {
             "stat_id": "28",
-            "value": "125"
+            "value": "126"
            }
           },
           {
@@ -1148,13 +1149,13 @@
           {
            "stat": {
             "stat_id": "32",
-            "value": "48"
+            "value": "49"
            }
           },
           {
            "stat": {
             "stat_id": "42",
-            "value": "1947"
+            "value": "1954"
            }
           },
           {
@@ -1166,7 +1167,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "4.01"
+            "value": "4.00"
            }
           },
           {
@@ -1289,7 +1290,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "857"
+            "value": "862"
            }
           },
           {
@@ -1307,7 +1308,7 @@
           {
            "stat": {
             "stat_id": "13",
-            "value": "723"
+            "value": "724"
            }
           },
           {
@@ -1319,13 +1320,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "659"
+            "value": "663"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1038"
+            "value": "1040"
            }
           },
           {
@@ -1337,13 +1338,13 @@
           {
            "stat": {
             "stat_id": "3",
-            "value": ".258"
+            "value": ".257"
            }
           },
           {
            "stat": {
             "stat_id": "55",
-            "value": ".777"
+            "value": ".775"
            }
           },
           {
@@ -1355,7 +1356,7 @@
           {
            "stat": {
             "stat_id": "50",
-            "value": "1971.0"
+            "value": "1975.0"
            }
           },
           {
@@ -1385,7 +1386,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1908"
+            "value": "1916"
            }
           },
           {
@@ -1409,7 +1410,7 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "2.74"
+            "value": "2.75"
            }
           },
           {
@@ -1499,7 +1500,7 @@
             "nickname": "Jacob",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "686",
+            "felo_score": "699",
             "felo_tier": "silver"
            }
           }
@@ -1520,7 +1521,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "854"
+            "value": "855"
            }
           },
           {
@@ -1532,13 +1533,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "235"
+            "value": "236"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "770"
+            "value": "773"
            }
           },
           {
@@ -1550,13 +1551,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "732"
+            "value": "733"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1011"
+            "value": "1017"
            }
           },
           {
@@ -1580,13 +1581,13 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "546"
+            "value": "548"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "2032.1"
+            "value": "2041.0"
            }
           },
           {
@@ -1598,7 +1599,7 @@
           {
            "stat": {
             "stat_id": "29",
-            "value": "112"
+            "value": "114"
            }
           },
           {
@@ -1616,7 +1617,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1954"
+            "value": "1962"
            }
           },
           {
@@ -1628,7 +1629,7 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.68"
+            "value": "3.71"
            }
           },
           {
@@ -1640,7 +1641,7 @@
           {
            "stat": {
             "stat_id": "56",
-            "value": "3.14"
+            "value": "3.12"
            }
           },
           {
@@ -1730,7 +1731,7 @@
             "nickname": "BUELLER54",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "863",
+            "felo_score": "850",
             "felo_tier": "platinum"
            }
           }
@@ -1751,7 +1752,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "810"
+            "value": "813"
            }
           },
           {
@@ -1763,13 +1764,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "172"
+            "value": "173"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "689"
+            "value": "693"
            }
           },
           {
@@ -1787,7 +1788,7 @@
           {
            "stat": {
             "stat_id": "52",
-            "value": "1944"
+            "value": "1953"
            }
           },
           {
@@ -1811,13 +1812,13 @@
           {
            "stat": {
             "stat_id": "61",
-            "value": "475"
+            "value": "476"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "2091.1"
+            "value": "2097.1"
            }
           },
           {
@@ -1829,7 +1830,7 @@
           {
            "stat": {
             "stat_id": "29",
-            "value": "131"
+            "value": "132"
            }
           },
           {
@@ -1847,7 +1848,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "2156"
+            "value": "2162"
            }
           },
           {
@@ -1859,19 +1860,19 @@
           {
            "stat": {
             "stat_id": "26",
-            "value": "3.88"
+            "value": "3.90"
            }
           },
           {
            "stat": {
             "stat_id": "27",
-            "value": "1.20"
+            "value": "1.21"
            }
           },
           {
            "stat": {
             "stat_id": "56",
-            "value": "3.20"
+            "value": "3.21"
            }
           },
           {
@@ -1982,7 +1983,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "781"
+            "value": "785"
            }
           },
           {
@@ -1994,13 +1995,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "196"
+            "value": "198"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "686"
+            "value": "691"
            }
           },
           {
@@ -2012,13 +2013,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "623"
+            "value": "624"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1031"
+            "value": "1034"
            }
           },
           {
@@ -2036,13 +2037,13 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".747"
+            "value": ".746"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "465"
+            "value": "468"
            }
           },
           {
@@ -2190,7 +2191,7 @@
             "nickname": "Gabe Frank",
             "guid": "--hidden--",
             "image_url": "https://s.yimg.com/ag/images/default_user_profile_pic_64sq.jpg",
-            "felo_score": "563",
+            "felo_score": "567",
             "felo_tier": "bronze"
            }
           }
@@ -2211,7 +2212,7 @@
           {
            "stat": {
             "stat_id": "7",
-            "value": "777"
+            "value": "780"
            }
           },
           {
@@ -2223,13 +2224,13 @@
           {
            "stat": {
             "stat_id": "12",
-            "value": "199"
+            "value": "201"
            }
           },
           {
            "stat": {
             "stat_id": "13",
-            "value": "722"
+            "value": "726"
            }
           },
           {
@@ -2241,13 +2242,13 @@
           {
            "stat": {
             "stat_id": "18",
-            "value": "552"
+            "value": "553"
            }
           },
           {
            "stat": {
             "stat_id": "52",
-            "value": "1910"
+            "value": "1911"
            }
           },
           {
@@ -2265,25 +2266,25 @@
           {
            "stat": {
             "stat_id": "55",
-            "value": ".751"
+            "value": ".752"
            }
           },
           {
            "stat": {
             "stat_id": "61",
-            "value": "471"
+            "value": "475"
            }
           },
           {
            "stat": {
             "stat_id": "50",
-            "value": "1235.0"
+            "value": "1236.0"
            }
           },
           {
            "stat": {
             "stat_id": "28",
-            "value": "68"
+            "value": "69"
            }
           },
           {
@@ -2307,7 +2308,7 @@
           {
            "stat": {
             "stat_id": "42",
-            "value": "1244"
+            "value": "1245"
            }
           },
           {
@@ -2354,7 +2355,7 @@
     }
    }
   ],
-  "time": "65.832853317261ms",
+  "time": "108.41298103333ms",
   "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
   "refresh_rate": "30"
  }
