@@ -261,7 +261,7 @@ def build_records(D, week_infos, n=5):
             for v in x.values(): tag(v)
         elif isinstance(x, list):
             for v in x: tag(v)
-    out_all = [single, season, grades, season_grade, blow, finals, ties, best_season, worst_season, win_runs, skids]
+    out_all = [single, season, grades, season_grade, blow, finals, ties, best_season, worst_season, bad_beats, lucky_weeks, win_runs, skids]
     for r in win_runs + skids:
         if r["m"] in oc and r["from"][0] < oc[r["m"]]["since"]: r["prev"] = [r["m"]]
     for o in out_all[:-2]: tag(o)

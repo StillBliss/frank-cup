@@ -605,6 +605,16 @@ body[data-season="ALL"]{--bulb:#CFC8B6}
 .subtabs{margin-bottom:18px}
 .subtabs button{font-size:15px;padding:7px 14px;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.board{transition:none}}
+
+.rec-grid.wide{grid-template-columns:repeat(auto-fit,minmax(520px,1fr))}
+@media (max-width:600px){.rec-grid.wide{grid-template-columns:1fr}}
+table.rtab{width:100%;font-size:14px}
+table.rtab th{font-size:11.5px;color:var(--bone-faint);font-weight:500;padding:4px 6px;white-space:nowrap}
+table.rtab td{padding:5px 6px;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.05)}
+table.rtab td.l,table.rtab th.l{text-align:left !important}
+table.rtab td.rk{color:var(--bone-faint);font-size:12px}
+table.rtab td.w{color:var(--bone-faint);font-size:12.5px}
+table.rtab td.v{font-weight:650}
 </style>
 </head>
 <body data-season="2026">
@@ -2073,14 +2083,17 @@ function vRecords(){
   const odd=Object.entries(R.oddWeeks||{}).map(([s,ws])=>`${s}: week${ws.length>1?"s":""} ${ws.join(" and ")}`).join("; ");
   const regW=R.regWeeks||{};
   const longer=Object.entries(regW).filter(([s,n])=>n!==Math.min(...Object.values(regW))).map(([s,n])=>`${s} (${n} weeks)`);
-  const beatRow=(x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s} wk ${x.w}, lost to ${esc(x.opp)} ${x.score}${x.ap?`, all-play ${x.ap}`:""}</span>${stgTag(x.stage)}</span><span class="v">${Math.round(x.G)}</span></li>`;
-  const luckRow=(x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s} wk ${x.w}, beat ${esc(x.opp)} ${x.score}${x.ap?`, all-play ${x.ap}`:""}</span>${stgTag(x.stage)}</span><span class="v">${Math.round(x.G)}</span></li>`;
+  const when=x=>`${x.s} wk ${x.w}${x.stage==="Playoff"?' <span class="stg po">PO</span>':""}`;
+  const beatRow=(x,i)=>`<tr><td class="rk">${i+1}</td><td class="l">${recWho(x)}</td><td class="w">${when(x)}</td><td class="w">vs ${esc(x.opp)}</td><td>${x.score}</td><td class="w">${x.ap||""}</td><td class="v">${Math.round(x.G)}</td></tr>`;
+  const luckRow=beatRow;
+  const rtab=(head,rows)=>`<div class="scroll"><table class="rtab"><thead><tr>${head.map(h=>`<th${h[1]?` class="${h[1]}"`:""}>${h[0]}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  const BEAT_HEAD=[["#"],["Manager","l"],["Week"],["Opponent"],["Score"],["All-play"],["Grade"]];
   const gl={G:"Grade",H:"Hitting+",P:"Pitching+"};
   const glist=(rows,k)=>rows.map((x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s} wk ${x.w}</span>${stgTag(x.stage)}</span><span class="v">${Math.round(x[k])}</span></li>`).join("");
   const gb=R.grades[recGrade];
   const sgl=(rows)=>rows.map((x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s}</span></span><span class="v">${Math.round(x.v)}</span></li>`).join("");
   const seasonRow=(x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s}, ${x.cat.join("-")}</span></span><span class="v">${pct3(x.pct)}</span></li>`;
-  const blow=(R.blowouts||[]).map((g,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(g,"win")} over ${recWho(g,"lose")} <span class="w">${g.s} wk ${g.w}</span>${stgTag(g.stage)}</span><span class="v">${g.score}</span></li>`).join("");
+  const blow=(R.blowouts||[]).map((g,i)=>`<tr><td class="rk">${i+1}</td><td class="l">${recWho(g,"win")}</td><td class="l">${recWho(g,"lose")}</td><td class="w">${when(g)}</td><td class="v">${g.score}</td></tr>`).join("");
   const run=(rows)=>rows.map((x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.from[0]} wk ${x.from[1]} to ${x.to[0]===x.from[0]?"":x.to[0]+" "}wk ${x.to[1]}</span></span><span class="v">${x.n}</span></li>`).join("");
   const cats=D.cats.filter(c=>R.single[c]);
   /* fewest errors or losses in a week is just a quiet week, so those two sit out the single-week table */
@@ -2100,10 +2113,10 @@ function vRecords(){
       <td class="l">${rest.length?nextBest(rest,c,false):""}</td>
       <td class="l"><span class="w">${wr?`${fmtV(c,wr.v)} ${esc(wr.m)} ${wr.s}`:""}</span></td></tr>`;}).join("");
   el("v-records").innerHTML=histTabs()+`<p class="lede">Keeper era records, ${esc(R.era)}, regular season and championship bracket, since Benny took over as commissioner and made the Frank Cup a keeper league. The league itself goes back to 2011.</p>
-    <div class="rec-grid">
-      <div class="rec-card"><h3>Worst bad beats</h3><p class="n">The best weeks that still lost the matchup, by grade.</p><ul class="rec-list">${(R.badBeats||[]).map(beatRow).join("")}</ul></div>
-      <div class="rec-card"><h3>Luckiest weeks</h3><p class="n">The worst weeks that still won the matchup, by grade.</p><ul class="rec-list">${(R.luckyWeeks||[]).map(luckRow).join("")}</ul></div>
-      <div class="rec-card"><h3>Biggest blowouts</h3><p class="n">Widest category margins.</p><ul class="rec-list">${blow}</ul></div>
+    <div class="rec-grid wide">
+      <div class="rec-card"><h3>Worst bad beats</h3><p class="n">The best weeks that still lost the matchup, by grade.</p>${rtab(BEAT_HEAD,(R.badBeats||[]).map(beatRow).join(""))}</div>
+      <div class="rec-card"><h3>Luckiest weeks</h3><p class="n">The worst weeks that still won the matchup, by grade.</p>${rtab(BEAT_HEAD,(R.luckyWeeks||[]).map(luckRow).join(""))}</div>
+      <div class="rec-card"><h3>Biggest blowouts</h3><p class="n">Widest category margins.</p>${rtab([["#"],["Winner","l"],["Loser","l"],["Week"],["Score"]],blow)}</div>
     </div>
     <h2 class="sec">Weekly grades</h2>
     <p class="lede tight">100 is league average that week, so every week counts here, long ones included.</p>
