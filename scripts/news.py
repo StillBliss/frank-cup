@@ -11,9 +11,11 @@ How it works
   2. It also computes each writer's weekly feature with real numbers:
      trivia (answered next week), playoff odds (Monte Carlo), Dud of the Week,
      Matchups to Watch, and a trade rumor that fits both rosters.
-  3. Five writers (scripts/writers.json) each get the notebook, their own
+  3. Eight writers (scripts/writers.json) each get the notebook, their own
      feature, their last columns and the Gazette's running ledger, and the AI
      only writes. It is told never to state a fact that isn't in the notebook.
+     Five run on Monday; Kenny, Tony and Marcus join the same issue on Thursday.
+     Buck's Morning Wire runs every day, recapping the day before.
 
 AI provider: Google Gemini (free tier), key in the GEMINI_API_KEY secret.
 An ANTHROPIC_API_KEY secret works too, if one is ever added instead.
@@ -36,6 +38,12 @@ import build, build_core as bc  # noqa: E402
 import sources, players  # noqa: E402
 
 BACKFILL = 4
+RUNLOG = []           # the last run's messages, saved into news.js so a failed run can be diagnosed
+
+
+def log(*a):
+    msg = " ".join(str(x) for x in a)
+    print(msg); RUNLOG.append(msg)
 MAX_ADDS_DEFAULT = 4
 
 # ============================================================== small helpers
@@ -298,6 +306,7 @@ class PlayerWeek:
         self.days = []      # per-day notable lines
         self.empty = defaultdict(lambda: {"B": 0, "P": 0})
         self.hurt_active = defaultdict(lambda: defaultdict(int))  # owner -> player -> days
+        self.hurt_info = {}   # (owner, player) -> {"pt", "adds": adds used so far on each of those days}
         self.adds = {}
         have_stats = False
         for d, teams in sorted(self.raw.get("days", {}).items()):
@@ -320,6 +329,7 @@ class PlayerWeek:
                     st = (pl.get("st") or "").upper()
                     if active and st.startswith(HURT) and not on_leave(st, pl.get("inj")) and not pl.get("s"):
                         self.hurt_active[owner][pl.get("n")] += 1
+                        self.hurt_info.setdefault((owner, pl.get("n")), {"pt": pt, "adds": []})["adds"].append(tr.get("adds"))
                     if active: rec["act_days"] += 1
                     if not pl.get("s"): continue
                     have_stats = True
@@ -396,6 +406,22 @@ def cat_detail(L, y, w, a, b):
     return out
 
 
+def cat_results_text(det, a, b):
+    """every category spelled out winner first, so a writer can't flip one"""
+    won, tied = [], []
+    for d in det:
+        c = d["cat"]
+        if d["res"] == "T":
+            tied.append(f"{c} {fmt_val(c, d['a'])}")
+            continue
+        wn, ls = (a, b) if d["res"] == "W" else (b, a)
+        wv, lv = (d["a"], d["b"]) if d["res"] == "W" else (d["b"], d["a"])
+        won.append(f"{c}: {wn} {fmt_val(c, wv)} over {ls} {fmt_val(c, lv)}")
+    out = "Category results (winner first): " + "; ".join(won) + "."
+    if tied: out += " Tied: " + ", ".join(tied) + "."
+    return out
+
+
 # ============================================================== standings
 def standings_at(L, y, w):
     po = L.po_start(y)
@@ -440,19 +466,36 @@ def streaks(L, y, w):
 
 
 # ============================================================== records
+def consolation(L, y, w, m):
+    """True for a team playing a consolation game that week; those weeks never count for anything"""
+    if w < L.po_start(y): return False
+    return not any(L.in_champ(y, r) and m in (r["a"], r["b"]) for r in L.rows(y) if r["week"] == w)
+
+
+def std(L, y, w):
+    """a standard 7-day week (not the stretched opening or All-Star week)"""
+    info = (L.D.get("weekInfo") or {}).get(str(y), {}).get(str(w))
+    return True if not info else bool(info.get("standard"))
+
+
 def weekly_records(L, y, w):
-    """Did anything this week crack the league's all-time single-week top 3?"""
+    """Did anything this week crack the keeper era's single-week top 3 (standard weeks only)?"""
     hist = defaultdict(list)
     for yy in L.seasons():
         for m, weeks in L.D["weeklyDetail"].get(str(yy), {}).items():
             for ws, e in weeks.items():
                 ww = int(ws)
                 if yy > y or (yy == y and ww > w): continue
+                if not std(L, yy, ww): continue      # long/short weeks don't count toward single-week records
+                if consolation(L, yy, ww, m): continue
                 for i in L.score_idx:
                     v = fnum(e["you"][i])
                     if v is None: continue
                     hist[i].append((v, m, yy, ww))
     notes = []
+    if not std(L, y, w):
+        info = (L.D.get("weekInfo") or {}).get(str(y), {}).get(str(w), {})
+        notes.append(f"This week ran {info.get('days', '?')} days instead of 7, so single-week category records don't count it.")
     for i, arr in hist.items():
         c = L.cats[i]
         if c in ("AVG", "OPS", "ERA", "WHIP", "K/BB", "IP", "L", "E"):
@@ -461,7 +504,7 @@ def weekly_records(L, y, w):
         for rank, (v, m, yy, ww) in enumerate(arr[:3]):
             if yy == y and ww == w:
                 prev = next(((pv, pm, py, pw) for pv, pm, py, pw in arr if not (py == y and pw == w)), None)
-                tag = "an all-time league record" if rank == 0 else f"the #{rank + 1} single week in league history"
+                tag = "a new keeper-era record (since 2023)" if rank == 0 else f"the #{rank + 1} single week of the keeper era"
                 s = f"{m} put up {fmt_val(c, v)} {c} this week, {tag}"
                 if rank == 0 and prev: s += f" (old mark: {prev[1]}, {fmt_val(c, prev[0])} in {prev[2]} week {prev[3]})"
                 notes.append(s)
@@ -474,14 +517,14 @@ def weekly_records(L, y, w):
             g = L.grades(yy, ww)
             if not g: continue
             for m, v in g.items():
-                if v["G"] is not None: allg.append((v["G"], m, yy, ww))
+                if v["G"] is not None and not consolation(L, yy, ww, m): allg.append((v["G"], m, yy, ww))
     allg.sort(key=lambda t: -t[0])
     for rank, (v, m, yy, ww) in enumerate(allg[:5]):
         if yy == y and ww == w:
-            notes.append(f"{m}'s week grade of {v:.0f} is #{rank + 1} all time in league history")
+            notes.append(f"{m}'s week grade of {v:.0f} is #{rank + 1} of the keeper era (since 2023)")
     for rank, (v, m, yy, ww) in enumerate(sorted(allg, key=lambda t: t[0])[:5]):
         if yy == y and ww == w:
-            notes.append(f"{m}'s week grade of {v:.0f} is the #{rank + 1} worst in league history")
+            notes.append(f"{m}'s week grade of {v:.0f} is the #{rank + 1} worst of the keeper era (since 2023)")
     return notes
 
 
@@ -595,52 +638,60 @@ def sim_odds(L, y, w, n=2000, shrink=0, wk_sd=0.0, team_sd=0.0):
 
 
 # ============================================================== trivia (Rosie)
+def who_then(L, m, yy):
+    """'Jacob' before his team changed hands is the previous Jacob"""
+    oc = (L.D.get("ownerChanges") or {}).get(m)
+    return f"{m} (the previous Jacob)" if oc and m == "Jacob" and int(yy) < oc["since"] else \
+        (f"{m} (the team's previous owner)" if oc and int(yy) < oc["since"] else m)
+
+
 def trivia_pool(L, y, w):
+    """Keeper-era questions, grouped by type so Rosie can rotate through them."""
     qs = []
     cut = lambda yy, ww: yy < y or (yy == y and ww <= w)
-    # single-week category records
-    for c in ("HR", "SB", "K", "SV", "R", "RBI", "QS", "W", "HLD", "XBH", "BB"):
+    def add(t, qid, q, a): qs.append({"type": t, "id": qid, "q": q, "a": a})
+    # single-week category records, standard 7-day weeks only
+    for c in ("HR", "SB", "K", "SV", "R", "RBI", "QS", "W", "HLD", "XBH", "BB", "3B"):
         if c not in L.cats: continue
         i = L.cats.index(c)
         best = None
         for yy in L.seasons():
             for m, weeks in L.D["weeklyDetail"].get(str(yy), {}).items():
                 for ws, e in weeks.items():
-                    if not cut(yy, int(ws)): continue
+                    if not cut(yy, int(ws)) or not std(L, yy, int(ws)) or consolation(L, yy, int(ws), m): continue
                     v = fnum(e["you"][i])
                     if v is not None and (best is None or v > best[0]): best = (v, m, yy, int(ws))
         if best:
-            qs.append({"id": f"rec-{c}", "q": f"Which manager holds the league record for most {c} in a single week, and how many?",
-                       "a": f"{best[1]}, with {best[0]:g} {c} in {best[2]} week {best[3]}."})
-    # most lopsided result
+            add("week-record", f"rec-{c}", f"Which manager holds the keeper-era record for most {cat_name(c)} in a normal 7-day week, and how many?",
+                f"{who_then(L, best[1], best[2])}, with {best[0]:g} {cat_name(c)} in {best[2]} week {best[3]}.")
     big = None
     for yy in L.seasons():
         for r in L.rows(yy):
             if r.get("live") or not cut(yy, r["week"]): continue
+            if r["stage"] != "Regular" and not L.in_champ(yy, r): continue
             mg = abs(r["aw"] - r["al"])
             if big is None or mg > big[0]:
                 win, lose = (r["a"], r["b"]) if r["aw"] > r["al"] else (r["b"], r["a"])
                 big = (mg, win, lose, max(r["aw"], r["al"]), min(r["aw"], r["al"]), r["at"], yy, r["week"])
     if big:
-        qs.append({"id": "blowout", "q": "What is the most lopsided single-week result in league history?",
-                   "a": f"{big[1]} over {big[2]}, {big[3]}-{big[4]}-{big[5]}, {big[6]} week {big[7]}."})
-    # champions and first overall picks
+        add("blowout", "blowout", "What is the most lopsided single-week result of the keeper era (since 2023)?",
+            f"{who_then(L, big[1], big[6])} over {who_then(L, big[2], big[6])}, {big[3]}-{big[4]}-{big[5]}, {big[6]} week {big[7]}.")
     for yy in L.seasons():
         if yy >= y: continue
         fp = (L.D.get("finalPlace") or {}).get(str(yy))
         if fp:
-            qs.append({"id": f"champ-{yy}", "q": f"Who won the {yy} Frank Cup championship?", "a": f"{fp[0]}."})
+            add("champion", f"champ-{yy}", f"Who won the {yy} Frank Cup championship, and who did they beat in the final?",
+                f"{who_then(L, fp[0], yy)}, over {who_then(L, fp[1], yy)}." if len(fp) > 1 else f"{fp[0]}.")
         st = L.D["seasons"][str(yy)]["standings"]
-        qs.append({"id": f"reg-{yy}", "q": f"Who finished first in the {yy} regular season?", "a": f"{st[0]['manager']}."})
+        add("regular", f"reg-{yy}", f"Who finished first in the {yy} regular season?", f"{who_then(L, st[0]['manager'], yy)}.")
     for yy in L.seasons():
         if yy > y: continue
         pbs = (L.D.get("playersBySeason") or {}).get(str(yy), {})
         for m, v in pbs.items():
             for d in v.get("draft", []):
                 if d.get("pick") == 1:
-                    qs.append({"id": f"pick1-{yy}", "q": f"Who went first overall in the {yy} draft, and which manager took him?",
-                               "a": f"{d['player']}, taken by {m}."})
-    # most adds in a finished season
+                    add("draft", f"pick1-{yy}", f"Who went first overall in the {yy} draft, and which manager took him?",
+                        f"{d['player']}, taken by {who_then(L, m, yy)}.")
     best = None
     for yy in L.seasons():
         if yy >= y: continue
@@ -648,39 +699,35 @@ def trivia_pool(L, y, w):
             t = v.get("addTotal", 0)
             if best is None or t > best[0]: best = (t, m, yy)
     if best:
-        qs.append({"id": "adds-season", "q": "Which manager made the most adds in a single season, and how many?",
-                   "a": f"{best[1]}, with {best[0]} adds in {best[2]}."})
-    # longest matchup win streak
-    seq = defaultdict(list)
-    for yy in L.seasons():
-        for r in sorted(L.rows(yy), key=lambda r: r["week"]):
-            if r.get("live") or r["stage"] != "Regular" or not cut(yy, r["week"]): continue
-            win = L.winner(r)
-            for m in (r["a"], r["b"]): seq[m].append((win == m, yy, r["week"]))
-    best = None
-    for m, s in seq.items():
-        cur = 0; start = None
-        for ok, yy, ww in s:
-            if ok:
-                if cur == 0: start = (yy, ww)
-                cur += 1
-                if best is None or cur > best[0]: best = (cur, m, start, (yy, ww))
-            else: cur = 0
-    if best:
-        qs.append({"id": "streak", "q": "What is the longest regular-season winning streak in league history?",
-                   "a": f"{best[1]}, {best[0]} straight from {best[2][0]} week {best[2][1]} to {best[3][0]} week {best[3][1]}."})
-    # best all-time grade
+        add("moves", "adds-season", "Which manager made the most adds in a single keeper-era season, and how many?",
+            f"{who_then(L, best[1], best[2])}, with {best[0]} adds in {best[2]}.")
+    R = L.D.get("records") or {}
+    if R.get("winRuns"):
+        x = R["winRuns"][0]
+        add("streak", "streak", "What is the longest regular-season winning run of the keeper era?",
+            f"{who_then(L, x['m'], x['from'][0])}, {x['n']} straight, {x['from'][0]} week {x['from'][1]} to {x['to'][0]} week {x['to'][1]}.")
+    if R.get("skids"):
+        x = R["skids"][0]
+        add("streak", "skid", "What is the longest regular-season losing skid of the keeper era?",
+            f"{who_then(L, x['m'], x['from'][0])}, {x['n']} straight losses, {x['from'][0]} week {x['from'][1]} to {x['to'][0]} week {x['to'][1]}.")
+    if R.get("bestSeason"):
+        x = R["bestSeason"][0]
+        if x["s"] < y:
+            add("season", "best-season", "Which manager had the best regular-season category record of the keeper era?",
+                f"{who_then(L, x['m'], x['s'])} in {x['s']}, {'-'.join(map(str, x['cat']))}.")
+    ties = [t for t in R.get("playoffTies", []) if (t["s"], t["w"]) <= (y, w)]
+    if ties:
+        add("playoffs", "po-ties", "How many playoff weeks have ended in a category tie in the keeper era, and who won them?",
+            f"{len(ties)}: " + "; ".join(f"{t['s']}, {t['win']} over {t['lose']} {t['score']} as the higher seed" for t in ties) + ".")
     allg = []
     for yy in L.seasons():
         for ww in L.completed_weeks(yy):
             if not cut(yy, ww): continue
             g = L.grades(yy, ww) or {}
-            allg += [(v["G"], m, yy, ww) for m, v in g.items() if v["G"] is not None]
+            allg += [(v["G"], m, yy, ww) for m, v in g.items() if v["G"] is not None and not consolation(L, yy, ww, m)]
     if allg:
         v, m, yy, ww = max(allg)
-        qs.append({"id": "grade", "q": "Who owns the highest single-week grade the league has ever seen?",
-                   "a": f"{m}, a {v:.0f} in {yy} week {ww}."})
-    # most regular season head-to-head wins over one manager
+        add("grade", "grade", "Who owns the highest single-week grade of the keeper era?", f"{who_then(L, m, yy)}, a {v:.0f} in {yy} week {ww}.")
     h = defaultdict(lambda: defaultdict(int))
     for yy in L.seasons():
         for r in L.rows(yy):
@@ -690,16 +737,31 @@ def trivia_pool(L, y, w):
     for victim in L.managers:
         best = max(((h[m][victim], m) for m in L.managers if m != victim), default=None)
         if best and best[0] >= 3:
-            ties = [m for m in L.managers if m != victim and h[m][victim] == best[0]]
-            qs.append({"id": f"h2h-{victim}", "q": f"Which manager has beaten {victim} the most times in the regular season?",
-                       "a": f"{' and '.join(ties)}, {best[0]} times."})
+            ties_ = [m for m in L.managers if m != victim and h[m][victim] == best[0]]
+            add("h2h", f"h2h-{victim}", f"Which manager has beaten {victim} the most times in the regular season since 2023?",
+                f"{' and '.join(ties_)}, {best[0]} times.")
+    # the family and friends behind the league
+    rels = L.D.get("relationships") or {}
+    frank = [n["id"] for n in rels.get("nodes", []) if n.get("group") == "frank"]
+    if frank:
+        add("family", "fam-youngest", "Who is the youngest of the Frank siblings in the league?", f"{frank[-1]}.")
+        add("family", "fam-oldest-brother", "Which of Heidi's brothers is the oldest?", f"{frank[1]}.")
+        add("family", "fam-name", "Where does the Frank Cup get its name?", "From the Frank family: it's Heidi's maiden name, and her 4 younger brothers all play.")
+    add("family", "fam-austin", "Which manager is Austin's dad?", "Ben.")
+    add("family", "fam-jacob", "Who ran Jacob's team before 2026, and whose friend was he?", "A different Jacob, Jacob Winn, Andrew's friend.")
     return qs
 
 
-def pick_trivia(pool, used, seed):
+def pick_trivia(pool, used, seed, last_types=()):
+    """rotate question types: never the same type twice running, and prefer the type used least lately"""
     left = [q for q in pool if q["id"] not in used] or pool
+    if not left: return None
     rnd = random.Random(seed)
-    return rnd.choice(left) if left else None
+    recent = list(last_types)[-6:]
+    types = sorted({q["type"] for q in left}, key=lambda t: (recent.count(t), -recent[::-1].index(t) if t in recent else 0, rnd.random()))
+    if recent and len(types) > 1 and types[0] == recent[-1]: types = types[1:] + types[:1]
+    pick = [q for q in left if q["type"] == types[0]]
+    return rnd.choice(pick)
 
 
 # ============================================================== trade rumor (Sauce)
@@ -774,6 +836,48 @@ def trade_rumor(L, y, w, pweeks, avoid=None):
                    f"{b} is at {needs[b][z]:.0%} in {z} where {a} is at {needs[a][z]:.0%} (share of all-play category wins)."}
 
 
+# ============================================================== keeper watch (Tony, after the deadline)
+def past_deadline(L, y, nb):
+    closed = L.S(y).settings.get("trade_end_date")
+    return bool(closed and nb.stop and nb.stop > closed), closed
+
+
+def keeper_watch(L, y, w, pweeks):
+    """Players playing into (cheap and hot) or out of (pricey and cold) a keeper spot,
+    judged on the last four weeks at their keeper cost for next season."""
+    import keepers as kp
+    draft, kept = kp.cost_tables(y, L.cfg, L.S(y))
+    latest = next((pw for pw in reversed(pweeks) if pw.ok), None)
+    if not latest: return None
+    roster = {(r["owner"], r["name"]): r for r in latest.rows()}
+    prod = defaultdict(float); side = {}; games = defaultdict(int)
+    for pw in pweeks:
+        if not pw.ok: continue
+        for r in pw.rows():
+            k = (r["owner"], r["name"])
+            if k not in roster: continue
+            prod[k] += hit_prod(r["act"]) + hit_prod(r["bench"]) if r["pt"] == "B" else pit_prod(r["act"]) + pit_prod(r["bench"])
+            side[k] = "H" if r["pt"] == "B" else "P"
+            games[k] += r["games"]
+    rank = {}
+    for sd in ("H", "P"):
+        ks = sorted([k for k in prod if side[k] == sd], key=lambda k: -prod[k])
+        for i, k in enumerate(ks): rank[k] = (i + 1, len(ks))
+    hot, cold = [], []
+    for k, (rk, n) in rank.items():
+        m, name = k
+        how, cost, ok = kp.cost_of(name, side[k], m, draft, kept)
+        if not ok: continue
+        label = "hitters" if side[k] == "H" else "pitchers"
+        line = f"{name} ({m}): {how}, would cost a round {cost} keeper next year; #{rk} of {n} rostered {label} over the last 4 weeks"
+        if (cost >= 8 and rk <= 25) or (how == "undrafted pickup" and rk <= 12):
+            hot.append((rk, line + ". Playing his way into a keeper spot."))
+        if cost <= 4 and rk > n * 0.6 and games[k] >= 8:     # hurt players aren't slumping
+            cold.append((-rk, line + ". Playing his way out of one."))
+    hot.sort(); cold.sort()
+    return {"into": [x[1] for x in hot[:6]], "outof": [x[1] for x in cold[:4]]}
+
+
 # ============================================================== the notebook
 def history_pair(L, y, w, a, b):
     games = []
@@ -809,9 +913,75 @@ def form(L, y, w, m, k=3):
     return ", ".join(out[:k])
 
 
+def rel_between(L, a, b):
+    """plain-English tie between two managers, from the relationship map"""
+    R = L.D.get("relationships") or {}
+    frank = [n["id"] for n in R.get("nodes", []) if n.get("group") == "frank"]
+    parent = {e["b"]: e["a"] for e in R.get("edges", []) if e["type"] == "parent"}
+    def one(x, y):
+        if x in frank and y in frank:
+            return f"siblings (Frank siblings, oldest to youngest: {', '.join(frank)})"
+        if parent.get(y) == x: return f"{x} is {y}'s parent"
+        if y in parent and x in frank and parent[y] in frank:
+            return f"{x} is {y}'s {'aunt' if x == 'Heidi' else 'uncle'} ({y} is {parent[y]}'s son)"
+        if x in parent and y in parent and parent[x] in frank and parent[y] in frank and parent[x] != parent[y]:
+            return "cousins"
+        for e in R.get("edges", []):
+            if {e["a"], e["b"]} == {x, y} and e["type"] != "link":
+                return e.get("label") or e["type"]
+        return None
+    return one(a, b) or one(b, a)
+
+
+def history_angles(L, y, w, nb):
+    R = L.D.get("records") or {}
+    out = []
+    for g in R.get("finals", []):
+        if g["s"] > y or (g["s"] == y and w < L.end_week(y)): continue
+        who = " (the previous Jacob)" if "Jacob" in (g.get("prev") or []) else ""
+        out.append(f"{g['s']} final: {g['win']} (#{g.get('seedWin')} seed) beat {g['lose']} (#{g.get('seedLose')} seed) {g['score']}"
+                   + (", tied on categories, so the higher seed took the Cup" if g["tied"] else "") + who)
+    ties = [t for t in R.get("playoffTies", []) if (t["s"], t["w"]) <= (y, w)]
+    if ties:
+        out.append(f"Tied playoff weeks in the keeper era: {len(ties)}, and the higher seed won every one: "
+                   + "; ".join(f"{t['s']} week {t['w']}: {t['win']} (#{t['seedWin']}) over {t['lose']} (#{t['seedLose']}), {t['score']}"
+                               + (" in the final" if any(f['s'] == t['s'] and f['w'] == t['w'] for f in R.get('finals', [])) else "")
+                               for t in ties))
+    champs = defaultdict(list)
+    for s, fp in (L.D.get("finalPlace") or {}).items():
+        if int(s) < y or (int(s) == y and w >= L.end_week(y)): champs[fp[0]].append(s)
+    if champs: out.append("Keeper-era champions: " + "; ".join(f"{m} {', '.join(v)}" for m, v in champs.items()))
+    reg = [(s, L.D["seasons"][s]["standings"][0]["manager"]) for s in sorted(L.D["seasons"]) if int(s) < y or w >= L.po_start(y) - 1]
+    if reg: out.append("Regular season winners: " + "; ".join(f"{s} {m}" for s, m in reg))
+    # how the seeds were won: the last few weeks of the regular season
+    po = L.po_start(y)
+    if w >= po - 1:
+        prog = {p["week"]: p for p in L.D["seasons"][str(y)].get("progression", [])}
+        last = po - 1
+        for k in (3, 2):
+            if last - k in prog:
+                p0, p1 = prog[last - k], prog.get(last)
+                if not p1: break
+                lines = []
+                for m in sorted(p1["rank"], key=lambda m: p1["rank"][m])[:7]:
+                    lines.append(f"{m} #{p0['rank'][m]} ({p0['gb'][m]:g} GB) after week {last - k}, finished #{p1['rank'][m]} ({p1['gb'][m]:g} GB)")
+                out.append("How the seeds were decided in the last weeks: " + "; ".join(lines))
+                break
+    for x in (R.get("winRuns") or [])[:2]:
+        out.append(f"Longest keeper-era winning run: {x['m']} {x['n']} straight ({x['from'][0]} week {x['from'][1]} to {x['to'][0]} week {x['to'][1]})")
+    pay = L.D.get("payouts") or {}
+    top = sorted(pay.items(), key=lambda kv: -kv[1]["total"])[:3]
+    if top: out.append("Keeper-era payouts leaders: " + ", ".join(f"{m} ${v['total']}" for m, v in top))
+    oc = L.D.get("ownerChanges") or {}
+    for m, v in oc.items():
+        out.append(f"{m}'s team changed hands in {v['since']}: before that it was {v['before']}; now {v['now']}.")
+    return out
+
+
 class Notebook:
-    def __init__(self, L, y, w):
+    def __init__(self, L, y, w, midweek=False):
         self.L, self.y, self.w = L, y, w
+        self.midweek = midweek
         self.po, self.end = L.po_start(y), L.end_week(y)
         rng = L.week_range(y, w) or ("", "")
         self.start, self.stop = rng
@@ -866,10 +1036,7 @@ class Notebook:
             for m, g in ((a, ga), (b, gb)):
                 if g and g.get("G") is not None:
                     s += f" {m} grade {g['G']:.0f} (hitting {g['H']:.0f}, pitching {g['P']:.0f}), all-play {AP.get(m, (0, 0, 0))[0]}-{AP.get(m, (0, 0, 0))[1]}-{AP.get(m, (0, 0, 0))[2]}."
-            won = [d["cat"] for d in det if d["res"] == "W"]
-            lost = [d["cat"] for d in det if d["res"] == "L"]
-            if won: s += f" {a} won {', '.join(won)}."
-            if lost: s += f" {b} won {', '.join(lost)}."
+            s += " " + cat_results_text(det, a, b)
             close = [f"{d['cat']} {fmt_val(d['cat'], d['a'])} to {fmt_val(d['cat'], d['b'])} ({a if d['res'] == 'W' else b})"
                      for d in det if d["close"]]
             if close: s += f" Decided by a hair: {'; '.join(close)}."
@@ -933,8 +1100,9 @@ class Notebook:
         if s_lines: self.sections["Streaks (matchups, carried across seasons)"] = s_lines
 
         rec = weekly_records(L, y, w)
-        if rec: self.sections["League records this week"] = rec
+        if rec: self.sections["Keeper-era records this week"] = rec
 
+        if getattr(self, "midweek", False): self.midweek_notes()
         # transactions this week
         self.tx_notes()
         # players
@@ -943,15 +1111,30 @@ class Notebook:
         # MLB wire and outside news
         self.mlb_notes()
         self.outside_notes()
-        # league history
-        hist = []
-        for yy in L.seasons():
-            fp = (L.D.get("finalPlace") or {}).get(str(yy))
-            if fp and yy < y: hist.append(f"{yy} champion: {fp[0]}; regular season winner: {L.D['seasons'][str(yy)]['standings'][0]['manager']}")
-        pay = L.D.get("payouts") or {}
-        top = sorted(pay.items(), key=lambda kv: -kv[1]["total"])[:3]
-        if top: hist.append("Lifetime payouts leaders: " + ", ".join(f"{m} ${v['total']}" for m, v in top))
-        self.sections["League history"] = hist
+        self.savant_notes()
+        # league history and the angles a reporter would chase
+        self.sections["History angles (keeper era, 2023 on)"] = history_angles(L, y, w, self)
+        rel = []
+        for res in self.results:
+            t = rel_between(L, res["r"]["a"], res["r"]["b"])
+            if t: rel.append(f"{res['r']['a']} vs {res['r']['b']}: {t}")
+        for r in L.rows(y):
+            if r["week"] == w + 1 and (r["stage"] == "Regular" or L.in_champ(y, r)):
+                t = rel_between(L, r["a"], r["b"])
+                if t: rel.append(f"Next up, {r['a']} vs {r['b']}: {t}")
+        if rel: self.sections["Family and friend angles in these matchups"] = rel
+
+    def midweek_notes(self):
+        """Thursday desk: how the week in progress is going"""
+        L, y, w = self.L, self.y, self.w + 1
+        rows = [r for r in L.rows(y) if r["week"] == w and (r["stage"] == "Regular" or L.in_champ(y, r))]
+        live = []
+        for r in rows:
+            det = cat_detail(L, y, w, r["a"], r["b"])
+            close = [f"{d['cat']} {fmt_val(d['cat'], d['a'])} to {fmt_val(d['cat'], d['b'])}" for d in det if d["close"]]
+            live.append(f"{r['a']} {r['aw']}-{r['al']}-{r['at']} {r['b']} so far" + (f"; tight: {', '.join(close)}" if close else ""))
+        if live:
+            self.sections[f"MIDWEEK: week {w} in progress (scores so far, the week isn't over)"] = live
 
     def tx_notes(self):
         L, y, w = self.L, self.y, self.w
@@ -981,6 +1164,8 @@ class Notebook:
                         self.dropped_by[p["name"]] = (m, ww)
                         if ww == w: drops[m].append(p["name"])
         mx = int(L.S(y).settings.get("max_weekly_adds") or MAX_ADDS_DEFAULT)
+        self.max_adds = mx
+        self.adds_used = {m: len(adds.get(m, [])) for m in L.managers}
         lines = []
         for m in L.managers:
             if not self.ok(m): continue
@@ -999,12 +1184,13 @@ class Notebook:
                 used = len(adds.get(side, []))
                 if used >= mx or win == side: continue
                 closes = [d for d in det if d["close"] and ((d["res"] == "L") == (side == r["a"]))]
-                if closes or win is not None:
-                    s = f"{side} left {mx - used} adds unused and lost to {other}"
-                    if closes: s += " while losing " + ", ".join(f"{d['cat']} by a hair" for d in closes)
+                if closes:
+                    s = (f"{side} left {mx - used} adds unused and lost to {other} while losing "
+                         + ", ".join(f"{d['cat']} by a hair" for d in closes)
+                         + ". An extra add might have flipped one of those; it's not certain.")
                     unused.append(s)
         self.sections[f"Transactions, week {w} (max {mx} adds per week)"] = lines
-        if unused: self.sections["Adds left on the table"] = unused
+        if unused: self.sections["Adds left on the table (only where a close category was lost)"] = unused
 
     def player_notes(self):
         L, y, w, pw = self.L, self.y, self.w, self.pw
@@ -1034,7 +1220,21 @@ class Notebook:
                 r, det = res["r"], res["det"]
                 for side in (r["a"], r["b"]):
                     bt = pw.team_bench(side)
-                    parts = [f"{int(bt[k])} {k}" for k in ("HR", "RBI", "R", "SB", "K", "W", "SV", "QS") if bt.get(k, 0) >= (1 if k in ("HR", "SB", "W", "SV", "QS") else 3)]
+                    res_of = {}
+                    for d in det:
+                        r_ = d["res"] if side == r["a"] else {"W": "L", "L": "W", "T": "T"}[d["res"]]
+                        res_of[d["cat"]] = (r_, d["margin"])
+                    parts = []
+                    for k in ("HR", "RBI", "R", "SB", "K", "W", "SV", "QS", "HLD"):
+                        v = bt.get(k, 0)
+                        if v < (1 if k in ("HR", "SB", "W", "SV", "QS", "HLD") else 3): continue
+                        rr, mg = res_of.get(k, (None, 0))
+                        if rr == "W": why = f"won {k} anyway, cost nothing"
+                        elif rr == "T": why = f"{k} tied; it would have won it"
+                        elif rr == "L" and v >= mg: why = f"lost {k} by {mg:g}; this would have flipped it"
+                        elif rr == "L": why = f"lost {k} by {mg:g}; not enough to flip it, cost nothing"
+                        else: why = ""
+                        parts.append(f"{int(v)} {k}" + (f" ({why})" if why else ""))
                     if parts: bench.append(f"{side} left on the bench: {', '.join(parts)}")
                     for d in det:
                         lost = (d["res"] == "L") == (side == r["a"])
@@ -1066,11 +1266,44 @@ class Notebook:
             e = pw.empty.get(m)
             if e and (e["B"] + e["P"]) > 0:
                 neg.append(f"{m} left {e['B']} hitter slot-days and {e['P']} pitcher slot-days empty")
+        mx = getattr(self, "max_adds", MAX_ADDS_DEFAULT)
         for m, pl in pw.hurt_active.items():
             if not self.ok(m): continue
+            res = next((x for x in self.results if m in (x["r"]["a"], x["r"]["b"])), None)
             for n, d in pl.items():
-                neg.append(f"{m} started {n} while on the injured list / out for {d} day(s)")
-        if neg: self.sections["Lineup neglect"] = neg
+                info = pw.hurt_info.get((m, n)) or {}
+                used = [a for a in info.get("adds", []) if a is not None]
+                out_of = bool(used) and min(used) >= mx
+                s = f"{m} had {n} in an active slot while on the injured list for {d} day(s)"
+                s += (f"; {m} was out of adds ({mx} of {mx} used) those days, no fault" if out_of else
+                      f"; {m} had adds left" if used else "")
+                impact = "cost nothing"
+                if res:
+                    r = res["r"]; side_a = r["a"] == m
+                    pos = next((q.get("pos") or "" for q in pw.rows(m) if q["name"] == n), "")
+                    if info.get("pt") == "B": rel_ = HIT_CATS
+                    elif "SP" in pos and "RP" not in pos: rel_ = {"W", "QS", "K", "IP", "L", "CG"}
+                    elif "RP" in pos and "SP" not in pos: rel_ = {"SV", "HLD", "K", "W"}
+                    else: rel_ = {"W", "QS", "K", "IP", "SV", "HLD"}
+                    bt = pw.team_bench(m)
+                    # the only fix was a bench swap (or an add, if any were left); did anything close hinge on it?
+                    hinge = [x for x in res["det"] if x["close"] and x["res"] == ("L" if side_a else "W") and x["cat"] in rel_
+                             and (not out_of or bt.get(x["cat"], 0) >= x["margin"])]
+                    if hinge:
+                        impact = "might have mattered: lost " + ", ".join(f"{x['cat']} by {x['margin']:g}" for x in hinge)
+                s += f"; impact: {impact}"
+                neg.append(s)
+        if neg: self.sections["Lineup notes (only blame what actually cost something)"] = neg
+        # quirks: things that look like blunders but were flukes
+        quirks = []
+        for r in pw.rows():
+            if not self.ok(r["owner"]): continue
+            pos = (r.get("pos") or "")
+            if r["pt"] == "P" and "RP" not in pos and (r["act"].get("SV", 0) + r["bench"].get("SV", 0)) > 0:
+                where = "on the bench" if r["bench"].get("SV") else "in the lineup"
+                quirks.append(f"{r['name']} ({r['owner']}), a starting pitcher, got a save {where}. Starters almost never get "
+                              f"saves; treat it as a fluke, not a lineup mistake.")
+        if quirks: self.sections["Quirks (flukes, not mistakes)"] = quirks
         # injured list snapshot
         inj = []
         for r in pw.rows():
@@ -1153,6 +1386,31 @@ class Notebook:
             if hunt: lines.append("Still in the wild card hunt: " + "; ".join(hunt))
             if lines: self.sections["Real MLB playoff race (teams resting or pushing players)"] = lines
 
+    def savant_notes(self):
+        """Baseball Savant: who's due (xwOBA well above wOBA) and who's been lucky, among league players"""
+        sv = (self.src or {}).get("savant") or {}
+        if not sv or not self.pw.ok: return
+        own = {}
+        for r in self.pw.rows():
+            if self.ok(r["owner"]): own[fold(re.sub(r"\s*\(.*\)", "", r["name"] or ""))] = (r["owner"], r["name"])
+        lines = []
+        for key, lbl in (("B", "hitter"), ("P", "pitcher")):
+            rows = []
+            for x in sv.get(key) or []:
+                o = own.get(fold(x.get("n")))
+                if not o or x.get("woba") is None or x.get("xwoba") is None: continue
+                gap = x["xwoba"] - x["woba"]
+                if key == "P": gap = -gap          # for pitchers, allowing less than expected is luck
+                extra = ""
+                if key == "B" and x.get("brl") is not None: extra = f", barrel rate {x['brl']}%, avg exit velo {x.get('ev')} mph"
+                if key == "P" and x.get("xera") is not None: extra = f", ERA {x.get('era')} vs xERA {x['xera']}"
+                rows.append((gap, f"{o[1]} ({o[0]}, {lbl}): wOBA {x['woba']:.3f} vs expected {x['xwoba']:.3f}"
+                                   f"{', xBA ' + format(x['xba'], '.3f') if x.get('xba') is not None else ''}{extra}"))
+            rows.sort()
+            lines += [t + " -> due for better luck" for g, t in rows[-3:][::-1] if g >= .025]
+            lines += [t + " -> results running ahead of the contact" for g, t in rows[:3] if g <= -.025]
+        if lines: self.sections["Baseball Savant, season to date (expected stats vs results)"] = lines
+
     # ---------------------------------------------------------------- features
     def next_matchups(self):
         L, y, w = self.L, self.y, self.w
@@ -1182,12 +1440,20 @@ class Notebook:
         sc, r, line = min(c, key=lambda t: t[0])
         return {"name": r["name"], "mlb": r["tm"], "owner": r["owner"], "line": line}
 
+    def week_len_note(self):
+        info = (self.L.D.get("weekInfo") or {}).get(str(self.y), {}).get(str(self.w))
+        if info and not info.get("standard"):
+            return (f" NOTE: this week ran {info['days']} days, not 7 ({'the long opening week' if self.w == 1 and info['days'] > 7 else 'the short opening week' if self.w == 1 else 'the All-Star break week' if info['days'] > 7 else 'a short week'}), "
+                    f"so counting stats run {'high' if info['days'] > 7 else 'low'}.")
+        return ""
+
     def text(self):
         out = [f"THE FRANK CUP GAZETTE, issue dated {self.date}. Covers week {self.w} of the {self.y} season "
                f"({self.start} to {self.stop}). Phase: {self.phase}. League: 10 teams, Yahoo head-to-head, "
                f"{len(self.L.score_idx)} scoring categories: {', '.join(self.L.cats[i] for i in self.L.score_idx)} "
                f"(E, L, ERA, WHIP lower is better). Weekly winner is whoever wins more categories. "
-               f"'Grade' is 100 = league average for that week; all-play is the record against all nine others that week."]
+               f"'Grade' is 100 = league average for that week; all-play is the record against all nine others that week. "
+               f"Data covers the keeper era, 2023 on." + self.week_len_note()]
         for k, v in self.sections.items():
             if not v: continue
             out.append(f"\n## {k}")
@@ -1245,11 +1511,11 @@ def gemini_pool(key):
         try:
             _pool = gemini_models(key)
         except Exception as e:  # noqa: BLE001
-            print("   could not list Gemini models:", e)
+            log("   could not list Gemini models:", e)
             _pool = []
         if want: _pool = [want] + [m for m in _pool if m != want]
         if not _pool: _pool = ["gemini-flash-latest"]
-        print("   Gemini models, in order:", ", ".join(_pool))
+        log("   Gemini models, in order:", ", ".join(_pool))
     return _pool
 
 
@@ -1274,28 +1540,28 @@ def call_gemini(system, user, key):
                 except urllib.error.HTTPError as e:
                     msg = e.read().decode(errors="replace")
                     if e.code == 429 and re.search(r"PerDay|per day|daily", msg, re.I):
-                        print(f"   {model}: out of free requests for today, dropping it")
+                        log(f"   {model}: out of free requests for today, dropping it")
                         _dead.add(model); break
                     if e.code == 429:       # per-minute limit: a short pause fixes it
-                        print(f"   {model}: per-minute limit, pausing 20s")
+                        log(f"   {model}: per-minute limit, pausing 20s")
                         time.sleep(20); continue
                     if e.code in (500, 502, 503, 504):
                         _busy[model] = _busy.get(model, 0) + 1
                         if attempt == 0:
-                            print(f"   {model}: Google busy ({e.code}), one retry in 10s")
+                            log(f"   {model}: Google busy ({e.code}), one retry in 10s")
                             time.sleep(10); continue
-                        print(f"   {model}: still busy, trying the next model")
+                        log(f"   {model}: still busy, trying the next model")
                         break
-                    print(f"   {model}: HTTP {e.code} {msg[:200]}, dropping it")
+                    log(f"   {model}: HTTP {e.code} {msg[:200]}, dropping it")
                     _dead.add(model); break
                 except (KeyError, IndexError):
-                    print(f"   {model}: empty answer, trying the next model")
+                    log(f"   {model}: empty answer, trying the next model")
                     break
                 except (urllib.error.URLError, TimeoutError):
-                    print(f"   {model}: no response, trying the next model")
+                    log(f"   {model}: no response, trying the next model")
                     break
         if rnd == 0:
-            print("   every model busy or used up; one more pass in 60s")
+            log("   every model busy or used up; one more pass in 60s")
             time.sleep(60)
     raise OutOfAI("no Gemini model available")
 
@@ -1349,24 +1615,49 @@ def parse_json(txt):
 
 
 # ============================================================== the desk
+GLOSSARY = {
+    "R": "runs", "3B": "triples", "HR": "home runs", "RBI": "runs batted in", "SB": "stolen bases",
+    "BB": "walks (hitters' walks)", "A": "assists", "E": "errors (fewer is better)", "AVG": "batting average",
+    "OPS": "OPS (on-base plus slugging)", "XBH": "extra-base hits", "IP": "innings pitched", "W": "wins",
+    "L": "losses (fewer is better)", "CG": "complete games", "SV": "saves", "K": "strikeouts", "HLD": "holds",
+    "ERA": "ERA (lower is better)", "WHIP": "WHIP (lower is better)", "K/BB": "strikeout-to-walk ratio",
+    "QS": "quality starts", "H/AB": "hits over at-bats (display only, not scored)"}
+
+
+def cat_name(c):
+    return GLOSSARY.get(c, c).split(" (")[0]
+
+
+def glossary_text():
+    return "CATEGORY GLOSSARY (the notebook uses these codes; in your writing always use the words):\n" + \
+        "; ".join(f"{k} = {v}" for k, v in GLOSSARY.items())
+
+
 RULES = """HARD RULES
 - Use only facts from the reporter's notebook below. Never invent stats, scores, injuries, trades, transactions, lineup moves, or player performances. If it isn't in the notebook, don't state it as fact.
+- Check every category result against the notebook's 'Category results' line before you write it. Never flip a winner, and never say a manager won a category the notebook gives to his opponent.
+- Use the category names from the glossary, never the codes: '3B' is triples (never 'third base'), 'A' is assists, 'E' is errors, 'OPS' is OPS (not on-base percentage). H/AB is not a category.
+- Write every number as digits, never words: '4 adds', '12 strikeouts', '2 titles'. Records are written like 10-10-2, stat lines like 3-for-4, margins like 3 to 2.
+- Blame only what the notebook says actually cost something. If a note is tagged 'cost nothing' or 'no fault', you may mention it only to say it didn't matter. Never claim a decision cost a matchup unless the notebook says it flipped a category.
 - Managers are referred to by first name exactly as given. 'Benny' and 'Ben' are two different managers; never mix them up.
+- Everything on file is the keeper era, since 2023. Say 'keeper-era record' or 'since 2023', never 'all-time' or 'in league history', and never suggest the league began in 2023. If a single-week number came in a long or short week, say so.
 - A player away on personal, paternity, bereavement or family leave is not injured and his manager did nothing wrong by keeping him. Never call that wasted roster space.
 - Opinions, jokes, hot takes, predictions and running bits are encouraged. Invented anonymous 'sources' are allowed only for Tony Russo, and must stay obviously playful.
-- Keep it PG-13 and strictly about fantasy baseball: never comment on anyone's real life, looks, job, family, or relationships.
+- Keep it PG-13 and about fantasy baseball. Family and friend ties between managers (listed in the league notes) are fair game as rivalry color; never comment on anyone's real life beyond that, and never on the state of Todd and Heidi's relationship.
+- You may cite Baseball Savant ('per Baseball Savant') when the notebook has Savant numbers.
 - Do not use em dashes.
 - Headlines in normal title case. Never write a headline or sentence in all capital letters.
 - Never open with a stock line such as "Welcome to", "What a week", "Buckle up", "Well, well, well", "Another week" or "Let's dive in". Open on a specific fact, image, or line only you would write.
-- Report like a beat writer who watches every detail: specific numbers, specific players, specific category margins. Pick the best 3 to 5 storylines on YOUR beat rather than listing everything.
-- Stay on your beat. Your colleagues own theirs (listed below); touch their stories only in passing, and never lead with one.
+- Report like a beat writer: lead with the single biggest storyline on your beat, and check the history angles for precedent before you write it (has this happened before, to whom, how did it go). Then 2 to 4 more storylines. Don't list everything.
+- Stay on your beat. Your colleagues own theirs (listed below); touch their stories only in passing, never lead with one, and don't recite the same matchup margins they will.
+- Don't repeat an angle or joke you already used in your recent columns unless you're calling back to it on purpose.
 - Continuity matters. When it fits naturally, call back to earlier Gazette columns in the ledger (yours or a colleague's): follow up on predictions, keep grudges and running jokes alive, admit when you were wrong. Don't force it.
 - Body: 350 to 550 words, short paragraphs separated by blank lines. You may use **bold** sparingly.
 Return only JSON: {"headline": "...", "dek": "one-sentence subhead", "body": "...", "bit": "text for your weekly feature box, 2 to 5 sentences", "ledger": "one or two sentences recording the specific claims, predictions, jokes or grudges in this column, for future callbacks"EXTRA}"""
 
 
 def staff_text(cfg, me):
-    rows = [f"- {w['name']} ({w['desk']}): {w['beat']}" for w in cfg["monday"] if w["id"] != me]
+    rows = [f"- {w['name']} ({w['desk']}, {w.get('day', 'monday').title()}): {w['beat']}" for w in cfg["monday"] if w["id"] != me]
     return "THE REST OF THE GAZETTE STAFF THIS ISSUE (their beats, not yours):\n" + "\n".join(rows)
 
 
@@ -1384,8 +1675,8 @@ def notes_text(cfg, allow_cody):
 def writer_prompt(cfg, wr, nb, feature, own_prev, ledger, allow_cody):
     extra = ', "rankings": {"Manager": "one-line blurb", ...} (one entry for every ranked team)' if wr["bit"] == "rankings" else ""
     system = (f"You are {wr['name']}, columnist for The Frank Cup Gazette ({wr['desk']}), the weekly paper of a "
-              f"10-manager fantasy baseball league among friends.\nVOICE: {wr['voice']}\nYOUR BEAT: {wr['beat']}\n\n"
-              f"{RULES.replace('EXTRA', extra)}\n\n{notes_text(cfg, allow_cody)}\n\n{staff_text(cfg, wr['id'])}")
+              f"10-manager fantasy baseball league of family and friends.\nVOICE: {wr['voice']}\nYOUR BEAT: {wr['beat']}\n\n"
+              f"{RULES.replace('EXTRA', extra)}\n\n{glossary_text()}\n\n{notes_text(cfg, allow_cody)}\n\n{staff_text(cfg, wr['id'])}")
     parts = [nb.text(), f"\n\n# YOUR WEEKLY FEATURE: {wr['bit_name']}", feature]
     if own_prev:
         parts.append("\n# YOUR RECENT COLUMNS (most recent last)")
@@ -1492,7 +1783,7 @@ def feature_for(cfg, wr, nb, state, L):
     if wr["bit"] == "trivia":
         prev = state.get("trivia_open")
         pool = trivia_pool(L, y, w)
-        q = pick_trivia(pool, set(state.get("trivia_used", [])), f"{y}-{w}")
+        q = pick_trivia(pool, set(state.get("trivia_used", [])), f"{y}-{w}", state.get("trivia_types", []))
         bit["data"] = {"question": q["q"] if q else None, "last_q": prev["q"] if prev else None,
                        "last_a": prev["a"] if prev else None}
         txt = (f"Last week's question: {prev['q']} Answer: {prev['a']}\n" if prev else "This is your first trivia question, no answer to reveal yet.\n")
@@ -1542,6 +1833,19 @@ def feature_for(cfg, wr, nb, state, L):
         return bit, ("Next week's matchups (your column previews these; lead with the most important ones, and always "
                      "dredge up the ugliest past beatdown between the two):\n" + "\n".join(rows) +
                      "\nIn the bit field, give your single Upset Alert pick with one line of dread."), None
+    if wr["bit"] == "rumor" and wr.get("bit_after_deadline") == "keeper" and past_deadline(L, y, nb)[0]:
+        bit = {"type": "keeper", "name": wr.get("bit_name_after_deadline", "Keeper Watch")}
+        pweeks = [PlayerWeek(L, y, ww) for ww in range(w - 3, w + 1)]
+        kw = keeper_watch(L, y, w, pweeks)
+        bit["data"] = kw
+        if kw and (kw["into"] or kw["outof"]):
+            return bit, ("The trade deadline has passed, so your weekly bit is Keeper Watch instead of a trade rumor. "
+                         "League keeper rules: up to 4 keepers; a keeper costs his draft round (anyone drafted after round 10 "
+                         "costs a 10th, undrafted players cost a 5th), one round earlier each year he's kept again; 1st-rounders can't be kept.\n"
+                         "Playing into a keeper spot:\n" + "\n".join(f"- {x}" for x in kw["into"]) +
+                         "\nPlaying out of one:\n" + "\n".join(f"- {x}" for x in kw["outof"]) +
+                         "\nIn the bit field, spotlight 1 or 2 of these from your 'sources'. Every number must come from this list."), None
+        return bit, "Keeper Watch has nothing new this week; in the bit field, tease that the keeper chatter is heating up.", None
     if wr["bit"] == "rumor":
         pweeks = [PlayerWeek(L, y, ww) for ww in range(w - 3, w + 1)]
         rm = trade_rumor(L, y, w, pweeks, avoid=state.get("rumor_prev"))
@@ -1627,9 +1931,11 @@ class DailyNotebook:
         live = []
         for r in self.rows:
             det = cat_detail(L, y, w, r["a"], r["b"])
-            close = [f"{d['cat']} {fmt_val(d['cat'], d['a'])}-{fmt_val(d['cat'], d['b'])}" for d in det if d["close"]]
-            live.append(f"{r['a']} {r['aw']}-{r['al']}-{r['at']} {r['b']} ({phase}, {left} day(s) left)"
-                        + (f"; tight categories: {', '.join(close)}" if close else ""))
+            close = [f"{d['cat']} ({(r['a'] if d['res'] == 'W' else r['b'])} ahead {fmt_val(d['cat'], d['a'] if d['res'] == 'W' else d['b'])} to {fmt_val(d['cat'], d['b'] if d['res'] == 'W' else d['a'])})"
+                     for d in det if d["close"]]
+            lead = r["a"] if r["aw"] > r["al"] else r["b"] if r["al"] > r["aw"] else None
+            live.append(f"{r['a']} vs {r['b']}: " + (f"{lead} leads {max(r['aw'], r['al'])}-{min(r['aw'], r['al'])}-{r['at']}" if lead else f"tied {r['aw']}-{r['al']}-{r['at']}")
+                        + f" ({phase}, {left} day(s) left)" + (f"; tight categories: {', '.join(close)}" if close else ""))
         self.sections["Live matchups, current score"] = live
         if self.pw.ok:
             big, bad = [], []
@@ -1689,6 +1995,9 @@ class DailyNotebook:
 
 DAILY_RULES = """HARD RULES
 - Use only facts in the notebook. Never invent stats, scores, injuries or moves.
+- It's a recap of yesterday's games. Use category names, never codes ('3B' is triples, never 'third base'; 'A' is assists). H/AB is not a category.
+- Numbers as digits, never words. Matchup scores are categories won-lost-tied, written like 11-10-1; say 'Benny leads 11-10-1', never string digits together another way.
+- Only say who leads a category if the notebook's live scores say so.
 - 'Benny' and 'Ben' are two different managers. Personal, paternity and family leave are not injuries.
 - Keep it PG-13 and about fantasy baseball only. No em dashes. No all-caps sentences or headlines.
 - Structure: a punchy open, then short segments in this order when there's material: the big days, the blowups, the moves, the MLB wire, and a quick run through every live matchup's score. Use a short bold tag to start each segment, like **Big Bats**.
@@ -1701,11 +2010,11 @@ def write_daily(L, cfg, state, y, w, day):
         return False
     dn = DailyNotebook(L, y, w, day)
     if not dn.rows:
-        print(f"daily {day}: no championship games to cover"); return False
+        log(f"daily {day}: no championship games to cover"); return False
     wr = cfg["daily"]
     prev = [x for x in state.get("daily", []) if x["date"] < day][-3:]
-    system = (f"You are {wr['name']}, host of {wr['desk']} for The Frank Cup Gazette, a fantasy baseball league among "
-              f"friends.\nVOICE: {wr['voice']}\n\n{DAILY_RULES}\n\n{notes_text(cfg, False)}")
+    system = (f"You are {wr['name']}, host of {wr['desk']} for The Frank Cup Gazette, a fantasy baseball league of family "
+              f"and friends.\nVOICE: {wr['voice']}\n\n{DAILY_RULES}\n\n{glossary_text()}\n\n{notes_text(cfg, False)}")
     user = dn.text()
     if prev:
         user += "\n\n# YOUR LAST FEW REPORTS\n" + "\n".join(f"- {x['date']}: \"{x['headline']}\". {x.get('ledger', '')}" for x in prev)
@@ -1715,7 +2024,7 @@ def write_daily(L, cfg, state, y, w, day):
                                           "desk": wr["desk"], "color": wr["color"], "headline": d["headline"],
                                           "body": d["body"], "ledger": d.get("ledger", "")})
     state["daily"] = sorted(state["daily"], key=lambda x: x["date"])[-90:]
-    print(f"daily {day}: \"{d['headline']}\"")
+    log(f"daily {day}: \"{d['headline']}\"")
     return True
 
 
@@ -1755,6 +2064,7 @@ def load_state(cfg=None):
 
 def save_state(state):
     state["updated"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    if RUNLOG: state["runLog"] = RUNLOG[-60:]
     with open(NEWS_JS, "w", encoding="utf-8") as f:
         f.write("window.NEWS = " + json.dumps(state, ensure_ascii=False, separators=(",", ":")) + ";\n")
 
@@ -1764,16 +2074,22 @@ def excerpt(body, n=60):
     return " ".join(words[:n]) + ("..." if len(words) > n else "")
 
 
-def write_issue(L, cfg, state, y, w):
+def write_issue(L, cfg, state, y, w, day="monday"):
+    """day='monday' writes the Monday desk; day='thursday' adds the midweek desk to the same issue"""
     writers = cfg["monday"]
     iid = f"{y}-{w:02d}"
-    nb = Notebook(L, y, w)
+    nb = Notebook(L, y, w, midweek=(day == "thursday"))
     issue = next((i for i in state["issues"] if i["id"] == iid), None)
     if issue is None:
         issue = {"id": iid, "season": y, "week": w, "date": nb.date, "phase": nb.phase, "articles": [],
-                 "roster": [x["id"] for x in writers]}
+                 "roster": [x["id"] for x in writers if x.get("day", "monday") == "monday"]}
         state["issues"].append(issue)
         state["issues"].sort(key=lambda i: i["id"])
+    if day == "thursday":
+        for x in writers:
+            if x.get("day") == "thursday" and x["id"] not in issue.setdefault("roster", []):
+                issue["roster"].append(x["id"])
+        issue["thursday"] = sources.today_pt().isoformat()
     roster = issue.get("roster") or [x["id"] for x in writers]
     have = {a["writer"] for a in issue["articles"]}
     cody = random.Random(f"cody-{iid}").choice(roster)    # one writer per issue may bring in Cody
@@ -1781,6 +2097,7 @@ def write_issue(L, cfg, state, y, w):
           f"outside news: {'yes' if nb.src else 'no'}; notebook ~{len(nb.text()) // 4} tokens")
     for wr in writers:
         if wr["id"] in have or wr["id"] not in roster: continue
+        if wr.get("day", "monday") != day: continue
         if time.time() > DEADLINE:
             raise TimeUp()
         bit, feat, trivia_q = feature_for(cfg, wr, nb, state, L)
@@ -1797,13 +2114,14 @@ def write_issue(L, cfg, state, y, w):
         except (NoAI, OutOfAI, TimeUp):
             raise
         except Exception as e:  # noqa: BLE001
-            print(f"   {wr['name']}: failed ({e}); will retry next run")
+            log(f"   {wr['name']}: failed ({e}); will retry next run")
             continue
         bit["text"] = d.get("bit", "")
         if wr["bit"] == "rankings" and isinstance(d.get("rankings"), dict):
             for r in bit["data"]["rows"]:
                 r["line"] = d["rankings"].get(r["m"], "")
         issue["articles"].append({"writer": wr["id"], "name": wr["name"], "desk": wr["desk"], "color": wr["color"],
+                                  "day": wr.get("day", "monday"),
                                   "headline": d["headline"], "dek": d.get("dek", ""), "body": d["body"], "bit": bit})
         order = [x["id"] for x in writers]
         issue["articles"].sort(key=lambda a: order.index(a["writer"]) if a["writer"] in order else 99)
@@ -1813,9 +2131,10 @@ def write_issue(L, cfg, state, y, w):
             state.setdefault("trivia_log", {})[iid] = trivia_q
             state["trivia_open"] = trivia_q
             state.setdefault("trivia_used", []).append(trivia_q["id"])
+            state.setdefault("trivia_types", []).append(trivia_q.get("type"))
         if wr["bit"] == "odds" and bit.get("data", {}).get("odds"):
             state["odds_prev"] = bit["data"]["odds"]
-        if wr["bit"] == "rumor" and bit.get("data"):
+        if bit.get("type") == "rumor" and bit.get("data"):
             state["rumor_prev"] = [bit["data"]["a"], bit["data"]["b"]]
         if wr["bit"] == "rankings":
             state["rank_prev"] = {r["m"]: r["rank"] for r in bit["data"]["rows"]}
@@ -1841,7 +2160,7 @@ def redo_latest(state):
         dd = (a.get("bit") or {}).get("data") or {}
         t = (a.get("bit") or {}).get("type")
         if t == "odds": state["odds_prev"] = dd.get("odds")
-        if t == "rumor": state["rumor_prev"] = [dd["a"], dd["b"]] if dd else None
+        if t == "rumor": state["rumor_prev"] = [dd["a"], dd["b"]] if dd and "a" in dd else None
         if t == "rankings": state["rank_prev"] = {r["m"]: r["rank"] for r in dd.get("rows", [])}
     print("rewriting", last["id"])
 
@@ -1874,24 +2193,35 @@ def main():
                 latest = max((i["week"] for i in mine), default=0)
                 todo = sorted({w for w in done if w > latest} | {i["week"] for i in mine if not complete(i)})
             for w in todo:
-                write_issue(L, cfg, state, y, w)
-        # 2) the morning wire for yesterday, Tuesday through Sunday
+                write_issue(L, cfg, state, y, w, "monday")
+        # 2) Thursday: the midweek desk joins the latest issue (catches up Fri to Sun if a run was missed)
+        today = sources.today_pt()
+        mine = [i for i in state["issues"] if i["season"] == y]
+        if mine:
+            last = max(mine, key=lambda i: i["week"])
+            thu = [x["id"] for x in cfg["monday"] if x.get("day") == "thursday"]
+            wrote = {a["writer"] for a in last["articles"]}
+            due = dt.date.fromisoformat(last["date"]) + dt.timedelta(days=3)
+            if thu and (today >= due or os.environ.get("NEWS_THURSDAY_NOW")) and not set(thu) <= wrote:
+                write_issue(L, cfg, state, y, last["week"], "thursday")
+        # 3) the morning wire for yesterday, every day
         day = players.yesterday_pt()
-        today = dt.date.fromisoformat(day) + dt.timedelta(days=1)
-        if today.weekday() != 0 or os.environ.get("NEWS_DAILY_ANYDAY"):
-            wr = build.week_ranges(L.S(y))
-            wk = next((ww for ww, (a, b) in wr.items() if a <= day <= b), None)
-            if wk is None:
-                print(f"daily {day}: not a fantasy game day")
-            else:
-                if time.time() > DEADLINE: raise TimeUp()
-                write_daily(L, cfg, state, y, wk, day)
+        wr = build.week_ranges(L.S(y))
+        wk = next((ww for ww, (a, b) in wr.items() if a <= day <= b), None)
+        if wk is None:
+            log(f"daily {day}: not a fantasy game day")
+        else:
+            if time.time() > DEADLINE: raise TimeUp()
+            write_daily(L, cfg, state, y, wk, day)
     except OutOfAI:
-        print("Gemini is used up or unavailable for now; the rest will be written next run.")
+        log("Gemini is used up or unavailable for now; the rest will be written next run.")
     except TimeUp:
-        print("Time budget reached; the rest will be written next run.")
+        log("Time budget reached; the rest will be written next run.")
     except NoAI:
-        print("No AI key.")
+        log("No AI key.")
+    except Exception as e:  # noqa: BLE001
+        import traceback
+        log("Gazette crashed:", "".join(traceback.format_exception(e))[-1500:])
     save_state(state)
     n = sum(len(i["articles"]) for i in state["issues"])
     print(f"{n} articles and {len(state.get('daily', []))} daily reports on file.")
