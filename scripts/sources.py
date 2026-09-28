@@ -10,6 +10,8 @@ down or changes shape, it is skipped and the rest still work.
   MLB probable pitchers for the next ten days (two-start pitchers)
   MLB standings       who is racing, clinched, or eliminated
   MLB transactions    yesterday's injured-list moves, call-ups, trades
+  Baseball Savant     Statcast expected stats (xBA, xSLG, xwOBA), barrel rate and
+                      exit velocity, hitters and pitchers, season to date
   Yahoo free agents   best available hitters and pitchers by last week, with
                       ownership trend (needs the Yahoo client from update.py)
 
@@ -53,6 +55,55 @@ def today_pt():
         return dt.datetime.now(ZoneInfo("America/Los_Angeles")).date()
     except Exception:  # noqa: BLE001
         return (dt.datetime.utcnow() - dt.timedelta(hours=7)).date()
+
+
+# ------------------------------------------------------------ Baseball Savant
+SAVANT = "https://baseballsavant.mlb.com/leaderboard"
+
+
+def _csv(url):
+    import csv, io
+    raw = get(url, as_json=False)
+    if not raw or "," not in raw.splitlines()[0]: return None
+    rows = list(csv.DictReader(io.StringIO(raw.lstrip("\ufeff"))))
+    return rows or None
+
+
+def _name(r):
+    for k, v in r.items():
+        if k and "last_name" in k and "first_name" in k and v:
+            last, _, first = v.partition(",")
+            return f"{first.strip()} {last.strip()}".strip()
+    return (f"{r.get('first_name', '')} {r.get('last_name', '')}").strip() or r.get("player_name")
+
+
+def _num(v):
+    try: return round(float(v), 3)
+    except (TypeError, ValueError): return None
+
+
+def savant(season, min_pa=100):
+    """Season-to-date Statcast for hitters (B) and pitchers (P)."""
+    out = {}
+    for kind, key in (("batter", "B"), ("pitcher", "P")):
+        xs = _csv(f"{SAVANT}/expected_statistics?type={kind}&year={season}&position=&team=&filterType=pa&min={min_pa}&csv=true")
+        sc = _csv(f"{SAVANT}/statcast?type={kind}&year={season}&position=&team=&min={min_pa}&csv=true")
+        if not xs: continue
+        by = {}
+        for r in xs:
+            pid = r.get("player_id")
+            by[pid] = {"n": _name(r), "pa": _num(r.get("pa")), "ba": _num(r.get("ba")), "xba": _num(r.get("est_ba")),
+                       "slg": _num(r.get("slg")), "xslg": _num(r.get("est_slg")), "woba": _num(r.get("woba")),
+                       "xwoba": _num(r.get("est_woba"))}
+            if r.get("era") is not None: by[pid]["era"] = _num(r.get("era"))
+            if r.get("xera") is not None: by[pid]["xera"] = _num(r.get("xera"))
+        for r in sc or []:
+            x = by.get(r.get("player_id"))
+            if x:
+                x["brl"] = _num(r.get("brl_percent")); x["ev"] = _num(r.get("avg_hit_speed"))
+                x["hh"] = _num(r.get("ev95percent"))
+        out[key] = [dict((k, v) for k, v in x.items() if v is not None) for x in by.values()]
+    return out or None
 
 
 # ------------------------------------------------------------ ESPN
@@ -210,7 +261,8 @@ def pull_all(season, raw, y=None, league_key=None):
     snap = {"date": day.isoformat(), "season": season}
     jobs = [("espn_injuries", espn_injuries), ("espn_news", espn_news),
             ("probables", lambda: probables(day)), ("standings", lambda: standings(season)),
-            ("mlb_tx", lambda: mlb_transactions((day - dt.timedelta(days=1)).isoformat()))]
+            ("mlb_tx", lambda: mlb_transactions((day - dt.timedelta(days=1)).isoformat())),
+            ("savant", lambda: savant(season))]
     for name, url in FEEDS.items():
         jobs.append((f"rss:{name}", (lambda n=name, u=url: rss(n, u))))
     for key, fn in jobs:

@@ -22,7 +22,9 @@
     "Austin": "E36C0A",
     "Todd": "6B4423",
     "Barak": "9E9D24",
-    "Gabe": "616161"
+    "Gabe": "616161",
+    "Robby": "8D6E63",
+    "Jonah": "5C6BC0"
   },
   "lowerBetter": [
     "E",
@@ -112,5 +114,260 @@
       "9": "Ben",
       "10": "Gabe"
     }
+  },
+  "relationships": {
+    "title": "How the league is connected",
+    "note": "The Frank Cup is named for the Frank family: Heidi's maiden name. Her four younger brothers all play, and so do her son and her nephew.",
+    "nodes": [
+      {
+        "id": "Heidi",
+        "note": "Oldest of the Frank siblings. Benny's mom.",
+        "group": "frank",
+        "x": 2,
+        "y": 0
+      },
+      {
+        "id": "Ben",
+        "note": "2nd Frank sibling. Austin's dad.",
+        "group": "frank",
+        "x": 3,
+        "y": 0
+      },
+      {
+        "id": "Gabe",
+        "note": "3rd Frank sibling.",
+        "group": "frank",
+        "x": 4,
+        "y": 0
+      },
+      {
+        "id": "Barak",
+        "note": "4th Frank sibling.",
+        "group": "frank",
+        "x": 5,
+        "y": 0
+      },
+      {
+        "id": "Andrew",
+        "note": "Youngest Frank sibling.",
+        "group": "frank",
+        "x": 6,
+        "y": 0
+      },
+      {
+        "id": "Todd",
+        "note": "Connected to Heidi.",
+        "group": "friend",
+        "x": 1,
+        "y": 0
+      },
+      {
+        "id": "Brian",
+        "note": "Todd's friend.",
+        "group": "friend",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "Benny",
+        "note": "Heidi's son, nephew of the four Frank brothers. Commissioner since 2023.",
+        "group": "family",
+        "x": 2,
+        "y": 1
+      },
+      {
+        "id": "Austin",
+        "note": "Ben's oldest son, Benny's cousin. Older than Benny.",
+        "group": "family",
+        "x": 3,
+        "y": 1
+      },
+      {
+        "id": "Jacob",
+        "note": "Benny's high school friend. Took over the team in 2026 from a different Jacob, Andrew's friend.",
+        "group": "friend",
+        "x": 2,
+        "y": 2
+      },
+      {
+        "id": "Robby",
+        "note": "Jacob's younger brother. Expansion team, joins in 2027.",
+        "group": "expansion",
+        "x": 1.5,
+        "y": 3
+      },
+      {
+        "id": "Jonah",
+        "note": "Jacob's best man, a grade below Benny and Jacob. Expansion team, joins in 2027.",
+        "group": "expansion",
+        "x": 2.5,
+        "y": 3
+      }
+    ],
+    "edges": [
+      {
+        "a": "Heidi",
+        "b": "Ben",
+        "type": "sibling"
+      },
+      {
+        "a": "Ben",
+        "b": "Gabe",
+        "type": "sibling"
+      },
+      {
+        "a": "Gabe",
+        "b": "Barak",
+        "type": "sibling"
+      },
+      {
+        "a": "Barak",
+        "b": "Andrew",
+        "type": "sibling"
+      },
+      {
+        "a": "Heidi",
+        "b": "Benny",
+        "type": "parent",
+        "label": "son"
+      },
+      {
+        "a": "Ben",
+        "b": "Austin",
+        "type": "parent",
+        "label": "son"
+      },
+      {
+        "a": "Benny",
+        "b": "Austin",
+        "type": "cousin",
+        "label": "cousins"
+      },
+      {
+        "a": "Todd",
+        "b": "Heidi",
+        "type": "link"
+      },
+      {
+        "a": "Brian",
+        "b": "Todd",
+        "type": "friend",
+        "label": "friends"
+      },
+      {
+        "a": "Benny",
+        "b": "Jacob",
+        "type": "friend",
+        "label": "high school friends"
+      },
+      {
+        "a": "Jacob",
+        "b": "Robby",
+        "type": "sibling",
+        "label": "brothers"
+      },
+      {
+        "a": "Jacob",
+        "b": "Jonah",
+        "type": "friend",
+        "label": "best man"
+      }
+    ]
+  },
+  "ownerChanges": {
+    "Jacob": {
+      "since": 2026,
+      "before": "Jacob Winn (Andrew's friend)",
+      "now": "Jacob Randall (Benny's high school friend)"
+    }
+  },
+  "expansion2027": [
+    "Jonah",
+    "Robby"
+  ],
+  "keepers": {
+    "2026": {
+      "Ben Rice": [
+        "Benny",
+        5
+      ],
+      "Corbin Carroll": [
+        "Benny",
+        6
+      ],
+      "George Kirby": [
+        "Benny",
+        9
+      ],
+      "Jackson Chourio": [
+        "Austin",
+        14
+      ],
+      "Cal Raleigh": [
+        "Austin",
+        10
+      ],
+      "Chris Sale": [
+        "Austin",
+        11
+      ],
+      "Ketel Marte": [
+        "Andrew",
+        9
+      ],
+      "Roman Anthony": [
+        "Andrew",
+        14
+      ],
+      "Junior Caminero": [
+        "Todd",
+        18
+      ],
+      "Cristopher Sánchez": [
+        "Todd",
+        13
+      ],
+      "Bryan Woo": [
+        "Todd",
+        15
+      ],
+      "Zach Neto": [
+        "Barak",
+        5
+      ],
+      "Nick Kurtz": [
+        "Heidi",
+        5
+      ],
+      "Yandy Díaz": [
+        "Jacob",
+        15
+      ],
+      "Tarik Skubal": [
+        "Jacob",
+        3
+      ],
+      "Jarren Duran": [
+        "Brian",
+        18
+      ],
+      "Jhoan Duran": [
+        "Brian",
+        12
+      ],
+      "Ronald Acuña Jr.": [
+        "Ben",
+        5
+      ],
+      "Bryce Harper": [
+        "Ben",
+        6
+      ],
+      "Paul Skenes": [
+        "Ben",
+        21
+      ]
+    },
+    "_note": "Players kept going into each season: name -> [manager, round he was kept in]. Add a new season's list after each keeper deadline."
   }
 }

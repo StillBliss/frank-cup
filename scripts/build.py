@@ -14,6 +14,65 @@ def num(v):
     except ValueError:
         return float(v)
 
+def _f(v):
+    try: return float(v)
+    except (TypeError, ValueError): return None
+
+def ip_outs(v):
+    """Yahoo innings '57.1' = 57 and 1/3 -> outs"""
+    s = str(v or "0")
+    whole, _, frac = s.partition(".")
+    try: return int(whole or 0) * 3 + int(frac or 0)
+    except ValueError: return 0
+
+def combine_lines(lines, idof, order):
+    """Add up weekly team lines (dicts of stat_id -> value) into one line, in `order`."""
+    g = lambda st, k: st.get(idof.get(k)) if k in idof else None
+    tot = {}
+    H = AB = 0; outs = 0; ER = BR = 0; K = 0; BBA = 0; kbb_ok = True
+    ops_w = ops_n = 0.0
+    for st in lines:
+        hab = g(st, "H/AB")
+        h = a = 0
+        if hab and "/" in str(hab):
+            x, _, y = str(hab).partition("/")
+            h, a = int(_f(x) or 0), int(_f(y) or 0)
+            H += h; AB += a
+        o = ip_outs(g(st, "IP")); outs += o
+        ip = o / 3.0
+        era, whip, kbb, k = _f(g(st, "ERA")), _f(g(st, "WHIP")), g(st, "K/BB"), _f(g(st, "K")) or 0
+        if ip:
+            if era is not None: ER += round(era * ip / 9.0)
+            if whip is not None: BR += round(whip * ip)
+        K += k
+        kb = _f(kbb)
+        if k and kb:
+            BBA += round(k / kb)
+        elif k and kbb not in (None, "", "-") and kb is None:
+            pass            # K/BB of infinity (no walks allowed)
+        ops = _f(g(st, "OPS")); bb = _f(g(st, "BB")) or 0
+        if ops is not None and (a + bb) > 0:
+            ops_w += ops * (a + bb); ops_n += a + bb
+        for key in order:
+            if key in ("H/AB", "IP", "AVG", "OPS", "ERA", "WHIP", "K/BB"): continue
+            v = _f(g(st, key))
+            if v is not None: tot[key] = tot.get(key, 0) + v
+    ip = outs / 3.0
+    out = []
+    for key in order:
+        if key == "H/AB": out.append(f"{H}/{AB}")
+        elif key == "IP": out.append(round(outs / 3.0, 3))     # decimal thirds, as the site expects
+        elif key == "AVG": out.append(f"{H / AB:.3f}" if AB else "")
+        elif key == "OPS": out.append(f"{ops_w / ops_n:.3f}" if ops_n else "")
+        elif key == "ERA": out.append(f"{ER * 9 / ip:.2f}" if ip else "")
+        elif key == "WHIP": out.append(f"{BR / ip:.2f}" if ip else "")
+        elif key == "K/BB": out.append(f"{K / BBA:.2f}" if BBA else "")
+        else:
+            v = tot.get(key, 0)
+            out.append(int(v) if float(v).is_integer() else v)
+    return out
+
+
 class Season:
     def __init__(self, year, cfg):
         self.year = year
@@ -59,7 +118,25 @@ class Season:
             if sd not in (None, ""): out[self.mgr[info["team_key"]]] = int(sd)
         return out
 
-    def season_stats(self):
+    def season_stats(self, weeks=None):
+        """Season totals built from each team's weekly lines, regular season only by
+        default. Yahoo's own season totals fold the playoff weeks in, which is why we
+        rebuild them. Counting stats add up; the rate stats are rebuilt from their
+        parts (hits and at-bats, earned runs, baserunners and walks from each week's
+        innings), and OPS is weighted by each week's plate appearances."""
+        weeks = set(self.reg_weeks if weeks is None else weeks)
+        ab = {c["abbr"]: c["id"] for c in self.cats}
+        acc = {}
+        for m in self.ms:
+            if m["week"] not in weeks or m["playoffs"] or m["status"] != "postevent": continue
+            for t in m["teams"]:
+                acc.setdefault(t["m"], []).append(t["stats"])
+        out = {}
+        for mgr, lines in acc.items():
+            out[mgr] = [num(v) for v in combine_lines(lines, ab, [c["abbr"] for c in self.cats])]
+        return out
+
+    def yahoo_season_stats(self):
         t = bc.L(f"{self.year}/team_stats_season.json")["fantasy_content"]["league"][1]["teams"]
         out = {}
         for k in t:
@@ -465,6 +542,7 @@ def build(raw_dir, cfg):
     rows_all, post_all, trades, moves, pbs, wdet = [], [], [], {}, {}, {}
     champ_rows = []  # championship bracket games only, consolation excluded
     brackets, finals, seeds_done, pay_in, sdata, ev = {}, {}, {}, [], [], []
+    winfo = {}
     S_last = None
     for y in years:
         S = Season(y, cfg); S_last = S
@@ -501,6 +579,8 @@ def build(raw_dir, cfg):
         for t in txs:
             for p in t["players"]: ev.append((t["ts"], 0, p["name"], p["pos"]))
         wdet[str(y)] = weekly_detail(S)
+        import records as _rec
+        winfo[str(y)] = _rec.week_info(week_ranges(S))
     P = {}
     for e in sorted(ev, key=lambda e: (e[0], e[1])):
         P.setdefault(e[2], e[3])
@@ -537,6 +617,12 @@ def build(raw_dir, cfg):
     D["attribution"] = "Fantasy data provided by Yahoo Fantasy"
     D["drawCats"] = drawC
     D["drawWeeks"] = drawW
+    D["weekInfo"] = winfo
+    D["seasonStatsNote"] = "Regular season only, rebuilt from each week's team lines."
+    D["relationships"] = cfg.get("relationships")
+    D["ownerChanges"] = cfg.get("ownerChanges") or {}
+    import records
+    D["records"] = records.build_records(D, winfo)
     awards = cfg.get("awards", {})
     D["awards"] = {str(y): awards.get(str(y), {}) for y in years}
     return D

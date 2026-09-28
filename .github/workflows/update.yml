@@ -5,7 +5,7 @@ on:
   # GitHub runs on UTC. Pacific is UTC-7 (PDT) most of the season,
   # so 3:17 AM Pacific = 10:17 UTC. Months limited to Mar-Oct.
   # An odd minute, because GitHub often skips jobs scheduled on the hour.
-  # Mondays write the full Gazette issue; Tue-Sun write The Morning Wire.
+  # Mondays write the Gazette's Monday desk, Thursdays add the midweek desk, and every day writes The Morning Wire.
   schedule:
     - cron: "17 10 * 3-10 *"
   workflow_dispatch:
@@ -16,6 +16,10 @@ on:
         default: false
       redo_daily:
         description: "Rewrite yesterday's Morning Wire"
+        type: boolean
+        default: false
+      thursday_now:
+        description: "Run the Thursday desk (Kenny, Tony, Marcus) now instead of waiting for Thursday"
         type: boolean
         default: false
 
@@ -52,13 +56,14 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           NEWS_REDO: ${{ format('{0} {1}', inputs.redo_news && 'latest' || '', inputs.redo_daily && 'daily' || '') }}
+          NEWS_THURSDAY_NOW: ${{ inputs.thursday_now && '1' || '' }}
         run: python -u scripts/news.py
 
       - name: Commit changes if any
         run: |
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git add data.js raw league_config.json
+          git add data.js raw league_config.json keepers.js
           if [ -f news.js ]; then git add news.js; fi
           if git diff --cached --quiet; then
             echo "No changes."
