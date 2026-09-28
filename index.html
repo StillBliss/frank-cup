@@ -591,12 +591,27 @@ table.rect td .w{color:var(--bone-faint);font-size:12px}
   #v-keepers .row{grid-template-columns:auto 1fr}
   #v-keepers .row .nums{grid-column:1 / -1;justify-content:flex-start;text-align:left}
 }
+
+/* each season wears its own accent, so switching years is obvious */
+body[data-season="2023"]{--bulb:#5EC8E5}
+body[data-season="2024"]{--bulb:#8BD450}
+body[data-season="2025"]{--bulb:#D98CF0}
+body[data-season="2026"]{--bulb:#E8A62E}
+body[data-season="ALL"]{--bulb:#CFC8B6}
+.board{border-bottom-color:var(--bulb);transition:border-color .25s}
+.season-banner{font-family:var(--cond);font-size:22px;letter-spacing:.12em;color:var(--bone-dim);line-height:1}
+.season-banner b{color:var(--bulb);font-weight:500;font-size:30px;margin-right:6px}
+.season-pick.off{opacity:.35;pointer-events:none}
+.subtabs{margin-bottom:18px}
+.subtabs button{font-size:15px;padding:7px 14px;white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.board{transition:none}}
 </style>
 </head>
 <body data-season="2026">
 <header class="board">
   <div class="board-top">
     <div class="mark">THE FRANK <span>CUP</span></div>
+    <div class="season-banner" id="seasonBanner" aria-live="polite"></div>
     <div class="parkname" id="parkName"></div>
     <div class="season-pick" id="seasonPick" role="group" aria-label="Choose season"></div>
   </div>
@@ -604,11 +619,11 @@ table.rect td .w{color:var(--bone-faint);font-size:12px}
 </header>
 <main>
   <section class="view" id="v-news"></section>
+  <section class="view" id="v-bracket"></section>
   <section class="view on" id="v-standings"></section>
   <section class="view" id="v-matchups"></section>
   <section class="view" id="v-trends"></section>
   <section class="view" id="v-stats"></section>
-    <section class="view" id="v-bracket"></section>
   <section class="view" id="v-history"></section>
   <section class="view" id="v-records"></section>
   <section class="view" id="v-keepers"></section>
@@ -639,8 +654,21 @@ const rec=(w,l,t)=>w+"-"+l+"-"+t;
 const pct3=p=>p.toFixed(3).replace(/^0/,"");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const el=id=>document.getElementById(id);
-const VIEWS=[["news","News"],["standings","Standings"],["matchups","Matchups"],["trends","Charts"],
- ["stats","Team stats"],["bracket","Bracket"],["history","History"],["records","Records"],["keepers","Keepers"],["manager","Managers"]];
+const VIEWS=[["news","News"],["standings","Standings"],["matchups","Matchups"],["stats","Stats"],
+ ["history","History"],["keepers","Keepers"],["manager","Managers"]];
+/* pages that cover every season at once; the season picker sits out on these */
+const ALL_TIME_VIEWS=new Set(["history","keepers"]);
+let statsTab="table";
+function statsTabs(){
+  return `<div class="toggle subtabs" id="statsTabs" role="group" aria-label="Stats view"><button type="button" data-s="table" aria-pressed="${statsTab==="table"}">Team stats</button><button type="button" data-s="charts" aria-pressed="${statsTab==="charts"}">Charts</button></div>`;
+}
+function wireStatsTabs(host){
+  const t=host.querySelector("#statsTabs");
+  if(t) t.onclick=e=>{const b=e.target.closest("button");if(!b)return;statsTab=b.dataset.s;render();};
+}
+function hasBracket(){
+  return D.postseason.some(g=>g.season==+season&&g.stage==="Playoff");
+}
 
 /* innings: decimal thirds -> baseball notation */
 function ipFmt(v){
@@ -893,7 +921,7 @@ function vStandings(){
   const rows=data.map((d,i)=>`<tr class="${i===CUT-1?"cut":""}">${COLS.map(c=>
     `<td class="${c.cls||""}${c.exp?" exp":""}">${c.k==="m"?nameBtn(d.m):(c.fmt?c.fmt(d):"")}</td>`
   ).join("")}</tr>`).join("");
-  el("v-standings").innerHTML=`<p class="lede">Expected is what your own numbers would have earned against each of the other nine managers rather than the one the schedule gave you. Draw is the difference, so it sums to zero across the league: every soft week you drew was a hard one for someone else. The gold line always sits between the sixth and seventh row, where the six-team playoff field is cut. Click a column to sort, or a name for that manager's page.</p>
+  el("v-standings").innerHTML=`<p class="lede">Expected is what your own numbers would have earned against each of the other nine managers rather than the one the schedule gave you. Draw is the difference, so it sums to zero across the league: every soft week you drew was a hard one for someone else. The colored line always sits between the sixth and seventh row, where the six-team playoff field is cut. Click a column to sort, or a name for that manager's page.</p>
     <div class="scroll fullbleed"><table class="stand"><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table></div>`;
   el("v-standings").querySelectorAll("th.sortable").forEach(th=>{
     const go=()=>{const k=th.dataset.c;
@@ -1232,7 +1260,7 @@ function vTrends(){
   const mk=k=>D.managers.map(m=>({name:m,color:col(m),hidden:hidden.has(m),width:m==="Benny"?3:1.6,
     data:S.progression.map(p=>p[k][m])}));
   const gb=mk("gb"),gbMax=Math.max(...gb.flatMap(s=>s.data));
-  el("v-trends").innerHTML=`<p class="lede">How the season actually unfolded. Tap a manager to mute their line.</p>
+  el("v-trends").innerHTML=statsTabs()+`<p class="lede">How the season actually unfolded. Tap a manager to mute their line.</p>
     <div class="legend" id="legend" role="group" aria-label="Toggle managers"></div>
     <div class="chartbox"><h3>Games behind the leader</h3><p>The leader runs flat along the top.</p>
       ${svgLine({series:gb,labels,yMin:0,yMax:Math.max(10,Math.ceil(gbMax/10)*10),invert:true,yTitle:"Games behind"})}</div>
@@ -1249,6 +1277,7 @@ function vTrends(){
   const gt=el("gradeToggle");
   if(gt) gt.onclick=e=>{const b=e.target.closest("button");if(!b)return;gradeMode=b.dataset.g;render();};
   wireHover("v-trends");
+  wireStatsTabs(el("v-trends"));
 }
 
 /* ---------- team stats (sortable) ---------- */
@@ -1310,7 +1339,7 @@ function vStats(){
   const hm=(S.weeks.length?S.standings.map(r=>r.manager).filter(m=>S.heatmap[m]):[]).map(m=>`<tr><td class="l">${nameBtn(m)}</td>${
     S.heatmap[m].map(v=>v==null?`<td class="c">·</td>`:
       `<td class="c" style="background:${heat(1-Math.max(0,Math.min(1,(v-2)/17)))}">${v}</td>`).join("")}</tr>`).join("");
-  el("v-stats").innerHTML=`<p class="lede">Regular season totals; playoff weeks are left out. Click a column to sort. Arrows mark categories where a lower number is better, and shading reflects how far ahead or behind the number actually is, not just the finishing order.</p>
+  el("v-stats").innerHTML=statsTabs()+`<p class="lede">Regular season totals; playoff weeks are left out. Click a column to sort. Arrows mark categories where a lower number is better, and shading reflects how far ahead or behind the number actually is, not just the finishing order.</p>
     <div class="toggle" id="statToggle" role="group" aria-label="Display mode">
       <button type="button" data-m="raw" aria-pressed="${statMode==="raw"}">Totals</button>
       <button type="button" data-m="pctl" aria-pressed="${statMode==="pctl"}">Percentile</button></div>
@@ -1319,6 +1348,7 @@ function vStats(){
     <div class="scroll fullbleed"><table class="statw"><thead><tr><th class="l">Manager</th>${ths}</tr></thead><tbody>${rows}</tbody></table></div>
     ${hm?`<h2 class="sec">Categories won each week</h2><p class="lede">Out of 22.</p>
     <div class="scroll"><table class="hm"><thead><tr><th class="l">Manager</th>${S.weeks.map(w=>`<th>${w}</th>`).join("")}</tr></thead><tbody>${hm}</tbody></table></div>`:""}`;
+  wireStatsTabs(el("v-stats"));
   el("statToggle").onclick=e=>{const b=e.target.closest("button");if(!b)return;statMode=b.dataset.m;render();};
   el("v-stats").querySelectorAll("th.sortable").forEach(th=>{
     th.onclick=()=>{const j=+th.dataset.c;
@@ -1668,39 +1698,63 @@ function playoffRecord(m){
   });
   return {cat:c,match:w};
 }
+let histTab="lifetime", lifeSort={k:"match",d:-1};
+const HIST_TABS=[["lifetime","Lifetime"],["records","Records"],["money","Money"],["h2h","Head to head"]];
+function histTabs(){
+  return `<div class="toggle subtabs" id="histTabs" role="group" aria-label="History sections">${HIST_TABS.map(([k,l])=>`<button type="button" data-h="${k}" aria-pressed="${histTab===k}">${l}</button>`).join("")}</div>`;
+}
+function wireHistTabs(host){
+  const t=host.querySelector("#histTabs");
+  if(t) t.onclick=e=>{const b=e.target.closest("button");if(!b)return;histTab=b.dataset.h;render();};
+}
 function vHistory(){
-  const life=[...D.lifetime].sort((a,b)=>(b.matchPct||0)-(a.matchPct||0));
-  const held=allTimeRecords();
-  const lifeRows=life.map(r=>{
-    const st=allTimeStreaks(r.manager);
-    const po=playoffRecord(r.manager);
-    const mine=held[r.manager]||[];
-    const recs=mine.length
-      ? mine.map(x=>`<span class="rectag" title="${esc(x.cat)} record, set in ${esc(x.season)}">${esc(x.cat)}<i>${esc(String(x.season).slice(2))}</i></span>`).join("")
-      : `<span class="sub">—</span>`;
-    return `<tr><td class="l">${nameBtn(r.manager)}</td>
-    <td>${rec(...r.cat)}</td><td>${rec(...r.match)}</td>
-    <td>${po.match[0]+po.match[1]?rec(...po.cat):"\u2014"}</td><td>${po.match[0]+po.match[1]?po.match[0]+"-"+po.match[1]:"\u2014"}</td>
-    <td>${st.run}</td><td>${st.skid}</td>
-    <td class="l recs">${recs}</td></tr>`;}).join("");
-  const pay=D.managers.map(m=>({m,...D.payouts[m]})).sort((a,b)=>b.total-a.total);
-  const payRows=pay.map(p=>`<tr><td class="l">${nameBtn(p.m)}</td>${
-    YEARS.map(s=>`<td>${p.bySeason[s]?"$"+p.bySeason[s]:"—"}</td>`).join("")}
-    <td style="font-weight:600">${p.total?"$"+p.total.toLocaleString():"—"}</td></tr>`).join("");
-  el("v-history").innerHTML=`<h2 class="sec">Lifetime records</h2>
-    <p class="lede">Every regular season week and category, all seasons combined. The playoff columns count championship bracket games only, and a playoff week is never a tie since the better seed advances. Runs and skids carry straight across season boundaries. Held is every category where that manager owns the best single season the league has seen, with the year it was set.</p>
-    <div class="scroll"><table><thead><tr><th class="l">Manager</th><th>Categories</th><th>Weeks</th>
-      <th title="Championship bracket games only">Playoff categories</th><th title="Championship bracket games only, never a tie">Playoff weeks</th>
-      <th title="Longest run of winning weeks, all seasons">Best run</th>
-      <th title="Longest run of losing weeks, all seasons">Worst skid</th>
-      <th class="l">Records held</th></tr></thead><tbody>${lifeRows}</tbody></table></div>
-    <h2 class="sec">Money</h2>
-    <p class="lede">Regular season pays $${D.payoutRules.reg1} / $${D.payoutRules.reg2} / $${D.payoutRules.reg3}. The playoff champion takes $${D.payoutRules.champ}.</p>
-    <div class="scroll"><table><thead><tr><th class="l">Manager</th>${YEARS.map(s=>`<th>${s}</th>`).join("")}<th>Total</th></tr></thead><tbody>${payRows}</tbody></table></div>
-    <h2 class="sec">Head to head, regular season</h2><div id="h2h-reg"></div>
-    <h2 class="sec">Head to head, playoffs</h2><div id="h2h-po"></div>`;
-  h2hGrid(D.h2h, "Every pairing, regular season only, all seasons combined. Read across a row for that manager's record. Click any cell for the season by season breakdown.", "h2h-reg");
-  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Championship bracket games only. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
+  const host=el("v-history");
+  if(histTab==="records"){ return; }   /* the Records sub-tab renders into v-records */
+  let body="";
+  if(histTab==="lifetime"){
+    const held=allTimeRecords();
+    const pctOf=r=>{const t=r[0]+r[1]+r[2];return t?(r[0]+r[2]/2)/t:null;};
+    const rows=D.lifetime.map(r=>{
+      const st=allTimeStreaks(r.manager), po=playoffRecord(r.manager), mine=held[r.manager]||[];
+      const hasPO=po.match[0]+po.match[1]>0;
+      return {m:r.manager,cat:r.cat,match:r.match,pcat:hasPO?po.cat:null,pmatch:hasPO?[po.match[0],po.match[1],0]:null,
+        run:st.run,skid:st.skid,recs:mine,
+        sort:{cat:pctOf(r.cat),match:pctOf(r.match),pcat:hasPO?pctOf(po.cat):-1,pmatch:hasPO?pctOf([po.match[0],po.match[1],0]):-1,
+              run:st.run,skid:st.skid,recs:mine.length,m:r.manager}};});
+    rows.sort((x,y)=>{const a=x.sort[lifeSort.k],b=y.sort[lifeSort.k];
+      if(typeof a==="string") return a.localeCompare(b)*lifeSort.d; return ((a??-1)-(b??-1))*lifeSort.d;});
+    const pc=r=>{const p=pctOf(r);return p==null?"":pct3(p);};
+    const cell=(r,title)=>r?`<td title="${title}: ${pc(r)}">${rec(...r)}</td>`:`<td>—</td>`;
+    const cellW=(r,title)=>r?`<td title="${title}: ${pc(r)}">${r[0]}-${r[1]}</td>`:`<td>—</td>`;
+    const lifeRows=rows.map(x=>{
+      const recs=x.recs.length?x.recs.map(q=>`<span class="rectag" title="${esc(q.cat)} record, set in ${esc(q.season)}">${esc(q.cat)}<i>${esc(String(q.season).slice(2))}</i></span>`).join(""):`<span class="sub">—</span>`;
+      return `<tr><td class="l">${nameBtn(x.m)}</td>${cell(x.cat,"Category win %")}${cell(x.match,"Weekly win %")}
+        ${cell(x.pcat,"Playoff category win %")}${cellW(x.pmatch,"Playoff win %")}<td>${x.run}</td><td>${x.skid}</td><td class="l recs">${recs}</td></tr>`;}).join("");
+    const H=[["m","Manager","l"],["cat","Categories"],["match","Weeks"],["pcat","Playoff categories","","Championship bracket games only"],
+      ["pmatch","Playoff weeks","","Championship bracket games only, never a tie"],["run","Best run","","Longest run of winning weeks"],
+      ["skid","Worst skid","","Longest run of losing weeks"],["recs","Records held","l"]];
+    const ths=H.map(([k,l,c,t])=>`<th class="sortable ${c||""}" data-k="${k}" aria-sort="${lifeSort.k===k?(lifeSort.d===1?"ascending":"descending"):"none"}"${t?` title="${t}"`:""}>${l}</th>`).join("");
+    body=`<p class="lede">Every regular season week and category, all seasons combined. Playoff columns count championship bracket games only; a tied playoff week goes to the better seed. Runs and skids carry across seasons. Click a column to sort; hover a record for its win percentage.</p>
+      <div class="scroll"><table class="stand" id="lifeTbl"><thead><tr>${ths}</tr></thead><tbody>${lifeRows}</tbody></table></div>`;
+  } else if(histTab==="money"){
+    const pay=D.managers.map(m=>({m,...D.payouts[m]})).sort((a,b)=>b.total-a.total);
+    const payRows=pay.map(p=>`<tr><td class="l">${nameBtn(p.m)}</td>${
+      YEARS.map(s=>`<td>${p.bySeason[s]?"$"+p.bySeason[s]:"—"}</td>`).join("")}
+      <td style="font-weight:600">${p.total?"$"+p.total.toLocaleString():"—"}</td></tr>`).join("");
+    body=`<p class="lede">Regular season pays $${D.payoutRules.reg1} / $${D.payoutRules.reg2} / $${D.payoutRules.reg3}. The playoff champion takes $${D.payoutRules.champ}.</p>
+      <div class="scroll"><table><thead><tr><th class="l">Manager</th>${YEARS.map(s=>`<th>${s}</th>`).join("")}<th>Total</th></tr></thead><tbody>${payRows}</tbody></table></div>`;
+  } else {
+    body=`<h2 class="sec">Regular season</h2><div id="h2h-reg"></div><h2 class="sec">Playoffs</h2><div id="h2h-po"></div>`;
+  }
+  host.innerHTML=histTabs()+body;
+  wireHistTabs(host);
+  if(histTab==="h2h"){
+    h2hGrid(D.h2h, "Every pairing, regular season only, all seasons combined. Read across a row for that manager's record. Click any cell for the season by season breakdown.", "h2h-reg");
+    if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Championship bracket games only. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
+  }
+  const lt=el("lifeTbl");
+  if(lt) lt.querySelectorAll("th.sortable").forEach(th=>{th.onclick=()=>{const k=th.dataset.k;
+    if(lifeSort.k===k) lifeSort.d=-lifeSort.d; else lifeSort={k,d:k==="m"?1:-1}; render();};});
 }
 
 /* ---------- manager ---------- */
@@ -2019,10 +2073,8 @@ function vRecords(){
   const odd=Object.entries(R.oddWeeks||{}).map(([s,ws])=>`${s}: week${ws.length>1?"s":""} ${ws.join(" and ")}`).join("; ");
   const regW=R.regWeeks||{};
   const longer=Object.entries(regW).filter(([s,n])=>n!==Math.min(...Object.values(regW))).map(([s,n])=>`${s} (${n} weeks)`);
-  const finals=(R.finals||[]).map(g=>`<tr><td>${g.s}</td><td class="l">${recWho(g,"win")} <span class="w">#${g.seedWin||"?"} seed</span></td>
-    <td class="l">${recWho(g,"lose")} <span class="w">#${g.seedLose||"?"} seed</span></td><td>${g.score}</td>
-    <td class="l">${g.tied?"Tied, the higher seed takes the Cup":""}</td></tr>`).join("");
-  const ties=(R.playoffTies||[]).map(g=>`<li><span class="rk"></span><span>${g.s} week ${g.w}: ${recWho(g,"win")} (#${g.seedWin}) over ${recWho(g,"lose")} (#${g.seedLose})</span><span class="v">${g.score}</span></li>`).join("");
+  const beatRow=(x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s} wk ${x.w}, lost to ${esc(x.opp)} ${x.score}${x.ap?`, all-play ${x.ap}`:""}</span>${stgTag(x.stage)}</span><span class="v">${Math.round(x.G)}</span></li>`;
+  const luckRow=(x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s} wk ${x.w}, beat ${esc(x.opp)} ${x.score}${x.ap?`, all-play ${x.ap}`:""}</span>${stgTag(x.stage)}</span><span class="v">${Math.round(x.G)}</span></li>`;
   const gl={G:"Grade",H:"Hitting+",P:"Pitching+"};
   const glist=(rows,k)=>rows.map((x,i)=>`<li><span class="rk">${i+1}</span><span>${recWho(x)} <span class="w">${x.s} wk ${x.w}</span>${stgTag(x.stage)}</span><span class="v">${Math.round(x[k])}</span></li>`).join("");
   const gb=R.grades[recGrade];
@@ -2033,21 +2085,24 @@ function vRecords(){
   const cats=D.cats.filter(c=>R.single[c]);
   /* fewest errors or losses in a week is just a quiet week, so those two sit out the single-week table */
   const scats=cats.filter(c=>!(lower.has(c)&&!["ERA","WHIP"].includes(c)));
-  const holders=(arr,c,withWeek)=>(arr.length>4?arr.slice(0,3):arr).map(x=>`${recWho(x)} <span class="w">${x.s}${withWeek?" wk "+x.w:""}</span>${withWeek?stgTag(x.stage):""}`).join("<br>")+(arr.length>4?`<br><span class="w">and ${arr.length-3} more</span>`:"");
+  const holders=(arr,c,withWeek)=>arr.map(x=>`${recWho(x)} <span class="w">${x.s}${withWeek?" wk "+x.w:""}</span>${withWeek?stgTag(x.stage):""}`).join("<br>");
+  /* the next 3 below the record; if more are tied with the 3rd, count them instead of listing */
+  const nextBest=(rows,c,withWeek)=>{const top=rows.slice(0,3);
+    const more=top.length===3?rows.slice(3).filter(x=>x.v===top[2].v).length:0;
+    return `<span class="w">${top.map(x=>`${fmtV(c,x.v)} ${esc(x.m)} ${x.s}${withWeek?" wk "+x.w:""}`).join(" · ")}${more>0?` · and ${more} more`:""}</span>`;};
   const singleRows=scats.map(c=>{const b=R.single[c].best; if(!b.length) return "";
-    const top=b.filter(x=>x.v===b[0].v), rest=b.filter(x=>x.v!==b[0].v).slice(0,3);
+    const top=b.filter(x=>x.v===b[0].v), rest=b.filter(x=>x.v!==b[0].v), nv=rest.length?rest[0].v:null;
     return `<tr><th>${esc(c)}${lower.has(c)?" ↓":""}</th><td><b>${fmtV(c,top[0].v)}</b></td><td class="l">${holders(top,c,true)}</td>
-      <td class="l"><span class="w">${rest.map(x=>`${fmtV(c,x.v)} ${esc(x.m)} ${x.s}`).join(" · ")}</span></td></tr>`;}).join("");
+      <td class="l">${nv===null?"":nextBest(rest,c,true)}</td></tr>`;}).join("");
   const seasonRows=cats.map(c=>{const S=R.season[c]; if(!S||!S.best.length) return "";
-    const top=S.best.filter(x=>x.v===S.best[0].v), rest=S.best.filter(x=>x.v!==S.best[0].v).slice(0,2), wr=S.worst[0];
+    const top=S.best.filter(x=>x.v===S.best[0].v), rest=S.best.filter(x=>x.v!==S.best[0].v), wr=S.worst[0];
     return `<tr><th>${esc(c)}${lower.has(c)?" ↓":""}</th><td><b>${fmtV(c,top[0].v)}</b></td><td class="l">${holders(top,c,false)}</td>
-      <td class="l"><span class="w">${rest.map(x=>`${fmtV(c,x.v)} ${esc(x.m)} ${x.s}`).join(" · ")}</span></td>
+      <td class="l">${rest.length?nextBest(rest,c,false):""}</td>
       <td class="l"><span class="w">${wr?`${fmtV(c,wr.v)} ${esc(wr.m)} ${wr.s}`:""}</span></td></tr>`;}).join("");
-  el("v-records").innerHTML=`<p class="lede">Keeper era records, ${esc(R.era)}, since Benny took over as commissioner and made the Frank Cup a keeper league. The league itself goes back to 2011.</p>
-    <h2 class="sec">Championship games</h2>
-    <div class="scroll"><table class="rect"><thead><tr><th>Season</th><th class="l">Champion</th><th class="l">Runner-up</th><th>Score</th><th class="l"></th></tr></thead><tbody>${finals}</tbody></table></div>
-    <div class="rec-grid" style="margin-top:16px">
-      <div class="rec-card"><h3>Tied playoff weeks</h3><p class="n">A tied playoff week goes to the higher seed. It has happened ${(R.playoffTies||[]).length} times, and the higher seed won every one.</p><ul class="rec-list">${ties}</ul></div>
+  el("v-records").innerHTML=histTabs()+`<p class="lede">Keeper era records, ${esc(R.era)}, regular season and championship bracket, since Benny took over as commissioner and made the Frank Cup a keeper league. The league itself goes back to 2011.</p>
+    <div class="rec-grid">
+      <div class="rec-card"><h3>Worst bad beats</h3><p class="n">The best weeks that still lost the matchup, by grade.</p><ul class="rec-list">${(R.badBeats||[]).map(beatRow).join("")}</ul></div>
+      <div class="rec-card"><h3>Luckiest weeks</h3><p class="n">The worst weeks that still won the matchup, by grade.</p><ul class="rec-list">${(R.luckyWeeks||[]).map(luckRow).join("")}</ul></div>
       <div class="rec-card"><h3>Biggest blowouts</h3><p class="n">Widest category margins.</p><ul class="rec-list">${blow}</ul></div>
     </div>
     <h2 class="sec">Weekly grades</h2>
@@ -2071,6 +2126,7 @@ function vRecords(){
     <p class="lede tight">Regular season only.${longer.length?` ${esc(longer.join(", "))} ran one week longer than the others, which helps counting totals.`:""}</p>
     <div class="scroll"><table class="rect"><thead><tr><th>Cat</th><th>Record</th><th class="l">Held by</th><th class="l">Next best</th><th class="l">Worst</th></tr></thead><tbody>${seasonRows}</tbody></table></div>
     <p class="lede" style="margin-top:14px">"prev. owner" marks records set by a team's earlier manager: before 2026, Jacob's team belonged to a different Jacob.</p>`;
+  wireHistTabs(el("v-records"));
   el("recGrade").onclick=e=>{const b=e.target.closest("button");if(!b)return;recGrade=b.dataset.g;render();};
 }
 
@@ -2158,9 +2214,17 @@ function render(){
   el("seasonPick").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===season));
   el("nav").querySelectorAll("button").forEach(b=>b.setAttribute("aria-current",b.dataset.v===view?"page":"false"));
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));
-  el("v-"+view).classList.add("on");
-  ({standings:vStandings,matchups:vMatchups,trends:vTrends,stats:vStats,
-    bracket:vBracket,history:vHistory,records:vRecords,keepers:vKeepers,manager:vManager,news:vNews})[view]();
+  const allTime=ALL_TIME_VIEWS.has(view);
+  document.body.setAttribute("data-season",allTime?"ALL":season);
+  el("seasonPick").classList.toggle("off",allTime);
+  el("seasonPick").setAttribute("title",allTime?"This page covers every season":"");
+  el("seasonBanner").innerHTML=allTime?`<b>ALL</b> SEASONS`:`<b>${esc(season)}</b> SEASON`;
+  const show=[];
+  if(view==="standings"){ if(hasBracket()){show.push("bracket");vBracket();} show.push("standings");vStandings(); }
+  else if(view==="stats"){ if(statsTab==="charts"){show.push("trends");vTrends();} else {show.push("stats");vStats();} }
+  else if(view==="history"){ if(histTab==="records"){show.push("records");vRecords();} else {show.push("history");vHistory();} }
+  else { show.push(view); ({matchups:vMatchups,keepers:vKeepers,manager:vManager,news:vNews})[view](); }
+  show.forEach(k=>el("v-"+k).classList.add("on"));
 }
 buildChrome();render();
 })();

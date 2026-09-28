@@ -61,6 +61,44 @@ def week_grades(D, season, week):
     return out
 
 
+def _ladder(rows, key, low=False, distinct=4, cap=250):
+    """every row tied for the record, plus the rows for the next few distinct values"""
+    rows = sorted([r for r in rows if r.get(key) is not None], key=lambda r: r[key] if low else -r[key])
+    out, seen = [], []
+    for r in rows:
+        if r[key] not in seen:
+            if len(seen) == distinct: break
+            seen.append(r[key])
+        out.append(r)
+        if len(out) >= cap: break
+    return out
+
+
+def week_allplay(D, season, week):
+    """each team's matchup record that week against every other team's line"""
+    cats, lower = D["cats"], set(D["lowerBetter"])
+    skip = set(D.get("nonScoring") or ["H/AB"])
+    idx = [i for i, c in enumerate(cats) if c not in skip]
+    lines = {m: e["you"] for m, weeks in (D["weeklyDetail"].get(str(season)) or {}).items()
+             for w, e in weeks.items() if w == str(week)}
+    out = {}
+    for me in lines:
+        W = L = T = 0
+        for o in lines:
+            if o == me: continue
+            cw = cl = 0
+            for i in idx:
+                a, b = fnum(lines[me][i]), fnum(lines[o][i])
+                if a is None or b is None or a == b: continue
+                if (a < b) if cats[i] in lower else (a > b): cw += 1
+                else: cl += 1
+            if cw > cl: W += 1
+            elif cl > cw: L += 1
+            else: T += 1
+        out[me] = f"{W}-{L}-{T}"
+    return out
+
+
 def _top(rows, key, n, low=False):
     rows = [r for r in rows if r.get(key) is not None]
     rows.sort(key=lambda r: r[key] if low else -r[key])
@@ -99,7 +137,7 @@ def build_records(D, week_infos, n=5):
                     if v is None: continue
                     rows.append({"m": m, "s": int(s), "w": int(w), "v": v,
                                  "stage": stage.get((s, int(w), m), "Regular")})
-        single[c] = {"best": _top(rows, "v", n, low=c in lower)}
+        single[c] = {"best": _ladder(rows, "v", low=c in lower)}
 
     # ---- seasons (regular season totals)
     season = {}
@@ -110,7 +148,7 @@ def build_records(D, week_infos, n=5):
             for m, line in (D["seasons"][s].get("seasonStats") or {}).items():
                 v = fnum(line[i])
                 if v is not None: rows.append({"m": m, "s": int(s), "v": v})
-        season[c] = {"best": _top(rows, "v", 3, low=c in lower),
+        season[c] = {"best": _ladder(rows, "v", low=c in lower),
                      "worst": _top(rows, "v", 1, low=c not in lower)}
 
     # ---- grades, every week (relative, so odd lengths don't matter)
@@ -163,6 +201,23 @@ def build_records(D, week_infos, n=5):
         t["seedWin"], t["seedLose"] = t["seeds"].get(t["win"]), t["seeds"].get(t["lose"])
         del t["seeds"]
 
+    # ---- bad beats (great weeks that lost) and lucky weeks (bad weeks that won)
+    gmap = {(r["s"], r["w"], r["m"]): r for r in gweeks}
+    apw = {}
+    for s_ in years:
+        for w_ in sorted({int(w) for weeks in (D["weeklyDetail"].get(s_) or {}).values() for w in weeks}):
+            for m, rec in week_allplay(D, s_, w_).items(): apw[(int(s_), w_, m)] = rec
+    beats, lucky = [], []
+    for g in games:
+        if not g["win"] or g.get("live"): continue
+        wg, lg = gmap.get((g["s"], g["w"], g["win"])), gmap.get((g["s"], g["w"], g["lose"]))
+        if not wg or not lg or wg["G"] is None or lg["G"] is None: continue
+        base = {"s": g["s"], "w": g["w"], "stage": g["stage"], "score": g["score"], "win": g["win"], "lose": g["lose"]}
+        beats.append(dict(base, m=g["lose"], G=lg["G"], opp=g["win"], oppG=wg["G"], ap=apw.get((g["s"], g["w"], g["lose"]))))
+        lucky.append(dict(base, m=g["win"], G=wg["G"], opp=g["lose"], oppG=lg["G"], ap=apw.get((g["s"], g["w"], g["win"]))))
+    bad_beats = _top(beats, "G", 10)
+    lucky_weeks = _top(lucky, "G", 10, low=True)
+
     # ---- season records: category record and matchup record, regular season
     srec = []
     for s in years:
@@ -211,7 +266,7 @@ def build_records(D, week_infos, n=5):
         if r["m"] in oc and r["from"][0] < oc[r["m"]]["since"]: r["prev"] = [r["m"]]
     for o in out_all[:-2]: tag(o)
     return {"era": f"{years[0]}-{years[-1]}", "single": single, "season": season, "grades": grades,
-            "seasonGrade": season_grade, "blowouts": blow, "finals": finals, "playoffTies": ties,
+            "seasonGrade": season_grade, "blowouts": blow, "badBeats": bad_beats, "luckyWeeks": lucky_weeks, "finals": finals, "playoffTies": ties,
             "bestSeason": best_season, "worstSeason": worst_season, "winRuns": win_runs, "skids": skids,
             "regWeeks": lens,
             "oddWeeks": {s: [int(w) for w, x in (week_infos.get(s) or {}).items() if not x["standard"]] for s in years}}
