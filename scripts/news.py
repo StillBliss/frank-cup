@@ -2205,7 +2205,7 @@ def main():
             if thu and (today >= due or os.environ.get("NEWS_THURSDAY_NOW")) and not set(thu) <= wrote:
                 write_issue(L, cfg, state, y, last["week"], "thursday")
         # 3) the morning wire for yesterday, every day
-        day = players.yesterday_pt()
+        day = os.environ.get("NEWS_WIRE_DAY") or players.yesterday_pt()
         wr = build.week_ranges(L.S(y))
         wk = next((ww for ww, (a, b) in wr.items() if a <= day <= b), None)
         if wk is None:

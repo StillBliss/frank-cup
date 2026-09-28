@@ -18,6 +18,10 @@ on:
         description: "Rewrite yesterday's Morning Wire"
         type: boolean
         default: false
+      wire_day:
+        description: "Write the Morning Wire for this date (YYYY-MM-DD) instead of yesterday"
+        type: string
+        default: ""
       thursday_now:
         description: "Run the Thursday desk (Kenny, Tony, Marcus) now instead of waiting for Thursday"
         type: boolean
@@ -57,6 +61,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           NEWS_REDO: ${{ format('{0} {1}', inputs.redo_news && 'latest' || '', inputs.redo_daily && 'daily' || '') }}
           NEWS_THURSDAY_NOW: ${{ inputs.thursday_now && '1' || '' }}
+          NEWS_WIRE_DAY: ${{ inputs.wire_day }}
         run: python -u scripts/news.py
 
       - name: Commit changes if any
