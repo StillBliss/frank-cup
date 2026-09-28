@@ -950,7 +950,11 @@ def history_angles(L, y, w, nb):
     champs = defaultdict(list)
     for s, fp in (L.D.get("finalPlace") or {}).items():
         if int(s) < y or (int(s) == y and w >= L.end_week(y)): champs[fp[0]].append(s)
-    if champs: out.append("Keeper-era champions: " + "; ".join(f"{m} {', '.join(v)}" for m, v in champs.items()))
+    if champs:
+        n_seasons = sum(len(v) for v in champs.values())
+        out.append("Keeper-era champions: " + "; ".join(f"{m} {', '.join(v)}" for m, v in champs.items())
+                   + f". That is {len(champs)} different champions in {n_seasons} seasons; count them exactly this way."
+                   + " Only back-to-back titles make a repeat; a three-peat needs 3 straight.")
     reg = [(s, L.D["seasons"][s]["standings"][0]["manager"]) for s in sorted(L.D["seasons"]) if int(s) < y or w >= L.po_start(y) - 1]
     if reg: out.append("Regular season winners: " + "; ".join(f"{s} {m}" for s, m in reg))
     # how the seeds were won: the last few weeks of the regular season
