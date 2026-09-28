@@ -258,7 +258,7 @@
         "a": "Benny",
         "b": "Jacob",
         "type": "friend",
-        "label": "high school friends"
+        "label": "friends"
       },
       {
         "a": "Jacob",
@@ -270,7 +270,7 @@
         "a": "Jacob",
         "b": "Jonah",
         "type": "friend",
-        "label": "best man"
+        "label": "friends"
       }
     ]
   },

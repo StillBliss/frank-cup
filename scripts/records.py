@@ -94,6 +94,7 @@ def build_records(D, week_infos, n=5):
             for m, weeks in (D["weeklyDetail"].get(s) or {}).items():
                 for w, e in weeks.items():
                     if not (wi.get(w) or {}).get("standard"): continue
+                    if stage.get((s, int(w), m)) == "Consolation": continue
                     v = fnum(e["you"][i])
                     if v is None: continue
                     rows.append({"m": m, "s": int(s), "w": int(w), "v": v,
@@ -117,6 +118,7 @@ def build_records(D, week_infos, n=5):
     for s in years:
         for w in sorted({int(w) for weeks in (D["weeklyDetail"].get(s) or {}).values() for w in weeks}):
             for m, g in week_grades(D, s, w).items():
+                if stage.get((s, w, m)) == "Consolation": continue
                 gweeks.append({"m": m, "s": int(s), "w": w, "stage": stage.get((s, w, m), "Regular"),
                                "G": g["G"], "H": g["H"], "P": g["P"]})
     for r in gweeks:
@@ -143,7 +145,8 @@ def build_records(D, week_infos, n=5):
                           "win": win, "lose": (r["b"] if win == r["a"] else r["a"]) if win else None,
                           "score": f"{hi}-{lo}-{r['at']}", "margin": hi - lo, "hi": hi,
                           "tied": r["aw"] == r["al"]})
-    blow = _top([g for g in games if g["stage"] != "Consolation"], "margin", 8)
+    games = [g for g in games if g["stage"] != "Consolation"]
+    blow = _top(games, "margin", 8)
     finals = []
     for s in years:
         fs = [g for g in games if g["s"] == int(s) and g["stage"] == "Playoff"]

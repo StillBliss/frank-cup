@@ -1700,7 +1700,7 @@ function vHistory(){
     <h2 class="sec">Head to head, regular season</h2><div id="h2h-reg"></div>
     <h2 class="sec">Head to head, playoffs</h2><div id="h2h-po"></div>`;
   h2hGrid(D.h2h, "Every pairing, regular season only, all seasons combined. Read across a row for that manager's record. Click any cell for the season by season breakdown.", "h2h-reg");
-  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Championship bracket games only, consolation left out. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
+  if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Championship bracket games only. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
 }
 
 /* ---------- manager ---------- */
@@ -1982,8 +1982,8 @@ function relChart(){
       d=`M${x1},${y} L${x2},${y}`; lx=(x1+x2)/2; ly=y+H/2+14; }
     else { const top=a.y<b.y?e.a:e.b, bot=top===e.a?e.b:e.a;
       const x1=cx(top), y1=pos[top].y+H, x2=cx(bot), y2=pos[bot].y, my=(y1+y2)/2;
-      d=`M${x1},${y1} L${x1},${my} L${x2},${my} L${x2},${y2}`; lx=(x1===x2?x1+8:Math.max(x1,x2)+8); ly=my+(x1===x2?4:-5); }
-    const lab=e.label?`<text class="elabel" x="${lx}" y="${ly}" text-anchor="${a.y===b.y?"middle":"start"}">${esc(e.label)}</text>`:"";
+      d=`M${x1},${y1} L${x1},${my} L${x2},${my} L${x2},${y2}`; lx=(x1===x2?x1+8:(x1+x2)/2); ly=my+(x1===x2?4:-6); }
+    const lab=e.label?`<text class="elabel" x="${lx}" y="${ly}" text-anchor="${a.y===b.y||a.x!==b.x?"middle":"start"}">${esc(e.label)}</text>`:"";
     return `<path class="edge ${esc(e.type)}" d="${d}"/>${lab}`;
   }).join("");
   const franks=R.nodes.filter(n=>n.group==="frank");
@@ -2001,7 +2001,7 @@ function relChart(){
   const notes=R.nodes.map(n=>`<div><b>${esc(n.id)}</b> · ${esc(n.note||"")}</div>`).join("");
   return `<div class="chartbox rel"><h3>${esc(R.title||"How the league is connected")}</h3><p>${esc(R.note||"")}</p>
     <div class="scroll"><svg viewBox="0 0 ${vw} ${vh}" role="img" aria-label="Relationship map of the league's managers" style="min-width:720px">${bracket}${edges}${nodes}</svg></div>
-    <div class="rel-notes">${notes}</div></div>`;
+    </div>`;
 }
 
 /* ---------- records ---------- */
@@ -2012,7 +2012,7 @@ function recWho(x,k){
   return `<button type="button" class="who" data-mgr="${esc(m)}"><span class="dot" style="background:${col(m)}"></span>${esc(m)}</button>`+
     (prev?`<span class="prevown" title="${esc(((D.ownerChanges||{})[m]||{}).before||"previous owner")}">prev. owner</span>`:"");
 }
-const stgTag=st=>st==="Playoff"?`<span class="stg po">playoffs</span>`:st==="Consolation"?`<span class="stg">consolation</span>`:"";
+const stgTag=st=>st==="Playoff"?`<span class="stg po">playoffs</span>`:"";
 function vRecords(){
   const R=D.records; if(!R){el("v-records").innerHTML=`<p class="lede">No records yet.</p>`;return;}
   const fmtV=(c,v)=>fmtStat(c,v);
@@ -2048,7 +2048,7 @@ function vRecords(){
     <div class="scroll"><table class="rect"><thead><tr><th>Season</th><th class="l">Champion</th><th class="l">Runner-up</th><th>Score</th><th class="l"></th></tr></thead><tbody>${finals}</tbody></table></div>
     <div class="rec-grid" style="margin-top:16px">
       <div class="rec-card"><h3>Tied playoff weeks</h3><p class="n">A tied playoff week goes to the higher seed. It has happened ${(R.playoffTies||[]).length} times, and the higher seed won every one.</p><ul class="rec-list">${ties}</ul></div>
-      <div class="rec-card"><h3>Biggest blowouts</h3><p class="n">Widest category margins, consolation games left out.</p><ul class="rec-list">${blow}</ul></div>
+      <div class="rec-card"><h3>Biggest blowouts</h3><p class="n">Widest category margins.</p><ul class="rec-list">${blow}</ul></div>
     </div>
     <h2 class="sec">Weekly grades</h2>
     <p class="lede tight">100 is league average that week, so every week counts here, long ones included.</p>

@@ -466,6 +466,12 @@ def streaks(L, y, w):
 
 
 # ============================================================== records
+def consolation(L, y, w, m):
+    """True for a team playing a consolation game that week; those weeks never count for anything"""
+    if w < L.po_start(y): return False
+    return not any(L.in_champ(y, r) and m in (r["a"], r["b"]) for r in L.rows(y) if r["week"] == w)
+
+
 def std(L, y, w):
     """a standard 7-day week (not the stretched opening or All-Star week)"""
     info = (L.D.get("weekInfo") or {}).get(str(y), {}).get(str(w))
@@ -481,6 +487,7 @@ def weekly_records(L, y, w):
                 ww = int(ws)
                 if yy > y or (yy == y and ww > w): continue
                 if not std(L, yy, ww): continue      # long/short weeks don't count toward single-week records
+                if consolation(L, yy, ww, m): continue
                 for i in L.score_idx:
                     v = fnum(e["you"][i])
                     if v is None: continue
@@ -510,7 +517,7 @@ def weekly_records(L, y, w):
             g = L.grades(yy, ww)
             if not g: continue
             for m, v in g.items():
-                if v["G"] is not None: allg.append((v["G"], m, yy, ww))
+                if v["G"] is not None and not consolation(L, yy, ww, m): allg.append((v["G"], m, yy, ww))
     allg.sort(key=lambda t: -t[0])
     for rank, (v, m, yy, ww) in enumerate(allg[:5]):
         if yy == y and ww == w:
@@ -651,7 +658,7 @@ def trivia_pool(L, y, w):
         for yy in L.seasons():
             for m, weeks in L.D["weeklyDetail"].get(str(yy), {}).items():
                 for ws, e in weeks.items():
-                    if not cut(yy, int(ws)) or not std(L, yy, int(ws)): continue
+                    if not cut(yy, int(ws)) or not std(L, yy, int(ws)) or consolation(L, yy, int(ws), m): continue
                     v = fnum(e["you"][i])
                     if v is not None and (best is None or v > best[0]): best = (v, m, yy, int(ws))
         if best:
@@ -661,6 +668,7 @@ def trivia_pool(L, y, w):
     for yy in L.seasons():
         for r in L.rows(yy):
             if r.get("live") or not cut(yy, r["week"]): continue
+            if r["stage"] != "Regular" and not L.in_champ(yy, r): continue
             mg = abs(r["aw"] - r["al"])
             if big is None or mg > big[0]:
                 win, lose = (r["a"], r["b"]) if r["aw"] > r["al"] else (r["b"], r["a"])
@@ -716,7 +724,7 @@ def trivia_pool(L, y, w):
         for ww in L.completed_weeks(yy):
             if not cut(yy, ww): continue
             g = L.grades(yy, ww) or {}
-            allg += [(v["G"], m, yy, ww) for m, v in g.items() if v["G"] is not None]
+            allg += [(v["G"], m, yy, ww) for m, v in g.items() if v["G"] is not None and not consolation(L, yy, ww, m)]
     if allg:
         v, m, yy, ww = max(allg)
         add("grade", "grade", "Who owns the highest single-week grade of the keeper era?", f"{who_then(L, m, yy)}, a {v:.0f} in {yy} week {ww}.")
