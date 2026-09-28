@@ -39,7 +39,7 @@ def main():
     os.makedirs(OUT, exist_ok=True)
     cfg = json.load(open(update.CFG, encoding="utf-8"))
     y = update.Yahoo()
-    mine = [lg for lg in update.my_leagues(y) if lg["name"] == cfg.get("leagueName", "The Frank Cup")]
+    mine = [lg for lg in update.my_leagues(y) if lg["name"] in (set(cfg.get("yahooLeagueNames") or []) | {cfg.get("leagueName", "The Frank Cup")})]
     cur = max(mine, key=lambda lg: lg["season"])
     lk = cur["key"]
     game = lk.split(".l.")[0]

@@ -1,5 +1,5 @@
 """
-The Frank Cup - player-level pulls for the news desk.
+The Frank Family Classic - player-level pulls for the news desk.
 
 Yahoo: every team's roster for every day of a finished week, with that day's
 stats, so the writers know who was started, who sat on the bench, who was on

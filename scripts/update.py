@@ -1,5 +1,5 @@
 """
-The Frank Cup - automated refresh (runs on GitHub Actions)
+The Frank Family Classic - automated refresh (runs on GitHub Actions)
 
 1. Gets a Yahoo access token from the refresh token in the repo Secrets.
 2. Pulls any season folder that is missing (first run pulls all history).
@@ -158,8 +158,10 @@ def main():
         cfg = json.load(f)
     first = min(int(k) for k in cfg["teamIds"])
     y = Yahoo()
-    name = cfg.get("leagueName", "The Frank Cup")
-    mine = [lg for lg in my_leagues(y) if lg["name"] == name]
+    # the league was renamed; Yahoo may still carry the old name
+    names = set(cfg.get("yahooLeagueNames") or []) | {cfg.get("leagueName", "The Frank Cup")}
+    name = " or ".join(sorted(names))
+    mine = [lg for lg in my_leagues(y) if lg["name"] in names]
     if not mine:
         die(f"No league named '{name}' on this Yahoo account.")
     cur = max(mine, key=lambda lg: lg["season"])

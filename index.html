@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Frank Cup</title>
+<title>The Frank Family Classic</title>
 <style>
 :root{
   --field:#0B1610; --housing:#111E16;
@@ -445,7 +445,7 @@ table.stand th.l,table.stand td.l{padding-left:6px;padding-right:6px}
 .radar h3{font-size:15px;letter-spacing:.05em;text-align:center}
 .radar p{margin:2px 0 6px;color:var(--bone-faint);font-size:11.5px;text-align:center}
 
-/* ---------- The Frank Cup Gazette ---------- */
+/* ---------- The FFC Gazette ---------- */
 .gz{max-width:760px;margin:0 auto}
 .gz-mast{text-align:center;border-bottom:3px double var(--rule);padding:6px 0 12px;margin-bottom:14px}
 .gz-mast h2{font-size:40px;letter-spacing:.08em;line-height:1.05}
@@ -616,12 +616,14 @@ table.rtab td.rk{color:var(--bone-faint);font-size:12px}
 table.rtab td.w{color:var(--bone-faint);font-size:12.5px}
 table.rtab td.v{font-weight:650}
 .ptab td{vertical-align:top !important;line-height:1.7}
+#v-standings.on + #v-bracket.on{margin-top:40px}
+@media (max-width:600px){.season-banner{font-size:15px}.season-banner b{font-size:20px}}
 </style>
 </head>
 <body data-season="2026">
 <header class="board">
   <div class="board-top">
-    <div class="mark">THE FRANK <span>CUP</span></div>
+    <div class="mark">THE FRANK FAMILY <span>CLASSIC</span></div>
     <div class="season-banner" id="seasonBanner" aria-live="polite"></div>
     <div class="parkname" id="parkName"></div>
     <div class="season-pick" id="seasonPick" role="group" aria-label="Choose season"></div>
@@ -630,8 +632,8 @@ table.rtab td.v{font-weight:650}
 </header>
 <main>
   <section class="view" id="v-news"></section>
-  <section class="view" id="v-bracket"></section>
   <section class="view on" id="v-standings"></section>
+  <section class="view" id="v-bracket"></section>
   <section class="view" id="v-matchups"></section>
   <section class="view" id="v-trends"></section>
   <section class="view" id="v-stats"></section>
@@ -815,6 +817,8 @@ function crowns(m){
 }
 const nameBtn=m=>`<button type="button" class="who" data-mgr="${esc(m)}">
   <span class="dot" style="background:${col(m)}"></span>${esc(m)}${crowns(m)}</button>`;
+const namePlain=m=>`<button type="button" class="who" data-mgr="${esc(m)}"><span class="dot" style="background:${col(m)}"></span>${esc(m)}</button>`;
+const nameNoCrown=m=>`<button type="button" class="who" data-mgr="${esc(m)}">${esc(m)}</button>`;
 const nameBare=m=>`<button type="button" class="who" data-mgr="${esc(m)}">${esc(m)}${crowns(m)}</button>`;
 
 function buildChrome(){
@@ -930,7 +934,7 @@ function vStandings(){
      seventh row whatever the table is sorted by */
   const CUT=6;
   const rows=data.map((d,i)=>`<tr class="${i===CUT-1?"cut":""}">${COLS.map(c=>
-    `<td class="${c.cls||""}${c.exp?" exp":""}">${c.k==="m"?nameBtn(d.m):(c.fmt?c.fmt(d):"")}</td>`
+    `<td class="${c.cls||""}${c.exp?" exp":""}">${c.k==="m"?namePlain(d.m):(c.fmt?c.fmt(d):"")}</td>`
   ).join("")}</tr>`).join("");
   el("v-standings").innerHTML=`<p class="lede">Expected is what your own numbers would have earned against each of the other nine managers rather than the one the schedule gave you. Draw is the difference, so it sums to zero across the league: every soft week you drew was a hard one for someone else. The colored line always sits between the sixth and seventh row, where the six-team playoff field is cut. Click a column to sort, or a name for that manager's page.</p>
     <div class="scroll fullbleed"><table class="stand"><thead><tr>${ths}</tr></thead><tbody>${rows}</tbody></table></div>`;
@@ -1613,19 +1617,19 @@ function vBracket(){
       /* in progress: no winner yet, better seed on top */
       const [x,xs,y,ys]=(seeds[g.winner]||99)<=(seeds[g.loser]||99)?[g.winner,g.ws,g.loser,g.ls]:[g.loser,g.ls,g.winner,g.ws];
       const r=(m,sc)=>`<div class="row"><span class="sd">${sdOf(m)}</span><span class="dot" style="background:${col(m)}"></span>
-        <span class="nm">${nameBare(m)}</span><span class="sc">${sc}</span></div>`;
+        <span class="nm">${nameNoCrown(m)}</span><span class="sc">${sc}</span></div>`;
       return `<div class="tie inprog">${r(x,xs)}${r(y,ys)}<div class="liveflag">In progress, live score</div></div>`;
     }
     const isTie=g.ws===g.ls;
     return `<div class="tie">
       <div class="row w"><span class="sd">${sdOf(g.winner)}</span><span class="dot" style="background:${col(g.winner)}"></span>
-        <span class="nm">${nameBare(g.winner)}</span><span class="sc">${g.ws}</span></div>
+        <span class="nm">${nameNoCrown(g.winner)}</span><span class="sc">${g.ws}</span></div>
       <div class="row lo"><span class="sd">${sdOf(g.loser)}</span><span class="dot" style="background:${col(g.loser)}"></span>
-        <span class="nm">${nameBare(g.loser)}</span><span class="sc">${g.ls}</span></div>
+        <span class="nm">${nameNoCrown(g.loser)}</span><span class="sc">${g.ls}</span></div>
       ${isTie?`<div class="tiebreak">Tied ${g.ws}–${g.ls}, decided on seed</div>`:""}</div>`;
   };
   const bye=m=>`<div class="byebox"><span class="sd" style="font-family:var(--cond);width:14px">${sdOf(m)}</span>
-    <span class="dot" style="background:${col(m)}"></span>${nameBare(m)} <span style="margin-left:auto">bye</span></div>`;
+    <span class="dot" style="background:${col(m)}"></span>${nameNoCrown(m)} <span style="margin-left:auto">bye</span></div>`;
   // true two-sided bracket: each half = bye + its quarterfinal, converging on the final
   const halves = sf.map(semi=>{
     const byeTeam = [semi.winner,semi.loser].find(m=>byes.includes(m)) || null;
@@ -1642,14 +1646,14 @@ function vBracket(){
       ${H.feeder?tie(H.feeder):""}</div>
     <div class="brcol"><div class="rndlbl">SEMIFINAL</div>${tie(H.semi)}</div>`;
   const pending=`<div class="byebox" style="justify-content:center">not played yet</div>`;
-  el("v-bracket").innerHTML=`<p class="lede">Championship bracket. The top two seeds sat out the first round; the small number beside each name is their seed.${
+  el("v-bracket").innerHTML=`<h2 class="sec">Playoff bracket</h2><p class="lede">The top two seeds sat out the first round; the small number beside each name is their seed.${
     !fin?` The ${esc(season)} final has not been played.`:fin.live?` The ${esc(season)} final is in progress.`:""}</p>
     <div class="bracket bracket5">
       ${sideCol(H1)}
       <div class="brcol">
         <div class="rndlbl">FINAL</div>${fin?tie(fin):pending}
         ${fin&&!fin.live?`<div class="champbox"><div class="lb">CHAMPION</div>
-          <div class="nm"><span class="dot" style="background:${col(fin.winner)};width:12px;height:12px"></span>${esc(fin.winner)} \u{1F451}</div></div>`:""}
+          <div class="nm"><span class="dot" style="background:${col(fin.winner)};width:12px;height:12px"></span>${esc(fin.winner)}</div></div>`:""}
         ${third?`<div class="rndlbl" style="margin-top:14px">THIRD PLACE</div>${tie(third)}`:""}
       </div>
       <div class="brcol"><div class="rndlbl">SEMIFINAL</div>${tie(H2.semi)}</div>
@@ -1908,7 +1912,7 @@ function vManager(){
       <span class="dot" style="background:${col(m)}"></span>${esc(m)}</button>`).join("")}</div>
     <div class="mghead"><span class="dot" style="background:${col(who)};width:20px;height:20px"></span>
       <span class="mgname">${esc(who)}</span><span>${crowns(who)}</span></div>
-    <p class="lede">${esc(D.seasons[String(D.meta.currentSeason)].teamNames[who])} — four seasons in The Frank Cup.</p>
+    <p class="lede">${esc(D.seasons[String(D.meta.currentSeason)].teamNames[who])} — four seasons in The Frank Family Classic.</p>
     <div class="kpis">
       <div class="kpi"><div class="k">WEEKS W-L-T</div><div class="v">${rec(...life.match)}</div></div>
       <div class="kpi"><div class="k">WIN PCT</div><div class="v">${pct3(life.matchPct)}</div></div>
@@ -1945,7 +1949,7 @@ function vManager(){
     h.onclick=ev=>{ev.stopPropagation();openRadarPop(who,h.dataset.cat,ev.clientX,ev.clientY);};});
 }
 
-/* ---------- news: The Frank Cup Gazette ---------- */
+/* ---------- news: The FFC Gazette ---------- */
 function gzText(t){
   return String(t||"").split(/\n\s*\n/).map(p=>p.trim()).filter(Boolean)
     .map(p=>"<p>"+esc(p).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\n/g,"<br>")+"</p>").join("");
@@ -1996,10 +2000,10 @@ function vNews(){
   const N=window.NEWS, iss=(N&&N.issues)||[];
   const done=iss.filter(i=>i.articles&&i.articles.length&&String(i.season)===season);
   if(!done.length&&iss.some(i=>i.articles&&i.articles.length)){
-    el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2></div>
+    el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FFC <span>GAZETTE</span></h2></div>
       <p class="gz-empty">No Gazette for ${esc(season)}. The paper started printing in ${esc(String(Math.min(...iss.map(i=>i.season))))}.</p></div>`;return;}
   if(!done.length){
-    el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2></div>
+    el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FFC <span>GAZETTE</span></h2></div>
       <p class="gz-empty">The first edition is on the presses. It prints with the next data refresh.</p></div>`;return;}
   const cur=done.find(i=>i.id===issueId)||done[done.length-1];
   issueId=cur.id;
@@ -2023,7 +2027,7 @@ function vNews(){
       ${dl.length>1?`<div class="gz-days">${dl.slice(0,7).map(x=>`<button type="button" data-day="${esc(x.date)}" aria-pressed="${x.date===dcur.date}">${esc(fmtD(x.date))}</button>`).join("")}</div>`:""}
     </details>`:"";
   el("v-news").innerHTML=`<div class="gz">
-    <div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2>
+    <div class="gz-mast"><h2>THE FFC <span>GAZETTE</span></h2>
       <div class="sub">${esc(day)} · Week ${cur.week}, ${cur.season} · ${esc(phase)}</div>
       <div class="ai">Written by AI from the league's real numbers. The writers are fictional; the stats aren't.</div></div>
     ${wire}
@@ -2120,7 +2124,7 @@ function vRecords(){
     return `<tr><th>${esc(c)}${lower.has(c)?" ↓":""}</th><td><b>${fmtV(c,top[0].v)}</b></td><td class="l">${holders(top,c,false)}</td>
       <td class="l">${rest.length?nextBest(rest,c,false):""}</td>
       <td class="l"><span class="w">${wr?`${fmtV(c,wr.v)} ${esc(wr.m)} ${wr.s}`:""}</span></td></tr>`;}).join("");
-  el("v-records").innerHTML=histTabs()+`<p class="lede">Keeper era records, ${esc(R.era)}, regular season and championship bracket, since Benny took over as commissioner and made the Frank Cup a keeper league. The league itself goes back to 2011.</p>
+  el("v-records").innerHTML=histTabs()+`<p class="lede">Keeper era records, ${esc(R.era)}, regular season and championship bracket, since Benny took over as commissioner and made the league a keeper league. The league itself goes back to 2011.</p>
     <div class="rec-grid wide">
       <div class="rec-card"><h3>Worst bad beats</h3><p class="n">The best weeks that still lost the matchup, by grade.</p>${rtab(BEAT_HEAD,(R.badBeats||[]).map(beatRow).join(""))}</div>
       <div class="rec-card"><h3>Luckiest weeks</h3><p class="n">The worst weeks that still won the matchup, by grade.</p>${rtab(BEAT_HEAD,(R.luckyWeeks||[]).map(luckRow).join(""))}</div>

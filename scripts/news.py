@@ -1,5 +1,5 @@
 """
-The Frank Cup Gazette - weekly AI-written league news.
+The Frank Family Classic Gazette - weekly AI-written league news.
 
 How it works
   1. The robot does the reporting. For each finished week it builds a "beat
@@ -680,7 +680,7 @@ def trivia_pool(L, y, w):
         if yy >= y: continue
         fp = (L.D.get("finalPlace") or {}).get(str(yy))
         if fp:
-            add("champion", f"champ-{yy}", f"Who won the {yy} Frank Cup championship, and who did they beat in the final?",
+            add("champion", f"champ-{yy}", f"Who won the {yy} Frank Family Classic championship, and who did they beat in the final?",
                 f"{who_then(L, fp[0], yy)}, over {who_then(L, fp[1], yy)}." if len(fp) > 1 else f"{fp[0]}.")
         st = L.D["seasons"][str(yy)]["standings"]
         add("regular", f"reg-{yy}", f"Who finished first in the {yy} regular season?", f"{who_then(L, st[0]['manager'], yy)}.")
@@ -746,7 +746,7 @@ def trivia_pool(L, y, w):
     if frank:
         add("family", "fam-youngest", "Who is the youngest of the Frank siblings in the league?", f"{frank[-1]}.")
         add("family", "fam-oldest-brother", "Which of Heidi's brothers is the oldest?", f"{frank[1]}.")
-        add("family", "fam-name", "Where does the Frank Cup get its name?", "From the Frank family: it's Heidi's maiden name, and her 4 younger brothers all play.")
+        add("family", "fam-name", "Where does the Frank Family Classic get its name?", "From the Frank family: it's Heidi's maiden name, and her 4 younger brothers all play. It was called the Frank Cup until 2027.")
     add("family", "fam-austin", "Which manager is Austin's dad?", "Ben.")
     add("family", "fam-jacob", "Who ran Jacob's team before 2026, and whose friend was he?", "A different Jacob, Jacob Winn, Andrew's friend.")
     return qs
@@ -1452,7 +1452,7 @@ class Notebook:
         return ""
 
     def text(self):
-        out = [f"THE FRANK CUP GAZETTE, issue dated {self.date}. Covers week {self.w} of the {self.y} season "
+        out = [f"THE FRANK FAMILY CLASSIC GAZETTE, issue dated {self.date}. Covers week {self.w} of the {self.y} season "
                f"({self.start} to {self.stop}). Phase: {self.phase}. League: 10 teams, Yahoo head-to-head, "
                f"{len(self.L.score_idx)} scoring categories: {', '.join(self.L.cats[i] for i in self.L.score_idx)} "
                f"(E, L, ERA, WHIP lower is better). Weekly winner is whoever wins more categories. "
@@ -1678,7 +1678,7 @@ def notes_text(cfg, allow_cody):
 
 def writer_prompt(cfg, wr, nb, feature, own_prev, ledger, allow_cody):
     extra = ', "rankings": {"Manager": "one-line blurb", ...} (one entry for every ranked team)' if wr["bit"] == "rankings" else ""
-    system = (f"You are {wr['name']}, columnist for The Frank Cup Gazette ({wr['desk']}), the weekly paper of a "
+    system = (f"You are {wr['name']}, columnist for The Frank Family Classic Gazette ({wr['desk']}), the weekly paper of a "
               f"10-manager fantasy baseball league of family and friends.\nVOICE: {wr['voice']}\nYOUR BEAT: {wr['beat']}\n\n"
               f"{RULES.replace('EXTRA', extra)}\n\n{glossary_text()}\n\n{notes_text(cfg, allow_cody)}\n\n{staff_text(cfg, wr['id'])}")
     parts = [nb.text(), f"\n\n# YOUR WEEKLY FEATURE: {wr['bit_name']}", feature]
@@ -1881,7 +1881,7 @@ def feature_for(cfg, wr, nb, state, L):
     if wr["bit"] == "history":
         items = history_items(L, y, w, nb)
         bit["data"] = {"items": items[:8]}
-        return bit, ("Material for This Week in Frank Cup History:\n" + "\n".join(f"- {x}" for x in items) +
+        return bit, ("Material for This Week in Frank Family Classic History:\n" + "\n".join(f"- {x}" for x in items) +
                      "\nIn the bit field, tell one short historical tale from this material."), None
     if wr["bit"] == "waiver":
         wd = waiver_data(L, y, w, nb)
@@ -1987,7 +1987,7 @@ class DailyNotebook:
         if wire: self.sections["MLB news involving league players"] = wire[:12]
 
     def text(self):
-        out = [f"THE FRANK CUP MORNING WIRE for {dt.date.fromisoformat(self.day) + dt.timedelta(days=1)}. Covers "
+        out = [f"THE FRANK FAMILY CLASSIC MORNING WIRE for {dt.date.fromisoformat(self.day) + dt.timedelta(days=1)}. Covers "
                f"{self.day}, during week {self.w} of the {self.y} season ({self.start} to {self.stop}). "
                f"Scores are categories won-lost-tied so far this week."]
         for k, v in self.sections.items():
@@ -2017,7 +2017,7 @@ def write_daily(L, cfg, state, y, w, day):
         log(f"daily {day}: no championship games to cover"); return False
     wr = cfg["daily"]
     prev = [x for x in state.get("daily", []) if x["date"] < day][-3:]
-    system = (f"You are {wr['name']}, host of {wr['desk']} for The Frank Cup Gazette, a fantasy baseball league of family "
+    system = (f"You are {wr['name']}, host of {wr['desk']} for The Frank Family Classic Gazette, a fantasy baseball league of family "
               f"and friends.\nVOICE: {wr['voice']}\n\n{DAILY_RULES}\n\n{glossary_text()}\n\n{notes_text(cfg, False)}")
     user = dn.text()
     if prev:

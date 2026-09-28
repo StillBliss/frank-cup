@@ -1,5 +1,5 @@
 {
-  "leagueName": "The Frank Cup",
+  "leagueName": "The Frank Family Classic",
   "managers": [
     "Benny",
     "Andrew",
@@ -117,7 +117,7 @@
   },
   "relationships": {
     "title": "How the league is connected",
-    "note": "The Frank Cup is named for the Frank family: Heidi's maiden name. Her four younger brothers all play, and so do her son and her nephew.",
+    "note": "The Frank Family Classic is named for the Frank family: Heidi's maiden name. Her four younger brothers all play, and so do her son and her nephew.",
     "nodes": [
       {
         "id": "Heidi",
@@ -369,5 +369,9 @@
       ]
     },
     "_note": "Players kept going into each season: name -> [manager, round he was kept in]. Add a new season's list after each keeper deadline."
-  }
+  },
+  "yahooLeagueNames": [
+    "The Frank Cup",
+    "The Frank Family Classic"
+  ]
 }

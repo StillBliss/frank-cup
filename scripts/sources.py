@@ -1,5 +1,5 @@
 """
-The Frank Cup - outside news sources for the Gazette.
+The Frank Family Classic - outside news sources for the Gazette.
 
 Every source is free and needs no key. Each one is optional: if a source is
 down or changes shape, it is skipped and the rest still work.

@@ -1,11 +1,12 @@
 {
  "league_notes": [
-  "The Frank Cup goes back to 2011 as a redraft league. In 2023 Benny took over as commissioner and made it a keeper league. Everything in the notebook covers 2023 on, the keeper era: say 'keeper-era record' or 'since 2023', never 'all-time' or 'in league history', and never say the league started in 2023.",
+  "The league, The Frank Family Classic (called The Frank Cup until the 2027 rename), goes back to 2011 as a redraft league. In 2023 Benny took over as commissioner and made it a keeper league. Everything in the notebook covers 2023 on, the keeper era: say 'keeper-era record' or 'since 2023', never 'all-time' or 'in league history', and never say the league started in 2023.",
   "Benny won the first 2 keeper-era titles (2023, 2024), Ben won 2025, Andrew won 2026.",
   "Two Jacobs: through 2025 Jacob's team belonged to Jacob Winn, Andrew's friend. Since 2026 it belongs to Jacob Randall, Benny's high school friend. Both are just 'Jacob' in the notebook. Anything before 2026 (records, beatdowns, the 3-17 2025 season, trivia answers, head-to-head history) belongs to the previous Jacob; never pin it on the new one.",
   "Benny and Ben are two different managers. Never mix them up.",
-  "The league is family and friends. The Frank siblings, oldest to youngest: Heidi, Ben, Gabe, Barak, Andrew (Frank is Heidi's maiden name, hence the Frank Cup). Benny is Heidi's son, so the four Frank brothers are his uncles. Austin is Ben's oldest son, Benny's cousin, older than Benny. Todd is connected to Heidi; never write about the state of Todd and Heidi's relationship. Brian is Todd's friend. Jacob is Benny's high school friend. Joining in 2027: Robby (Jacob's younger brother) and Jonah (Jacob's best man, a grade below Benny and Jacob). Uncle vs nephew, brother vs brother, cousin vs cousin: these make great storylines when two of them meet or trade.",
-  "The league expands from 10 to 12 teams in 2027."
+  "The league is family and friends. The Frank siblings, oldest to youngest: Heidi, Ben, Gabe, Barak, Andrew (Frank is Heidi's maiden name, hence the name). Benny is Heidi's son, so the four Frank brothers are his uncles. Austin is Ben's oldest son, Benny's cousin, older than Benny. Todd is connected to Heidi; never write about the state of Todd and Heidi's relationship. Brian is Todd's friend. Jacob is Benny's high school friend. Joining in 2027: Robby (Jacob's younger brother) and Jonah (Jacob's best man, a grade below Benny and Jacob). Uncle vs nephew, brother vs brother, cousin vs cousin: these make great storylines when two of them meet or trade.",
+  "The league expands from 10 to 12 teams in 2027.",
+  "Name: the league is The Frank Family Classic (FFC). It was The Frank Cup through the 2026 season; use the new name, and mention the old one only as history."
  ],
  "characters": [
   {
@@ -53,7 +54,7 @@
    "desk": "The Archives",
    "color": "#B8A27A",
    "bit": "history",
-   "bit_name": "This Week in Frank Cup History",
+   "bit_name": "This Week in FFC History",
    "beat": "League history: keeper-era records set or chased, historical parallels and precedents (past finals, tied playoff weeks, repeat matchups), head-to-head history, and the family ties behind the rivalries. He owns any record broken this week.",
    "voice": "The league's old-timer and historian. Warm, a little long-winded, fond of 'I remember when'. Treats the keeper era like it is a century old, and remembers the redraft days before 2023 fondly, though he never makes up facts about them.",
    "day": "monday"
