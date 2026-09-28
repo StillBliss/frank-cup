@@ -615,6 +615,7 @@ table.rtab td.l,table.rtab th.l{text-align:left !important}
 table.rtab td.rk{color:var(--bone-faint);font-size:12px}
 table.rtab td.w{color:var(--bone-faint);font-size:12.5px}
 table.rtab td.v{font-weight:650}
+.ptab td{vertical-align:top !important;line-height:1.7}
 </style>
 </head>
 <body data-season="2026">
@@ -667,7 +668,7 @@ const el=id=>document.getElementById(id);
 const VIEWS=[["news","News"],["standings","Standings"],["matchups","Matchups"],["stats","Stats"],
  ["history","History"],["keepers","Keepers"],["manager","Managers"]];
 /* pages that cover every season at once; the season picker sits out on these */
-const ALL_TIME_VIEWS=new Set(["history","keepers"]);
+const ALL_TIME_VIEWS=new Set(["history","keepers","manager"]);
 let statsTab="table";
 function statsTabs(){
   return `<div class="toggle subtabs" id="statsTabs" role="group" aria-label="Stats view"><button type="button" data-s="table" aria-pressed="${statsTab==="table"}">Team stats</button><button type="button" data-s="charts" aria-pressed="${statsTab==="charts"}">Charts</button></div>`;
@@ -1467,18 +1468,21 @@ function svgRadar(cats,pts,color){
     lb+=`<text class="rhit" data-cat="${esc(c)}" x="${x.toFixed(1)}" y="${(y+3.5).toFixed(1)}" fill="#828C84" font-size="10.5" text-anchor="${anchor}">${esc(c)}${lower.has(c)?" ↓":""}</text>`;});
   return `<svg viewBox="0 0 ${W} ${H}" role="img" style="width:100%;height:auto;display:block">${g}${p}${lb}</svg>`;
 }
+let radarSeason=null;
 function radarBlock(m){
-  const sh=pctlFor(season);
-  const S=D.seasons[season];
+  const rs=(radarSeason&&D.seasons[radarSeason])?radarSeason:String(D.meta.currentSeason);
+  const sh=pctlFor(rs);
+  const S=D.seasons[rs];
+  const pick=`<div class="toggle" id="radarPick" role="group" aria-label="Season">${YEARS.map(y=>`<button type="button" data-rs="${y}" aria-pressed="${y===rs}">${y}</button>`).join("")}</div>`;
   if(!sh||!S.seasonStats||!S.seasonStats[m])
-    return `<h2 class="sec">Category profile, ${esc(season)}</h2>
-      <p class="empty">No season totals for ${esc(season)}.</p>`;
+    return `<h2 class="sec">Category profile</h2>${pick}
+      <p class="empty">No season totals for ${esc(rs)}.</p>`;
   const skip=new Set(D.nonScoring||[]);
   const HIT=D.cats.filter((c,i)=>i<D.hitN&&!skip.has(c));
   const PIT=D.cats.filter((c,i)=>i>=D.hitN&&!skip.has(c));
   const vals=cs=>cs.map(c=>{const t=sh[m+"|"+c]; return t==null?null:t;});
   const c=col(m);
-  return `<h2 class="sec">Category profile, ${esc(season)}</h2>
+  return `<h2 class="sec">Category profile</h2>${pick}
     <p class="lede">Tap any point or category name for the percentile and season total. Each spoke is the share of the league beaten in that category. Out at the rim is best in the league, in at the middle is worst. The four arrowed categories are flipped, so further out is always better.</p>
     <div class="radars">
       <div class="radar"><h3>Hitting</h3><p>${HIT.length} categories</p>${svgRadar(HIT,vals(HIT),c)}</div>
@@ -1770,17 +1774,15 @@ function vHistory(){
 /* ---------- manager ---------- */
 function playerBlocks(m){
   const P=(D.players||{})[m]||{};
-  const Y=((D.playersBySeason||{})[season]||{})[m]||{};
   const li=(rows,fmt)=>rows&&rows.length?"<ol>"+rows.map(fmt).join("")+"</ol>"
     :'<p class="empty">Nothing yet.</p>';
-  return `<h2 class="sec">Players in ${season}</h2>
-  <div class="pcards">
-    <div class="pcard"><h3>Draft, first picks</h3>
-      ${li(Y.draft,r=>`<li>${esc(r.player)} <span class="sub">rd ${r.round}</span></li>`)}
-      <p class="sub">${Y.draftTotal||0} picks in ${season}.</p></div>
-    <div class="pcard"><h3>Added most in ${season}</h3>
-      ${li(Y.added,r=>`<li>${esc(r.player)} <span class="sub">${r.n}\u00d7</span></li>`)}
-      <p class="sub">${Y.addTotal||0} pickups in ${season}.</p></div>
+  const rows=YEARS.slice().reverse().map(s=>{const Y=((D.playersBySeason||{})[s]||{})[m]||{};
+    const dr=(Y.draft||[]).slice(0,5).map(r=>`${esc(r.player)} <span class="sub">rd ${r.round}</span>`).join("<br>")||'<span class="sub">—</span>';
+    const ad=(Y.added||[]).slice(0,5).map(r=>`${esc(r.player)} <span class="sub">${r.n}\u00d7</span>`).join("<br>")||'<span class="sub">—</span>';
+    return `<tr><td>${s}</td><td class="l">${dr}</td><td class="l">${ad}</td><td>${Y.addTotal||0}</td></tr>`;}).join("");
+  return `<h2 class="sec">Players by season</h2>
+  <div class="scroll"><table class="rect ptab"><thead><tr><th>Season</th><th class="l">First draft picks</th><th class="l">Added most</th><th>Pickups</th></tr></thead><tbody>${rows}</tbody></table></div>
+  <div class="pcards" style="margin-top:16px">
     <div class="pcard"><h3>Drafted every year</h3>
       ${li(P.draftedRepeat,r=>`<li>${esc(r.player)} <span class="sub">${r.seasons.join(", ")}</span></li>`)}
       <p class="sub">All seasons. Taken in more than one draft.</p></div>
@@ -1844,7 +1846,8 @@ function bwBlock(m){
 }
 function openRadarPop(m,c,x,y){
   closePop();
-  const sh=pctlFor(season)||{},S=D.seasons[season],j=D.cats.indexOf(c);
+  const rs=(radarSeason&&D.seasons[radarSeason])?radarSeason:String(D.meta.currentSeason);
+  const sh=pctlFor(rs)||{},S=D.seasons[rs],j=D.cats.indexOf(c);
   const p=sh[m+"|"+c], v=S&&S.seasonStats&&S.seasonStats[m]?S.seasonStats[m][j]:null;
   const ord=n=>{const r=n%100;return n+((r>10&&r<14)?"th":({1:"st",2:"nd",3:"rd"}[n%10]||"th"));};
   const d=document.createElement("div");
@@ -1852,7 +1855,7 @@ function openRadarPop(m,c,x,y){
   d.innerHTML=`<button class="cls" aria-label="Close">×</button>
     <h4><span class="dot" style="background:${col(m)}"></span>${esc(c)}${lower.has(c)?" <span style=\"color:var(--bone-faint);font-size:12px\">lower is better</span>":""}</h4>
     <div class="rv"><span>Percentile</span><b>${p==null?"\u2014":ord(Math.round(p*100))}</b></div>
-    <div class="rv"><span>${esc(season)} total</span><b>${fmtStat(c,v)}</b></div>`;
+    <div class="rv"><span>${esc(rs)} total</span><b>${fmtStat(c,v)}</b></div>`;
   document.body.appendChild(d);
   const r=d.getBoundingClientRect();
   d.style.left=Math.max(8,Math.min(x+12,window.innerWidth-r.width-12))+"px";
@@ -1936,6 +1939,8 @@ function vManager(){
   el("mgPick").onclick=e=>{const b=e.target.closest("button");if(!b)return;who=b.dataset.pick;render();};
   el("bwBox").onclick=e=>{const b=e.target.closest("button[data-bw]");if(!b)return;
     bwMode=b.dataset.bw;el("bwBox").innerHTML=bwBlock(who);};
+  const rp=el("radarPick");
+  if(rp) rp.onclick=e=>{const b=e.target.closest("button");if(!b)return;radarSeason=b.dataset.rs;render();};
   el("v-manager").querySelectorAll(".rhit").forEach(h=>{
     h.onclick=ev=>{ev.stopPropagation();openRadarPop(who,h.dataset.cat,ev.clientX,ev.clientY);};});
 }
@@ -1989,7 +1994,10 @@ function gzBit(a){
 }
 function vNews(){
   const N=window.NEWS, iss=(N&&N.issues)||[];
-  const done=iss.filter(i=>i.articles&&i.articles.length);
+  const done=iss.filter(i=>i.articles&&i.articles.length&&String(i.season)===season);
+  if(!done.length&&iss.some(i=>i.articles&&i.articles.length)){
+    el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2></div>
+      <p class="gz-empty">No Gazette for ${esc(season)}. The paper started printing in ${esc(String(Math.min(...iss.map(i=>i.season))))}.</p></div>`;return;}
   if(!done.length){
     el("v-news").innerHTML=`<div class="gz"><div class="gz-mast"><h2>THE FRANK CUP <span>GAZETTE</span></h2></div>
       <p class="gz-empty">The first edition is on the presses. It prints with the next data refresh.</p></div>`;return;}
@@ -2004,7 +2012,7 @@ function vNews(){
       <div class="gz-by"><i style="background:${esc(a.color)}"></i>${esc(a.name.toUpperCase())} <span>· ${esc(a.desk)}${a.day==="thursday"?" · Thursday":""}</span></div>
       <h3>${esc(a.headline)}</h3>${a.dek?`<p class="gz-dek">${esc(a.dek)}</p>`:""}
       <div class="gz-body">${gzText(a.body)}</div>${gzBit(a)}</article>`).join("");
-  const dl=(N.daily||[]).slice().sort((x,y)=>x.date<y.date?1:-1);
+  const dl=(N.daily||[]).filter(x=>String(x.season||String(x.date).slice(0,4))===season).sort((x,y)=>x.date<y.date?1:-1);
   const dcur=dl.find(x=>x.date===wireDay)||dl[0];
   const fmtD=s=>new Date(s+"T12:00:00").toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"});
   const wire=dcur?`<details class="gz-wire" style="--c:${esc(dcur.color||"#E07A3F")}"${dcur.date>=cur.date||wireDay?" open":""}>
