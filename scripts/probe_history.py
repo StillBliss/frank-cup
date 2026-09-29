@@ -40,6 +40,27 @@ if frank:
         lg["readable"] = True
         out["chain"].append(lg)
 
+# try a known old league directly, then follow its links both ways
+start = os.environ.get("PROBE_KEY", "346.l.170599")
+out["direct"] = []
+def meta(key):
+    m = y.get(f"league/{key}/metadata")
+    if not m:
+        return None
+    b = m["fantasy_content"]["league"][0]
+    lg = league_meta(b); lg["renewed"] = (b.get("renewed") or "").strip()
+    lg["num_teams"] = b.get("num_teams"); lg["url"] = b.get("url")
+    return lg
+first = meta(start)
+out["direct"].append(first or {"key": start, "readable": False})
+for field in ("renew", "renewed"):
+    lg, seen = first, set()
+    while lg and lg.get(field) and lg[field] not in seen and len(seen) < 20:
+        seen.add(lg[field])
+        gk, lid = lg[field].split("_", 1)
+        key = f"{gk}.l.{lid}"
+        lg = meta(key)
+        out["direct"].append(lg or {"key": key, "readable": False})
 out["calls"] = y.calls
 save("history_probe.json", out)
 print(json.dumps(out, indent=1)[:3000])
