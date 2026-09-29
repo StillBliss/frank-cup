@@ -6,8 +6,10 @@ on:
   # so 3:17 AM Pacific = 10:17 UTC. Months limited to Mar-Oct.
   # An odd minute, because GitHub often skips jobs scheduled on the hour.
   # Mondays write the Gazette's Monday desk, Thursdays add the midweek desk, and every day writes The Morning Wire.
-  schedule:
-    - cron: "17 10 * 3-10 *"
+  # Off for the offseason (season ended September 2026). To turn the daily run
+  # back on before Opening Day, restore these two lines:
+  # schedule:
+  #   - cron: "17 10 * 3-10 *"
   workflow_dispatch:
     inputs:
       redo_news:
