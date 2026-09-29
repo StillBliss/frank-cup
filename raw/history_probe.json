@@ -61,5 +61,107 @@
   "2026": "469"
  },
  "errors": [],
- "calls": 5
+ "direct": [
+  {
+   "season": 2015,
+   "key": "346.l.170599",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "328_87406",
+   "renewed": "357_74165",
+   "num_teams": 10,
+   "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599"
+  },
+  {
+   "season": 2014,
+   "key": "328.l.87406",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "",
+   "renewed": "346_170599",
+   "num_teams": 10,
+   "url": "https://baseball.fantasysports.yahoo.com/2014/b1/87406"
+  },
+  {
+   "season": 2016,
+   "key": "357.l.74165",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "346_170599",
+   "renewed": "370_123413",
+   "num_teams": 10,
+   "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165"
+  },
+  {
+   "season": 2017,
+   "key": "370.l.123413",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "357_74165",
+   "renewed": "378_102212",
+   "num_teams": 12,
+   "url": "https://baseball.fantasysports.yahoo.com/2017/b1/123413"
+  },
+  {
+   "season": 2018,
+   "key": "378.l.102212",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "370_123413",
+   "renewed": "388_93775",
+   "num_teams": 12,
+   "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212"
+  },
+  {
+   "season": 2019,
+   "key": "388.l.93775",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "378_102212",
+   "renewed": "404_110221",
+   "num_teams": 12,
+   "url": "https://baseball.fantasysports.yahoo.com/2019/b1/93775"
+  },
+  {
+   "season": 2021,
+   "key": "404.l.110221",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 24,
+   "current": 24,
+   "renew": "388_93775",
+   "renewed": "412_59223",
+   "num_teams": 12,
+   "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221"
+  },
+  {
+   "season": 2022,
+   "key": "412.l.59223",
+   "name": "Big Monies",
+   "start": 1,
+   "end": 23,
+   "current": 23,
+   "renew": "404_110221",
+   "renewed": "422_77247",
+   "num_teams": 12,
+   "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223"
+  },
+  {
+   "key": "422.l.77247",
+   "readable": false
+  }
+ ],
+ "calls": 13
 }
