@@ -600,13 +600,6 @@ body[data-season="2025"]{--bulb:#D98CF0}
 body[data-season="2026"]{--bulb:#E8A62E}
 body[data-season="ALL"]{--bulb:#CFC8B6}
 body[data-season="REDRAFT"]{--bulb:#C9A36A}
-.era-toggle{display:flex;gap:0;margin:0 0 14px;border:1px solid var(--rule);border-radius:2px;overflow:hidden;width:max-content;max-width:100%}
-.era-toggle button{font-family:var(--cond);font-size:17px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--bone-dim);
-  border:0;border-right:1px solid var(--rule);padding:10px 20px;cursor:pointer;line-height:1.1;text-align:left}
-.era-toggle button:last-child{border-right:0}
-.era-toggle button small{display:block;font-size:12px;letter-spacing:.05em;opacity:.75;text-transform:none}
-.era-toggle button[aria-pressed="true"]{background:var(--bulb);color:#111}
-@media (max-width:600px){.era-toggle button{font-size:14px;padding:8px 12px}}
 .champwall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:6px 0 20px}
 .champwall .cw{border:1px solid var(--rule);border-left:3px solid var(--c);padding:10px 12px;background:rgba(255,255,255,.02)}
 .champwall .yr{font-family:var(--cond);font-size:26px;color:var(--bulb);line-height:1}
@@ -690,6 +683,7 @@ function loadRedraft(){
   document.head.appendChild(sc);
 }
 let rdSeason=null;
+const tabOf={keeper:"lifetime",redraft:"champs"};
 let season=String(D.meta.currentSeason), view="standings";
 let week=null, statMode="raw", who=null, backTo="standings", bwMode="all";
 let sortCol=null, sortDir=-1;
@@ -702,9 +696,9 @@ const pct3=p=>p.toFixed(3).replace(/^0/,"");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const el=id=>document.getElementById(id);
 const VIEWS=[["news","News"],["standings","Standings"],["matchups","Matchups"],["stats","Stats"],
- ["history","History"],["keepers","Keepers"],["manager","Managers"]];
+ ["history","History"],["keepers","Keepers"],["manager","Managers"],["archive","Archive"]];
 /* pages that cover every season at once; the season picker sits out on these */
-const ALL_TIME_VIEWS=new Set(["history","keepers","manager"]);
+const ALL_TIME_VIEWS=new Set(["history","keepers","manager","archive"]);
 let statsTab="table";
 function statsTabs(){
   return `<div class="toggle subtabs" id="statsTabs" role="group" aria-label="Stats view"><button type="button" data-s="table" aria-pressed="${statsTab==="table"}">Team stats</button><button type="button" data-s="charts" aria-pressed="${statsTab==="charts"}">Charts</button></div>`;
@@ -1759,20 +1753,11 @@ const HIST_TABS=[["lifetime","Lifetime"],["records","Records"],["money","Money"]
 const RD_TABS=[["champs","Champions"],["seasons","Seasons"],["lifetime","Lifetime"],["records","Records"],["h2h","Head to head"]];
 function histTabs(){
   const tabs=era==="redraft"?RD_TABS:HIST_TABS;
-  const eraBtns=`<div class="era-toggle" id="eraToggle" role="group" aria-label="League era">
-    <button type="button" data-e="keeper" aria-pressed="${era==="keeper"}">Keeper Era<small>${KSEASONS[0]} to now</small></button>
-    <button type="button" data-e="redraft" aria-pressed="${era==="redraft"}">Redraft Era<small>2011 to 2022</small></button></div>`;
-  return eraBtns+`<div class="toggle subtabs" id="histTabs" role="group" aria-label="History sections">${tabs.map(([k,l])=>`<button type="button" data-h="${k}" aria-pressed="${histTab===k}">${l}</button>`).join("")}</div>`;
+  return `<div class="toggle subtabs" id="histTabs" role="group" aria-label="History sections">${tabs.map(([k,l])=>`<button type="button" data-h="${k}" aria-pressed="${histTab===k}">${l}</button>`).join("")}</div>`;
 }
 function wireHistTabs(host){
   const t=host.querySelector("#histTabs");
-  if(t) t.onclick=e=>{const b=e.target.closest("button");if(!b)return;histTab=b.dataset.h;render();};
-  const et=host.querySelector("#eraToggle");
-  if(et) et.onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.e===era)return;
-    era=b.dataset.e;
-    const ok=(era==="redraft"?RD_TABS:HIST_TABS).some(([k])=>k===histTab);
-    if(!ok||era==="redraft") histTab=era==="redraft"?"champs":"lifetime";
-    render();};
+  if(t) t.onclick=e=>{const b=e.target.closest("button");if(!b)return;histTab=b.dataset.h;tabOf[era]=histTab;render();};
 }
 /* redraft era: every champion, then any one season's standings */
 function rdChamps(){
@@ -1785,7 +1770,7 @@ function rdChamps(){
   const titles={};yrs.forEach(s=>{const c=(D.finalPlace[s]||[])[0];if(c)(titles[c]=titles[c]||[]).push(s);});
   const tl=Object.entries(titles).sort((a,b)=>b[1].length-a[1].length||a[1][0]-b[1][0])
     .map(([m,ys])=>`<tr><td class="l">${nameBtn(m)}</td><td>${ys.length}</td><td class="l">${ys.slice().sort().join(", ")}</td></tr>`).join("");
-  return `<p class="lede">Before the keeper league: the YANKEES'11 league (2011 to 2013) and Big Monies (2014 to 2022), both full redraft, same family core. 2020 was set up but never drafted. Names in italics are teams whose owner nobody has figured out yet.</p>
+  return `<p class="lede">The Archive: the redraft years before the keeper league, kept apart from everything else on the site. The YANKEES'11 league (2011 to 2013) and Big Monies (2014 to 2022), both full redraft, same family core. 2020 was set up but never drafted. Names in italics are teams whose owner nobody has figured out yet.</p>
     <div class="champwall">${cards}</div>
     <h2 class="sec">Titles</h2><div class="scroll"><table><thead><tr><th class="l">Manager</th><th>Titles</th><th class="l">Seasons</th></tr></thead><tbody>${tl}</tbody></table></div>`;
 }
@@ -2316,7 +2301,8 @@ function vKeepers(){
 }
 
 function render(){
-  const rdOn=view==="history"&&era==="redraft"&&RD;
+  era=view==="archive"?"redraft":"keeper"; histTab=tabOf[era];
+  const rdOn=view==="archive"&&RD;
   if(rdOn&&D!==RD) useData(RD); else if(!rdOn&&D!==KD) useData(KD);
   document.body.setAttribute("data-season",season);
   closePop();
@@ -2326,7 +2312,7 @@ function render(){
   el("nav").querySelectorAll("button").forEach(b=>b.setAttribute("aria-current",b.dataset.v===view?"page":"false"));
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));
   const allTime=ALL_TIME_VIEWS.has(view);
-  const rdView=view==="history"&&era==="redraft";
+  const rdView=view==="archive";
   document.body.setAttribute("data-season",rdView?"REDRAFT":allTime?"ALL":season);
   el("seasonPick").classList.toggle("off",allTime);
   el("seasonPick").setAttribute("title",allTime?"This page covers every season":"");
@@ -2334,7 +2320,7 @@ function render(){
   const show=[];
   if(view==="standings"){ if(hasBracket()){show.push("bracket");vBracket();} show.push("standings");vStandings(); }
   else if(view==="stats"){ if(statsTab==="charts"){show.push("trends");vTrends();} else {show.push("stats");vStats();} }
-  else if(view==="history"){
+  else if(view==="history"||view==="archive"){
     if(histTab==="records"&&!(era==="redraft"&&!RD)){show.push("records");vRecords();}
     else {show.push("history");vHistory();
       if(era==="redraft"&&RD&&histTab==="seasons"&&el("rdBracket")){
