@@ -41,7 +41,7 @@ if frank:
         out["chain"].append(lg)
 
 # try a known old league directly, then follow its links both ways
-start = os.environ.get("PROBE_KEY", "253.l.205007")
+start = os.environ.get("PROBE_KEY", "398.l.75486")
 out["direct"] = []
 def meta(key):
     m = y.get(f"league/{key}/metadata")
