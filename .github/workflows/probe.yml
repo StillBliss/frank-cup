@@ -1,0 +1,29 @@
+name: History probe (read-only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Ask Yahoo which past leagues this account can see
+        env:
+          YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
+          YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
+          YAHOO_REFRESH_TOKEN: ${{ secrets.YAHOO_REFRESH_TOKEN }}
+        run: python -u scripts/probe_history.py
+      - name: Save the result
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add raw/history_probe.json
+          git diff --cached --quiet || (git commit -m "History probe result" && git push)
