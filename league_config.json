@@ -117,7 +117,7 @@
   },
   "relationships": {
     "title": "How the league is connected",
-    "note": "The Frank Family Classic is named for the Frank family: Heidi's maiden name. Four of her younger brothers still play, along with her son and her nephew. Dashed and faded boxes played in the redraft years (2011 to 2022) but aren't in the league now.",
+    "note": "The Frank Family Classic is named for the Frank family: Heidi's maiden name. Four of her younger brothers still play, along with her son and her nephew. Dashed and faded boxes used to play but aren't in the league now.",
     "nodes": [
       {
         "id": "Brian",
@@ -231,7 +231,7 @@
         "former": true,
         "x": 3,
         "y": 2,
-        "note": "Ben's friends, redraft years only."
+        "note": "Ben's friends, redraft years."
       },
       {
         "id": "fr-adam",
@@ -243,7 +243,7 @@
         "former": true,
         "x": 4,
         "y": 1,
-        "note": "Adam's friend, redraft years only."
+        "note": "Adam's friend, redraft years."
       },
       {
         "id": "fr-gabe",
@@ -257,7 +257,7 @@
         "former": true,
         "x": 5,
         "y": 1,
-        "note": "Gabe's friends, redraft years only."
+        "note": "Gabe's friends, redraft years."
       },
       {
         "id": "fr-barak",
@@ -272,19 +272,20 @@
         "former": true,
         "x": 7,
         "y": 1,
-        "note": "Barak's friends, redraft years only."
+        "note": "Barak's friends, redraft years."
       },
       {
         "id": "fr-andrew",
-        "label": "Andrew's friend",
+        "label": "Andrew's friends",
         "members": [
-          "Pete"
+          "Pete",
+          "Jacob Winn"
         ],
         "group": "friend",
         "former": true,
         "x": 8,
         "y": 1,
-        "note": "Andrew's friend, redraft years only."
+        "note": "Pete played in the redraft years; Jacob Winn had Jacob's team from 2023 to 2025."
       }
     ],
     "edges": [
