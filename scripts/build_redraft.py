@@ -34,6 +34,21 @@ def main():
     for s in D["seasons"]:
         S = build.Season(int(s), rcfg)
         D["catsBySeason"][s] = [c["abbr"] for c in S.cats]
+    # a short summary per manager, stored in the config so the keeper-era site
+    # (Managers page) can mention redraft titles without loading redraft.js
+    honors = {}
+    for s in sorted(D["seasons"]):
+        st = D["seasons"][s]["standings"]
+        fp = D["finalPlace"].get(s) or []
+        for r in st:
+            h = honors.setdefault(r["manager"], {"seasons": [], "titles": [], "reg1": [], "weeks": [0, 0, 0]})
+            h["seasons"].append(int(s))
+            h["weeks"] = [a + b for a, b in zip(h["weeks"], (r["mw"], r["ml"], r["mt"]))]
+        if fp: honors[fp[0]]["titles"].append(int(s))
+        honors[st[0]["manager"]]["reg1"].append(int(s))
+    cfg["redraft"]["honors"] = honors
+    with open(os.path.join(ROOT, "league_config.json"), "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=2, ensure_ascii=False)
     body = json.dumps(D, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join(ROOT, "redraft.js"), "w", encoding="utf-8") as f:
         f.write("const REDRAFT_DATA = " + body + ";\n")

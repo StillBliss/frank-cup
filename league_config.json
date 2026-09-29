@@ -117,41 +117,13 @@
   },
   "relationships": {
     "title": "How the league is connected",
-    "note": "The Frank Family Classic is named for the Frank family: Heidi's maiden name. Her four younger brothers all play, and so do her son and her nephew.",
+    "note": "The Frank Family Classic is named for the Frank family: Heidi's maiden name. Four of her younger brothers still play, along with her son and her nephew. Dashed and faded boxes played in the redraft years (2011 to 2022) but aren't in the league now.",
     "nodes": [
       {
-        "id": "Heidi",
-        "note": "Oldest of the Frank siblings. Benny's mom.",
-        "group": "frank",
-        "x": 2,
-        "y": 0
-      },
-      {
-        "id": "Ben",
-        "note": "2nd Frank sibling. Austin's dad.",
-        "group": "frank",
-        "x": 3,
-        "y": 0
-      },
-      {
-        "id": "Gabe",
-        "note": "3rd Frank sibling.",
-        "group": "frank",
-        "x": 4,
-        "y": 0
-      },
-      {
-        "id": "Barak",
-        "note": "4th Frank sibling.",
-        "group": "frank",
-        "x": 5,
-        "y": 0
-      },
-      {
-        "id": "Andrew",
-        "note": "Youngest Frank sibling.",
-        "group": "frank",
-        "x": 6,
+        "id": "Brian",
+        "note": "Todd's friend.",
+        "group": "friend",
+        "x": 0,
         "y": 0
       },
       {
@@ -162,10 +134,54 @@
         "y": 0
       },
       {
-        "id": "Brian",
-        "note": "Todd's friend.",
-        "group": "friend",
-        "x": 0,
+        "id": "Heidi",
+        "note": "Oldest of the Frank siblings. Benny's mom.",
+        "group": "frank",
+        "x": 2,
+        "y": 0
+      },
+      {
+        "id": "Ben",
+        "note": "2nd Frank sibling. Austin's dad. Redraft titles 2012, 2018, 2021; keeper title 2025.",
+        "group": "frank",
+        "x": 3,
+        "y": 0
+      },
+      {
+        "id": "Adam",
+        "note": "3rd Frank sibling. Played 2011 to 2022; 2014 champion.",
+        "group": "frank",
+        "former": true,
+        "x": 4,
+        "y": 0
+      },
+      {
+        "id": "Gabe",
+        "note": "4th Frank sibling. Won the league's first title, 2011.",
+        "group": "frank",
+        "x": 5,
+        "y": 0
+      },
+      {
+        "id": "Jed",
+        "note": "5th Frank sibling. Played 2018 to 2022.",
+        "group": "frank",
+        "former": true,
+        "x": 6,
+        "y": 0
+      },
+      {
+        "id": "Barak",
+        "note": "6th Frank sibling. Redraft titles 2015, 2016, 2017, 2022.",
+        "group": "frank",
+        "x": 7,
+        "y": 0
+      },
+      {
+        "id": "Andrew",
+        "note": "Youngest Frank sibling. 2026 champion.",
+        "group": "frank",
+        "x": 8,
         "y": 0
       },
       {
@@ -202,6 +218,72 @@
         "group": "expansion",
         "x": 2.5,
         "y": 3
+      },
+      {
+        "id": "fr-ben",
+        "label": "Ben's friends",
+        "members": [
+          "Kraig",
+          "Dallas",
+          "Erin"
+        ],
+        "group": "friend",
+        "former": true,
+        "x": 3,
+        "y": 2,
+        "note": "Ben's friends, redraft years only."
+      },
+      {
+        "id": "fr-adam",
+        "label": "Adam's friend",
+        "members": [
+          "Jesse"
+        ],
+        "group": "friend",
+        "former": true,
+        "x": 4,
+        "y": 1,
+        "note": "Adam's friend, redraft years only."
+      },
+      {
+        "id": "fr-gabe",
+        "label": "Gabe's friends",
+        "members": [
+          "Nate",
+          "Brutus",
+          "Pedro"
+        ],
+        "group": "friend",
+        "former": true,
+        "x": 5,
+        "y": 1,
+        "note": "Gabe's friends, redraft years only."
+      },
+      {
+        "id": "fr-barak",
+        "label": "Barak's friends",
+        "members": [
+          "Dakota",
+          "Tyler",
+          "Skyler"
+        ],
+        "group": "friend",
+        "former": true,
+        "x": 7,
+        "y": 1,
+        "note": "Barak's friends, redraft years only."
+      },
+      {
+        "id": "fr-andrew",
+        "label": "Andrew's friend",
+        "members": [
+          "Pete"
+        ],
+        "group": "friend",
+        "former": true,
+        "x": 8,
+        "y": 1,
+        "note": "Andrew's friend, redraft years only."
       }
     ],
     "edges": [
@@ -212,11 +294,21 @@
       },
       {
         "a": "Ben",
+        "b": "Adam",
+        "type": "sibling"
+      },
+      {
+        "a": "Adam",
         "b": "Gabe",
         "type": "sibling"
       },
       {
         "a": "Gabe",
+        "b": "Jed",
+        "type": "sibling"
+      },
+      {
+        "a": "Jed",
         "b": "Barak",
         "type": "sibling"
       },
@@ -271,8 +363,45 @@
         "b": "Jonah",
         "type": "friend",
         "label": "friends"
+      },
+      {
+        "a": "Ben",
+        "b": "fr-ben",
+        "type": "friendgroup"
+      },
+      {
+        "a": "Adam",
+        "b": "fr-adam",
+        "type": "friendgroup"
+      },
+      {
+        "a": "Gabe",
+        "b": "fr-gabe",
+        "type": "friendgroup"
+      },
+      {
+        "a": "Barak",
+        "b": "fr-barak",
+        "type": "friendgroup"
+      },
+      {
+        "a": "Andrew",
+        "b": "fr-andrew",
+        "type": "friendgroup"
       }
-    ]
+    ],
+    "mysteries": {
+      "title": "Still unsolved",
+      "note": "Teams from the redraft years whose owner nobody has pinned down.",
+      "items": [
+        "Hemoglobin Trotters, 2011 (3rd)",
+        "Dodgers all the way, 2011",
+        "Dodgers '11, 2011",
+        "ATL Braveheart, 2013 champion",
+        "The one and only, 2013",
+        "Mark Douglas, 2011: whose friend?"
+      ]
+    }
   },
   "ownerChanges": {
     "Jacob": {
@@ -610,6 +739,456 @@
       "Skyler": "Barak's friend",
       "Pete": "Andrew's friend",
       "Jesse": "Adam's friend"
+    },
+    "honors": {
+      "Gabe": {
+        "seasons": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [
+          2011
+        ],
+        "reg1": [
+          2011,
+          2013,
+          2016,
+          2019
+        ],
+        "weeks": [
+          136,
+          81,
+          12
+        ]
+      },
+      "Barak": {
+        "seasons": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [
+          2015,
+          2016,
+          2017,
+          2022
+        ],
+        "reg1": [
+          2015,
+          2017
+        ],
+        "weeks": [
+          132,
+          90,
+          7
+        ]
+      },
+      "Hemoglobin Trotters": {
+        "seasons": [
+          2011
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          15,
+          5,
+          0
+        ]
+      },
+      "Mark Douglas": {
+        "seasons": [
+          2011
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          12,
+          8,
+          0
+        ]
+      },
+      "Ben": {
+        "seasons": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [
+          2012,
+          2018,
+          2021
+        ],
+        "reg1": [
+          2012,
+          2021
+        ],
+        "weeks": [
+          133,
+          85,
+          11
+        ]
+      },
+      "Andrew": {
+        "seasons": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [
+          2018,
+          2022
+        ],
+        "weeks": [
+          108,
+          106,
+          15
+        ]
+      },
+      "Dodgers all the way": {
+        "seasons": [
+          2011
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          6,
+          12,
+          2
+        ]
+      },
+      "Adam": {
+        "seasons": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [
+          2014
+        ],
+        "reg1": [
+          2014
+        ],
+        "weeks": [
+          103,
+          114,
+          12
+        ]
+      },
+      "Dodgers '11": {
+        "seasons": [
+          2011
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          6,
+          14,
+          0
+        ]
+      },
+      "Jesse": {
+        "seasons": [
+          2011
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          3,
+          17,
+          0
+        ]
+      },
+      "Nate": {
+        "seasons": [
+          2012,
+          2013
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          20,
+          19,
+          3
+        ]
+      },
+      "Brutus": {
+        "seasons": [
+          2012
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          11,
+          9,
+          1
+        ]
+      },
+      "Erin": {
+        "seasons": [
+          2012,
+          2013
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          12,
+          27,
+          3
+        ]
+      },
+      "ATL Braveheart": {
+        "seasons": [
+          2013
+        ],
+        "titles": [
+          2013
+        ],
+        "reg1": [],
+        "weeks": [
+          16,
+          3,
+          2
+        ]
+      },
+      "Skyler": {
+        "seasons": [
+          2013
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          3,
+          16,
+          2
+        ]
+      },
+      "The one and only": {
+        "seasons": [
+          2013
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          4,
+          16,
+          1
+        ]
+      },
+      "Kraig": {
+        "seasons": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [
+          2019
+        ],
+        "reg1": [],
+        "weeks": [
+          76,
+          84,
+          7
+        ]
+      },
+      "Pedro": {
+        "seasons": [
+          2014
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          10,
+          11,
+          0
+        ]
+      },
+      "Benny": {
+        "seasons": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          70,
+          89,
+          8
+        ]
+      },
+      "Pete": {
+        "seasons": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          56,
+          66,
+          4
+        ]
+      },
+      "Austin": {
+        "seasons": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          63,
+          95,
+          9
+        ]
+      },
+      "Tyler": {
+        "seasons": [
+          2015,
+          2016,
+          2017
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          32,
+          27,
+          4
+        ]
+      },
+      "Todd": {
+        "seasons": [
+          2017,
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          47,
+          52,
+          5
+        ]
+      },
+      "Dallas": {
+        "seasons": [
+          2017,
+          2018
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          11,
+          29,
+          2
+        ]
+      },
+      "Jed": {
+        "seasons": [
+          2018,
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          28,
+          51,
+          4
+        ]
+      },
+      "Heidi": {
+        "seasons": [
+          2019,
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          30,
+          31,
+          1
+        ]
+      },
+      "Dakota": {
+        "seasons": [
+          2021,
+          2022
+        ],
+        "titles": [],
+        "reg1": [],
+        "weeks": [
+          26,
+          12,
+          3
+        ]
+      }
     }
   }
 }

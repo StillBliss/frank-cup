@@ -644,6 +644,7 @@ def build(raw_dir, cfg):
     D["weekInfo"] = winfo
     D["seasonStatsNote"] = "Regular season only, rebuilt from each week's team lines."
     D["relationships"] = cfg.get("relationships")
+    D["redraftHonors"] = (cfg.get("redraft") or {}).get("honors") or {}
     D["ownerChanges"] = cfg.get("ownerChanges") or {}
     import records
     D["records"] = records.build_records(D, winfo)

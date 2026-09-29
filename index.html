@@ -543,6 +543,22 @@ table.rect td .w{color:var(--bone-faint);font-size:12px}
 .rel .edge.cousin,.rel .edge.link{stroke-dasharray:5 5}
 .rel .elabel{fill:var(--bone-faint);font-size:10.5px;font-family:var(--num)}
 .rel .frank{fill:var(--bulb);font-family:var(--cond);font-size:13px;letter-spacing:.12em}
+.rel .node.former rect{fill:transparent;stroke-dasharray:5 4;stroke:var(--bone-faint)}
+.rel .node.former text{fill:var(--bone-dim)}
+.rel .node.former text.t2{fill:var(--bone-faint)}
+.rel .node text.t3{fill:var(--bone-dim);font-family:var(--cond);font-size:15px;letter-spacing:.03em}
+.rel .edge.friendgroup{stroke-dasharray:4 4;opacity:.8}
+.relwrap{display:flex;gap:16px;align-items:flex-start}
+.relwrap>.scroll{flex:1 1 auto;min-width:0}
+.mysteries{flex:0 0 220px;border:1px dashed var(--bone-faint);border-radius:3px;padding:12px 14px}
+.mysteries h4{margin:0 0 4px;font-family:var(--cond);font-size:16px;letter-spacing:.08em;color:var(--bulb);font-weight:500;text-transform:uppercase}
+.mysteries p{font-size:12.5px;color:var(--bone-faint);margin:0 0 8px}
+.mysteries ul{margin:0;padding-left:16px;font-size:13.5px;color:var(--bone-dim)}
+.mysteries li{margin:3px 0}
+.rdline{border:1px dashed #C9A36A;border-radius:3px;padding:8px 12px;margin:0 0 16px;font-size:14px;color:var(--bone-dim);line-height:1.5}
+.rdline b{color:var(--bone)}
+.rdtag{font-family:var(--cond);letter-spacing:.1em;color:#C9A36A;margin-right:10px;font-size:13px}
+@media (max-width:900px){.relwrap{flex-direction:column}.mysteries{flex:none;width:100%;box-sizing:border-box}}
 .rel-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:6px 18px;margin-top:12px;font-size:13px;color:var(--bone-dim)}
 .rel-notes b{color:var(--bone);font-weight:600}
 /* ---------- keeper helper ---------- */
@@ -1933,6 +1949,17 @@ function openRadarPop(m,c,x,y){
   d.style.top=Math.max(8,Math.min(y+12,window.innerHeight-r.height-12))+"px";
   d.querySelector(".cls").onclick=closePop;
 }
+/* a nod to the redraft years on each manager's page; details live on the Archive tab */
+function redraftLine(m){
+  const h=(KD.redraftHonors||{})[m]; if(!h||!h.seasons.length) return "";
+  const yrs=a=>a.join(", ");
+  const span=h.seasons.length>1?`${h.seasons[0]} to ${h.seasons[h.seasons.length-1]}`:`${h.seasons[0]}`;
+  const bits=[];
+  bits.push(h.titles.length?`<b>${h.titles.length} title${h.titles.length>1?"s":""}</b> (${yrs(h.titles)})`:"no titles");
+  bits.push(h.reg1.length?`<b>${h.reg1.length} regular season #1${h.reg1.length>1?"s":""}</b> (${yrs(h.reg1)})`:"no regular season #1");
+  bits.push(`${h.seasons.length} season${h.seasons.length>1?"s":""} (${span}), weeks ${rec(...h.weeks)}`);
+  return `<div class="rdline"><span class="rdtag">REDRAFT ERA</span>${bits.join(" · ")}</div>`;
+}
 function vManager(){
   if(!who){el("v-manager").innerHTML=`<p class="empty">Pick a manager.</p>`;return;}
   const life=D.lifetime.find(x=>x.manager===who);
@@ -1980,6 +2007,7 @@ function vManager(){
     <div class="mghead"><span class="dot" style="background:${col(who)};width:20px;height:20px"></span>
       <span class="mgname">${esc(who)}</span><span>${crowns(who)}</span></div>
     <p class="lede">${esc(D.seasons[String(D.meta.currentSeason)].teamNames[who])} — four seasons in The Frank Family Classic.</p>
+    ${redraftLine(who)}
     <div class="kpis">
       <div class="kpi"><div class="k">WEEKS W-L-T</div><div class="v">${rec(...life.match)}</div></div>
       <div class="kpi"><div class="k">WIN PCT</div><div class="v">${pct3(life.matchPct)}</div></div>
@@ -2111,22 +2139,29 @@ function vNews(){
 /* ---------- relationship map (Charts page) ---------- */
 function relChart(){
   const R=D.relationships; if(!R||!R.nodes) return "";
-  const W=128,H=54,GX=160,GY=112,PAD=20;
-  const xs=R.nodes.map(n=>n.x), ys=R.nodes.map(n=>n.y);
-  const minX=Math.min(...xs), maxX=Math.max(...xs), maxY=Math.max(...ys);
-  const vw=(maxX-minX)*GX+W+PAD*2, vh=maxY*GY+H+PAD*2+26;
-  const pos={}; R.nodes.forEach(n=>{pos[n.id]={x:PAD+(n.x-minX)*GX,y:PAD+26+n.y*GY};});
-  const cx=id=>pos[id].x+W/2, cy=id=>pos[id].y+H/2;
+  const W=128,H=54,GX=160,GY=112,PAD=20,LH=17;
+  const xs=R.nodes.map(n=>n.x);
+  const minX=Math.min(...xs), maxX=Math.max(...xs);
+  const hOf=n=>n.members?30+n.members.length*LH:H;
+  const pos={}; R.nodes.forEach(n=>{pos[n.id]={x:PAD+(n.x-minX)*GX,y:PAD+26+n.y*GY,h:hOf(n)};});
+  const vw=(maxX-minX)*GX+W+PAD*2, vh=Math.max(...R.nodes.map(n=>pos[n.id].y+pos[n.id].h))+PAD;
+  const cx=id=>pos[id].x+W/2;
   const colr=id=>D.colors[id]?"#"+D.colors[id]:"var(--bone-faint)";
   const edges=(R.edges||[]).map(e=>{
     const a=pos[e.a],b=pos[e.b]; if(!a||!b) return "";
-    let d,lx,ly;
+    let d,lx,ly,lab="";
+    if(e.type==="friendgroup"){
+      /* runs down the gap to the right of the column, so it never crosses a box below */
+      const gx=a.x+W+16, y1=a.y+H-10, y2=b.y+14;
+      d=`M${a.x+W},${y1} L${gx},${y1} L${gx},${y2} L${b.x+W},${y2}`;
+      return `<path class="edge friendgroup" d="${d}"/>`;
+    }
     if(a.y===b.y){ const x1=Math.min(a.x,b.x)+W, x2=Math.max(a.x,b.x), y=a.y+H/2;
       d=`M${x1},${y} L${x2},${y}`; lx=(x1+x2)/2; ly=y+H/2+14; }
     else { const top=a.y<b.y?e.a:e.b, bot=top===e.a?e.b:e.a;
-      const x1=cx(top), y1=pos[top].y+H, x2=cx(bot), y2=pos[bot].y, my=(y1+y2)/2;
+      const x1=cx(top), y1=pos[top].y+pos[top].h, x2=cx(bot), y2=pos[bot].y, my=(y1+y2)/2;
       d=`M${x1},${y1} L${x1},${my} L${x2},${my} L${x2},${y2}`; lx=(x1===x2?x1+8:(x1+x2)/2); ly=my+(x1===x2?4:-6); }
-    const lab=e.label?`<text class="elabel" x="${lx}" y="${ly}" text-anchor="${a.y===b.y||a.x!==b.x?"middle":"start"}">${esc(e.label)}</text>`:"";
+    if(e.label) lab=`<text class="elabel" x="${lx}" y="${ly}" text-anchor="${a.y===b.y||a.x!==b.x?"middle":"start"}">${esc(e.label)}</text>`;
     return `<path class="edge ${esc(e.type)}" d="${d}"/>${lab}`;
   }).join("");
   const franks=R.nodes.filter(n=>n.group==="frank");
@@ -2135,15 +2170,23 @@ function relChart(){
     bracket=`<text class="frank" x="${(x1+x2)/2}" y="${PAD+12}" text-anchor="middle">THE FRANK SIBLINGS, OLDEST TO YOUNGEST</text>
       <path class="edge sibling" d="M${x1},${PAD+18} L${x2},${PAD+18}" style="stroke-width:1.2;opacity:.6"/>`; }
   const nodes=R.nodes.map(n=>{const p=pos[n.id];
-    const sub=n.group==="expansion"?"joins 2027":n.group==="frank"?"Frank":"";
-    return `<g class="node"><title>${esc(n.id)}: ${esc(n.note||"")}</title>
+    if(n.members){
+      return `<g class="node former"><title>${esc(n.label)}: ${esc(n.members.join(", "))}. ${esc(n.note||"")}</title>
+        <rect x="${p.x}" y="${p.y}" width="${W}" height="${p.h}" rx="3"/>
+        <text class="t2" x="${p.x+12}" y="${p.y+17}">${esc(n.label.toUpperCase())}</text>
+        ${n.members.map((m,i)=>`<text class="t3" x="${p.x+12}" y="${p.y+38+i*LH}">${esc(m)}</text>`).join("")}</g>`;
+    }
+    const sub=n.group==="expansion"?"joins 2027":n.former?"played to 2022":n.group==="frank"?"Frank":"";
+    return `<g class="node${n.former?" former":""}"><title>${esc(n.id)}: ${esc(n.note||"")}</title>
       <rect x="${p.x}" y="${p.y}" width="${W}" height="${H}" rx="3" ${n.group==="expansion"?'style="stroke-dasharray:4 3"':''}/>
-      <rect x="${p.x}" y="${p.y}" width="5" height="${H}" rx="1" style="fill:${colr(n.id)};stroke:none"/>
+      ${n.former?"":`<rect x="${p.x}" y="${p.y}" width="5" height="${H}" rx="1" style="fill:${colr(n.id)};stroke:none"/>`}
       <text x="${p.x+16}" y="${p.y+(sub?25:35)}">${esc(n.id)}</text>
       ${sub?`<text class="t2" x="${p.x+16}" y="${p.y+43}">${esc(sub)}</text>`:""}</g>`;}).join("");
-  const notes=R.nodes.map(n=>`<div><b>${esc(n.id)}</b> · ${esc(n.note||"")}</div>`).join("");
+  const M=R.mysteries;
+  const myst=M&&M.items&&M.items.length?`<div class="mysteries"><h4>${esc(M.title||"Mysteries")}</h4><p>${esc(M.note||"")}</p>
+    <ul>${M.items.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>`:"";
   return `<div class="chartbox rel"><h3>${esc(R.title||"How the league is connected")}</h3><p>${esc(R.note||"")}</p>
-    <div class="scroll"><svg viewBox="0 0 ${vw} ${vh}" role="img" aria-label="Relationship map of the league's managers" style="min-width:720px">${bracket}${edges}${nodes}</svg></div>
+    <div class="relwrap"><div class="scroll"><svg viewBox="0 0 ${vw} ${vh}" role="img" aria-label="Relationship map of the league's managers, past and present" style="min-width:900px">${bracket}${edges}${nodes}</svg></div>${myst}</div>
     </div>`;
 }
 
