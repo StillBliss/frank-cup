@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/346.l.170599/metadata",
+  "league": [
+   {
+    "league_key": "346.l.170599",
+    "league_id": "170599",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "12",
+    "edit_key": "2015-09-27",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1443425654",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "328_87406",
+    "renewed": "357_74165",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 0,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2015-04-05",
+    "end_week": "24",
+    "end_date": "2015-09-27",
+    "is_finished": 1,
+    "current_date": "2015-09-27",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2015"
+   }
+  ],
+  "time": "58.071136474609ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

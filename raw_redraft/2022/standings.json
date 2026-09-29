@@ -1,0 +1,2915 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/412.l.59223/standings",
+  "league": [
+   {
+    "league_key": "412.l.59223",
+    "league_id": "59223",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 12,
+    "max_teams": "12",
+    "edit_key": "2022-09-25",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1664176579",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "404_110221",
+    "renewed": "422_77247",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 23,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "23",
+    "start_week": "1",
+    "start_date": "2022-04-07",
+    "end_week": "23",
+    "end_date": "2022-09-25",
+    "is_finished": 1,
+    "current_date": "2022-09-25",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2022"
+   },
+   {
+    "standings": [
+     {
+      "teams": {
+       "0": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.7"
+          },
+          {
+           "team_id": "7"
+          },
+          {
+           "name": "I Juan again!"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/7"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 3
+          },
+          [],
+          {
+           "waiver_priority": 12
+          },
+          [],
+          {
+           "number_of_moves": 77
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 4
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "7",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "822",
+              "felo_tier": "platinum"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "814"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "31"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "221"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "758"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "118"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "501"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1708"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "79"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".261"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".778"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "547"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1701.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "118"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "41"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1664"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "45"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.59"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.33"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "126"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 1,
+           "playoff_seed": "2",
+           "outcome_totals": {
+            "wins": "230",
+            "losses": "163",
+            "ties": "47",
+            "percentage": ".576"
+           },
+           "games_back": "-"
+          }
+         }
+        ]
+       },
+       "1": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.6"
+          },
+          {
+           "team_id": "6"
+          },
+          {
+           "name": "I’m Free man… Don’t Judge"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/6"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/bcfced70d657cc8f4f8ddd8ada7d79e5f8a052bb74d45dd213618f38665878b1.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 10
+          },
+          [],
+          {
+           "waiver_priority": 5
+          },
+          [],
+          {
+           "number_of_moves": 72
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 12
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "6",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "671",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "748"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "188"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "713"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "567"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1273"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "56"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".262"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".765"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "499"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1759.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "126"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "80"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "46"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1726"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "47"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.48"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.34"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "134"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 2,
+           "playoff_seed": "1",
+           "outcome_totals": {
+            "wins": "229",
+            "losses": "162",
+            "ties": "49",
+            "percentage": ".576"
+           },
+           "games_back": "-"
+          }
+         }
+        ]
+       },
+       "2": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.12"
+          },
+          {
+           "team_id": "12"
+          },
+          {
+           "name": "ZEKE’S TEAM 😎🔥💥☄️⚡️✨🎁🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸🇺🇸"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/12"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23529965917_70a6a5.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 1
+          },
+          [],
+          {
+           "waiver_priority": 11
+          },
+          [],
+          {
+           "number_of_moves": 89
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 9
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "12",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "724",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "705"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "182"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "675"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "101"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "522"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1233"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "73"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".248"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".742"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "460"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1749.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "110"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "104"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1674"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "27"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.25"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "114"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 3,
+           "playoff_seed": "6",
+           "outcome_totals": {
+            "wins": "200",
+            "losses": "188",
+            "ties": "52",
+            "percentage": ".514"
+           },
+           "games_back": "27.5"
+          }
+         }
+        ]
+       },
+       "3": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.1"
+          },
+          {
+           "team_id": "1"
+          },
+          {
+           "name": "IT’S MY MUNCY!!"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/1"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/28908111209_73b6d5.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 8
+          },
+          [],
+          {
+           "waiver_priority": 3
+          },
+          [],
+          {
+           "number_of_moves": 74
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 3
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "1",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "is_commissioner": "1",
+              "felo_score": "781",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "670"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "175"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "738"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "116"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "429"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1212"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "71"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".257"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".745"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "497"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1785.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "122"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "105"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1782"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "43"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.50"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.39"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "135"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 4,
+           "playoff_seed": "5",
+           "outcome_totals": {
+            "wins": "206",
+            "losses": "177",
+            "ties": "57",
+            "percentage": ".533"
+           },
+           "games_back": "19"
+          }
+         }
+        ]
+       },
+       "4": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.5"
+          },
+          {
+           "team_id": "5"
+          },
+          {
+           "name": "What a waste"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/5"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_9_b.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 11
+          },
+          [],
+          {
+           "waiver_priority": 7
+          },
+          [],
+          {
+           "number_of_moves": 54
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 7
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "5",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "596",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "774"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "225"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "711"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "106"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "560"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1538"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "57"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".265"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".800"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "495"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1614.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1408"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "31"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.97"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.03"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "126"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 5,
+           "playoff_seed": "4",
+           "outcome_totals": {
+            "wins": "212",
+            "losses": "177",
+            "ties": "51",
+            "percentage": ".540"
+           },
+           "games_back": "16"
+          }
+         }
+        ]
+       },
+       "5": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.8"
+          },
+          {
+           "team_id": "8"
+          },
+          {
+           "name": "Rookie of the Year"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/8"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/d331bec3703380133a7793aa14c1db499c655515cf81f4163acb804865617a7a.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 2
+          },
+          [],
+          {
+           "waiver_priority": 1
+          },
+          [],
+          {
+           "number_of_moves": 20
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 10
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "8",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "717",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "776"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "35"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "232"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "797"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "106"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "464"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1027"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "57"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".266"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".790"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "548"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1461.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "85"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "80"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "90"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1619"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.54"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.72"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "102"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 6,
+           "playoff_seed": "3",
+           "outcome_totals": {
+            "wins": "222",
+            "losses": "171",
+            "ties": "47",
+            "percentage": ".558"
+           },
+           "games_back": "8"
+          }
+         }
+        ]
+       },
+       "6": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.4"
+          },
+          {
+           "team_id": "4"
+          },
+          {
+           "name": "Frank the tank"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/4"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_j.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 12
+          },
+          [],
+          {
+           "waiver_priority": 6
+          },
+          [],
+          {
+           "number_of_moves": 39
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 8
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "4",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "579",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "809"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "271"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "775"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "589"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1004"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "54"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".253"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".790"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "555"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1475.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "89"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1377"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "45"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.99"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.26"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.91"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "102"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 7,
+           "playoff_seed": "8",
+           "outcome_totals": {
+            "wins": "184",
+            "losses": "209",
+            "ties": "47",
+            "percentage": ".472"
+           },
+           "games_back": "46"
+          }
+         }
+        ]
+       },
+       "7": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.11"
+          },
+          {
+           "team_id": "11"
+          },
+          {
+           "name": "Uribe4life"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/11"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 4
+          },
+          [],
+          {
+           "waiver_priority": 10
+          },
+          [],
+          {
+           "number_of_moves": 24
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 2
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "11",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "592",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "754"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "223"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "754"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "54"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "517"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1715"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "93"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".261"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".776"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "528"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1333.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "85"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "79"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "88"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1299"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "7"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.53"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "102"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 8,
+           "playoff_seed": "7",
+           "outcome_totals": {
+            "wins": "193",
+            "losses": "198",
+            "ties": "49",
+            "percentage": ".494"
+           },
+           "games_back": "36"
+          }
+         }
+        ]
+       },
+       "8": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.2"
+          },
+          {
+           "team_id": "2"
+          },
+          {
+           "name": "#ARENADO4MVP"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/2"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 5
+          },
+          [],
+          {
+           "waiver_priority": 2
+          },
+          [],
+          {
+           "number_of_moves": 15
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 6
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "2",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "550",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "657"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "149"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "601"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "56"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "457"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "707"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "54"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".259"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".743"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "438"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1354.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "88"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "84"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "84"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1328"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "21"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.76"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.22"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.29"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "97"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 9,
+           "playoff_seed": "12",
+           "outcome_totals": {
+            "wins": "139",
+            "losses": "244",
+            "ties": "57",
+            "percentage": ".381"
+           },
+           "games_back": "86"
+          }
+         }
+        ]
+       },
+       "9": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.9"
+          },
+          {
+           "team_id": "9"
+          },
+          {
+           "name": "Joe Buck yourself"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/9"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_9.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 9
+          },
+          [],
+          {
+           "waiver_priority": 8
+          },
+          [],
+          {
+           "number_of_moves": 42
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 5
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "9",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "617",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "687"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "201"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "697"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "82"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "448"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1098"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "69"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".254"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".754"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "504"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1428.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "97"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "78"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "7"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "51"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1372"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.49"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "104"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 10,
+           "playoff_seed": "10",
+           "outcome_totals": {
+            "wins": "176",
+            "losses": "214",
+            "ties": "50",
+            "percentage": ".457"
+           },
+           "games_back": "52.5"
+          }
+         }
+        ]
+       },
+       "10": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.10"
+          },
+          {
+           "team_id": "10"
+          },
+          {
+           "name": "Jauna beat Dingle Berrios"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/10"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23310414027_7439a2.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 7
+          },
+          [],
+          {
+           "waiver_priority": 9
+          },
+          [],
+          {
+           "number_of_moves": 31
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 1
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "10",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "587",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "724"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "27"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "187"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "636"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "56"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "616"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1624"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".252"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".760"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "470"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1337.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "81"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "7"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "88"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1302"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "31"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.59"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.21"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.20"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "79"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 11,
+           "playoff_seed": "9",
+           "outcome_totals": {
+            "wins": "180",
+            "losses": "215",
+            "ties": "45",
+            "percentage": ".460"
+           },
+           "games_back": "51"
+          }
+         }
+        ]
+       },
+       "11": {
+        "team": [
+         [
+          {
+           "team_key": "412.l.59223.t.3"
+          },
+          {
+           "team_id": "3"
+          },
+          {
+           "name": "Dingle Berrios"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2022/b1/59223/3"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/25574517169_35f8d25241.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 6
+          },
+          [],
+          {
+           "waiver_priority": 4
+          },
+          [],
+          {
+           "number_of_moves": 25
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 24,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 11
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "3",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "587",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2022",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "635"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "182"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "713"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "65"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "555"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1089"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "74"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".245"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".737"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "464"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1173.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "82"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "145"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1261"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "33"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.43"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.41"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "72"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2022",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 12,
+           "playoff_seed": "11",
+           "outcome_totals": {
+            "wins": "172",
+            "losses": "225",
+            "ties": "43",
+            "percentage": ".440"
+           },
+           "games_back": "60"
+          }
+         }
+        ]
+       },
+       "count": 12
+      }
+     }
+    ]
+   }
+  ],
+  "time": "90.4221534729ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

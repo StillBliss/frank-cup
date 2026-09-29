@@ -1,0 +1,2165 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/253.l.205007/teams/stats;type=season",
+  "league": [
+   {
+    "league_key": "253.l.205007",
+    "league_id": "205007",
+    "name": "YANKEES'11",
+    "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "12",
+    "edit_key": "2011-09-18",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1316423602",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "",
+    "renewed": "268_95322",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 0,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "2",
+    "start_date": "2011-04-11",
+    "end_week": "24",
+    "end_date": "2011-09-18",
+    "is_finished": 1,
+    "current_date": "2011-09-18",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2011"
+   },
+   {
+    "teams": {
+     "0": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.1"
+        },
+        {
+         "team_id": "1"
+        },
+        {
+         "name": "TheDude"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/1"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/dh/ap/fantasy/img/profile_96.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 8
+        },
+        [],
+        {
+         "number_of_moves": 77
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 10
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "1",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "is_commissioner": "1",
+            "felo_score": "843",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "807"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "23"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "169"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "699"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "175"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "551"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "2017"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "79"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".281"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".803"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1917.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "118"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "97"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "8"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "78"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1596"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "27"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.47"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.28"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "163"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "1": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.2"
+        },
+        {
+         "team_id": "2"
+        },
+        {
+         "name": "Yankees#1"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/2"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_5.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 1
+        },
+        [],
+        {
+         "number_of_moves": 23
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 7
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "2",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "582",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "695"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "45"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "172"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "706"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "116"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "469"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1428"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "78"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".277"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".795"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1209.2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "61"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "73"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "8"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "61"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1024"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "44"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.31"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "79"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "2": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.3"
+        },
+        {
+         "team_id": "3"
+        },
+        {
+         "name": "Yankees"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/3"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 9
+        },
+        [],
+        {
+         "number_of_moves": 20
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 3
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "3",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "580",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "678"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "183"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "648"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "81"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "508"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1433"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "84"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".263"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".774"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1380.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "84"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "71"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "12"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "172"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1390"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "6"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.49"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.18"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "101"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "3": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.4"
+        },
+        {
+         "team_id": "4"
+        },
+        {
+         "name": "Get Some"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/4"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/dh/ap/fantasy/img/profile_96.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 2
+        },
+        [],
+        {
+         "number_of_moves": 21
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 6
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "4",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "691",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "768"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "199"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "803"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "96"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "589"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1165"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "63"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".274"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".809"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1677.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "123"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "75"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "23"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1460"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "8"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.45"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.17"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "152"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "4": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.5"
+        },
+        {
+         "team_id": "5"
+        },
+        {
+         "name": "Dodgers all the way"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/5"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_7.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 5
+        },
+        [],
+        {
+         "number_of_moves": 6
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 1
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "5",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "584",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "629"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "36"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "122"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "505"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "134"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "471"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1058"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "70"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".268"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".763"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1270.2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "87"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "59"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "11"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "985"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "19"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.22"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "120"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "5": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.6"
+        },
+        {
+         "team_id": "6"
+        },
+        {
+         "name": "Viscous Vultures"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/6"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 10
+        },
+        [],
+        {
+         "number_of_moves": 5
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 9
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "6",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "601",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "659"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "16"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "214"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "757"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "71"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "473"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1123"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "51"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".284"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".847"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1312.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "78"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "108"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1075"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.62"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "106"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "6": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.7"
+        },
+        {
+         "team_id": "7"
+        },
+        {
+         "name": "WOLFPACK"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/7"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/dh/ap/fantasy/img/profile_96.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 7
+        },
+        [],
+        {
+         "number_of_moves": 11
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 5
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "7",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "553",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "626"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "207"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "699"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "492"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "784"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "41"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".267"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".811"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1276.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "75"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "77"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "8"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "57"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1003"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "4"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.01"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.28"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "103"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "7": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.8"
+        },
+        {
+         "team_id": "8"
+        },
+        {
+         "name": "Marlow"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/8"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_6.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 6
+        },
+        [],
+        {
+         "number_of_moves": 4
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 8
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "8",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "451",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "491"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "94"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "403"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "110"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "335"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "672"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "46"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".242"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".674"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1295.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "77"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "75"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "5"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "32"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1129"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "42"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.72"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.23"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "110"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "8": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.9"
+        },
+        {
+         "team_id": "9"
+        },
+        {
+         "name": "Hemoglobin Trotters"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/9"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_6.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 3
+        },
+        [],
+        {
+         "number_of_moves": 5
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 4
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "9",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "680",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "738"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "16"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "228"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "785"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "95"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "546"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1282"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "94"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".278"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".836"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1181.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "70"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "59"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "10"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "96"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1074"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "4"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.36"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.17"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "106"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "9": {
+      "team": [
+       [
+        {
+         "team_key": "253.l.205007.t.10"
+        },
+        {
+         "team_id": "10"
+        },
+        {
+         "name": "Dodgers '11"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/10"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_7.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 4
+        },
+        [],
+        {
+         "number_of_moves": 13
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 2
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "10",
+            "nickname": "--hidden--",
+            "guid": "--hidden--"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2011",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "626"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "23"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "170"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "632"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "99"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "485"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1058"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "75"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".275"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".803"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "965.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "58"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "56"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "56"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "708"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.80"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.29"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "77"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2011",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "count": 10
+    }
+   }
+  ],
+  "time": "84.105014801025ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

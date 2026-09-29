@@ -1,0 +1,2307 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/357.l.74165/teams/stats;type=season",
+  "league": [
+   {
+    "league_key": "357.l.74165",
+    "league_id": "74165",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "12",
+    "edit_key": "2016-09-25",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1474880752",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "346_170599",
+    "renewed": "370_123413",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 0,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2016-04-03",
+    "end_week": "24",
+    "end_date": "2016-09-25",
+    "is_finished": 1,
+    "current_date": "2016-09-25",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2016"
+   },
+   {
+    "teams": {
+     "0": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.1"
+        },
+        {
+         "team_id": "1"
+        },
+        {
+         "name": "Gabe Frank's Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/1"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 3
+        },
+        [],
+        {
+         "waiver_priority": 4
+        },
+        [],
+        {
+         "number_of_moves": 89
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 4
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "1",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "is_commissioner": "1",
+            "felo_score": "828",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "834"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "32"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "271"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "826"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "48"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "533"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1337"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "80"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".273"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".823"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "598"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "2204.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "137"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "116"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "6"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "19"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "2030"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "51"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.76"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.25"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.13"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "190"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "1": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.2"
+        },
+        {
+         "team_id": "2"
+        },
+        {
+         "name": "GOAT"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/2"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24716915313_93c7fbbc52.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 8
+        },
+        [],
+        {
+         "waiver_priority": 9
+        },
+        [],
+        {
+         "number_of_moves": 17
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 9
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "2",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "505",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "813"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "248"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "822"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "67"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "559"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1289"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".264"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".796"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "565"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1162.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "62"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "77"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "3"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "77"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1079"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "7"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.51"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.37"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.44"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "68"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "2": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.3"
+        },
+        {
+         "team_id": "3"
+        },
+        {
+         "name": "Kraig's Swag Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/3"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 7
+        },
+        [],
+        {
+         "waiver_priority": 5
+        },
+        [],
+        {
+         "number_of_moves": 40
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 1
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "3",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "587",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "819"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "273"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "833"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "89"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "586"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1423"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "57"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".260"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".799"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "584"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1760.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "104"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "109"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "115"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1684"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.65"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "143"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "3": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.4"
+        },
+        {
+         "team_id": "4"
+        },
+        {
+         "name": "SWAGGER"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/4"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_7.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 4
+        },
+        [],
+        {
+         "waiver_priority": 3
+        },
+        [],
+        {
+         "number_of_moves": 81
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 5
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "4",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "707",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "848"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "29"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "279"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "865"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "62"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "571"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1773"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "100"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".266"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".818"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "590"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "2212.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "136"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "110"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "4"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "78"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "2002"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "13"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.07"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.30"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.78"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "183"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "4": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.5"
+        },
+        {
+         "team_id": "5"
+        },
+        {
+         "name": "DreamTeam"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/5"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_12.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 9
+        },
+        [],
+        {
+         "waiver_priority": 8
+        },
+        [],
+        {
+         "number_of_moves": 54
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 6
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "5",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "697",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "806"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "34"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "209"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "821"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "117"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "501"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1626"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "54"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".301"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".858"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "585"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "2101.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "138"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "120"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1773"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "16"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.11"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.32"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.66"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "175"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "5": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.6"
+        },
+        {
+         "team_id": "6"
+        },
+        {
+         "name": "Back 2 Back?"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/6"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_10.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 1
+        },
+        [],
+        {
+         "waiver_priority": 1
+        },
+        [],
+        {
+         "number_of_moves": 63
+        },
+        {
+         "number_of_trades": "3"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 10
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "6",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "830",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "775"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "17"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "262"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "892"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "46"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "477"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1696"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "65"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".285"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".822"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "531"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1887.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "127"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "99"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "8"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "63"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1819"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "39"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.76"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.21"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.31"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "163"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "6": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.7"
+        },
+        {
+         "team_id": "7"
+        },
+        {
+         "name": "YankeeNation *"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/7"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 6
+        },
+        [],
+        {
+         "waiver_priority": 7
+        },
+        [],
+        {
+         "number_of_moves": 80
+        },
+        {
+         "number_of_trades": "1"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 3
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "7",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "674",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "839"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "42"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "217"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "770"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "128"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "618"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1509"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "92"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".278"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".819"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "575"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1974.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "127"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "111"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "3"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1792"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.14"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.28"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.74"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "162"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "7": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.8"
+        },
+        {
+         "team_id": "8"
+        },
+        {
+         "name": "Even Year"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/8"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/25022510673_d6c5ca77bb.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 2
+        },
+        [],
+        {
+         "waiver_priority": 2
+        },
+        [],
+        {
+         "number_of_moves": 11
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 7
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "8",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "674",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "741"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "29"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "197"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "730"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "94"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "646"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1352"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "81"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".275"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".812"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "504"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1264.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "61"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "92"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "129"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1223"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "3"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.18"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.28"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.03"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "91"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "8": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.9"
+        },
+        {
+         "team_id": "9"
+        },
+        {
+         "name": "mean green monster"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/9"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 5
+        },
+        [],
+        {
+         "waiver_priority": 10
+        },
+        [],
+        {
+         "number_of_moves": 67
+        },
+        {
+         "number_of_trades": "4"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 8
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "9",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "676",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "827"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "34"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "228"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "818"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "104"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "569"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1558"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "98"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".265"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".790"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "563"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1679.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "111"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "85"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "12"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "86"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1622"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "13"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.80"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.10"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "132"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "9": {
+      "team": [
+       [
+        {
+         "team_key": "357.l.74165.t.10"
+        },
+        {
+         "team_id": "10"
+        },
+        {
+         "name": "austin's Legit Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/10"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_10.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 10
+        },
+        [],
+        {
+         "waiver_priority": 6
+        },
+        [],
+        {
+         "number_of_moves": 21
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 2
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "10",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "544",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2016",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "783"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "31"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "213"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "704"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "154"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "600"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1072"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".271"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".820"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "500"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1300.2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "92"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "58"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "9"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "77"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1250"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "4"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.61"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.19"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.17"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "106"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2016",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "count": 10
+    }
+   }
+  ],
+  "time": "82.376956939697ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

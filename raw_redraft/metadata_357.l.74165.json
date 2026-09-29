@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/357.l.74165/metadata",
+  "league": [
+   {
+    "league_key": "357.l.74165",
+    "league_id": "74165",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2016/b1/74165/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "12",
+    "edit_key": "2016-09-25",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1474880752",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "346_170599",
+    "renewed": "370_123413",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 0,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2016-04-03",
+    "end_week": "24",
+    "end_date": "2016-09-25",
+    "is_finished": 1,
+    "current_date": "2016-09-25",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2016"
+   }
+  ],
+  "time": "64.237833023071ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/404.l.110221/metadata",
+  "league": [
+   {
+    "league_key": "404.l.110221",
+    "league_id": "110221",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 12,
+    "max_teams": "12",
+    "edit_key": "2021-09-26",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1632726789",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "388_93775",
+    "renewed": "412_59223",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2021-04-01",
+    "end_week": "24",
+    "end_date": "2021-09-26",
+    "is_finished": 1,
+    "current_date": "2021-09-26",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2021"
+   }
+  ],
+  "time": "55.012941360474ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

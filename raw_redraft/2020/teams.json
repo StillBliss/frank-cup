@@ -1,0 +1,975 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/398.l.75486/teams",
+  "league": [
+   {
+    "league_key": "398.l.75486",
+    "league_id": "75486",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486",
+    "logo_url": false,
+    "draft_status": "predraft",
+    "num_teams": 12,
+    "max_teams": "12",
+    "edit_key": "2020-09-27",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": null,
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "388_93775",
+    "renewed": "",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 9,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": 9,
+    "start_week": "1",
+    "start_date": "2020-07-23",
+    "end_week": "9",
+    "end_date": "2020-09-27",
+    "current_date": "2020-09-27",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2020"
+   },
+   {
+    "teams": {
+     "0": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.1"
+        },
+        {
+         "team_id": "1"
+        },
+        {
+         "name": "GoldFever"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/1"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/28908111209_73b6d5.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 2
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "1",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "is_commissioner": "1",
+            "felo_score": "834",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "1": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.2"
+        },
+        {
+         "team_id": "2"
+        },
+        {
+         "name": "#ARENADO4MVP"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/2"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 10
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "2",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "574",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "2": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.3"
+        },
+        {
+         "team_id": "3"
+        },
+        {
+         "name": "Back 2 B 2 B 2 Back?"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/3"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_10.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 4
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "3",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "827",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "3": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.4"
+        },
+        {
+         "team_id": "4"
+        },
+        {
+         "name": "CALL ME BIG PAPA"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/4"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/41011038001_a2cbed.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 12
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "4",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "528",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "4": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.5"
+        },
+        {
+         "team_id": "5"
+        },
+        {
+         "name": "Don’tSleepOnMe"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/5"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_12.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 9
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "5",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "702",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "5": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.6"
+        },
+        {
+         "team_id": "6"
+        },
+        {
+         "name": "Frank the tank"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/6"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/28631470589_7f1f1e.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 7
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "6",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "544",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "6": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.7"
+        },
+        {
+         "team_id": "7"
+        },
+        {
+         "name": "GIRL ON FIRE"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/7"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23310414027_7439a2.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 6
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "7",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "596",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "7": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.8"
+        },
+        {
+         "team_id": "8"
+        },
+        {
+         "name": "Say I Didn't"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/8"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_9.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 1
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "8",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "712",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "8": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.9"
+        },
+        {
+         "team_id": "9"
+        },
+        {
+         "name": "Say I won’t"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/9"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_b.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 8
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "9",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "616",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "9": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.10"
+        },
+        {
+         "team_id": "10"
+        },
+        {
+         "name": "Springer of PAIN!!!!"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/10"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/25574517169_35f8d25241.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 5
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "10",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "646",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "10": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.11"
+        },
+        {
+         "team_id": "11"
+        },
+        {
+         "name": "mike's Grand Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/11"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_7_m.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "11",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "594",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "11": {
+      "team": [
+       [
+        {
+         "team_key": "398.l.75486.t.12"
+        },
+        {
+         "team_id": "12"
+        },
+        {
+         "name": "🤙🏽⚾️🤙🏽"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2020/b1/75486/12"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 3
+        },
+        [],
+        {
+         "waiver_priority": null
+        },
+        [],
+        {
+         "number_of_moves": 0
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 9,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        [],
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "12",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "581",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ]
+      ]
+     },
+     "count": 12
+    }
+   }
+  ],
+  "time": "70.372819900513ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

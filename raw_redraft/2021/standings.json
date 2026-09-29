@@ -1,0 +1,2915 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/404.l.110221/standings",
+  "league": [
+   {
+    "league_key": "404.l.110221",
+    "league_id": "110221",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 12,
+    "max_teams": "12",
+    "edit_key": "2021-09-26",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1632726789",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "388_93775",
+    "renewed": "412_59223",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2021-04-01",
+    "end_week": "24",
+    "end_date": "2021-09-26",
+    "is_finished": 1,
+    "current_date": "2021-09-26",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2021"
+   },
+   {
+    "standings": [
+     {
+      "teams": {
+       "0": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.9"
+          },
+          {
+           "team_id": "9"
+          },
+          {
+           "name": "Wander What Happened To Trout"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/9"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 8
+          },
+          [],
+          {
+           "waiver_priority": 10
+          },
+          [],
+          {
+           "number_of_moves": 91
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 2
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "9",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "743",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "819"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "21"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "276"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "793"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "74"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "621"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1020"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "68"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".262"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".842"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "572"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1933.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "116"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "111"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "9"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "2116"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "41"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.22"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.27"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "139"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 1,
+           "playoff_seed": "1",
+           "outcome_totals": {
+            "wins": "251",
+            "losses": "159",
+            "ties": "52",
+            "percentage": ".600"
+           },
+           "games_back": "-"
+          }
+         }
+        ]
+       },
+       "1": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.11"
+          },
+          {
+           "team_id": "11"
+          },
+          {
+           "name": "Rookie of the Year"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/11"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/d331bec3703380133a7793aa14c1db499c655515cf81f4163acb804865617a7a.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 11
+          },
+          [],
+          {
+           "waiver_priority": 1
+          },
+          [],
+          {
+           "number_of_moves": 83
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 9
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "11",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "700",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "894"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "288"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "871"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "107"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "540"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1410"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "92"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".265"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".802"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "595"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1590.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "97"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "89"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "4"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "62"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1723"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "28"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.02"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.49"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "94"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 2,
+           "playoff_seed": "2",
+           "outcome_totals": {
+            "wins": "233",
+            "losses": "169",
+            "ties": "60",
+            "percentage": ".569"
+           },
+           "games_back": "14"
+          }
+         }
+        ]
+       },
+       "2": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.3"
+          },
+          {
+           "team_id": "3"
+          },
+          {
+           "name": "I shoulda Juan..."
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/3"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 4
+          },
+          [],
+          {
+           "waiver_priority": 9
+          },
+          [],
+          {
+           "number_of_moves": 88
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 6
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "3",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "774",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "869"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "22"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "247"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "788"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "104"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "655"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1063"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "69"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".276"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".837"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "566"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1526.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "90"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "97"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "47"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1642"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "56"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.44"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.33"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.77"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "82"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 3,
+           "playoff_seed": "6",
+           "outcome_totals": {
+            "wins": "193",
+            "losses": "205",
+            "ties": "64",
+            "percentage": ".487"
+           },
+           "games_back": "52"
+          }
+         }
+        ]
+       },
+       "3": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.12"
+          },
+          {
+           "team_id": "12"
+          },
+          {
+           "name": "Uribe4life"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/12"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 3
+          },
+          [],
+          {
+           "waiver_priority": 8
+          },
+          [],
+          {
+           "number_of_moves": 51
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 5
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "12",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "604",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "833"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "6"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "282"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "813"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "58"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "673"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1321"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "69"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".258"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".822"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "569"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1626.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "116"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "85"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "7"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "63"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1544"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "5"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.90"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.21"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "130"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 4,
+           "playoff_seed": "5",
+           "outcome_totals": {
+            "wins": "208",
+            "losses": "201",
+            "ties": "53",
+            "percentage": ".508"
+           },
+           "games_back": "42.5"
+          }
+         }
+        ]
+       },
+       "4": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.2"
+          },
+          {
+           "team_id": "2"
+          },
+          {
+           "name": "#ARENADO4MVP"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/2"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 10
+          },
+          [],
+          {
+           "waiver_priority": 2
+          },
+          [],
+          {
+           "number_of_moves": 33
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 8
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "2",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "612",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "689"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "21"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "226"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "784"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "39"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "482"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1478"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "82"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".253"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".766"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "513"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1612.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "105"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "79"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "4"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "59"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1715"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.35"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.11"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.45"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "133"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 5,
+           "playoff_seed": "4",
+           "outcome_totals": {
+            "wins": "224",
+            "losses": "175",
+            "ties": "63",
+            "percentage": ".553"
+           },
+           "games_back": "21.5"
+          }
+         }
+        ]
+       },
+       "5": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.10"
+          },
+          {
+           "team_id": "10"
+          },
+          {
+           "name": "Air Yordan"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/10"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/25574517169_35f8d25241.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 5
+          },
+          [],
+          {
+           "waiver_priority": 4
+          },
+          [],
+          {
+           "number_of_moves": 27
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 1
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "10",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "673",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "858"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "270"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "861"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "68"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "570"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1434"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "96"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".273"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".835"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "568"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1289.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "93"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "71"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "5"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "139"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1372"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "31"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.11"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.58"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "75"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 6,
+           "playoff_seed": "3",
+           "outcome_totals": {
+            "wins": "238",
+            "losses": "180",
+            "ties": "44",
+            "percentage": ".563"
+           },
+           "games_back": "17"
+          }
+         }
+        ]
+       },
+       "6": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.7"
+          },
+          {
+           "team_id": "7"
+          },
+          {
+           "name": "SHOW ME THE MUNCY"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/7"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/23310414027_7439a2.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 6
+          },
+          [],
+          {
+           "waiver_priority": 12
+          },
+          [],
+          {
+           "number_of_moves": 49
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 7
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "7",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "592",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "820"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "170"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "677"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "155"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "496"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1484"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "61"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".277"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".773"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "471"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1386.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "84"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "82"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1345"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "53"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.86"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.20"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "75"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 7,
+           "playoff_seed": "11",
+           "outcome_totals": {
+            "wins": "183",
+            "losses": "237",
+            "ties": "42",
+            "percentage": ".442"
+           },
+           "games_back": "73"
+          }
+         }
+        ]
+       },
+       "7": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.1"
+          },
+          {
+           "team_id": "1"
+          },
+          {
+           "name": "GoldFever"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/1"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/28908111209_73b6d5.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 2
+          },
+          [],
+          {
+           "waiver_priority": 7
+          },
+          [],
+          {
+           "number_of_moves": 78
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 11
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "1",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "is_commissioner": "1",
+              "felo_score": "785",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "764"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "210"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "745"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "109"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "539"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1248"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "80"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".260"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".786"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "515"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1651.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "93"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "89"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1656"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "42"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.24"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.24"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.06"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "104"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 8,
+           "playoff_seed": "8",
+           "outcome_totals": {
+            "wins": "185",
+            "losses": "220",
+            "ties": "57",
+            "percentage": ".462"
+           },
+           "games_back": "63.5"
+          }
+         }
+        ]
+       },
+       "8": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.8"
+          },
+          {
+           "team_id": "8"
+          },
+          {
+           "name": "Say I Didn't"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/8"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_9.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 1
+          },
+          [],
+          {
+           "waiver_priority": 6
+          },
+          [],
+          {
+           "number_of_moves": 30
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 3
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "8",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "614",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "801"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "34"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "220"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "728"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "84"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "547"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1341"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "67"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".252"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".767"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "534"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1399.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "88"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1411"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.18"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.32"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "100"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 9,
+           "playoff_seed": "12",
+           "outcome_totals": {
+            "wins": "168",
+            "losses": "231",
+            "ties": "63",
+            "percentage": ".432"
+           },
+           "games_back": "77.5"
+          }
+         }
+        ]
+       },
+       "9": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.5"
+          },
+          {
+           "team_id": "5"
+          },
+          {
+           "name": "Hakuna Machado"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/5"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/bcfced70d657cc8f4f8ddd8ada7d79e5f8a052bb74d45dd213618f38665878b1.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 9
+          },
+          [],
+          {
+           "waiver_priority": 11
+          },
+          [],
+          {
+           "number_of_moves": 82
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 10
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "5",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "599",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "780"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "238"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "744"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "50"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "553"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1060"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "80"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".250"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".773"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "491"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1801.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "104"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "114"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "4"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1689"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "50"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.07"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.25"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.86"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "119"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 10,
+           "playoff_seed": "7",
+           "outcome_totals": {
+            "wins": "190",
+            "losses": "217",
+            "ties": "55",
+            "percentage": ".471"
+           },
+           "games_back": "59.5"
+          }
+         }
+        ]
+       },
+       "10": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.4"
+          },
+          {
+           "team_id": "4"
+          },
+          {
+           "name": "From bad to worse"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/4"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_6_b.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 12
+          },
+          [],
+          {
+           "waiver_priority": 3
+          },
+          [],
+          {
+           "number_of_moves": 18
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 4
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "4",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "538",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "720"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "26"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "202"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "734"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "66"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "525"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1678"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "79"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".262"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".789"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "485"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "870.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "67"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "47"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "128"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "949"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "32"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.57"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.13"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "36"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 11,
+           "playoff_seed": "10",
+           "outcome_totals": {
+            "wins": "188",
+            "losses": "232",
+            "ties": "42",
+            "percentage": ".452"
+           },
+           "games_back": "68"
+          }
+         }
+        ]
+       },
+       "11": {
+        "team": [
+         [
+          {
+           "team_key": "404.l.110221.t.6"
+          },
+          {
+           "team_id": "6"
+          },
+          {
+           "name": "Frank the tank"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2021/b1/110221/6"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4_j.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 7
+          },
+          [],
+          {
+           "waiver_priority": 5
+          },
+          [],
+          {
+           "number_of_moves": 25
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 12
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "6",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "569",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2021",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "705"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "163"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "582"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "61"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "503"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1834"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "80"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".248"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".726"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "438"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1449.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "100"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "79"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "61"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1565"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.47"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.93"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "108"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2021",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 12,
+           "playoff_seed": "9",
+           "outcome_totals": {
+            "wins": "191",
+            "losses": "226",
+            "ties": "45",
+            "percentage": ".462"
+           },
+           "games_back": "63.5"
+          }
+         }
+        ]
+       },
+       "count": 12
+      }
+     }
+    ]
+   }
+  ],
+  "time": "1146.7139720917ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/388.l.93775/metadata",
+  "league": [
+   {
+    "league_key": "388.l.93775",
+    "league_id": "93775",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2019/b1/93775",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2019/b1/93775/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 12,
+    "max_teams": "12",
+    "edit_key": "2019-09-22",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1569221826",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "378_102212",
+    "renewed": "404_110221",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2019-03-20",
+    "end_week": "24",
+    "end_date": "2019-09-22",
+    "is_finished": 1,
+    "current_date": "2019-09-22",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2019"
+   }
+  ],
+  "time": "1168.01404953ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

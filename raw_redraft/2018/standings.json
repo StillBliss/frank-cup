@@ -1,0 +1,2925 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/378.l.102212/standings",
+  "league": [
+   {
+    "league_key": "378.l.102212",
+    "league_id": "102212",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 12,
+    "max_teams": "12",
+    "edit_key": "2018-09-23",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1537772996",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "370_123413",
+    "renewed": "388_93775",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 1,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2018-03-29",
+    "end_week": "24",
+    "end_date": "2018-09-23",
+    "is_finished": 1,
+    "current_date": "2018-09-23",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2018"
+   },
+   {
+    "standings": [
+     {
+      "teams": {
+       "0": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.8"
+          },
+          {
+           "team_id": "8"
+          },
+          {
+           "name": "Bye"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/8"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_7.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 10
+          },
+          [],
+          {
+           "waiver_priority": 9
+          },
+          [],
+          {
+           "number_of_moves": 71
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 6
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "8",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "834",
+              "felo_tier": "platinum"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "872"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "29"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "259"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "792"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "120"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "597"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1312"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "70"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".267"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".813"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "605"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "2034.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "136"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "113"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "4"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "6"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1876"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "61"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.09"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.28"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.65"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "152"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 1,
+           "playoff_seed": "2",
+           "outcome_totals": {
+            "wins": "254",
+            "losses": "160",
+            "ties": "48",
+            "percentage": ".602"
+           },
+           "games_back": "2.5"
+          }
+         }
+        ]
+       },
+       "1": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.1"
+          },
+          {
+           "team_id": "1"
+          },
+          {
+           "name": "GoldFever"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/1"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/28908111209_73b6d5.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 5
+          },
+          [],
+          {
+           "waiver_priority": 7
+          },
+          [],
+          {
+           "number_of_moves": 55
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 11
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "1",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "is_commissioner": "1",
+              "felo_score": "679",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "713"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "37"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "206"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "718"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "70"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "539"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1483"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "87"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".259"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".784"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "536"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1876.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "127"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "92"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "8"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "16"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1947"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "55"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.64"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.35"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "149"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 2,
+           "playoff_seed": "4",
+           "outcome_totals": {
+            "wins": "231",
+            "losses": "189",
+            "ties": "42",
+            "percentage": ".545"
+           },
+           "games_back": "28.5"
+          }
+         }
+        ]
+       },
+       "2": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.9"
+          },
+          {
+           "team_id": "9"
+          },
+          {
+           "name": "YoungBloods"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/9"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_4.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 6
+          },
+          [],
+          {
+           "waiver_priority": 5
+          },
+          [],
+          {
+           "number_of_moves": 75
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 3
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "9",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "787",
+              "felo_tier": "gold"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "780"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "23"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "240"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "805"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "89"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "607"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1288"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "79"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".273"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".815"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "565"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1757.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "102"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "94"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "57"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1630"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.76"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.25"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.59"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "132"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 3,
+           "playoff_seed": "1",
+           "outcome_totals": {
+            "wins": "251",
+            "losses": "152",
+            "ties": "59",
+            "percentage": ".607"
+           },
+           "games_back": "-"
+          }
+         }
+        ]
+       },
+       "3": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.4"
+          },
+          {
+           "team_id": "4"
+          },
+          {
+           "name": "#ARENADO4MVP"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/4"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 11
+          },
+          [],
+          {
+           "waiver_priority": 12
+          },
+          [],
+          {
+           "number_of_moves": 58
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 1
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "4",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "596",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "771"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "208"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "777"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "71"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "594"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1981"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "73"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".269"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".806"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "545"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1702.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "101"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "101"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "117"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1648"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.28"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.29"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "110"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 4,
+           "playoff_seed": "3",
+           "outcome_totals": {
+            "wins": "228",
+            "losses": "178",
+            "ties": "56",
+            "percentage": ".554"
+           },
+           "games_back": "24.5"
+          }
+         }
+        ]
+       },
+       "4": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.3"
+          },
+          {
+           "team_id": "3"
+          },
+          {
+           "name": "Back 2 B 2 B 2 Back?"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/3"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_10.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 1
+          },
+          [],
+          {
+           "waiver_priority": 8
+          },
+          [],
+          {
+           "number_of_moves": 78
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 2
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "3",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "821",
+              "felo_tier": "platinum"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "756"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "20"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "238"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "787"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "569"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1359"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "68"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".265"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".804"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "535"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1672.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "106"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "102"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "59"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1620"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "40"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.86"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.26"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.78"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "122"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 5,
+           "playoff_seed": "6",
+           "outcome_totals": {
+            "wins": "208",
+            "losses": "208",
+            "ties": "46",
+            "percentage": ".500"
+           },
+           "games_back": "49.5"
+          }
+         }
+        ]
+       },
+       "5": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.7"
+          },
+          {
+           "team_id": "7"
+          },
+          {
+           "name": "Kraig's Swag Team"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/7"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 8
+          },
+          [],
+          {
+           "waiver_priority": 3
+          },
+          [],
+          {
+           "number_of_moves": 28
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          {
+           "clinched_playoffs": 1
+          },
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 9
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "7",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "579",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "880"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "28"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "229"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "751"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "115"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "706"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1200"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".265"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".822"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "601"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1419.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "102"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "77"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1412"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.85"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.29"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.98"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "93"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 6,
+           "playoff_seed": "5",
+           "outcome_totals": {
+            "wins": "209",
+            "losses": "191",
+            "ties": "62",
+            "percentage": ".519"
+           },
+           "games_back": "40.5"
+          }
+         }
+        ]
+       },
+       "6": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.5"
+          },
+          {
+           "team_id": "5"
+          },
+          {
+           "name": "Young Dumb and Broke"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/5"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/25022510673_d6c5ca77bb.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 7
+          },
+          [],
+          {
+           "waiver_priority": 1
+          },
+          [],
+          {
+           "number_of_moves": 6
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 5
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "5",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "649",
+              "felo_tier": "silver"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "726"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "225"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "717"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "114"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "502"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1319"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "66"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".265"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".780"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "500"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1189.1"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "74"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "55"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "4"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "83"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1408"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.44"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "4.29"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "92"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 7,
+           "playoff_seed": "7",
+           "outcome_totals": {
+            "wins": "203",
+            "losses": "206",
+            "ties": "53",
+            "percentage": ".497"
+           },
+           "games_back": "51"
+          }
+         }
+        ]
+       },
+       "7": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.11"
+          },
+          {
+           "team_id": "11"
+          },
+          {
+           "name": "I like big putts"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/11"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_2.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 12
+          },
+          [],
+          {
+           "waiver_priority": 4
+          },
+          [],
+          {
+           "number_of_moves": 13
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 10
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "11",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "528",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "665"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "179"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "660"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "77"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "546"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1194"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "62"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".259"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".767"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "448"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1086.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "65"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "50"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "65"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1300"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "35"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.09"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "4.14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "89"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 8,
+           "playoff_seed": "8",
+           "outcome_totals": {
+            "wins": "197",
+            "losses": "214",
+            "ties": "51",
+            "percentage": ".482"
+           },
+           "games_back": "58"
+          }
+         }
+        ]
+       },
+       "8": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.2"
+          },
+          {
+           "team_id": "2"
+          },
+          {
+           "name": "🤙🏽⚾️🤙🏽"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/2"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 2
+          },
+          [],
+          {
+           "waiver_priority": 10
+          },
+          [],
+          {
+           "number_of_moves": 46
+          },
+          {
+           "number_of_trades": "2"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 12
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "2",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "541",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "710"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "25"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "189"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "659"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "93"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "450"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "935"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "70"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".261"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".760"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "471"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1372.2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "89"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "81"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "36"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1477"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "43"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.05"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.21"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.50"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "106"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 9,
+           "playoff_seed": "11",
+           "outcome_totals": {
+            "wins": "162",
+            "losses": "243",
+            "ties": "57",
+            "percentage": ".412"
+           },
+           "games_back": "90"
+          }
+         }
+        ]
+       },
+       "9": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.6"
+          },
+          {
+           "team_id": "6"
+          },
+          {
+           "name": "CALL ME BIG PAPA"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/6"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/41011038001_a2cbed.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 3
+          },
+          [],
+          {
+           "waiver_priority": 2
+          },
+          [],
+          {
+           "number_of_moves": 12
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 8
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "6",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "564",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "762"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "26"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "210"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "723"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "58"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "598"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1548"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "56"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".266"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".793"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "520"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "715.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "47"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "45"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "165"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "842"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "53"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "3.15"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.14"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.00"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "26"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 10,
+           "playoff_seed": "9",
+           "outcome_totals": {
+            "wins": "193",
+            "losses": "215",
+            "ties": "54",
+            "percentage": ".476"
+           },
+           "games_back": "60.5"
+          }
+         }
+        ]
+       },
+       "10": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.12"
+          },
+          {
+           "team_id": "12"
+          },
+          {
+           "name": "Frank the tank"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/12"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/28631470589_7f1f1e.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 9
+          },
+          [],
+          {
+           "waiver_priority": 11
+          },
+          [],
+          {
+           "number_of_moves": 41
+          },
+          {
+           "number_of_trades": "1"
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 7
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "12",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "552",
+              "felo_tier": "bronze"
+             }
+            },
+            {
+             "manager": {
+              "manager_id": "13",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "is_comanager": "1",
+              "felo_score": "594",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "744"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "19"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "200"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "691"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "72"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "626"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1768"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "104"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".246"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".752"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "512"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1033.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "56"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "72"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "2"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "10"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "919"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "35"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.64"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "3.25"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "63"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 11,
+           "playoff_seed": "12",
+           "outcome_totals": {
+            "wins": "149",
+            "losses": "258",
+            "ties": "55",
+            "percentage": ".382"
+           },
+           "games_back": "104"
+          }
+         }
+        ]
+       },
+       "11": {
+        "team": [
+         [
+          {
+           "team_key": "378.l.102212.t.10"
+          },
+          {
+           "team_id": "10"
+          },
+          {
+           "name": "Springer of PAIN!!!!"
+          },
+          [],
+          {
+           "url": "https://baseball.fantasysports.yahoo.com/2018/b1/102212/10"
+          },
+          {
+           "team_logos": [
+            {
+             "team_logo": {
+              "size": "large",
+              "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/25574517169_35f8d25241.jpg"
+             }
+            }
+           ]
+          },
+          {
+           "previous_season_team_rank": 4
+          },
+          [],
+          {
+           "waiver_priority": 6
+          },
+          [],
+          {
+           "number_of_moves": 29
+          },
+          {
+           "number_of_trades": 0
+          },
+          {
+           "roster_adds": {
+            "coverage_type": "week",
+            "coverage_value": 25,
+            "value": "0"
+           }
+          },
+          [],
+          {
+           "league_scoring_type": "head"
+          },
+          [],
+          {
+           "draft_position": 4
+          },
+          {
+           "has_draft_grade": 0
+          },
+          [],
+          [],
+          [],
+          [],
+          [],
+          {
+           "managers": [
+            {
+             "manager": {
+              "manager_id": "10",
+              "nickname": "--hidden--",
+              "guid": "--hidden--",
+              "felo_score": "581",
+              "felo_tier": "bronze"
+             }
+            }
+           ]
+          }
+         ],
+         {
+          "team_stats": {
+           "coverage_type": "season",
+           "season": "2018",
+           "stats": [
+            {
+             "stat": {
+              "stat_id": "7",
+              "value": "710"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "11",
+              "value": "12"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "12",
+              "value": "212"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "13",
+              "value": "749"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "16",
+              "value": "74"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "18",
+              "value": "493"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "52",
+              "value": "1440"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "53",
+              "value": "82"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "3",
+              "value": ".257"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "55",
+              "value": ".762"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "61",
+              "value": "491"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "50",
+              "value": "1278.0"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "28",
+              "value": "75"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "29",
+              "value": "86"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "30",
+              "value": "3"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "32",
+              "value": "125"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "42",
+              "value": "1251"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "48",
+              "value": "17"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "26",
+              "value": "4.30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "27",
+              "value": "1.30"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "56",
+              "value": "2.96"
+             }
+            },
+            {
+             "stat": {
+              "stat_id": "83",
+              "value": "83"
+             }
+            }
+           ]
+          },
+          "team_points": {
+           "coverage_type": "season",
+           "season": "2018",
+           "total": "0"
+          }
+         },
+         {
+          "team_standings": {
+           "rank": 12,
+           "playoff_seed": "10",
+           "outcome_totals": {
+            "wins": "167",
+            "losses": "238",
+            "ties": "57",
+            "percentage": ".423"
+           },
+           "games_back": "85"
+          }
+         }
+        ]
+       },
+       "count": 12
+      }
+     }
+    ]
+   }
+  ],
+  "time": "1176.0139465332ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

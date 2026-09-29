@@ -1,0 +1,49 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/253.l.205007/metadata",
+  "league": [
+   {
+    "league_key": "253.l.205007",
+    "league_id": "205007",
+    "name": "YANKEES'11",
+    "url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2011/b1/205007/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "12",
+    "edit_key": "2011-09-18",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1316423602",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "",
+    "renewed": "268_95322",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 0,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "2",
+    "start_date": "2011-04-11",
+    "end_week": "24",
+    "end_date": "2011-09-18",
+    "is_finished": 1,
+    "current_date": "2011-09-18",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2011"
+   }
+  ],
+  "time": "84.405899047852ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}

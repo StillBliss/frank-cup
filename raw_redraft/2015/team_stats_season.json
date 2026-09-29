@@ -1,0 +1,2305 @@
+{
+ "fantasy_content": {
+  "xml:lang": "en-US",
+  "yahoo:uri": "/fantasy/v2/league/346.l.170599/teams/stats;type=season",
+  "league": [
+   {
+    "league_key": "346.l.170599",
+    "league_id": "170599",
+    "name": "Big Monies",
+    "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599",
+    "recordbook_url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/recordbook?layout=webview&device=smartphone",
+    "logo_url": false,
+    "draft_status": "postdraft",
+    "num_teams": 10,
+    "max_teams": "12",
+    "edit_key": "2015-09-27",
+    "weekly_deadline": "",
+    "roster_type": "date",
+    "league_update_timestamp": "1443425654",
+    "scoring_type": "head",
+    "scoring_label": "H2H Cat",
+    "league_type": "private",
+    "renew": "328_87406",
+    "renewed": "357_74165",
+    "felo_tier": "silver",
+    "is_highscore": false,
+    "is_guillotine": "0",
+    "matchup_week": 24,
+    "iris_group_chat_id": "",
+    "allow_add_to_dl_extra_pos": 0,
+    "is_pro_league": "0",
+    "is_cash_league": "0",
+    "current_week": "24",
+    "start_week": "1",
+    "start_date": "2015-04-05",
+    "end_week": "24",
+    "end_date": "2015-09-27",
+    "is_finished": 1,
+    "current_date": "2015-09-27",
+    "is_plus_league": "0",
+    "game_code": "mlb",
+    "season": "2015"
+   },
+   {
+    "teams": {
+     "0": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.1"
+        },
+        {
+         "team_id": "1"
+        },
+        {
+         "name": "Gabe Frank's Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/1"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 5
+        },
+        [],
+        {
+         "waiver_priority": 2
+        },
+        [],
+        {
+         "number_of_moves": 90
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 9
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "1",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "is_commissioner": "1",
+            "felo_score": "805",
+            "felo_tier": "platinum"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "764"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "36"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "195"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "725"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "108"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "438"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1319"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "91"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".271"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".778"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "501"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "2238.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "148"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "119"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1992"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "34"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.76"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.27"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.18"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "197"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "1": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.2"
+        },
+        {
+         "team_id": "2"
+        },
+        {
+         "name": "Kraig's Swag Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/2"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 2
+        },
+        [],
+        {
+         "waiver_priority": 6
+        },
+        [],
+        {
+         "number_of_moves": 52
+        },
+        {
+         "number_of_trades": "2"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 1
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "2",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "597",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "772"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "28"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "190"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "717"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "116"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "569"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1518"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "76"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".267"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".770"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "524"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1511.2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "104"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "65"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "6"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "107"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1356"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.69"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.60"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "126"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "2": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.3"
+        },
+        {
+         "team_id": "3"
+        },
+        {
+         "name": "Get Some"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/3"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24687372074_ba16ab6679.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 4
+        },
+        [],
+        {
+         "waiver_priority": 9
+        },
+        [],
+        {
+         "number_of_moves": 69
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 5
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "3",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "790",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "865"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "260"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "876"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "98"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "647"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1728"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "91"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".296"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".866"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "592"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1875.2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "116"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "108"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "9"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "50"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1747"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "48"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.78"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.14"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "159"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "3": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.4"
+        },
+        {
+         "team_id": "4"
+        },
+        {
+         "name": "SWAGGER"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/4"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_7.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 3
+        },
+        [],
+        {
+         "waiver_priority": 5
+        },
+        [],
+        {
+         "number_of_moves": 89
+        },
+        {
+         "number_of_trades": "3"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 8
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "4",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "737",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "732"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "16"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "209"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "714"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "76"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "503"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1190"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "56"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".270"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".782"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "485"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "2353.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "139"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "136"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "10"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "2146"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "38"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.94"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.98"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "203"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "4": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.5"
+        },
+        {
+         "team_id": "5"
+        },
+        {
+         "name": "DreamTeam"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/5"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_12.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 1
+        },
+        [],
+        {
+         "waiver_priority": 1
+        },
+        [],
+        {
+         "number_of_moves": 63
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 4
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "5",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "600",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "666"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "21"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "216"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "719"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "44"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "466"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1460"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "93"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".267"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".775"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "474"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "2028.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "112"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "141"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "8"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "37"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1621"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "19"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.30"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.32"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.83"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "167"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "5": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.6"
+        },
+        {
+         "team_id": "6"
+        },
+        {
+         "name": "Price is Right *"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/6"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_10.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 7
+        },
+        [],
+        {
+         "waiver_priority": 10
+        },
+        [],
+        {
+         "number_of_moves": 34
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 7
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "6",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "704",
+            "felo_tier": "gold"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "829"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "27"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "234"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "840"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "101"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "573"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1712"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "83"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".273"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".805"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "579"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1711.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "97"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "106"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "10"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "96"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1624"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.62"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.26"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "139"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "6": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.7"
+        },
+        {
+         "team_id": "7"
+        },
+        {
+         "name": "$$$$$$$$"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/7"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://yahoofantasysports-res.cloudinary.com/image/upload/t_s192sq/fantasy-logos/24716915313_93c7fbbc52.jpg"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 8
+        },
+        [],
+        {
+         "waiver_priority": 7
+        },
+        [],
+        {
+         "number_of_moves": 60
+        },
+        {
+         "number_of_trades": "1"
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 10
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "7",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "552",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "766"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "31"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "187"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "664"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "117"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "547"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1148"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "46"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".259"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".770"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "496"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1569.0"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "93"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "96"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "5"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "110"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1296"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "14"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.97"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.24"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.04"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "121"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "7": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.8"
+        },
+        {
+         "team_id": "8"
+        },
+        {
+         "name": "austin's Legit Team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/8"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_9.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 10
+        },
+        [],
+        {
+         "waiver_priority": 4
+        },
+        [],
+        {
+         "number_of_moves": 19
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        [],
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 2
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "8",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "537",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "644"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "17"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "183"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "708"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "58"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "491"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1018"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "68"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".261"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".762"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "448"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1066.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "59"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "67"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "135"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "947"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "5"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "4.25"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.31"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.05"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "76"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "8": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.9"
+        },
+        {
+         "team_id": "9"
+        },
+        {
+         "name": "nfl pro bowl team"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/9"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_11.png"
+           }
+          }
+         ]
+        },
+        [],
+        [],
+        {
+         "waiver_priority": 3
+        },
+        [],
+        {
+         "number_of_moves": 45
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 6
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "9",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "651",
+            "felo_tier": "silver"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "738"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "31"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "183"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "714"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "194"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "436"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1289"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "65"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".268"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".761"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "504"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1753.1"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "125"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "86"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "14"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "46"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1691"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "3"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.36"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "3.82"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "155"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "9": {
+      "team": [
+       [
+        {
+         "team_key": "346.l.170599.t.10"
+        },
+        {
+         "team_id": "10"
+        },
+        {
+         "name": "YankeeNation *"
+        },
+        [],
+        {
+         "url": "https://baseball.fantasysports.yahoo.com/2015/b1/170599/10"
+        },
+        {
+         "team_logos": [
+          {
+           "team_logo": {
+            "size": "large",
+            "url": "https://s.yimg.com/cv/apiv2/default/mlb/mlb_1.png"
+           }
+          }
+         ]
+        },
+        {
+         "previous_season_team_rank": 9
+        },
+        [],
+        {
+         "waiver_priority": 8
+        },
+        [],
+        {
+         "number_of_moves": 40
+        },
+        {
+         "number_of_trades": 0
+        },
+        {
+         "roster_adds": {
+          "coverage_type": "week",
+          "coverage_value": 25,
+          "value": "0"
+         }
+        },
+        {
+         "clinched_playoffs": 1
+        },
+        {
+         "league_scoring_type": "head"
+        },
+        [],
+        {
+         "draft_position": 3
+        },
+        {
+         "has_draft_grade": 0
+        },
+        [],
+        [],
+        [],
+        [],
+        [],
+        {
+         "managers": [
+          {
+           "manager": {
+            "manager_id": "10",
+            "nickname": "--hidden--",
+            "guid": "--hidden--",
+            "felo_score": "563",
+            "felo_tier": "bronze"
+           }
+          }
+         ]
+        }
+       ],
+       {
+        "team_stats": {
+         "coverage_type": "season",
+         "season": "2015",
+         "stats": [
+          {
+           "stat": {
+            "stat_id": "7",
+            "value": "715"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "11",
+            "value": "15"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "12",
+            "value": "191"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "13",
+            "value": "773"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "16",
+            "value": "86"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "18",
+            "value": "513"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "52",
+            "value": "1513"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "53",
+            "value": "72"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "3",
+            "value": ".272"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "55",
+            "value": ".773"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "61",
+            "value": "496"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "50",
+            "value": "1762.2"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "28",
+            "value": "111"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "29",
+            "value": "90"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "30",
+            "value": "6"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "32",
+            "value": "94"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "42",
+            "value": "1521"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "48",
+            "value": "27"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "26",
+            "value": "3.54"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "27",
+            "value": "1.20"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "56",
+            "value": "2.95"
+           }
+          },
+          {
+           "stat": {
+            "stat_id": "83",
+            "value": "145"
+           }
+          }
+         ]
+        },
+        "team_points": {
+         "coverage_type": "season",
+         "season": "2015",
+         "total": "0"
+        }
+       }
+      ]
+     },
+     "count": 10
+    }
+   }
+  ],
+  "time": "1270.4169750214ms",
+  "copyright": "Certain Data by Sportradar, Stats Perform and Rotowire",
+  "refresh_rate": "30"
+ }
+}
