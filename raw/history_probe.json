@@ -1,0 +1,65 @@
+{
+ "leagues": [
+  {
+   "season": 2026,
+   "key": "469.l.34466",
+   "name": "The Frank Family Classic",
+   "start": 1,
+   "end": 26,
+   "current": 26,
+   "renew": "458_12549"
+  }
+ ],
+ "chain": [
+  {
+   "season": 2025,
+   "key": "458.l.12549",
+   "name": "The Frank Cup",
+   "start": 1,
+   "end": 25,
+   "current": 25,
+   "renew": "431_12618",
+   "readable": true
+  },
+  {
+   "season": 2024,
+   "key": "431.l.12618",
+   "name": "The Frank Cup",
+   "start": 1,
+   "end": 25,
+   "current": 25,
+   "renew": "422_112556",
+   "readable": true
+  },
+  {
+   "season": 2023,
+   "key": "422.l.112556",
+   "name": "The Frank Cup",
+   "start": 1,
+   "end": 25,
+   "current": 25,
+   "renew": "",
+   "readable": true
+  }
+ ],
+ "games": {
+  "2011": "253",
+  "2012": "268",
+  "2013": "308",
+  "2014": "328",
+  "2015": "346",
+  "2016": "357",
+  "2017": "370",
+  "2018": "378",
+  "2019": "388",
+  "2020": "398",
+  "2021": "404",
+  "2022": "412",
+  "2023": "422",
+  "2024": "431",
+  "2025": "458",
+  "2026": "469"
+ },
+ "errors": [],
+ "calls": 5
+}
