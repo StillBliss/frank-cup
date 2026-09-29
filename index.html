@@ -223,6 +223,7 @@ body[data-season="2024"]{--field:#0B1420;--housing:#101D2B}
 body[data-season="2025"]{--field:#17100E;--housing:#211714}
 body[data-season="2026"]{--field:#0E1020;--housing:#15182C}
 body[data-season="ALL"]{--field:#0F0F11;--housing:#191A1D}
+body[data-season="REDRAFT"]{--field:#15120D;--housing:#201B14}
 body{background:var(--field)}
 
 table.catline td.catw{background:rgba(62,140,84,.30);font-weight:600}
@@ -598,11 +599,28 @@ body[data-season="2024"]{--bulb:#8BD450}
 body[data-season="2025"]{--bulb:#D98CF0}
 body[data-season="2026"]{--bulb:#E8A62E}
 body[data-season="ALL"]{--bulb:#CFC8B6}
+body[data-season="REDRAFT"]{--bulb:#C9A36A}
+.era-toggle{display:flex;gap:0;margin:0 0 14px;border:1px solid var(--rule);border-radius:2px;overflow:hidden;width:max-content;max-width:100%}
+.era-toggle button{font-family:var(--cond);font-size:17px;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--bone-dim);
+  border:0;border-right:1px solid var(--rule);padding:10px 20px;cursor:pointer;line-height:1.1;text-align:left}
+.era-toggle button:last-child{border-right:0}
+.era-toggle button small{display:block;font-size:12px;letter-spacing:.05em;opacity:.75;text-transform:none}
+.era-toggle button[aria-pressed="true"]{background:var(--bulb);color:#111}
+@media (max-width:600px){.era-toggle button{font-size:14px;padding:8px 12px}}
+.champwall{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:6px 0 20px}
+.champwall .cw{border:1px solid var(--rule);border-left:3px solid var(--c);padding:10px 12px;background:rgba(255,255,255,.02)}
+.champwall .yr{font-family:var(--cond);font-size:26px;color:var(--bulb);line-height:1}
+.champwall .nm{font-weight:600;margin-top:4px}
+.champwall .tm{font-size:13px;color:var(--bone-dim)}
+.champwall .ru{font-size:12.5px;color:var(--bone-faint);margin-top:6px}
+.who.nolink{cursor:default}.who.nolink:hover{border-bottom-color:transparent}
+.unk{font-style:italic}
 .board{border-bottom-color:var(--bulb);transition:border-color .25s}
 .season-banner{font-family:var(--cond);font-size:22px;letter-spacing:.12em;color:var(--bone-dim);line-height:1}
 .season-banner b{color:var(--bulb);font-weight:500;font-size:30px;margin-right:6px}
 .season-pick.off{opacity:.35;pointer-events:none}
-.subtabs{margin-bottom:18px}
+.subtabs{margin-bottom:18px;max-width:100%;flex-wrap:wrap}
+#rdPick{flex-wrap:wrap;max-width:100%}
 .subtabs button{font-size:15px;padding:7px 14px;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.board{transition:none}}
 
@@ -654,8 +672,24 @@ table.rtab td.v{font-weight:650}
 <script>
 const PARK_NAMES = {};
 (function(){
-const D=LEAGUE_DATA, ALLK=D.allTimeKey||"ALL", SEASONS=Object.keys(D.seasons).sort(),
-  YEARS=Object.keys(D.seasons).filter(s=>s!==(D.allTimeKey||"ALL")).sort();
+const KD=LEAGUE_DATA;
+/* The redraft era (2011-2022) lives in its own file and only loads when someone
+   flips the History tab to it. While it is showing, D points at that data so the
+   history views work unchanged; every other page always reads the keeper era. */
+let D=KD, RD=null, era="keeper", rdLoading=false;
+const ALLK=D.allTimeKey||"ALL";
+let SEASONS=Object.keys(D.seasons).sort(), YEARS=Object.keys(D.seasons).filter(s=>s!==(D.allTimeKey||"ALL")).sort();
+const KSEASONS=SEASONS.slice();
+function useData(x){D=x;SEASONS=Object.keys(x.seasons).sort();YEARS=SEASONS.filter(s=>s!==ALLK);}
+function loadRedraft(){
+  if(RD||rdLoading) return; rdLoading=true;
+  const sc=document.createElement("script");
+  sc.src="redraft.js?v="+Date.now();
+  sc.onload=()=>{RD=window.REDRAFT_DATA||(typeof REDRAFT_DATA!=="undefined"?REDRAFT_DATA:null);rdLoading=false;render();};
+  sc.onerror=()=>{rdLoading=false;el("v-history").innerHTML=histTabs()+`<p class="empty">The redraft era could not be loaded.</p>`;};
+  document.head.appendChild(sc);
+}
+let rdSeason=null;
 let season=String(D.meta.currentSeason), view="standings";
 let week=null, statMode="raw", who=null, backTo="standings", bwMode="all";
 let sortCol=null, sortDir=-1;
@@ -806,6 +840,7 @@ const plusBg=v=>v==null?"transparent":heat(1-Math.max(0,Math.min(1,(v-60)/80)));
    table resizes its name column, and the whole layout slides when you change
    season. */
 function crowns(m){
+  if(!D.seasons[season]) return `<span class="crown ph" aria-hidden="true"></span><span class="crown ph" aria-hidden="true"></span>`;
   const regChamp = D.seasons[season].standings[0].manager===m;
   const poChamp = (D.finalPlace[season]||[])[0]===m;
   return (regChamp
@@ -815,8 +850,10 @@ function crowns(m){
       ? `<span class="crown" title="Playoff champion, ${season}" aria-label="Playoff champion">👑</span>`
       : `<span class="crown ph" aria-hidden="true"></span>`);
 }
-const nameBtn=m=>`<button type="button" class="who" data-mgr="${esc(m)}">
-  <span class="dot" style="background:${col(m)}"></span>${esc(m)}${crowns(m)}</button>`;
+const isUnk=m=>D.era==="redraft"&&(D.unknownOwners||[]).includes(m);
+const nmTxt=m=>isUnk(m)?`<span class="unk" title="Owner unknown, shown by team name">${esc(m)}</span>`:esc(m);
+const nameBtn=m=>`<button type="button" class="who${KD.managers.includes(m)?"":" nolink"}" data-mgr="${esc(m)}">
+  <span class="dot" style="background:${col(m)}"></span>${nmTxt(m)}${crowns(m)}</button>`;
 const namePlain=m=>`<button type="button" class="who" data-mgr="${esc(m)}"><span class="dot" style="background:${col(m)}"></span>${esc(m)}</button>`;
 const nameNoCrown=m=>`<button type="button" class="who" data-mgr="${esc(m)}">${esc(m)}</button>`;
 const nameBare=m=>`<button type="button" class="who" data-mgr="${esc(m)}">${esc(m)}${crowns(m)}</button>`;
@@ -831,7 +868,8 @@ function buildChrome(){
   el("foot").innerHTML=esc(D.meta.note)+" 🏵 regular-season champion · 👑 playoff champion.";
   document.addEventListener("click",e=>{
     const b=e.target.closest(".who");
-    if(b){who=b.dataset.mgr;backTo=view==="manager"?backTo:view;view="manager";render();return;}
+    if(b){if(!KD.managers.includes(b.dataset.mgr)) return;
+      who=b.dataset.mgr;backTo=view==="manager"?backTo:view;view="manager";render();return;}
     if(!e.target.closest(".pop")&&!e.target.closest(".cell")&&!e.target.closest(".rhit")) closePop();
   });
   document.addEventListener("keydown",e=>{if(e.key==="Escape")closePop();});
@@ -1718,18 +1756,60 @@ function playoffRecord(m){
 }
 let histTab="lifetime", lifeSort={k:"match",d:-1};
 const HIST_TABS=[["lifetime","Lifetime"],["records","Records"],["money","Money"],["h2h","Head to head"]];
+const RD_TABS=[["champs","Champions"],["seasons","Seasons"],["lifetime","Lifetime"],["records","Records"],["h2h","Head to head"]];
 function histTabs(){
-  return `<div class="toggle subtabs" id="histTabs" role="group" aria-label="History sections">${HIST_TABS.map(([k,l])=>`<button type="button" data-h="${k}" aria-pressed="${histTab===k}">${l}</button>`).join("")}</div>`;
+  const tabs=era==="redraft"?RD_TABS:HIST_TABS;
+  const eraBtns=`<div class="era-toggle" id="eraToggle" role="group" aria-label="League era">
+    <button type="button" data-e="keeper" aria-pressed="${era==="keeper"}">Keeper Era<small>${KSEASONS[0]} to now</small></button>
+    <button type="button" data-e="redraft" aria-pressed="${era==="redraft"}">Redraft Era<small>2011 to 2022</small></button></div>`;
+  return eraBtns+`<div class="toggle subtabs" id="histTabs" role="group" aria-label="History sections">${tabs.map(([k,l])=>`<button type="button" data-h="${k}" aria-pressed="${histTab===k}">${l}</button>`).join("")}</div>`;
 }
 function wireHistTabs(host){
   const t=host.querySelector("#histTabs");
   if(t) t.onclick=e=>{const b=e.target.closest("button");if(!b)return;histTab=b.dataset.h;render();};
+  const et=host.querySelector("#eraToggle");
+  if(et) et.onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.e===era)return;
+    era=b.dataset.e;
+    const ok=(era==="redraft"?RD_TABS:HIST_TABS).some(([k])=>k===histTab);
+    if(!ok||era==="redraft") histTab=era==="redraft"?"champs":"lifetime";
+    render();};
+}
+/* redraft era: every champion, then any one season's standings */
+function rdChamps(){
+  const yrs=YEARS.slice().reverse();
+  const cards=yrs.map(s=>{const f=D.finalPlace[s]||[],c=f[0],ru=f[1],st=D.seasons[s].standings;
+    const team=(D.seasons[s].teamNames||{})[c]||"";
+    return `<div class="cw" style="--c:${col(c)}"><div class="yr">${s}</div><div class="nm">${nmTxt(c)}</div>
+      <div class="tm">${isUnk(c)?"Owner unknown":esc(team)}</div>
+      <div class="ru">Runner-up ${nmTxt(ru)} · Reg. season 1st ${nmTxt(st[0].manager)}</div></div>`;}).join("");
+  const titles={};yrs.forEach(s=>{const c=(D.finalPlace[s]||[])[0];if(c)(titles[c]=titles[c]||[]).push(s);});
+  const tl=Object.entries(titles).sort((a,b)=>b[1].length-a[1].length||a[1][0]-b[1][0])
+    .map(([m,ys])=>`<tr><td class="l">${nameBtn(m)}</td><td>${ys.length}</td><td class="l">${ys.slice().sort().join(", ")}</td></tr>`).join("");
+  return `<p class="lede">Before the keeper league: the YANKEES'11 league (2011 to 2013) and Big Monies (2014 to 2022), both full redraft, same family core. 2020 was set up but never drafted. Names in italics are teams whose owner nobody has figured out yet.</p>
+    <div class="champwall">${cards}</div>
+    <h2 class="sec">Titles</h2><div class="scroll"><table><thead><tr><th class="l">Manager</th><th>Titles</th><th class="l">Seasons</th></tr></thead><tbody>${tl}</tbody></table></div>`;
+}
+function rdSeasonView(){
+  if(!rdSeason||!D.seasons[rdSeason]) rdSeason=YEARS[YEARS.length-1];
+  const S=D.seasons[rdSeason], n=(D.teamsBySeason||{})[rdSeason]||S.standings.length;
+  const f=D.finalPlace[rdSeason]||[];
+  const pick=`<div class="toggle" id="rdPick" role="group" aria-label="Redraft season">${YEARS.map(s=>`<button type="button" data-s="${s}" aria-pressed="${s===rdSeason}">${s}</button>`).join("")}</div>`;
+  const cats=(D.catsBySeason||{})[rdSeason]||[];
+  const rows=S.standings.map((r,i)=>{const fp=f.indexOf(r.manager);
+    return `<tr><td class="rk">${i+1}</td><td class="l">${nameBtn(r.manager)}</td><td class="l sub">${isUnk(r.manager)?"":esc(r.team)}</td>
+      <td>${rec(r.w,r.l,r.t)}</td><td>${pct3(r.pct)}</td><td>${r.gb?r.gb:"—"}</td><td>${rec(r.mw,r.ml,r.mt)}</td><td>${fp>=0?fp+1:"—"}</td></tr>`;}).join("");
+  return `${pick}<p class="lede">${esc((D.leagueNames||{})[rdSeason]||"")} ${esc(rdSeason)}: ${n} teams, ${cats.filter(c=>!(D.nonScoring||[]).includes(c)).length} categories. Champion ${nmTxt(f[0]||"")}.</p>
+    <div class="scroll"><table class="stand"><thead><tr><th>#</th><th class="l">Manager</th><th class="l">Team</th><th>Categories</th><th>Pct</th><th>GB</th><th>Weeks</th><th>Final</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <div id="rdBracket" style="margin-top:22px"></div>`;
 }
 function vHistory(){
   const host=el("v-history");
   if(histTab==="records"){ return; }   /* the Records sub-tab renders into v-records */
   let body="";
-  if(histTab==="lifetime"){
+  if(era==="redraft"&&!RD){ host.innerHTML=histTabs()+`<p class="empty">Loading the redraft era…</p>`; wireHistTabs(host); loadRedraft(); return; }
+  if(histTab==="champs"){ body=rdChamps(); }
+  else if(histTab==="seasons"){ body=rdSeasonView(); }
+  else if(histTab==="lifetime"){
     const held=allTimeRecords();
     const pctOf=r=>{const t=r[0]+r[1]+r[2];return t?(r[0]+r[2]/2)/t:null;};
     const rows=D.lifetime.map(r=>{
@@ -1752,7 +1832,7 @@ function vHistory(){
       ["pmatch","Playoff weeks","","Championship bracket games only, never a tie"],["run","Best run","","Longest run of winning weeks"],
       ["skid","Worst skid","","Longest run of losing weeks"],["recs","Records held","l"]];
     const ths=H.map(([k,l,c,t])=>`<th class="sortable ${c||""}" data-k="${k}" aria-sort="${lifeSort.k===k?(lifeSort.d===1?"ascending":"descending"):"none"}"${t?` title="${t}"`:""}>${l}</th>`).join("");
-    body=`<p class="lede">Every regular season week and category, all seasons combined. Playoff columns count championship bracket games only; a tied playoff week goes to the better seed. Runs and skids carry across seasons. Click a column to sort; hover a record for its win percentage.</p>
+    body=`<p class="lede">${era==="redraft"?"Redraft era, 2011 to 2022. The league ran 8, 10 or 12 teams depending on the year, and XBH and K/BB joined in 2014. ":""}Every regular season week and category, all seasons combined. Playoff columns count championship bracket games only; a tied playoff week goes to the better seed. Runs and skids carry across seasons. Click a column to sort; hover a record for its win percentage.</p>
       <div class="scroll"><table class="stand" id="lifeTbl"><thead><tr>${ths}</tr></thead><tbody>${lifeRows}</tbody></table></div>`;
   } else if(histTab==="money"){
     const pay=D.managers.map(m=>({m,...D.payouts[m]})).sort((a,b)=>b.total-a.total);
@@ -1766,6 +1846,8 @@ function vHistory(){
   }
   host.innerHTML=histTabs()+body;
   wireHistTabs(host);
+  const rp=el("rdPick");
+  if(rp) rp.onclick=e=>{const b=e.target.closest("button");if(!b)return;rdSeason=b.dataset.s;render();};
   if(histTab==="h2h"){
     h2hGrid(D.h2h, "Every pairing, regular season only, all seasons combined. Read across a row for that manager's record. Click any cell for the season by season breakdown.", "h2h-reg");
     if(D.h2hPlayoff) h2hGrid(D.h2hPlayoff, "Championship bracket games only. No ties here: a tied playoff week goes to the better seed. Most pairings never happened. Click a cell that has games for the detail.", "h2h-po", "po");
@@ -2092,7 +2174,7 @@ const stgTag=st=>st==="Playoff"?`<span class="stg po">playoffs</span>`:"";
 function vRecords(){
   const R=D.records; if(!R){el("v-records").innerHTML=`<p class="lede">No records yet.</p>`;return;}
   const fmtV=(c,v)=>fmtStat(c,v);
-  const odd=Object.entries(R.oddWeeks||{}).map(([s,ws])=>`${s}: week${ws.length>1?"s":""} ${ws.join(" and ")}`).join("; ");
+  const odd=Object.entries(R.oddWeeks||{}).filter(([s,ws])=>ws.length).map(([s,ws])=>`${s}: week${ws.length>1?"s":""} ${ws.join(" and ")}`).join("; ");
   const regW=R.regWeeks||{};
   const longer=Object.entries(regW).filter(([s,n])=>n!==Math.min(...Object.values(regW))).map(([s,n])=>`${s} (${n} weeks)`);
   const when=x=>`${x.s} wk ${x.w}${x.stage==="Playoff"?' <span class="stg po">PO</span>':""}`;
@@ -2124,7 +2206,9 @@ function vRecords(){
     return `<tr><th>${esc(c)}${lower.has(c)?" ↓":""}</th><td><b>${fmtV(c,top[0].v)}</b></td><td class="l">${holders(top,c,false)}</td>
       <td class="l">${rest.length?nextBest(rest,c,false):""}</td>
       <td class="l"><span class="w">${wr?`${fmtV(c,wr.v)} ${esc(wr.m)} ${wr.s}`:""}</span></td></tr>`;}).join("");
-  el("v-records").innerHTML=histTabs()+`<p class="lede">Keeper era records, ${esc(R.era)}, regular season and championship bracket, since Benny took over as commissioner and made the league a keeper league. The league itself goes back to 2011.</p>
+  el("v-records").innerHTML=histTabs()+`<p class="lede">${era==="redraft"
+      ?`Redraft era records, 2011 to 2022, regular season and championship bracket. Kept separate from the keeper era. Team counts ran from 8 to 12, and XBH and K/BB only count from 2014 on.`
+      :`Keeper era records, ${esc(R.era)}, regular season and championship bracket, since Benny took over as commissioner and made the league a keeper league. The league itself goes back to 2011.`}</p>
     <div class="rec-grid wide">
       <div class="rec-card"><h3>Worst bad beats</h3><p class="n">The best weeks that still lost the matchup, by grade.</p>${rtab(BEAT_HEAD,(R.badBeats||[]).map(beatRow).join(""))}</div>
       <div class="rec-card"><h3>Luckiest weeks</h3><p class="n">The worst weeks that still won the matchup, by grade.</p>${rtab(BEAT_HEAD,(R.luckyWeeks||[]).map(luckRow).join(""))}</div>
@@ -2150,7 +2234,7 @@ function vRecords(){
     <h2 class="sec">Season totals, by category</h2>
     <p class="lede tight">Regular season only.${longer.length?` ${esc(longer.join(", "))} ran one week longer than the others, which helps counting totals.`:""}</p>
     <div class="scroll"><table class="rect"><thead><tr><th>Cat</th><th>Record</th><th class="l">Held by</th><th class="l">Next best</th><th class="l">Worst</th></tr></thead><tbody>${seasonRows}</tbody></table></div>
-    <p class="lede" style="margin-top:14px">"prev. owner" marks records set by a team's earlier manager: before 2026, Jacob's team belonged to a different Jacob.</p>`;
+    ${era==="redraft"?"":`<p class="lede" style="margin-top:14px">"prev. owner" marks records set by a team's earlier manager: before 2026, Jacob's team belonged to a different Jacob.</p>`}`;
   wireHistTabs(el("v-records"));
   el("recGrade").onclick=e=>{const b=e.target.closest("button");if(!b)return;recGrade=b.dataset.g;render();};
 }
@@ -2232,6 +2316,8 @@ function vKeepers(){
 }
 
 function render(){
+  const rdOn=view==="history"&&era==="redraft"&&RD;
+  if(rdOn&&D!==RD) useData(RD); else if(!rdOn&&D!==KD) useData(KD);
   document.body.setAttribute("data-season",season);
   closePop();
   document.body.setAttribute("data-season",season);
@@ -2240,14 +2326,22 @@ function render(){
   el("nav").querySelectorAll("button").forEach(b=>b.setAttribute("aria-current",b.dataset.v===view?"page":"false"));
   document.querySelectorAll(".view").forEach(v=>v.classList.remove("on"));
   const allTime=ALL_TIME_VIEWS.has(view);
-  document.body.setAttribute("data-season",allTime?"ALL":season);
+  const rdView=view==="history"&&era==="redraft";
+  document.body.setAttribute("data-season",rdView?"REDRAFT":allTime?"ALL":season);
   el("seasonPick").classList.toggle("off",allTime);
   el("seasonPick").setAttribute("title",allTime?"This page covers every season":"");
-  el("seasonBanner").innerHTML=allTime?`<b>ALL</b> SEASONS`:`<b>${esc(season)}</b> SEASON`;
+  el("seasonBanner").innerHTML=rdView?`<b>2011–22</b> REDRAFT ERA`:allTime?`<b>ALL</b> SEASONS`:`<b>${esc(season)}</b> SEASON`;
   const show=[];
   if(view==="standings"){ if(hasBracket()){show.push("bracket");vBracket();} show.push("standings");vStandings(); }
   else if(view==="stats"){ if(statsTab==="charts"){show.push("trends");vTrends();} else {show.push("stats");vStats();} }
-  else if(view==="history"){ if(histTab==="records"){show.push("records");vRecords();} else {show.push("history");vHistory();} }
+  else if(view==="history"){
+    if(histTab==="records"&&!(era==="redraft"&&!RD)){show.push("records");vRecords();}
+    else {show.push("history");vHistory();
+      if(era==="redraft"&&RD&&histTab==="seasons"&&el("rdBracket")){
+        /* reuse the bracket drawing for the picked redraft season, then move it under the standings */
+        const keep=season; season=rdSeason; vBracket(); season=keep;
+        el("rdBracket").innerHTML=el("v-bracket").innerHTML; el("v-bracket").innerHTML="";}
+    } }
   else { show.push(view); ({matchups:vMatchups,keepers:vKeepers,manager:vManager,news:vNews})[view](); }
   show.forEach(k=>el("v-"+k).classList.add("on"));
 }

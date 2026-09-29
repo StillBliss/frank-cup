@@ -134,6 +134,17 @@ class Season:
         out = {}
         for mgr, lines in acc.items():
             out[mgr] = [num(v) for v in combine_lines(lines, ab, [c["abbr"] for c in self.cats])]
+        if "H/AB" not in ab:
+            # old seasons never tracked hits and at-bats, so AVG and OPS can't be rebuilt
+            # from the weekly lines; fall back to Yahoo's own season figures for those two
+            try:
+                ys = self.yahoo_season_stats()
+                for i, c in enumerate(self.cats):
+                    if c["abbr"] in ("AVG", "OPS"):
+                        for mgr in out:
+                            if mgr in ys: out[mgr][i] = ys[mgr][i]
+            except (FileNotFoundError, KeyError, TypeError):
+                pass
         return out
 
     def yahoo_season_stats(self):
@@ -543,9 +554,11 @@ def build(raw_dir, cfg):
     champ_rows = []  # championship bracket games only, consolation excluded
     brackets, finals, seeds_done, pay_in, sdata, ev = {}, {}, {}, [], [], []
     winfo = {}
+    cat_lists = {}
     S_last = None
     for y in years:
         S = Season(y, cfg); S_last = S
+        cat_lists[y] = [c["abbr"] for c in S.cats]
         blk = season_block(S)
         seasons[str(y)] = {"teamNames": S.names, "weeks": S.reg_weeks, "standings": blk["standings"],
                            "progression": blk["prog"], "matchups": blk["rows"],
@@ -586,6 +599,17 @@ def build(raw_dir, cfg):
         P.setdefault(e[2], e[3])
     trades.sort(key=lambda t: t["ts"])
     cats = [c["abbr"] for c in S_last.cats]
+    # older seasons may have used fewer categories (the redraft era added XBH and
+    # K/BB in 2014); line every season's stat lists up with the newest list,
+    # leaving a blank where a category didn't exist yet
+    for y, sc in cat_lists.items():
+        if sc == cats: continue
+        pos = [sc.index(c) if c in sc else None for c in cats]
+        fix = lambda line: [line[i] if i is not None and i < len(line) else None for i in pos]
+        ss = seasons[str(y)]["seasonStats"]
+        for m in ss: ss[m] = fix(ss[m])
+        for weeks in wdet[str(y)].values():
+            for e in weeks.values(): e["you"] = fix(e["you"])
     D["cats"] = cats
     D["hitN"] = sum(1 for c in S_last.cats if c["group"] == "batting")
     D["lowerBetter"] = lower

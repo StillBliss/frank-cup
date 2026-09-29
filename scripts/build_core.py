@@ -92,7 +92,10 @@ def transactions(season):
     return out
 
 def draft(season):
-    d = L(f"{season}/draft_results.json")["fantasy_content"]["league"][1]["draft_results"]
+    raw = L(f"{season}/draft_results.json")
+    if not raw:  # some old seasons never returned draft results
+        return []
+    d = raw["fantasy_content"]["league"][1]["draft_results"]
     out = []
     for k in d:
         if not k.isdigit(): continue
