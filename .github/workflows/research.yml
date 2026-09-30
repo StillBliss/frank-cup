@@ -37,6 +37,13 @@ jobs:
         continue-on-error: true
         run: python -u scripts/mlb_history.py
 
+      - name: Pull MLB Pipeline Top 100 lists (headless browser)
+        continue-on-error: true
+        run: |
+          pip install -q playwright
+          python -m playwright install --with-deps chromium > /dev/null
+          python -u scripts/pipeline_pull.py
+
       - name: Commit output to the research branch
         run: |
           mv research_out "$RUNNER_TEMP/research_out"
