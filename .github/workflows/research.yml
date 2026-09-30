@@ -1,7 +1,8 @@
 name: Research pull (manual)
 
 # Manual research pull for the personal ranking tool (not the site):
-# Yahoo player rankings with stats + MLB Stats API season stats.
+# Yahoo player rankings with stats + MLB Stats API season stats, plus
+# multi-year history, bios, injured-list moves, minor leagues, drafts and prospects.
 # Only runs when started by hand. Output goes to the "research" branch
 # (replaced each run), never to main, so the site is untouched.
 on:
@@ -13,7 +14,7 @@ permissions:
 jobs:
   pull:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
 
@@ -31,6 +32,10 @@ jobs:
 
       - name: Pull MLB stats
         run: python -u scripts/mlb_stats.py
+
+      - name: Pull MLB history, bios, injuries, minors, drafts, prospects
+        continue-on-error: true
+        run: python -u scripts/mlb_history.py
 
       - name: Commit output to the research branch
         run: |
