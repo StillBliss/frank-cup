@@ -32,7 +32,22 @@ JS = """
 """
 
 
+CAPTURED = []
+
+
+def on_response(resp):
+    try:
+        ct = resp.headers.get("content-type", "")
+        if "json" not in ct: return
+        body = resp.text()
+        if len(body) > 2000 and ("prospect" in body.lower() or "rank" in body.lower()):
+            CAPTURED.append({"url": resp.url, "body": body[:3_000_000]})
+    except Exception:
+        pass
+
+
 def grab(page, url):
+    CAPTURED.clear()
     page.goto(url, wait_until="domcontentloaded", timeout=120000)
     page.wait_for_timeout(6000)
     for label in ("Show Full List", "Show full list", "Load More", "Show More"):
@@ -44,7 +59,14 @@ def grab(page, url):
             pass
     for _ in range(12):   # lazy-loaded rows
         page.mouse.wheel(0, 4000); page.wait_for_timeout(700)
+    try:
+        buttons = page.evaluate("() => [...document.querySelectorAll('button, a')].map(b => b.innerText.trim()).filter(t => t && t.length < 40)")
+        page.evaluate("() => [...document.querySelectorAll('button, a')].filter(b => /full list|show all|view all|see all/i.test(b.innerText)).forEach(b => b.click())")
+        page.wait_for_timeout(5000)
+    except Exception:
+        buttons = []
     rows = page.evaluate(JS)
+    page._dbg = {"buttons": buttons[:300], "captured": [c["url"] for c in CAPTURED]}
     seen, clean = set(), []
     for r in rows:
         key = r["id"] or r["name"]
@@ -61,6 +83,7 @@ def main():
         b = p.chromium.launch()
         page = b.new_page(viewport={"width": 1400, "height": 2000},
                           user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36")
+        page.on("response", on_response)
         for label, url in TARGETS.items():
             try:
                 rows = grab(page, url)
@@ -68,7 +91,10 @@ def main():
                 print(label, "failed:", repr(e)[:200]); continue
             print(f"{label}: {len(rows)} prospects; first: {[r['name'] for r in rows[:3]]}")
             with open(os.path.join(OUT, f"{label}.json"), "w", encoding="utf-8") as f:
-                json.dump({"url": url, "rows": rows}, f, ensure_ascii=False, indent=0)
+                json.dump({"url": url, "rows": rows, "debug": getattr(page, "_dbg", {})}, f, ensure_ascii=False, indent=0)
+            for i, c in enumerate(CAPTURED[:6]):
+                with open(os.path.join(OUT, f"{label}_net{i}.json"), "w", encoding="utf-8") as f:
+                    json.dump(c, f, ensure_ascii=False)
         b.close()
 
 
