@@ -1,0 +1,318 @@
+<title>Win Value Board</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F3; --panel:#FFFFFF; --ink:#17211C; --muted:#5E6B63; --line:#DCE2DC; --soft:#EBEFEA;
+  --accent:#27477F; --accent-soft:#E3E9F4; --up:#1C7A4A; --down:#B0392F; --bar:#27477F;
+  --h:#27477F; --sp:#8A5A12; --rp:#5B3F8C;
+  --disp:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101613; --panel:#171F1B; --ink:#E6ECE7; --muted:#97A59C; --line:#2A3530; --soft:#1F2924;
+    --accent:#8FB0EA; --accent-soft:#1F2A3D; --up:#5CC98E; --down:#EC7F74; --bar:#7FA3E3;
+    --h:#8FB0EA; --sp:#E0B25E; --rp:#B79BE8; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101613; --panel:#171F1B; --ink:#E6ECE7; --muted:#97A59C; --line:#2A3530; --soft:#1F2924;
+  --accent:#8FB0EA; --accent-soft:#1F2A3D; --up:#5CC98E; --down:#EC7F74; --bar:#7FA3E3;
+  --h:#8FB0EA; --sp:#E0B25E; --rp:#B79BE8; color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5;padding-inline:16px;padding-block:24px 48px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;gap:20px}
+header{display:grid;gap:6px}
+.eyebrow{font-family:var(--disp);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-size:13px}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(34px,6vw,52px);line-height:1;margin:0;letter-spacing:.01em;text-wrap:balance}
+.lede{color:var(--muted);max-width:68ch;margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted)}
+.facts b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:600 14px/1 var(--disp);letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--muted);border:0;padding:9px 12px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--panel)}
+input[type=search],select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+input[type=search]{flex:1 1 180px;min-width:0}
+label.chk{display:inline-flex;gap:6px;align-items:center;color:var(--muted);font-size:13px;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible,tr:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tablebox{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;min-width:720px}
+th{font:600 12px/1.2 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;padding:10px 10px;border-bottom:1px solid var(--line);white-space:nowrap;position:sticky;top:0;background:var(--panel)}
+th.l,td.l{text-align:left}
+td{padding:8px 10px;border-bottom:1px solid var(--soft);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr.row{cursor:pointer}
+tbody tr.row:hover{background:var(--soft)}
+.rk{font-family:var(--mono);color:var(--muted);width:42px}
+.nm{font-weight:600}
+.sub{display:block;font-size:12px;color:var(--muted);font-weight:400}
+.role{display:inline-block;font:600 11px/1 var(--disp);letter-spacing:.08em;padding:3px 5px;border-radius:4px;border:1px solid currentColor;margin-right:6px;vertical-align:1px}
+.role.H{color:var(--h)} .role.SP{color:var(--sp)} .role.RP{color:var(--rp)}
+.wv{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.wv .track{width:90px;height:8px;background:var(--soft);border-radius:4px;overflow:hidden}
+.wv .fill{display:block;height:100%;background:var(--bar);border-radius:4px}
+.wv .fill.neg{background:var(--down)}
+.num{font-family:var(--mono);font-size:13px}
+.gap.up{color:var(--up)} .gap.down{color:var(--down)} .gap.flat{color:var(--muted)}
+.samp{color:var(--muted);font-size:12px}
+tr.detail td{background:var(--soft);white-space:normal;text-align:left;padding:12px 14px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 7px;border-radius:5px;background:var(--panel);border:1px solid var(--line)}
+.chip.up{color:var(--up)} .chip.down{color:var(--down)}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 24px;font-size:13px;color:var(--muted)}
+.how h2{font:600 14px/1.2 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin:0 0 4px}
+.how p{margin:0}
+.more{justify-self:center;font:600 14px/1 var(--disp);letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--accent);border:1px solid var(--line);border-radius:8px;padding:10px 16px;cursor:pointer}
+.pill{display:inline-block;font:600 12px/1 var(--body);padding:5px 8px;border-radius:999px;white-space:nowrap}
+.pill.up{color:var(--up);background:color-mix(in srgb,var(--up) 14%,transparent)}
+.pill.down{color:var(--down);background:color-mix(in srgb,var(--down) 14%,transparent)}
+.pill.flat{color:var(--muted);background:var(--soft)}
+th.grp{text-align:center;border-bottom:1px solid var(--line);color:var(--ink)}
+th.gs,td.gs{border-left:1px solid var(--line)}
+td.ours{font-weight:600;color:var(--ink)}
+.caption{font-size:13px;color:var(--muted);margin:0}
+.empty{padding:24px;text-align:center;color:var(--muted)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs button{font:600 16px/1 var(--disp);letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--muted);border:0;border-bottom:3px solid transparent;padding:12px 14px 10px;cursor:pointer;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabs button span{display:block;font:400 12px/1.3 var(--body);letter-spacing:0;text-transform:none;margin-top:3px}
+.own{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-left:6px;vertical-align:1px}
+.own.fa{background:transparent;color:var(--muted);border:1px dashed var(--line)}
+.sub .rook{color:var(--h);font-weight:600}
+.sub .hurt{color:var(--down);font-weight:600}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">The Frank Family Classic · personal board · 2027</div>
+    <h1>Win Value Board</h1>
+    <p class="lede">Every player swapped into an average 2027 team (12 teams, new roster slots) for a week, then replayed against 13 seasons of real league weeks. Ranked by how much he raises the chance of winning the matchup. Assists and Errors are held neutral.</p>
+    <div class="facts" id="facts"></div>
+  </header>
+
+  <div class="tabs" role="tablist" aria-label="Board">
+    <button type="button" role="tab" id="tab-x27" aria-selected="true" data-t="x27">2027 draft board<span>Talent × how much he'll play</span></button>
+    <button type="button" role="tab" id="tab-p27" aria-selected="false" data-t="p27">2027 per game<span>How good he is when he plays</span></button>
+    <button type="button" role="tab" id="tab-ss" aria-selected="false" data-t="ss">2026 in review<span>Season totals vs Yahoo</span></button>
+  </div>
+
+  <div class="controls" role="group" aria-label="Filters">
+    <div class="seg" id="roles">
+      <button type="button" data-r="all" aria-pressed="true">All</button>
+      <button type="button" data-r="H" aria-pressed="false">Hitters</button>
+      <button type="button" data-r="SP" aria-pressed="false">SP</button>
+      <button type="button" data-r="RP" aria-pressed="false">RP</button>
+    </div>
+    <select id="mgr" aria-label="Manager"></select>
+    <input type="search" id="q" placeholder="Find a player or team" aria-label="Find a player or team">
+    <select id="sort" aria-label="Sort by"></select>
+  </div>
+
+  <p class="caption" id="caption"></p>
+  <div class="tablebox">
+    <table>
+      <thead id="head"></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <button type="button" class="more" id="more">Show 100 more</button>
+
+  <section class="how" id="how"></section>
+</div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var SETS = {x27: D.x27, p27: D.p27, ss: D.season};
+  var state = {tab:'x27', role:'all', mgr:'all', q:'', sort:'r', limit:150, open:{}};
+  try { var sv = JSON.parse(localStorage.getItem('wvb3') || '{}'); ['tab','role','mgr'].forEach(function(k){ if (sv[k]) state[k] = sv[k]; }); } catch(e){}
+  if (!SETS[state.tab]) state.tab = 'x27';
+  if (location.hash === '#review') state.tab = 'ss'; else if (location.hash === '#pergame') state.tab = 'p27'; else if (location.hash === '#draft') state.tab = 'x27';
+
+  var CAT_ORDER = ['R','3B','HR','RBI','SB','BB','AVG','OPS','XBH','IP','W','L','CG','SV','K','HLD','ERA','WHIP','KBB','QS'];
+  var CAT_LABEL = {KBB:'K/BB'};
+  function side(p){ return p.role === 'H' ? 'H' : 'P'; }
+  var MAX = {}; Object.keys(SETS).forEach(function(k){ MAX[k] = Math.max.apply(null, SETS[k].map(function(p){ return p.wp; })); });
+
+  document.getElementById('facts').innerHTML =
+    '<span><b>' + D.meta.opp.toLocaleString() + '</b> real team-weeks, 2014 to 2026</span>' +
+    '<span>MLB stats through <b>' + D.meta.pulled + '</b></span>' +
+    '<span>Rosters as of <b>' + D.rosterDay + '</b></span>';
+
+  var mgrSel = document.getElementById('mgr');
+  mgrSel.innerHTML = '<option value="all">All players</option><option value="fa">Free agents</option>' +
+    D.managers.map(function(m){ return '<option value="' + m + '">' + m + (m === 'Benny' ? ' (you)' : '') + '</option>'; }).join('');
+
+  var SORTS = {
+    x27: [['r','Sort: draft value'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
+    p27: [['r','Sort: per-game value'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
+    ss: [['r','Sort: win value'],['gap','Sort: Yahoo has too low'],['gapd','Sort: Yahoo has too high']]
+  };
+  var CAPTION = {
+    x27: 'The draft ranking: 2027 per-game value multiplied by how much of the season he should actually play (injury history, age, and for prospects, the chance he is in the majors at all).',
+    p27: 'How much a player helps in a week he plays, projected for 2027. Injuries do not count against him here.',
+    ss: '2026 season totals spread over ' + D.weeks + ' weeks, so missed time counts, the same basis as Yahoo. Yahoo ranks hitters and pitchers on separate lists, so Ours and Yahoo rank each player only against his own side.'
+  };
+  var HOW = {
+    x27: [['Draft value','Per-game win value times Healthy % times MLB role. The number to draft by.'],
+          ['Healthy %','Expected share of the season he is available: injured-list days in his MLB seasons since debut (2026, 2025, 2024 weighted 5/4/3), pulled toward average, lower past age 30, and cut for known surgeries carrying into 2027. Years before his debut never count as injuries.'],
+          ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached in 2026. Established players are 100%.'],
+          ['\'26 FFC','The round he went in our 2026 draft (K = kept). A top-50 player who went in round 12 is a steal to target.'],
+          ['Click a row','Shows which categories he moves, his injured-list days by year, and any long-term injury.']],
+    p27: [['Talent','MLB 2026, 2025 and 2024 weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average. Aged to July 2027 (young players improve, older ones decline, speed fades fastest).'],
+          ['Rookies','Little or no MLB time is not treated as an injury. Their line comes mostly from translated AAA and AA stats, with a small bump for recent 1st-round picks.'],
+          ['Win value','Added matchup win % versus a replacement player at his role, per week, in the 2027 league (12 teams, 3 SP / 2 RP / 3 P). +4.0 turns a coin-flip team into a 54% team.'],
+          ['Opponents','Every real 7-day team-week from 2014 to 2026 (same 22 categories), each season rescaled to 2027 levels, recent seasons counted more.'],
+          ['Replacement level','Hitters ranked 120-150, SP 105-130, RP 24-40, matching 12 teams\' starting slots.']],
+    ss: [['Win value','Same league math as the per-game tab, applied to what he actually produced this season per week.'],
+         ['Why compare here','Yahoo also ranks on season totals, so any gap here comes from our league\'s categories and weighting, not from games missed.'],
+         ['Yahoo\'s view','"Too low by 20" means Yahoo ranks him 20 spots worse on his side than we do. Within 10 spots counts as agreeing.'],
+         ['No regression','Raw 2026 totals, like Yahoo. Short-season players rank low here even if they played well.']]
+  };
+
+  function gap(p){ return p.y == null ? null : p.y - p.sr; }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function fmt(v, d){ return (v > 0 ? '+' : '') + v.toFixed(d); }
+  function sample(p){
+    if (p.role === 'H') return p.g + ' G · ' + p.pa + ' PA';
+    if (p.role === 'SP') return p.gs + ' GS · ' + p.ip + ' IP';
+    return p.g + ' G · ' + p.ip + ' IP';
+  }
+
+  function list(){
+    var q = state.q.trim().toLowerCase();
+    var out = SETS[state.tab].filter(function(p){
+      if (state.role !== 'all' && p.role !== state.role) return false;
+      if (state.mgr === 'fa' && p.own) return false;
+      if (state.mgr !== 'all' && state.mgr !== 'fa' && p.own !== state.mgr) return false;
+      if (q && (p.n + ' ' + p.tm + ' ' + p.pos + ' ' + (p.own || '')).toLowerCase().indexOf(q) < 0) return false;
+      return true;
+    });
+    var key = state.sort;
+    out.sort(function(a,b){
+      if (key === 'age') return a.age - b.age;
+      if (key === 'rd') { var sa = a.rd ? a.rd * 12 - a.r : -1e9, sb = b.rd ? b.rd * 12 - b.r : -1e9; return sb - sa; }
+      if (key === 'gap' || key === 'gapd') {
+        var ga = gap(a), gb = gap(b);
+        if (ga == null && gb == null) return a.r - b.r;
+        if (ga == null) return 1; if (gb == null) return -1;
+        return key === 'gap' ? gb - ga : ga - gb;
+      }
+      return a.r - b.r;
+    });
+    return out;
+  }
+
+  function head(){
+    var h = document.getElementById('head');
+    if (state.tab === 'x27') {
+      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Draft value</th><th>Cats / wk</th><th title="Expected share of the season he is available">Healthy</th><th title="Chance he spends 2027 in the majors">MLB role</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th></tr>';
+    } else if (state.tab === 'p27') {
+      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Per game</th><th>Cats / wk</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th>Track record</th></tr>';
+    } else {
+      h.innerHTML = '<tr><th colspan="4"></th><th colspan="3" class="grp gs">Rank among hitters or among pitchers</th><th></th></tr>' +
+        '<tr><th title="Hitters and pitchers on one scale">Overall</th><th class="l">Player</th><th>Win value</th><th>Cats / wk</th>' +
+        '<th class="gs">Ours</th><th>Yahoo</th><th class="l">Yahoo\'s view</th><th>Sample</th></tr>';
+    }
+  }
+  function ncols(){ return state.tab === 'x27' ? 8 : state.tab === 'p27' ? 7 : 8; }
+  function pct(v){ return Math.round(v * 100) + '%'; }
+  function rdc(p){ return p.rd ? (p.kept ? 'K' + p.rd : p.rd) : '<span class="samp">—</span>'; }
+  function track(p){
+    var u = p.role === 'H' ? ' PA' : ' BF';
+    return (p.mlb ? p.mlb.toLocaleString() + u + ' MLB' : 'no MLB') + (p.mi ? ' · ' + p.mi + ' minors' : '');
+  }
+
+  function detail(p){
+    var chips = CAT_ORDER.filter(function(k){ return p.per[k] != null; })
+      .sort(function(a,b){ return Math.abs(p.per[b]) - Math.abs(p.per[a]); })
+      .map(function(k){ var v = p.per[k];
+        return '<span class="chip ' + (v > 0 ? 'up' : 'down') + '">' + (CAT_LABEL[k] || k) + ' ' + fmt(v * 100, 1) + '%</span>'; }).join('');
+    return '<tr class="detail"><td colspan="' + ncols() + '"><div class="chips">' + (chips || '<span class="samp">No category moves by more than 0.1%.</span>') +
+      '</div><div class="note">Change in how often an average team wins each category, per week, versus replacement level.</div>' + extra(p) + '</td></tr>';
+  }
+
+  function extra(p){
+    if (state.tab === 'ss') return '';
+    var il = Object.keys(p.il || {}).sort().map(function(y){ return y + ': ' + p.il[y] + ' days'; }).join(', ');
+    var bits = [];
+    bits.push('Age ' + p.age.toFixed(1) + ' in July 2027');
+    bits.push('Injured list: ' + (il || 'none in 2024 to 2026'));
+    if (p.lt) bits.push('Carrying into 2027: ' + esc(p.lt));
+    if (p.rk) bits.push('Rookie profile, highest 2026 level: ' + (p.lvl === 'none' ? 'MLB only' : p.lvl));
+    bits.push(track(p));
+    return '<div class="note">' + bits.join(' · ') + '</div>';
+  }
+  function render(){
+    var rows = list(), shown = rows.slice(0, state.limit), max = MAX[state.tab];
+    var html = shown.map(function(p){
+      var key = state.tab + side(p) + p.r;
+      var w = Math.max(0, p.wp) / max * 100;
+      var own = p.own ? '<span class="own">' + esc(p.own) + '</span>' : '<span class="own fa">FA</span>';
+      var cells = '<td class="rk">' + p.r + '</td>' +
+        '<td class="l"><span class="role ' + p.role + '">' + p.role + '</span><span class="nm">' + esc(p.n) + '</span>' + own +
+          '<span class="sub">' + esc(p.pos) + (p.tm ? ' · ' + esc(p.tm) : '') + (p.rk && state.tab !== 'ss' ? ' · <b class="rook">Rookie</b>' : '') + (p.lt && state.tab !== 'ss' ? ' · <b class="hurt">Injured</b>' : '') + '</span></td>' +
+        '<td><div class="wv"><span class="num">' + fmt(p.wp, 2) + '</span><span class="track"><span class="fill' + (p.wp < 0 ? ' neg' : '') + '" style="width:' + (p.wp < 0 ? 4 : w) + '%"></span></span></div></td>' +
+        '<td class="num">' + fmt(p.cw, 2) + '</td>';
+      if (state.tab === 'x27') {
+        cells += '<td class="num">' + pct(p.av) + '</td><td class="num">' + (p.ms < 1 ? pct(p.ms) : '<span class="samp">yes</span>') + '</td><td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td>';
+      } else if (state.tab === 'p27') {
+        cells += '<td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td><td class="samp">' + track(p) + '</td>';
+      } else {
+        var g = gap(p);
+        var view = g == null ? '<span class="samp">not in Yahoo top ' + (p.role === 'H' ? 500 : 350) + '</span>'
+          : g > 10 ? '<span class="pill up">Too low by ' + g + '</span>'
+          : g < -10 ? '<span class="pill down">Too high by ' + (-g) + '</span>'
+          : '<span class="pill flat">Agrees</span>';
+        cells += '<td class="num gs ours">' + p.sr + '</td><td class="num">' + (p.y == null ? '<span class="samp">none</span>' : p.y) + '</td><td class="l">' + view + '</td>';
+      }
+      if (state.tab === 'ss') cells += '<td class="samp">' + sample(p) + '</td>';
+      var tr = '<tr class="row" tabindex="0" data-k="' + key + '" aria-expanded="' + (!!state.open[key]) + '">' + cells + '</tr>';
+      return state.open[key] ? tr + detail(p) : tr;
+    }).join('');
+    document.getElementById('rows').innerHTML = html || '<tr><td colspan="' + ncols() + '" class="empty">No players match. Clear the search or pick another group.</td></tr>';
+    var more = document.getElementById('more');
+    more.hidden = rows.length <= state.limit;
+    more.textContent = 'Show ' + Math.min(100, rows.length - state.limit) + ' more';
+  }
+
+  function setTab(t){
+    state.tab = t; state.limit = 150; state.open = {};
+    if (!SORTS[t].some(function(o){ return o[0] === state.sort; })) state.sort = 'r';
+    Array.prototype.forEach.call(document.querySelectorAll('.tabs button'), function(b){ b.setAttribute('aria-selected', b.dataset.t === t); });
+    var sel = document.getElementById('sort');
+    sel.innerHTML = SORTS[t].map(function(o){ return '<option value="' + o[0] + '">' + o[1] + '</option>'; }).join('');
+    sel.value = state.sort;
+    document.getElementById('caption').textContent = CAPTION[t];
+    document.getElementById('how').innerHTML = HOW[t].map(function(x){ return '<div><h2>' + x[0] + '</h2><p>' + x[1] + '</p></div>'; }).join('');
+    head(); save(); render();
+  }
+
+  document.querySelector('.tabs').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) setTab(b.dataset.t); });
+  document.getElementById('roles').addEventListener('click', function(e){
+    var b = e.target.closest('button'); if (!b) return;
+    state.role = b.dataset.r; state.limit = 150;
+    Array.prototype.forEach.call(this.children, function(x){ x.setAttribute('aria-pressed', x === b); });
+    save(); render();
+  });
+  mgrSel.addEventListener('change', function(){ state.mgr = this.value; state.limit = 150; save(); render(); });
+  document.getElementById('q').addEventListener('input', function(){ state.q = this.value; state.limit = 150; render(); });
+  document.getElementById('sort').addEventListener('change', function(){ state.sort = this.value; render(); });
+  document.getElementById('more').addEventListener('click', function(){ state.limit += 100; render(); });
+  function toggle(tr){ var k = tr.dataset.k; state.open[k] = !state.open[k]; render(); }
+  var body = document.getElementById('rows');
+  body.addEventListener('click', function(e){ var tr = e.target.closest('tr.row'); if (tr) toggle(tr); });
+  body.addEventListener('keydown', function(e){ var tr = e.target.closest('tr.row'); if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); toggle(tr); } });
+  function save(){ try { localStorage.setItem('wvb3', JSON.stringify({tab:state.tab, role:state.role, mgr:state.mgr})); } catch(e){} }
+
+  Array.prototype.forEach.call(document.querySelectorAll('#roles button'), function(x){ x.setAttribute('aria-pressed', x.dataset.r === state.role); });
+  if (!Array.prototype.some.call(mgrSel.options, function(o){ return o.value === state.mgr; })) state.mgr = 'all';
+  mgrSel.value = state.mgr;
+  setTab(state.tab);
+})();
+</script>
