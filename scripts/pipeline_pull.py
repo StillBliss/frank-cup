@@ -14,7 +14,7 @@ OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
 PAGE = "https://www.mlb.com/prospects/top100/"
 TARGETS = {"current": PAGE}
 for y in (2023, 2024, 2025, 2026):
-    TARGETS[f"preseason_{y}"] = f"https://web.archive.org/web/{y}0325000000/{PAGE}"
+    TARGETS[f"preseason_{y}"] = [f"https://web.archive.org/web/{y}{md}000000/{PAGE}" for md in ("0325", "0401", "0315", "0410", "0305")]
 
 JS = """
 () => {
@@ -85,10 +85,14 @@ def main():
                           user_agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/124 Safari/537.36")
         page.on("response", on_response)
         for label, url in TARGETS.items():
-            try:
-                rows = grab(page, url)
-            except Exception as e:  # noqa: BLE001
-                print(label, "failed:", repr(e)[:200]); continue
+            rows = []
+            for u in ([url] if isinstance(url, str) else url):   # archive snapshots: try a few dates
+                try:
+                    rows = grab(page, u)
+                except Exception as e:  # noqa: BLE001
+                    print(label, u[-60:], "failed:", repr(e)[:120]); rows = []
+                if len(rows) >= 50:
+                    url = u; break
             print(f"{label}: {len(rows)} prospects; first: {[r['name'] for r in rows[:3]]}")
             with open(os.path.join(OUT, f"{label}.json"), "w", encoding="utf-8") as f:
                 json.dump({"url": url, "rows": rows, "debug": getattr(page, "_dbg", {})}, f, ensure_ascii=False, indent=0)
