@@ -145,6 +145,9 @@ def main():
         for p in ps: p.setdefault("sug", None)
 
     basis = ("real 2027 average draft position" if source == "adp" else
+             "our own 2027 draft board (how much a player helps win matchups in this league, times how much "
+             "he's expected to play), converted to a draft round; it switches to real 2027 average draft "
+             "position once that's out" if source == "winvalue27" else
              "our own player values (per-game win value in this league, with 2025's second half blended in), "
              "converted to a draft round; it switches to real 2027 average draft position once that's out")
     K = {"season": season + 1, "asof": last, "managers": [m for m in cfg["managers"] if m in teams],
