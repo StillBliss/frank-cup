@@ -95,12 +95,13 @@ def weekly(p, qb):
 
 def swap(line, repl):
     c = dict(avg)
-    for k in line: c[k] = c[k] - repl[k] + line[k]
+    for k in line: c[k] = max(0.0, c[k] - repl[k] + line[k])   # a team can't have negative holds
     return c
 
 
-def run():
-    T, LG = talent.build(); talent.durability(T)
+def run(T=None):
+    if T is None:
+        T, LG = talent.build(); talent.durability(T); talent.team_context(T); talent.pedigree(T)
     qb = qs_model()
     # who is in the player pool: a real 2027 role is plausible
     pool = []

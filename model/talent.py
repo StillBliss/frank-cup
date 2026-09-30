@@ -17,6 +17,7 @@ import numpy as np
 
 H = '/home/claude/research/research_out/history'
 SEASONS = {2026: 5, 2025: 4, 2024: 3}
+DUR_W = {2026: 5, 2025: 4, 2024: 3, 2023: 2, 2022: 1}   # injury history reaches further back, older years count less
 MILB_W = {2026: 5, 2025: 4}
 MILB_DISC = 0.6            # a minor league PA counts as 0.6 of an MLB PA of information
 LEVEL = {'AAA': 1.0, 'AA': 0.93, 'A+': 0.86}   # step-down on "good" rates vs AAA
@@ -175,7 +176,7 @@ def build():
         P = PRIOR_BF
         rate = {k: (acc[k] + P * L[k]) / (acc['BF'] + P) for k in ('K', 'BB', 'HA', 'ER', 'HR', 'IP')}
         a = age(pid)
-        fa = 1 + (28 - a) * (0.006 if a < 28 else 0.004)      # >1 = better
+        fa = 1 + (28 - a) * (0.006 if a < 28 else 0.004) - max(0.0, a - 33) * 0.012   # >1 = better; pitchers fade faster past 33
         rate['K'] *= fa
         for k in ('BB', 'HA', 'ER', 'HR'): rate[k] /= fa
         # workload per outing and decisions per outing (MLB only; minors don't transfer)
@@ -242,11 +243,11 @@ def durability(T):
         pid = p['id']; deb = (people.get(pid) or {}).get('debut')
         debut_year = int(deb[:4]) if deb else 2099
         num = den = 0.0
-        for y, w in SEASONS.items():
+        for y, w in DUR_W.items():
             if y < debut_year: continue        # not in the majors yet: not an injury
             f = min(1.0, days[pid][y] / season_len)
             num += w * f; den += w
-        p['il_hist'] = {y: days[pid][y] for y in SEASONS if days[pid][y]}
+        p['il_hist'] = {y: days[pid][y] for y in DUR_W if days[pid][y]}
         p['_num'], p['_den'] = num, den
         if den: shares[p['role']].append(num / den)
     for r in lg:
@@ -254,7 +255,7 @@ def durability(T):
     for key, p in T.items():
         k0 = 8.0                               # prior strength, in weighted seasons
         miss = (p['_num'] + k0 * lg[p['role']]) / (p['_den'] + k0)
-        miss *= 1 + max(0, p['age'] - 30) * 0.04       # older players get hurt more
+        miss *= 1 + max(0, p['age'] - 30) * 0.04 + (max(0, p['age'] - 33) * 0.04 if p['role'] != 'H' else 0)   # older players get hurt more, old pitchers most
         lt = long_term.get(p['id'])
         extra = 0.0
         if lt and lt[0] >= dt.date(2025, 10, 1):
@@ -279,3 +280,70 @@ if __name__ == '__main__':
                     print(f"{n:20s} H age {p['age']} mlbPA {p['mlb_pa']} miPA {p['milb_pa']} avail {p['avail']} HR/600 {600*r['HR']:.0f} SB/600 {600*r['SB']:.0f} AVG {r['H']/r['AB']:.3f} {p.get('long_term','')}")
                 else:
                     print(f"{n:20s} {p['role']} age {p['age']} mlbBF {p['mlb_bf']} avail {p['avail']} ERA {9*r['ER']/r['IP']:.2f} K/9 {9*r['K']/r['IP']:.1f} IP/out {p['ip_out']:.1f} {p.get('long_term','')}")
+
+
+# ------------------------------------------------------------------ team context
+def team_context(T):
+    """Scale team-driven stats by the player's 2026 team: wins/losses for starters,
+    save and hold chances for relievers, runs and RBI for hitters. Half strength,
+    since his own history already carries some of his past teams."""
+    import glob as _g
+    nf = sorted(_g.glob('/home/claude/frank-cup/raw/2026/news/*.json'))[-1]
+    st = json.load(open(nf))['standings']
+    tm = {t['name']: t['id'] for t in load('/home/claude/research/research_out/mlb/teams.json')['teams']}
+    wpct = {}
+    for r in st:
+        if r['team'] in tm: wpct[tm[r['team']]] = 0.5 + (r['w'] / max(1, r['w'] + r['l']) - 0.5) * 0.5   # regress halfway
+    runs = collections.Counter(); games = collections.Counter()
+    for pid, (s, x) in rows(f'{H}/seasons/2026_hitting.json').items():
+        t = x['team'].get('id'); runs[t] += s['runs']
+    lg_r = np.mean(list(runs.values()))
+    off = {t: (runs[t] / lg_r) for t in runs}
+    for p in T.values():
+        t = p.get('team')
+        if p['role'] == 'H':
+            f = off.get(t, 1.0) ** 0.5
+            p['rate']['R'] *= f; p['rate']['RBI'] *= f
+            p['team_off'] = round(off.get(t, 1.0), 3)
+        else:
+            w = wpct.get(t, 0.5)
+            p['per']['W'] *= (w / 0.5) ** 0.5; p['per']['L'] *= ((1 - w) / 0.5) ** 0.5
+            if p['role'] == 'RP':
+                p['per']['SV'] *= (w / 0.5) ** 0.5; p['per']['HLD'] *= (w / 0.5) ** 0.5
+            p['team_w'] = round(w, 3)
+
+
+# ------------------------------------------------------------------ prospect pedigree
+def pedigree(T):
+    """MLB Pipeline Top 100 (current list and each preseason). The best recent rank
+    gives a bump to the good rates and to the chance of an MLB role."""
+    import glob as _g
+    from unicodedata import normalize
+    nm = lambda s: re.sub(r'[^a-z]', '', normalize('NFKD', s).encode('ascii', 'ignore').decode().lower())
+    by_name = collections.defaultdict(list)
+    for p in T.values(): by_name[nm(p['name'])].append(p)
+    best = {}
+    for f in sorted(_g.glob(f'{H}/pipeline/*.json')):
+        if '_net' in f: continue
+        lab = os.path.basename(f)[:-5]
+        rec = 1.0 if lab in ('current', 'preseason_2026') else 0.7 if lab == 'preseason_2025' else 0.4
+        for r in load(f)['rows']:
+            cands = [p for p in T.values() if p['id'] == r.get('id')] if r.get('id') else by_name.get(nm(r['name']), [])
+            for p in cands:
+                score = (101 - r['rank']) * rec
+                if score > best.get(id(p), (0, None))[0]: best[id(p)] = (score, f"#{r['rank']} ({lab.replace('_', ' ')})")
+    for p in T.values():
+        b = best.get(id(p))
+        if not b: continue
+        p['pipeline'] = b[1]
+        young = (p.get('mlb_pa') or p.get('mlb_bf') or 0) < 800
+        if not young: continue
+        bump = 1 + 0.06 * (b[0] / 100)          # up to +6% on the good rates for a recent #1 prospect
+        r = p['rate']
+        if p['role'] == 'H':
+            for k in ('H', 'D', 'T', 'HR', 'R', 'RBI', 'BB', 'SB'): r[k] *= bump
+        else:
+            r['K'] *= bump
+            for k in ('BB', 'HA', 'ER', 'HR'): r[k] /= bump
+        if p.get('mlb_share', 1) < 1:
+            p['mlb_share'] = round(min(1.0, p['mlb_share'] + 0.35 * (b[0] / 100)), 2)

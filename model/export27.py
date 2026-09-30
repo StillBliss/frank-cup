@@ -38,7 +38,8 @@ def rec(p):
          'av': p['avail'], 'ms': p['mlb_share'], 'rk': p['rookie'], 'lt': p.get('long_term'),
          'il': {str(y): n for y, n in p.get('il_hist', {}).items()},
          'mlb': p.get('mlb_pa', p.get('mlb_bf')), 'mi': p.get('milb_pa', p.get('milb_bf')), 'lvl': p.get('top_level'),
-         'per': {c: round(v, 3) for c, v in p['per'].items() if c not in ('A', 'E') and abs(v) >= 0.001}}
+         'per': {c: round(v, 3) for c, v in p['per'].items() if c not in ('A', 'E') and abs(v) >= 0.001},
+         'k3': round(100 * p.get('keep3', 0), 2), 'pl': p.get('pipeline')}
     return o
 def board(key):
     ps = sorted(pool, key=lambda p: -p[key])[:900]

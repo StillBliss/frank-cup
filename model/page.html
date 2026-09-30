@@ -149,7 +149,7 @@ td.ours{font-weight:600;color:var(--ink)}
     D.managers.map(function(m){ return '<option value="' + m + '">' + m + (m === 'Benny' ? ' (you)' : '') + '</option>'; }).join('');
 
   var SORTS = {
-    x27: [['r','Sort: draft value'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
+    x27: [['r','Sort: draft value (2027)'],['k3','Sort: keeper value (3 years)'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
     p27: [['r','Sort: per-game value'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
     ss: [['r','Sort: win value'],['gap','Sort: Yahoo has too low'],['gapd','Sort: Yahoo has too high']]
   };
@@ -163,9 +163,12 @@ td.ours{font-weight:600;color:var(--ink)}
           ['Healthy %','Expected share of the season he is available: injured-list days in his MLB seasons since debut (2026, 2025, 2024 weighted 5/4/3), pulled toward average, lower past age 30, and cut for known surgeries carrying into 2027. Years before his debut never count as injuries.'],
           ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached in 2026. Established players are 100%.'],
           ['\'26 FFC','The round he went in our 2026 draft (K = kept). A top-50 player who went in round 12 is a steal to target.'],
+          ['Keeper 3 yr','2027 value plus 2028 (80%) and 2029 (60%), each re-projected a year older, with prospects more likely to be up. Sort by it to find keepers.'],
+          ['Team','Starters\' wins and losses and relievers\' saves and holds scale with his 2026 team\'s record; hitters\' runs and RBI with his team\'s offense.'],
           ['Click a row','Shows which categories he moves, his injured-list days by year, and any long-term injury.']],
     p27: [['Talent','MLB 2026, 2025 and 2024 weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average. Aged to July 2027 (young players improve, older ones decline, speed fades fastest).'],
-          ['Rookies','Little or no MLB time is not treated as an injury. Their line comes mostly from translated AAA and AA stats, with a small bump for recent 1st-round picks.'],
+          ['Rookies','Little or no MLB time is not treated as an injury. Their line comes mostly from translated AAA and AA stats, with a bump for MLB Pipeline Top 100 rank (current and each preseason since 2023) and recent 1st-round picks.'],
+          ['Injuries','Injured-list days back to 2022, older years counted less. Pitchers past 33 decline and get hurt faster.'],
           ['Win value','Added matchup win % versus a replacement player at his role, per week, in the 2027 league (12 teams, 3 SP / 2 RP / 3 P). +4.0 turns a coin-flip team into a 54% team.'],
           ['Opponents','Every real 7-day team-week from 2014 to 2026 (same 22 categories), each season rescaled to 2027 levels, recent seasons counted more.'],
           ['Replacement level','Hitters ranked 120-150, SP 105-130, RP 24-40, matching 12 teams\' starting slots.']],
@@ -196,6 +199,7 @@ td.ours{font-weight:600;color:var(--ink)}
     var key = state.sort;
     out.sort(function(a,b){
       if (key === 'age') return a.age - b.age;
+      if (key === 'k3') return b.k3 - a.k3;
       if (key === 'rd') { var sa = a.rd ? a.rd * 12 - a.r : -1e9, sb = b.rd ? b.rd * 12 - b.r : -1e9; return sb - sa; }
       if (key === 'gap' || key === 'gapd') {
         var ga = gap(a), gb = gap(b);
@@ -211,7 +215,7 @@ td.ours{font-weight:600;color:var(--ink)}
   function head(){
     var h = document.getElementById('head');
     if (state.tab === 'x27') {
-      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Draft value</th><th>Cats / wk</th><th title="Expected share of the season he is available">Healthy</th><th title="Chance he spends 2027 in the majors">MLB role</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th></tr>';
+      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Draft value</th><th>Cats / wk</th><th title="Expected share of the season he is available">Healthy</th><th title="Chance he spends 2027 in the majors">MLB role</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th title="2027 + 2028 (x0.8) + 2029 (x0.6), each re-aged">Keeper 3 yr</th></tr>';
     } else if (state.tab === 'p27') {
       h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Per game</th><th>Cats / wk</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th>Track record</th></tr>';
     } else {
@@ -220,7 +224,7 @@ td.ours{font-weight:600;color:var(--ink)}
         '<th class="gs">Ours</th><th>Yahoo</th><th class="l">Yahoo\'s view</th><th>Sample</th></tr>';
     }
   }
-  function ncols(){ return state.tab === 'x27' ? 8 : state.tab === 'p27' ? 7 : 8; }
+  function ncols(){ return state.tab === 'x27' ? 9 : state.tab === 'p27' ? 7 : 8; }
   function pct(v){ return Math.round(v * 100) + '%'; }
   function rdc(p){ return p.rd ? (p.kept ? 'K' + p.rd : p.rd) : '<span class="samp">—</span>'; }
   function track(p){
@@ -245,6 +249,7 @@ td.ours{font-weight:600;color:var(--ink)}
     bits.push('Injured list: ' + (il || 'none in 2024 to 2026'));
     if (p.lt) bits.push('Carrying into 2027: ' + esc(p.lt));
     if (p.rk) bits.push('Rookie profile, highest 2026 level: ' + (p.lvl === 'none' ? 'MLB only' : p.lvl));
+    if (p.pl) bits.push('MLB Pipeline ' + esc(p.pl));
     bits.push(track(p));
     return '<div class="note">' + bits.join(' · ') + '</div>';
   }
@@ -260,7 +265,7 @@ td.ours{font-weight:600;color:var(--ink)}
         '<td><div class="wv"><span class="num">' + fmt(p.wp, 2) + '</span><span class="track"><span class="fill' + (p.wp < 0 ? ' neg' : '') + '" style="width:' + (p.wp < 0 ? 4 : w) + '%"></span></span></div></td>' +
         '<td class="num">' + fmt(p.cw, 2) + '</td>';
       if (state.tab === 'x27') {
-        cells += '<td class="num">' + pct(p.av) + '</td><td class="num">' + (p.ms < 1 ? pct(p.ms) : '<span class="samp">yes</span>') + '</td><td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td>';
+        cells += '<td class="num">' + pct(p.av) + '</td><td class="num">' + (p.ms < 1 ? pct(p.ms) : '<span class="samp">yes</span>') + '</td><td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td><td class="num">' + fmt(p.k3, 1) + '</td>';
       } else if (state.tab === 'p27') {
         cells += '<td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td><td class="samp">' + track(p) + '</td>';
       } else {
