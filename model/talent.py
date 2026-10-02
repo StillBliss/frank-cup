@@ -8,9 +8,11 @@ minors; a veteran with a missing year just has less weight that year, never zero
 Age: Marcel curve to age on 7/1/2027 (steeper for steals). Pedigree: small bump
 for high MLB draft picks who are still young.
 
-Durability: share of a healthy season he's expected to be available, from
-injured-list days in MLB seasons since his debut (5/4/3), pulled toward average,
-plus known long-term injuries carrying into 2027.
+Durability: share of a healthy season he's expected to be available. Start from what a
+typical established player at his role misses the next year, blend in his own injured-list
+history since his debut (it counts a lot for hitters, little for pitchers), then cut it if he
+finished last season on the injured list (how much depends on role, which list, and how long
+he had been out). All of it fitted to real next-season availability, 2024-2026.
 """
 import json, os, re, datetime as dt, collections
 import numpy as np
@@ -28,6 +30,14 @@ OUT_PRIOR_SP, OUT_PRIOR_RP, PAG_PRIOR = 30, 40, 60   # pulls on innings per outi
 FIELD_PRIOR_A, FIELD_PRIOR_E = 100, 600               # pull on assists / errors per game toward his position's average
 PEDIGREE_ON = True
 SEASON_27 = (dt.date(2027, 3, 25), dt.date(2027, 9, 26))
+IL_END = 2026                      # last season of injury data to use (the back-tests move these)
+LT_FROM = dt.date(2025, 10, 1)
+PIPE_EXCLUDE = set()
+PIPE_REC = {'current': 1.0, 'preseason_2026': 1.0, 'preseason_2025': 0.7}   # how much each list counts; older lists 0.4
+DUR_K0 = 8.0
+ROLE_CLEAR, ROLE_MIN_G, RELIEF_IP = 2 / 3, 10, 1.1   # last season decides SP vs RP when 2/3 of his games were one role
+ABSENT_SHARE = 0.3                  # established, no MLB games last season, and not on the injured list: no longer assumed to have a job
+PED_RATE, PED_SHARE = 0.06, 0.35      # top prospect bump: on his rates, and on his chance of holding an MLB job
 
 # AAA -> MLB translation (measured on 2025-26 pairs)
 HT = {'H': .88, 'D': .84, 'T': .67, 'HR': .73, 'R': .74, 'RBI': .76, 'SB': .50, 'BB': .69, 'HBP': .8, 'SF': .8}
@@ -153,6 +163,7 @@ def build():
     PC = ['BF', 'IP', 'G', 'GS', 'W', 'L', 'CG', 'SV', 'HLD', 'K', 'BB', 'HA', 'ER', 'HR']
     for pid in ids:
         acc = collections.Counter(); mlb_bf = 0; name = None; team = None; gs_share = []
+        st = collections.Counter(); rl = collections.Counter()      # his work split into starts and relief outings
         for y, w in SEASONS.items():
             r = mlb_p[y].get(pid)
             if not r: continue
@@ -160,6 +171,15 @@ def build():
             team = x['team'].get('id') if y == Y0 or team is None else team
             for k in PC: acc[k] += w * c[k]
             gs_share.append((w * c['G'], c['GS'] / max(c['G'], 1)))
+            rg = c['G'] - c['GS']
+            # innings thrown as a starter: what is left after ~1.1 per relief outing, but never more than
+            # 5.5 per start in a mixed season (bulk relief outings would otherwise be credited to his starts)
+            sip = min(max(c['IP'] - rg * RELIEF_IP, 0.0), c['GS'] * (6.6 if rg <= 0.2 * c['G'] else 5.5))
+            rip = c['IP'] - sip; f = sip / c['IP'] if c['IP'] else 0.0
+            st['IP'] += w * sip; st['G'] += w * c['GS']; rl['IP'] += w * rip; rl['G'] += w * rg
+            for k in ('W', 'L', 'CG'): st[k] += w * c[k] * f
+            for k in ('W', 'L'): rl[k] += w * c[k] * (1 - f)
+            for k in ('SV', 'HLD'): rl[k] += w * c[k]
         mi_bf = 0
         for (y, l), rs in milb_p.items():
             r = rs.get(pid)
@@ -178,6 +198,11 @@ def build():
         if not name or (mlb_bf < 50 and mi_bf < 150): continue
         tot_w = sum(w for w, _ in gs_share) or 1
         sp = sum(w * s for w, s in gs_share) / tot_w >= 0.5
+        r0 = mlb_p[Y0].get(pid)                                  # last season settles it when it was clearly one role
+        if r0 and r0[0]['gamesPlayed'] >= ROLE_MIN_G:
+            sh = r0[0]['gamesStarted'] / r0[0]['gamesPlayed']
+            if sh >= ROLE_CLEAR: sp = True
+            elif sh <= 1 - ROLE_CLEAR: sp = False
         L = LG_SP if sp else LG_RP
         P = PRIOR_BF
         rate = {k: (acc[k] + P * L[k]) / (acc['BF'] + P) for k in ('K', 'BB', 'HA', 'ER', 'HR', 'IP')}
@@ -188,20 +213,22 @@ def build():
             for k in ('BB', 'HA', 'ER', 'HR'): rate[k] /= fa
         # workload per outing and decisions per outing (MLB only; minors don't transfer)
         g = acc['G'] if acc['G'] else 1
-        if sp:
-            gs = max(acc['GS'], 1)
-            ip_out = (acc['IP'] + 5.3 * OUT_PRIOR_SP) / (gs + OUT_PRIOR_SP) if acc['GS'] else 5.0
-            per = {k: (acc[k] + OUT_PRIOR_SP * (L[k] / L['GS'] if L['GS'] else 0)) / (gs + OUT_PRIOR_SP) for k in ('W', 'L', 'CG')}
+        if sp:      # innings and decisions per start come from his starts only (relief work would inflate them)
+            gs = st['G']
+            ip_out = (st['IP'] + 5.3 * OUT_PRIOR_SP) / (gs + OUT_PRIOR_SP) if gs else 5.0
+            per = {k: (st[k] + OUT_PRIOR_SP * (L[k] / L['GS'] if L['GS'] else 0)) / (gs + OUT_PRIOR_SP) for k in ('W', 'L', 'CG')}
             per['SV'] = per['HLD'] = 0.0
-        else:
-            ip_out = (acc['IP'] + 1.0 * OUT_PRIOR_RP) / (g + OUT_PRIOR_RP) if acc['G'] else 1.0
-            per = {k: (acc[k] + OUT_PRIOR_RP * (L[k] / L['G'])) / (g + OUT_PRIOR_RP) for k in ('W', 'L', 'SV', 'HLD')}
+        else:       # and per relief outing from his relief outings only
+            rg = rl['G']
+            ip_out = (rl['IP'] + 1.0 * OUT_PRIOR_RP) / (rg + OUT_PRIOR_RP) if rg else 1.0
+            per = {k: (rl[k] + OUT_PRIOR_RP * (L[k] / L['G'])) / (rg + OUT_PRIOR_RP) for k in ('W', 'L', 'SV', 'HLD')}
             per['CG'] = 0.0
         bf_out = ip_out / rate['IP']
         top = max([l for (yy, l), rs in milb_p.items() if yy == Y0 and pid in rs and rs[pid][0]['battersFaced'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
         bf26 = mlb_p[Y0][pid][0]['battersFaced'] if pid in mlb_p[Y0] else 0
         share = 1.0 if bf26 >= 150 or mlb_bf >= 500 else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if bf26 >= 60 else 0)
-        out[('P', pid)] = dict(g_y0=(mlb_p[Y0][pid][0]['gamesPlayed'] if pid in mlb_p[Y0] else 0), gs_y0=(mlb_p[Y0][pid][0]['gamesStarted'] if pid in mlb_p[Y0] else 0), mlb_share=share, top_level=top, id=pid, name=name, role='SP' if sp else 'RP', pos='SP' if sp else 'RP', team=team,
+        t0 = pcnt(mlb_p[Y0][pid][0]) if pid in mlb_p[Y0] else None
+        out[('P', pid)] = dict(tot_y0={k: t0[k] for k in ('IP', 'W', 'L', 'SV', 'HLD')} if t0 else None, g_y0=(mlb_p[Y0][pid][0]['gamesPlayed'] if pid in mlb_p[Y0] else 0), gs_y0=(mlb_p[Y0][pid][0]['gamesStarted'] if pid in mlb_p[Y0] else 0), mlb_share=share, top_level=top, id=pid, name=name, role='SP' if sp else 'RP', pos='SP' if sp else 'RP', team=team,
                                age=round(a, 1), mlb_bf=mlb_bf, milb_bf=mi_bf, rate=rate, ip_out=ip_out, bf_out=bf_out,
                                dec=per, rookie=mlb_bf < 250)
     return out, dict(LG_H=LG_H, LG_SP=LG_SP, LG_RP=LG_RP)
@@ -211,13 +238,18 @@ def build():
 LONG = re.compile(r'tommy john|ucl|ulnar collateral|labrum|acl|achilles|internal brace', re.I)
 
 
+END_OPEN = {}                      # season -> {player: (date placed, reason)} for everyone who finished that season on the IL
+
+
 def il_days():
     days = collections.defaultdict(lambda: collections.Counter())
-    open_ = {}
+    open_ = {}; why = {}
     long_term = {}
-    for y in range(2022, 2027):
+    END_OPEN.clear()
+    for y in range(2022, IL_END + 1):
         ev = sorted(load(f'{H}/il/{y}.json'), key=lambda t: t['date'])
         s0, s1 = dt.date(y, 3, 26), dt.date(y, 9, 28)
+        END_OPEN[y] = {}
         for t in ev:
             d = dt.date.fromisoformat(t['date'][:10]); desc = t['desc'].lower(); pid = t['id']
             if 'placed' in desc:
@@ -225,15 +257,24 @@ def il_days():
                 if m:
                     try: d = dt.datetime.strptime(m.group(1).title(), '%B %d, %Y').date()
                     except ValueError: pass
-                open_[pid] = d
+                open_[pid] = d; why[pid] = t['desc']
                 if (LONG.search(t['desc']) and ('surgery' in desc or 'repair' in desc or 'reconstruction' in desc)
                         and 'recover' not in desc):
                     long_term[pid] = (d, t['desc'])
+            elif 'transferred' in desc and pid in open_:
+                why[pid] = t['desc']                     # the 60-day move sometimes carries the updated reason
+                if (LONG.search(t['desc']) and ('surgery' in desc or 'repair' in desc or 'reconstruction' in desc)
+                        and 'recover' not in desc):
+                    long_term[pid] = (open_[pid], t['desc'])
             elif ('activated' in desc or 'reinstated' in desc) and pid in open_:
-                long_term.pop(pid, None)          # he came back: no carry-over
+                # a real return: during the season, or a 60-day player brought back in October for the playoffs.
+                # Otherwise it is offseason paperwork (short lists clear right after the season, 60-day after the World Series).
+                if d <= s1 or ('60-day' in why.get(pid, '') and d < dt.date(y, 10, 27)): long_term.pop(pid, None)
+                elif open_[pid] < s1: END_OPEN[y][pid] = (open_[pid], why.get(pid, ''))
                 a, b = max(open_.pop(pid), s0), min(d, s1)
                 if b > a: days[pid][a.year] += (b - a).days
         for pid, a in list(open_.items()):   # still out at season end
+            if a < s1: END_OPEN[y][pid] = (a, why.get(pid, ''))
             a = max(a, s0)
             if a < s1: days[pid][y] += (s1 - a).days
             open_[pid] = dt.date(y + 1, 3, 26) if a <= s1 else a
@@ -252,6 +293,25 @@ def active_days():
     return out
 
 
+DUR_V2 = True                      # durability fitted to real next-season availability (stress test, Oct 2026)
+DUR_LG = {'H': 0.168, 'SP': 0.240, 'RP': 0.205}     # share of a season a typical established player misses the next year
+DUR_K2 = {'H': 12.0, 'SP': 40.0, 'RP': 40.0}        # how much his own history counts (small = counts a lot)
+# finished last season on the injured list: share of his normal availability he keeps the next year
+CARRY = {'H_short': 0.90, 'H_long': 0.60, 'P15_short': 1.0, 'P15_long': 0.63,
+         'P60elbow_late': 0.29, 'P60elbow_early': 0.50, 'P60other': 0.50}
+CARRY_ON = True
+ELBOW = re.compile(r'elbow|forearm|ucl|ulnar|tommy john|flexor', re.I)
+
+
+def carry_group(p, eo):
+    """how he finished last season: role, which injured list, elbow or not, and how long he had been out"""
+    out = (dt.date(IL_END, 9, 28) - eo[0]).days
+    if p['role'] == 'H': return 'H_short' if out < 75 else 'H_long'
+    if '60-day' not in eo[1]: return 'P15_short' if out < 30 else 'P15_long'
+    if ELBOW.search(eo[1]): return 'P60elbow_late' if out < 130 else 'P60elbow_early'
+    return 'P60other'
+
+
 def durability(T):
     days, long_term = il_days()
     act = active_days()
@@ -261,7 +321,6 @@ def durability(T):
             if days[p['id']][y]:
                 days[p['id']][y] = int(min(days[p['id']][y], max(0, 186 - a.get(y, 0))))
     season_len = 186.0
-    out = {}
     lg = {'H': 0.10, 'SP': 0.18, 'RP': 0.14}      # typical share of season lost; refined below
     shares = collections.defaultdict(list)
     for key, p in T.items():
@@ -273,23 +332,40 @@ def durability(T):
             f = min(1.0, days[pid][y] / season_len)
             num += w * f; den += w
         p['il_hist'] = {y: days[pid][y] for y in DUR_W if days[pid][y]}
-        p['_num'], p['_den'] = num, den
+        p['_il'] = (num, den)
         if den: shares[p['role']].append(num / den)
+    if DUR_V2:
+        end_open = END_OPEN.get(IL_END, {})
+        for key, p in T.items():
+            num, den = p['_il']; k0 = DUR_K2[p['role']]
+            miss = min(0.6, (num + k0 * DUR_LG[p['role']]) / (den + k0))
+            carry = 1.0
+            eo = end_open.get(p['id'])
+            if eo and CARRY_ON and p['il_hist'].get(IL_END, 0) >= 15:      # under 15 real days = a stuck record or a late-September tweak
+                g = carry_group(p, eo); carry = CARRY[g]
+                p['ended_il'] = eo[1].split('. ', 1)[-1] if '. ' in eo[1] else eo[1]
+                if carry < 0.7: p['long_term'] = p['ended_il']
+            p['avail'] = round(max(0.0, (1 - miss) * carry), 3)
+            est = p.get('mlb_pa', 0) >= 600 or p.get('mlb_bf', 0) >= 500
+            played = p.get('pa_y0', 0) > 0 if p['role'] == 'H' else p.get('g_y0', 0) > 0
+            if est and not played and p['il_hist'].get(IL_END, 0) < 30:
+                p['mlb_share'] = ABSENT_SHARE; p['absent'] = True
+        return DUR_LG
     for r in lg:
         if shares[r]: lg[r] = float(np.mean(shares[r]))
     for key, p in T.items():
-        k0 = 8.0                               # prior strength, in weighted seasons
-        miss = (p['_num'] + k0 * lg[p['role']]) / (p['_den'] + k0)
+        k0 = DUR_K0                            # prior strength, in weighted seasons
+        num, den = p['_il']
+        miss = (num + k0 * lg[p['role']]) / (den + k0)
         miss *= 1 + max(0, p['age'] - 30) * 0.04 + (max(0, p['age'] - 33) * 0.04 if p['role'] != 'H' else 0)   # older players get hurt more, old pitchers most
         lt = long_term.get(p['id'])
         extra = 0.0
-        if lt and lt[0] >= dt.date(2025, 10, 1):
+        if lt and lt[0] >= LT_FROM:
             back = lt[0] + dt.timedelta(days=(420 if re.search(r'tommy john|ucl|ulnar|internal brace', lt[1], re.I) and p['role'] != 'H' else 270))
             s0, s1 = SEASON_27
             if back > s0: extra = min(1.0, (back - s0).days / (s1 - s0).days)
             p['long_term'] = lt[1].split('. ', 1)[-1] if '. ' in lt[1] else lt[1]
         p['avail'] = round(max(0.0, (1 - min(0.6, miss)) * (1 - extra)), 3)
-        del p['_num'], p['_den']
     return lg
 
 
@@ -351,7 +427,8 @@ def pedigree(T):
     for f in sorted(_g.glob(f'{H}/pipeline/*.json')):
         if '_net' in f: continue
         lab = os.path.basename(f)[:-5]
-        rec = 1.0 if lab in ('current', 'preseason_2026') else 0.7 if lab == 'preseason_2025' else 0.4
+        if lab in PIPE_EXCLUDE: continue
+        rec = PIPE_REC.get(lab, 0.4)
         for r in load(f)['rows']:
             cands = [p for p in T.values() if p['id'] == r.get('id')] if r.get('id') else by_name.get(nm(r['name']), [])
             for p in cands:
@@ -363,7 +440,7 @@ def pedigree(T):
         p['pipeline'] = b[1]
         young = (p.get('mlb_pa') or p.get('mlb_bf') or 0) < 800
         if not young: continue
-        bump = 1 + 0.06 * (b[0] / 100)          # up to +6% on the good rates for a recent #1 prospect
+        bump = 1 + PED_RATE * (b[0] / 100)          # up to +6% on the good rates for a recent #1 prospect
         r = p['rate']
         if p['role'] == 'H':
             for k in ('H', 'D', 'T', 'HR', 'R', 'RBI', 'BB', 'SB'): r[k] *= bump
@@ -371,7 +448,7 @@ def pedigree(T):
             r['K'] *= bump
             for k in ('BB', 'HA', 'ER', 'HR'): r[k] /= bump
         if p.get('mlb_share', 1) < 1:
-            p['mlb_share'] = round(min(1.0, p['mlb_share'] + 0.35 * (b[0] / 100)), 2)
+            p['mlb_share'] = round(min(1.0, p['mlb_share'] + PED_SHARE * (b[0] / 100)), 2)
 
 
 # ------------------------------------------------------------------ fielding (assists, errors) and positions

@@ -11,13 +11,24 @@ REPO = '/home/claude/frank-cup'; RES = '/home/claude/research/research_out'
 def key(p): return (p['role'] == 'H', p['id'])
 
 
+def rostered():
+    """everyone on a league roster on the last day of the season"""
+    rd = json.load(open(sorted(glob.glob(f'{REPO}/raw/2026/players/week_*.json'))[-1])); day = sorted(rd['days'])[-1]
+    return {('H' if pl['pt'] == 'B' else 'P', norm(pl['n'])) for t in rd['days'][day].values() for pl in t['players']}
+
+
 def project(y):
     talent.AGE_DATE = dt.date(y, 7, 1)
+    talent.CARRY_ON = (y == 2027)          # finishing 2026 on the injured list only weighs on 2027
     T, _ = talent.build(); talent.durability(T); talent.team_context(T); talent.pedigree(T); talent.fielding(T)
     for p in T.values():
-        if p.get('mlb_share', 1) < 1: p['mlb_share'] = round(min(1.0, p['mlb_share'] + 0.4 * (y - 2027)), 2)
-    pool, meta = V.run(T)
+        if p.get('mlb_share', 1) < 1 and not p.get('absent'): p['mlb_share'] = round(min(1.0, p['mlb_share'] + 0.4 * (y - 2027)), 2)
+    pool, meta = V.run(T, also=ROSTERED)
+    talent.CARRY_ON = True
     return {key(p): p for p in pool}, meta
+
+
+ROSTERED = rostered()
 
 
 def grade(vals, n_start):
@@ -97,7 +108,7 @@ def rec27(p, val, gkey):
     k, o = base(p)
     dr = drafted.get(k)
     o.update({'age': p['age'], 'rd': dr[0] if dr else None, 'kept': dr[1] if dr else False, 'av': p['avail'], 'ms': p['mlb_share'],
-              'rk': p['rookie'], 'lt': p.get('long_term'), 'il': {str(y): n for y, n in p.get('il_hist', {}).items()},
+              'rk': p['rookie'], 'lt': p.get('long_term'), 'eil': p.get('ended_il'), 'abs': p.get('absent'), 'il': {str(y): n for y, n in p.get('il_hist', {}).items()},
               'mlb': p.get('mlb_pa', p.get('mlb_bf')), 'mi': p.get('milb_pa', p.get('milb_bf')), 'lvl': p.get('top_level'),
               'pl': p.get('pipeline'), 'wp': round(100 * p[val], 2), 'g': p[gkey], 'gk': p['g_keep'], 'gg': p['g_game'], 'gd': p['g_draft'],
               'cw': round(p['cw'] * (p['avail'] * p['mlb_share'] if val == 'wp_season' else 1), 3)})

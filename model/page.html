@@ -160,7 +160,7 @@ td.ours{font-weight:600;color:var(--ink)}
     ss: 'What each player was actually worth in 2026, missed time included, next to Yahoo\'s final rank. Yahoo ranks hitters and pitchers on separate lists, so Ours and Yahoo rank each player only against his own side.'
   };
   var FORMULA = [
-    ['1. What he produces','Each player gets a per-game line in all our categories: his last three MLB seasons weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average (more for small samples), then aged to 2027. A back-test on 2026 showed this beats using last year alone.'],
+    ['1. What he produces','Each player gets a per-game line in all our categories: his last three MLB seasons weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average (more for small samples), then aged to 2027. Pitchers are judged in the role they held last season. Back-tested on 2025 and 2026: it beats ranking by last year alone and matches our own draft, made five months earlier.'],
     ['2. Put him on an average team','We scale that to a normal week (6 games, 1.25 starts, or 2.5 relief outings) and swap him onto the average team in place of a waiver-level hitter, starter or reliever.'],
     ['3. Replay real weeks','That team plays every real week our league has had since 2014, rescaled to 2027 rules and weighted toward recent seasons. We count how often it wins each of the 22 categories and the matchup.'],
     ['4. Value = added wins','His value is how many points of matchup win % he adds over that waiver player. Categories that are scarce in our league (holds, steals, triples) are worth more because one more of them flips more weeks.'],
@@ -169,8 +169,8 @@ td.ours{font-weight:600;color:var(--ink)}
   var HOW = {
     x27: FORMULA.concat([
           ['Draft grade','The per-game grade times Healthy % times MLB role, re-graded. The number to draft by.'],
-          ['Healthy %','Expected share of the season he is available: injured-list days since 2022 (recent years count most, capped by games he actually played), pulled toward average, lower with age, and cut for surgeries carrying into 2027. Years before his debut never count.'],
-          ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached and his MLB Pipeline rank.'],
+          ['Healthy %','Expected share of the season he is available. It starts from what a typical established player misses the next year (hitters 17%, starters 24%, relievers 20%), blends in his own injured-list days since 2022 (this counts a lot for hitters, only a little for pitchers), and is cut if he finished 2026 on the injured list: a little for a hitter out a few weeks, a lot for a pitcher on the 60-day list, most of all for an elbow that went down late in the year. Fitted to what really happened the following season, 2024 to 2026. Years before his debut never count.'],
+          ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached and his MLB Pipeline rank. An established player who did not appear in 2026 and was not on the injured list is marked down to 30%.'],
           ['Keeper 3 yr','The same grade over 2027, 2028 (80%) and 2029 (60%), re-aged each year.'],
           ['Fielding','Hitting is compared to one baseline for all hitters. Assists and Errors are a small adjustment, judged only against leftover players at his own position, so they separate similar hitters without rewarding a position. Complete games are ignored.'],
           ['\'26 FFC','The round he went in our 2026 draft (K = kept).']]),
@@ -253,6 +253,8 @@ td.ours{font-weight:600;color:var(--ink)}
     bits.push('Age ' + p.age.toFixed(1) + ' in July 2027');
     bits.push('Injured list: ' + (il || 'none in 2024 to 2026'));
     if (p.lt) bits.push('Carrying into 2027: ' + esc(p.lt));
+    else if (p.eil) bits.push('Finished 2026 on the injured list: ' + esc(p.eil));
+    if (p.abs) bits.push('Did not play in MLB in 2026 and was not on the injured list');
     if (p.rk) bits.push('Rookie profile, highest 2026 level: ' + (p.lvl === 'none' ? 'MLB only' : p.lvl));
     if (p.pl) bits.push('MLB Pipeline ' + esc(p.pl));
     bits.push(track(p));

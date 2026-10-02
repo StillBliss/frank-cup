@@ -18,6 +18,7 @@ from model import team_components, displayed, CATS, LOW, STEP, norm
 
 YEARS = [2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026]
 G_WEEK, SP_WEEK, RP_WEEK, RP_IP_WEEK = 6.0, 1.25, 2.5, 3.5
+RECENCY, OPP_FROM, WIN_AT = 0.85, 2014, 10.5      # opponent weighting; cats needed to start winning a matchup
 HSLOTS = {'C': 1, '1B': 1, '2B': 1, '3B': 1, 'SS': 1, 'OF': 3, 'Util': 2}     # per team
 PBANDS = {12: {'SP': (105, 130), 'RP': (24, 40)}, 10: {'SP': (88, 110), 'RP': (26, 42)}}
 ORDER = ('C', 'SS', '2B', '3B', '1B', 'OF')
@@ -38,10 +39,11 @@ def set_context(year=2027):
     target = displayed(avg)
     o = {k: [] for k in CATS}; w_ = []
     by_year = collections.defaultdict(list)
-    for t in _rows: by_year[t['year']].append(t)
+    for t in _rows:
+        if int(t['year']) >= OPP_FROM: by_year[t['year']].append(t)
     for y, ts in by_year.items():
         mean = {k: np.mean([(AVGV(t) if k == 'AVG' else t[k]) for t in ts]) for k in CATS}
-        w = 0.85 ** (2026 - int(y))
+        w = RECENCY ** (2026 - int(y))
         for t in ts:
             for k in CATS:
                 v = AVGV(t) if k == 'AVG' else t[k]
@@ -61,7 +63,7 @@ def score(comp):
         m = (opp[k] - d[k]) if k in LOW else (d[k] - opp[k])
         w = np.clip(0.5 + m / STEP[k], 0, 1)
         per[k] = float((w * wts).sum()); cw += w
-    win = np.clip(cw - 10.5, 0, 1)
+    win = np.clip(cw - WIN_AT, 0, 1)
     return float((cw * wts).sum()), float((win * wts).sum()), per
 
 
@@ -112,9 +114,14 @@ def weekly(p, qb, actual_weeks=None):
     if actual_weeks and p['role'] == 'SP' and p['gs_y0']:
         q = yahoo_qs().get(norm(p['name']))
         if q is not None: qs = q / p['gs_y0']
-    return {'IP': p['ip_out'] * n, 'W': p['dec']['W'] * n, 'L': p['dec']['L'] * n,
+    line = {'IP': p['ip_out'] * n, 'W': p['dec']['W'] * n, 'L': p['dec']['L'] * n,
             'SV': p['dec']['SV'] * n, 'HLD': p['dec']['HLD'] * n, 'K': r['K'] * bf, 'ER': r['ER'] * bf,
             'BR': (r['HA'] + r['BB']) * bf, 'BBP': r['BB'] * bf, 'QS': qs * n}
+    if actual_weeks and p.get('tot_y0'):       # a real season: use his real totals, starts and relief outings together
+        t = p['tot_y0']; bf = (t['IP'] / actual_weeks) / r['IP']
+        line.update({k: t[k] / actual_weeks for k in ('IP', 'W', 'L', 'SV', 'HLD')})
+        line.update({'K': r['K'] * bf, 'ER': r['ER'] * bf, 'BR': (r['HA'] + r['BB']) * bf, 'BBP': r['BB'] * bf})
+    return line
 
 
 def swap(line, repl):
@@ -128,7 +135,8 @@ def mean_line(ps):
     return {k: float(np.mean([p['line'][k] for p in ps])) for k in ps[0]['line'] if not k.startswith('_')}
 
 
-def run(T=None, actual_weeks=None, teams=12, pool_filter=None):
+def run(T=None, actual_weeks=None, teams=12, pool_filter=None, also=None):
+    """also: (side, normalized name) keys that join the pool even under the minimum sample (players on a league roster)"""
     if T is None:
         T, LG = talent.build(); talent.durability(T); talent.team_context(T); talent.pedigree(T); talent.fielding(T)
     qb = qs_model()
@@ -137,6 +145,7 @@ def run(T=None, actual_weeks=None, teams=12, pool_filter=None):
         if pool_filter: ok = pool_filter(p)
         elif p['role'] == 'H': ok = p['mlb_pa'] >= 250 or (p['milb_pa'] >= 250 and p['age'] <= 27)
         else: ok = p['mlb_bf'] >= 150 or (p['milb_bf'] >= 250 and p['age'] <= 27)
+        if not ok and also and ('H' if p['role'] == 'H' else 'P', norm(p['name'])) in also: ok = True
         if ok:
             p['line'] = weekly(p, qb, actual_weeks); pool.append(p)
     H = [p for p in pool if p['role'] == 'H']

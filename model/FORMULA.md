@@ -9,11 +9,21 @@
 5. **Grade.** Average starter = 100, waiver player = 80, linear from there.
 
 **Draft grade** = per-game value x Healthy % x MLB role, re-graded.
-- Healthy %: injured-list days since 2022 (recent years most, capped by games actually played), pulled toward average, lower with age, cut for surgeries carrying into next season. Years before his debut never count.
-- MLB role: for prospects, the chance he is in the majors, from the highest level reached and Pipeline rank.
+- Healthy %: start from what a typical established player misses the next year (hitters 17%, starters 24%, relievers 20%). Blend in his own injured-list days since 2022 (recent years most, capped by games actually played); this counts a lot for hitters and only a little for pitchers, because that is what the data supports. Then cut it if he finished last season on the injured list: hitter out under 75 days keeps 90%, hitter out longer keeps 60%; pitcher on the 15-day list out 30+ days keeps 63%; pitcher on the 60-day list keeps 50%, or 29% when it is an elbow or forearm that went down in the last four months. A 60-day pitcher who returned for the playoffs is not cut. No age penalty: older established players did not miss more time. Years before his debut never count.
+- MLB role: for prospects, the chance he is in the majors, from the highest level reached and Pipeline rank. An established player with no MLB games last season and no injured-list time is marked down to 30%.
+- Pitcher role: starter or reliever by his weighted history, except that last season decides it when two thirds or more of his games were one role. Innings and decisions per start come from his starts only.
 
 **Keeper grade** = the same value over three seasons (100% / 80% / 60%), re-aged each year.
 
 **What is held neutral:** complete games. **Fielding:** assists and errors are a small adjustment, judged only against leftover players at the same position, so they separate similar hitters without rewarding a position.
 
-**Back-test (project 2026 from 2023-2025):** this method missed by 2.2 points of win value vs 2.5 for "last year's stats"; the age adjustment was the single biggest improvement; the exact year weights (5/4/3 vs 6/3/1 vs 3/2/1) made no measurable difference.
+**Stress test (October 2026).** Build the board as of the October before, then score it against the real season, for 2025 and 2026.
+- Rank agreement with real value on a fixed pre-season group of about 370 players: this board 0.42, our own March draft 0.41, last year's ranks 0.34. It ties the room five months early; it does not beat it.
+- Big disagreements with our draft (25+ spots): the board was closer on about half.
+- Win engine vs real standings (40 team-seasons): predicted categories won per week within about half a category; correlation 0.91.
+- League assumptions (16 variations: recency, era, weekly volumes, replacement level, margins): board order agreement 0.96 to 0.99.
+- Luck of which weeks were played (bootstrap): top 12 wobble 1 spot, ranks 13-50 about 6, ranks 51-150 about 8-10. Anything within 3 grade points is a tie.
+- Healthy % was too rosy by 4 points (hitters) and 9 (pitchers), worst for pitchers finishing on the 60-day list (65% predicted, 34% real). Refit above; on held-out seasons the bias is gone and pitcher error is about 12% lower.
+- Prospect pedigree: the bump moved prospects the wrong way in 34 of 47 back-test cases, overall accuracy unchanged. Kept at full strength by choice (keeper league; years two and three cannot be back-tested yet).
+- The one piece that clearly improves prediction is the age curve on performance. Year weights and the strength of the pull to average make no measurable difference.
+- Scripts: stress_lib.py, stress1.py (vs the draft), stress2.py and dur_fit*.py (durability), stress3.py (one piece at a time), stress4.py (stability), stress5.py (engine and data checks).
