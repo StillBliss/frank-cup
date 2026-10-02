@@ -3,6 +3,7 @@ Research pull for the personal 2027 player model (not the site). Everything
 from the free MLB Stats API plus MLB Pipeline's public Top 100 page:
 
   seasons/<year>_<group>.json   MLB season stats 2022-2026 (multi-year talent)
+  fielding/<year>.json          MLB fielding by position 2022-2026 (assists, errors)
   people.json                   birth date, MLB debut, bats/throws, draft info
   il/<year>.json                injured-list moves 2022-2026 (durability)
   milb/<year>_<level>_<group>.json  AAA / AA / High-A stats 2025-2026 (rookies)
@@ -59,6 +60,12 @@ def main():
             s = splits(d); print(f"mlb {y} {g}: {len(s)}")
             if d: save(f"seasons/{y}_{g}.json", d)
             ids.update(x["player"]["id"] for x in s)
+
+    # 1b) fielding by position (assists and errors are league categories)
+    for y in YEARS:
+        d = get("stats", dict(stats="season", season=y, group="fielding", sportId=1, gameType="R", playerPool="ALL", limit=8000))
+        print(f"fielding {y}: {len(splits(d))}")
+        if d: save(f"fielding/{y}.json", d)
 
     # 2) minor leagues, recent two seasons (rookie baselines)
     for y in (2025, 2026):
