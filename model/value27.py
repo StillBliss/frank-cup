@@ -5,9 +5,10 @@ Win value for every player.
 - Average team = real 2023-26 average team week, adjusted to the league's rules (ctx27.json for 2027).
 - Opponents = every real 7-day team-week 2014-2026 (same 22 categories), each season
   rescaled to the target year's levels, weighted toward recent seasons (0.85 per year back).
-- Swap him in for the replacement player AT HIS POSITION (the best player left over once
-  every team's starting slots are filled), replay, and measure added matchup win %.
-- Assists and Errors count, judged against the replacement at the same position.
+- Swap him in for a replacement player (the hitters or pitchers just past the rostered
+  ones), replay, and measure added matchup win %. Hitting uses one baseline for all hitters.
+- Assists and Errors count as a small adjustment, judged against leftover players at the
+  same position, so they only separate otherwise similar hitters.
   Complete games are held neutral.
 """
 import json, glob, numpy as np, collections, sys
@@ -156,27 +157,22 @@ def run(T=None, actual_weeks=None, teams=12, pool_filter=None):
         for r, (a, b) in PBANDS[teams].items():
             ls = sorted([p for p in pool if p['role'] == r], key=lambda p: -worth(p))
             repl[r] = mean_line([p for p in ls if real(p)][a:b])
-        # hitters: fill every team's slots best-first; whoever is left over sets replacement at each position
-        open_ = {pos: n * teams for pos, n in HSLOTS.items()}
-        left = []
-        for p in sorted(H, key=lambda p: -worth(p)):
-            el = [pos for pos in ORDER if pos in p['el'] and open_[pos] > 0]
-            if el: open_[el[0]] -= 1; p['slot'] = el[0]
-            elif open_['Util'] > 0: open_['Util'] -= 1; p['slot'] = 'Util'
-            else: p['slot'] = None; left.append(p)
-        left = [p for p in left if real(p)]
-        for pos in list(ORDER) + ['Util']:
-            # replacement at a position = the best leftover players who really play there
-            c = [p for p in left if pos == 'Util' or p.get('prim') == pos][:6]
-            hrepl[pos] = mean_line(c if c else left[:6])
-            hrepl[pos]['_who'] = [p['name'] for p in (c if c else left[:6])]
+        # hitters: ONE hitting baseline for everyone (the hitters just past the rostered ones)...
+        hs = [p for p in sorted(H, key=lambda p: -worth(p)) if real(p)]
+        n_h = sum(HSLOTS.values()) * teams
+        repl['H'] = mean_line(hs[n_h:n_h + 30])
+        # ...and fielding judged only against the leftover players at his own position
+        for pos in ORDER:
+            c = [p for p in hs[n_h:] if p.get('prim') == pos][:8]
+            hrepl[pos] = {'A': float(np.mean([p['line']['A'] for p in c])), 'E': float(np.mean([p['line']['E'] for p in c])),
+                          '_who': [p['name'] for p in c]}
+        hrepl['DH'] = {'A': 0.0, 'E': 0.0, '_who': []}
         for p in pool:
             if p['role'] == 'H':
-                best = None
-                for pos in list(p['el']) + ['Util']:
-                    cw, wp, per = score(swap(p['line'], hrepl[pos]))
-                    if best is None or wp > best[1]: best = (cw, wp, per, pos)
-                cw, wp, per, p['vs'] = best
+                f = hrepl.get(p.get('prim'), hrepl['DH'])
+                r = dict(repl['H'], A=f['A'], E=f['E'])
+                if p.get('prim') in (None, 'DH'): r['A'], r['E'] = p['line']['A'], p['line']['E']   # a DH is neutral on defense
+                cw, wp, per = score(swap(p['line'], r)); p['vs'] = p.get('prim') or 'DH'
             else:
                 cw, wp, per = score(swap(p['line'], repl[p['role']])); p['vs'] = p['role']
             p['cw'], p['wp'] = cw - base[0], wp - base[1]
@@ -189,7 +185,7 @@ def run(T=None, actual_weeks=None, teams=12, pool_filter=None):
 if __name__ == '__main__':
     pool, meta = run()
     print('opponent weeks', meta['n_opp'], 'pool', len(pool), collections.Counter(p['role'] for p in pool))
-    for pos, l in meta['hrepl'].items(): print(pos, {k: round(v, 2) for k, v in l.items() if k in ('R', 'HR', 'SB', 'A', 'E')}, l['_who'])
+    for pos, l in meta['hrepl'].items(): print(pos, {k: round(v, 2) for k, v in l.items() if k in ('A', 'E')}, l['_who'])
     top = sorted(pool, key=lambda p: -p['wp_season'])
     print(collections.Counter(p['role'] for p in top[:216]), collections.Counter(p.get('prim') for p in top[:216] if p['role'] == 'H'))
     for i, p in enumerate(top[:45]):

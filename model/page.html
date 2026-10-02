@@ -161,7 +161,7 @@ td.ours{font-weight:600;color:var(--ink)}
   };
   var FORMULA = [
     ['1. What he produces','Each player gets a per-game line in all our categories: his last three MLB seasons weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average (more for small samples), then aged to 2027. A back-test on 2026 showed this beats using last year alone.'],
-    ['2. Put him on an average team','We scale that to a normal week (6 games, 1.25 starts, or 2.5 relief outings) and swap him onto the average team in place of the best player left on waivers at his position.'],
+    ['2. Put him on an average team','We scale that to a normal week (6 games, 1.25 starts, or 2.5 relief outings) and swap him onto the average team in place of a waiver-level hitter, starter or reliever.'],
     ['3. Replay real weeks','That team plays every real week our league has had since 2014, rescaled to 2027 rules and weighted toward recent seasons. We count how often it wins each of the 22 categories and the matchup.'],
     ['4. Value = added wins','His value is how many points of matchup win % he adds over that waiver player. Categories that are scarce in our league (holds, steals, triples) are worth more because one more of them flips more weeks.'],
     ['5. Grade','100 is the average starter, 80 is the waiver player. Every 20 points is one more average starter of value. 120 is an all-star, 140+ is a first-round pick.']
@@ -172,7 +172,7 @@ td.ours{font-weight:600;color:var(--ink)}
           ['Healthy %','Expected share of the season he is available: injured-list days since 2022 (recent years count most, capped by games he actually played), pulled toward average, lower with age, and cut for surgeries carrying into 2027. Years before his debut never count.'],
           ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached and his MLB Pipeline rank.'],
           ['Keeper 3 yr','The same grade over 2027, 2028 (80%) and 2029 (60%), re-aged each year.'],
-          ['Fielding','Assists and Errors count, but only against the waiver player at his own position, so shortstops are not rewarded just for being shortstops. Complete games are ignored.'],
+          ['Fielding','Hitting is compared to one baseline for all hitters. Assists and Errors are a small adjustment, judged only against leftover players at his own position, so they separate similar hitters without rewarding a position. Complete games are ignored.'],
           ['\'26 FFC','The round he went in our 2026 draft (K = kept).']]),
     p27: FORMULA.concat([
           ['Per-game grade','How good he is when he plays. Injuries and playing time do not count here.'],
@@ -243,7 +243,7 @@ td.ours{font-weight:600;color:var(--ink)}
       .map(function(k){ var v = p.per[k];
         return '<span class="chip ' + (v > 0 ? 'up' : 'down') + '">' + (CAT_LABEL[k] || k) + ' ' + fmt(v * 100, 1) + '%</span>'; }).join('');
     return '<tr class="detail"><td colspan="' + ncols() + '"><div class="chips">' + (chips || '<span class="samp">No category moves by more than 0.1%.</span>') +
-      '</div><div class="note">Change in how often an average team wins each category in a week, compared with the replacement ' + (p.vs === 'Util' ? 'hitter' : esc(p.vs || '')) + '. Adds ' + fmt(p.wp, 2) + ' points of matchup win %.</div>' + extra(p) + '</td></tr>';
+      '</div><div class="note">Change in how often an average team wins each category in a week, compared with a waiver-level ' + (p.role === 'H' ? 'hitter (fielding vs a waiver ' + esc(p.vs || '') + ')' : esc(p.role)) + '. Adds ' + fmt(p.wp, 2) + ' points of matchup win %.</div>' + extra(p) + '</td></tr>';
   }
 
   function extra(p){
