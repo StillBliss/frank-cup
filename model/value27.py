@@ -88,7 +88,8 @@ def weekly(p, qb):
     bf = p['bf_out'] * n
     era = 9 * r['ER'] / r['IP']
     qs = float(np.clip(qb @ [1, p['ip_out'], era], 0, 0.9)) if p['role'] == 'SP' else 0.0
-    return {'IP': p['ip_out'] * n, 'W': p['per']['W'] * n, 'L': p['per']['L'] * n, 'CG': p['per']['CG'] * n,
+    # complete games are held neutral (too rare and random to project), like assists and errors
+    return {'IP': p['ip_out'] * n, 'W': p['per']['W'] * n, 'L': p['per']['L'] * n,
             'SV': p['per']['SV'] * n, 'HLD': p['per']['HLD'] * n, 'K': r['K'] * bf, 'ER': r['ER'] * bf,
             'BR': (r['HA'] + r['BB']) * bf, 'BBP': r['BB'] * bf, 'QS': qs * n}
 

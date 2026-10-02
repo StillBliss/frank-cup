@@ -90,7 +90,7 @@ td.ours{font-weight:600;color:var(--ink)}
   <header>
     <div class="eyebrow">The Frank Family Classic · personal board · 2027</div>
     <h1>Win Value Board</h1>
-    <p class="lede">Every player swapped into an average 2027 team (12 teams, new roster slots) for a week, then replayed against 13 seasons of real league weeks. Ranked by how much he raises the chance of winning the matchup. Assists and Errors are held neutral.</p>
+    <p class="lede">Every player swapped into an average 2027 team (12 teams, new roster slots) for a week, then replayed against 13 seasons of real league weeks. Ranked by how much he raises the chance of winning the matchup. Assists, Errors and Complete Games are held neutral.</p>
     <div class="facts" id="facts"></div>
   </header>
 
@@ -134,7 +134,7 @@ td.ours{font-weight:600;color:var(--ink)}
   if (!SETS[state.tab]) state.tab = 'x27';
   if (location.hash === '#review') state.tab = 'ss'; else if (location.hash === '#pergame') state.tab = 'p27'; else if (location.hash === '#draft') state.tab = 'x27';
 
-  var CAT_ORDER = ['R','3B','HR','RBI','SB','BB','AVG','OPS','XBH','IP','W','L','CG','SV','K','HLD','ERA','WHIP','KBB','QS'];
+  var CAT_ORDER = ['R','3B','HR','RBI','SB','BB','AVG','OPS','XBH','IP','W','L','SV','K','HLD','ERA','WHIP','KBB','QS'];
   var CAT_LABEL = {KBB:'K/BB'};
   function side(p){ return p.role === 'H' ? 'H' : 'P'; }
   var MAX = {}; Object.keys(SETS).forEach(function(k){ MAX[k] = Math.max.apply(null, SETS[k].map(function(p){ return p.wp; })); });

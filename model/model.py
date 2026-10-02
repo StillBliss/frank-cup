@@ -142,7 +142,8 @@ def pitcher_week(c, role, per_week=None):
     else:
         ipg = c['IP'] / c['G']
         f = min(RP_WEEK, RP_IP_WEEK / max(ipg, 1e-9)) / c['G']
-    return {'IP': c['IP'] * f, 'W': c['W'] * f, 'L': c['L'] * f, 'CG': c['CG'] * f, 'SV': c['SV'] * f,
+    # complete games held neutral (too rare and random), like assists and errors
+    return {'IP': c['IP'] * f, 'W': c['W'] * f, 'L': c['L'] * f, 'SV': c['SV'] * f,
             'K': c['K'] * f, 'HLD': c['HLD'] * f, 'ER': c['ER'] * f, 'BR': (c['HA'] + c['BBA']) * f,
             'BBP': c['BBA'] * f, 'QS': c['QS'] * f}
 
