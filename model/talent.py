@@ -138,7 +138,7 @@ def build():
         rate['PA'] = 1.0
         top = max([l for (yy, l), rs in milb_h.items() if yy == 2026 and pid in rs and rs[pid][0]['plateAppearances'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
         pa26 = mlb_h[2026][pid][0]['plateAppearances'] if pid in mlb_h[2026] else 0
-        share = 1.0 if pa26 >= 250 or (mlb_pa >= 600 and pa26 >= 50) else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if pa26 >= 100 else 0)
+        share = 1.0 if pa26 >= 250 or mlb_pa >= 600 else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if pa26 >= 100 else 0)
         out[('H', pid)] = dict(mlb_share=share, top_level=top, id=pid, name=name, role='H', pos=pos, team=team, age=round(a, 1), mlb_pa=mlb_pa, milb_pa=mi_pa,
                                rate=rate, pa_g=pa_g, rookie=mlb_pa < 300)
 
@@ -193,7 +193,7 @@ def build():
         bf_out = ip_out / rate['IP']
         top = max([l for (yy, l), rs in milb_p.items() if yy == 2026 and pid in rs and rs[pid][0]['battersFaced'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
         bf26 = mlb_p[2026][pid][0]['battersFaced'] if pid in mlb_p[2026] else 0
-        share = 1.0 if bf26 >= 150 or (mlb_bf >= 500 and bf26 >= 30) else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if bf26 >= 60 else 0)
+        share = 1.0 if bf26 >= 150 or mlb_bf >= 500 else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if bf26 >= 60 else 0)
         out[('P', pid)] = dict(mlb_share=share, top_level=top, id=pid, name=name, role='SP' if sp else 'RP', pos='SP' if sp else 'RP', team=team,
                                age=round(a, 1), mlb_bf=mlb_bf, milb_bf=mi_bf, rate=rate, ip_out=ip_out, bf_out=bf_out,
                                per=per, rookie=mlb_bf < 250)
@@ -233,8 +233,26 @@ def il_days():
     return days, long_term
 
 
+def active_days():
+    """days he was clearly on the field each season, from games played (so a stuck IL record can't claim them)"""
+    out = collections.defaultdict(dict)
+    for y in DUR_W:
+        for pid, (s, x) in rows(f'{H}/seasons/{y}_hitting.json').items():
+            if x['position']['abbreviation'] != 'P': out[('H', pid)][y] = min(186, s['gamesPlayed'] * 186 / 162)
+        for pid, (s, x) in rows(f'{H}/seasons/{y}_pitching.json').items():
+            gs, g = s['gamesStarted'], s['gamesPlayed']
+            out[('P', pid)][y] = min(186, gs * 5.6 + (g - gs) * 2.6)
+    return out
+
+
 def durability(T):
     days, long_term = il_days()
+    act = active_days()
+    for key, p in T.items():
+        a = act.get((key[0], p['id']), {})
+        for y in DUR_W:
+            if days[p['id']][y]:
+                days[p['id']][y] = int(min(days[p['id']][y], max(0, 186 - a.get(y, 0))))
     season_len = 186.0
     out = {}
     lg = {'H': 0.10, 'SP': 0.18, 'RP': 0.14}      # typical share of season lost; refined below
