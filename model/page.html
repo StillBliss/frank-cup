@@ -82,6 +82,7 @@ td.ours{font-weight:600;color:var(--ink)}
 .tabs button span{display:block;font:400 12px/1.3 var(--body);letter-spacing:0;text-transform:none;margin-top:3px}
 .own{display:inline-block;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent);margin-left:6px;vertical-align:1px}
 .own.fa{background:transparent;color:var(--muted);border:1px dashed var(--line)}
+.num.grade{font-size:15px;font-weight:600;color:var(--ink)}
 .sub .rook{color:var(--h);font-weight:600}
 .sub .hurt{color:var(--down);font-weight:600}
 </style>
@@ -90,7 +91,7 @@ td.ours{font-weight:600;color:var(--ink)}
   <header>
     <div class="eyebrow">The Frank Family Classic · personal board · 2027</div>
     <h1>Win Value Board</h1>
-    <p class="lede">Every player swapped into an average 2027 team (12 teams, new roster slots) for a week, then replayed against 13 seasons of real league weeks. Ranked by how much he raises the chance of winning the matchup. Assists, Errors and Complete Games are held neutral.</p>
+    <p class="lede">One grade for every player, built from our league's own results. 100 is the average starter, 80 is a free agent, and every 20 points is one more average starter's worth of value. It measures how much a player raises your chance of winning a weekly matchup across all 22 categories.</p>
     <div class="facts" id="facts"></div>
   </header>
 
@@ -134,10 +135,10 @@ td.ours{font-weight:600;color:var(--ink)}
   if (!SETS[state.tab]) state.tab = 'x27';
   if (location.hash === '#review') state.tab = 'ss'; else if (location.hash === '#pergame') state.tab = 'p27'; else if (location.hash === '#draft') state.tab = 'x27';
 
-  var CAT_ORDER = ['R','3B','HR','RBI','SB','BB','AVG','OPS','XBH','IP','W','L','SV','K','HLD','ERA','WHIP','KBB','QS'];
+  var CAT_ORDER = ['R','3B','HR','RBI','SB','BB','A','E','AVG','OPS','XBH','IP','W','L','SV','K','HLD','ERA','WHIP','KBB','QS'];
   var CAT_LABEL = {KBB:'K/BB'};
   function side(p){ return p.role === 'H' ? 'H' : 'P'; }
-  var MAX = {}; Object.keys(SETS).forEach(function(k){ MAX[k] = Math.max.apply(null, SETS[k].map(function(p){ return p.wp; })); });
+  var MAX = {}; Object.keys(SETS).forEach(function(k){ MAX[k] = Math.max.apply(null, SETS[k].map(function(p){ return p.g; })); });
 
   document.getElementById('facts').innerHTML =
     '<span><b>' + D.meta.opp.toLocaleString() + '</b> real team-weeks, 2014 to 2026</span>' +
@@ -149,42 +150,46 @@ td.ours{font-weight:600;color:var(--ink)}
     D.managers.map(function(m){ return '<option value="' + m + '">' + m + (m === 'Benny' ? ' (you)' : '') + '</option>'; }).join('');
 
   var SORTS = {
-    x27: [['r','Sort: draft value (2027)'],['k3','Sort: keeper value (3 years)'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
-    p27: [['r','Sort: per-game value'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
-    ss: [['r','Sort: win value'],['gap','Sort: Yahoo has too low'],['gapd','Sort: Yahoo has too high']]
+    x27: [['r','Sort: draft grade (2027)'],['k3','Sort: keeper grade (3 years)'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
+    p27: [['r','Sort: per-game grade'],['rd','Sort: steals vs 2026 draft round'],['age','Sort: youngest']],
+    ss: [['r','Sort: 2026 grade'],['gap','Sort: Yahoo has too low'],['gapd','Sort: Yahoo has too high']]
   };
   var CAPTION = {
-    x27: 'The draft ranking: 2027 per-game value multiplied by how much of the season he should actually play (injury history, age, and for prospects, the chance he is in the majors at all).',
+    x27: 'The draft ranking for 2027: how good he is per game, times how much of the season he should play.',
     p27: 'How much a player helps in a week he plays, projected for 2027. Injuries do not count against him here.',
-    ss: '2026 season totals spread over ' + D.weeks + ' weeks, so missed time counts, the same basis as Yahoo. Yahoo ranks hitters and pitchers on separate lists, so Ours and Yahoo rank each player only against his own side.'
+    ss: 'What each player was actually worth in 2026, missed time included, next to Yahoo\'s final rank. Yahoo ranks hitters and pitchers on separate lists, so Ours and Yahoo rank each player only against his own side.'
   };
+  var FORMULA = [
+    ['1. What he produces','Each player gets a per-game line in all our categories: his last three MLB seasons weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average (more for small samples), then aged to 2027. A back-test on 2026 showed this beats using last year alone.'],
+    ['2. Put him on an average team','We scale that to a normal week (6 games, 1.25 starts, or 2.5 relief outings) and swap him onto the average team in place of the best player left on waivers at his position.'],
+    ['3. Replay real weeks','That team plays every real week our league has had since 2014, rescaled to 2027 rules and weighted toward recent seasons. We count how often it wins each of the 22 categories and the matchup.'],
+    ['4. Value = added wins','His value is how many points of matchup win % he adds over that waiver player. Categories that are scarce in our league (holds, steals, triples) are worth more because one more of them flips more weeks.'],
+    ['5. Grade','100 is the average starter, 80 is the waiver player. Every 20 points is one more average starter of value. 120 is an all-star, 140+ is a first-round pick.']
+  ];
   var HOW = {
-    x27: [['Draft value','Per-game win value times Healthy % times MLB role. The number to draft by.'],
-          ['Healthy %','Expected share of the season he is available: injured-list days in his MLB seasons since debut (2026, 2025, 2024 weighted 5/4/3), pulled toward average, lower past age 30, and cut for known surgeries carrying into 2027. Years before his debut never count as injuries.'],
-          ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached in 2026. Established players are 100%.'],
-          ['\'26 FFC','The round he went in our 2026 draft (K = kept). A top-50 player who went in round 12 is a steal to target.'],
-          ['Keeper 3 yr','2027 value plus 2028 (80%) and 2029 (60%), each re-projected a year older, with prospects more likely to be up. Sort by it to find keepers.'],
-          ['Team','Starters\' wins and losses and relievers\' saves and holds scale with his 2026 team\'s record; hitters\' runs and RBI with his team\'s offense.'],
-          ['Click a row','Shows which categories he moves, his injured-list days by year, and any long-term injury.']],
-    p27: [['Talent','MLB 2026, 2025 and 2024 weighted 5/4/3, plus minor league stats translated to MLB level, pulled toward the MLB average. Aged to July 2027 (young players improve, older ones decline, speed fades fastest).'],
-          ['Rookies','Little or no MLB time is not treated as an injury. Their line comes mostly from translated AAA and AA stats, with a bump for MLB Pipeline Top 100 rank (current and each preseason since 2023) and recent 1st-round picks.'],
-          ['Injuries','Injured-list days back to 2022, older years counted less. Pitchers past 33 decline and get hurt faster.'],
-          ['Win value','Added matchup win % versus a replacement player at his role, per week, in the 2027 league (12 teams, 3 SP / 2 RP / 3 P). +4.0 turns a coin-flip team into a 54% team.'],
-          ['Opponents','Every real 7-day team-week from 2014 to 2026 (same 22 categories), each season rescaled to 2027 levels, recent seasons counted more.'],
-          ['Replacement level','Hitters ranked 120-150, SP 105-130, RP 24-40, matching 12 teams\' starting slots.']],
-    ss: [['Win value','Same league math as the per-game tab, applied to what he actually produced this season per week.'],
-         ['Why compare here','Yahoo also ranks on season totals, so any gap here comes from our league\'s categories and weighting, not from games missed.'],
-         ['Yahoo\'s view','"Too low by 20" means Yahoo ranks him 20 spots worse on his side than we do. Within 10 spots counts as agreeing.'],
-         ['No regression','Raw 2026 totals, like Yahoo. Short-season players rank low here even if they played well.']]
+    x27: FORMULA.concat([
+          ['Draft grade','The per-game grade times Healthy % times MLB role, re-graded. The number to draft by.'],
+          ['Healthy %','Expected share of the season he is available: injured-list days since 2022 (recent years count most, capped by games he actually played), pulled toward average, lower with age, and cut for surgeries carrying into 2027. Years before his debut never count.'],
+          ['MLB role','For prospects, the chance he spends the year in the majors, from the highest level he reached and his MLB Pipeline rank.'],
+          ['Keeper 3 yr','The same grade over 2027, 2028 (80%) and 2029 (60%), re-aged each year.'],
+          ['Fielding','Assists and Errors count, but only against the waiver player at his own position, so shortstops are not rewarded just for being shortstops. Complete games are ignored.'],
+          ['\'26 FFC','The round he went in our 2026 draft (K = kept).']]),
+    p27: FORMULA.concat([
+          ['Per-game grade','How good he is when he plays. Injuries and playing time do not count here.'],
+          ['Team','Wins, losses, saves and holds scale with his team\'s record; runs and RBI with his team\'s offense.'],
+          ['Rookies','No MLB history is not treated as an injury. Their line comes from translated minor league stats, plus a bump for MLB Pipeline Top 100 rank and 1st-round picks.']]),
+    ss: [['2026 grade','The same engine applied to what each player actually did in 2026, with missed time counting. 100 is the average starter in our 10-team league.'],
+         ['Why compare to Yahoo','Yahoo also ranks on season totals, but weights all categories equally and has no positions. Gaps show where our league\'s math differs.'],
+         ['Yahoo\'s view','"Too low by 20" means Yahoo ranks him 20 spots worse on his side than we do. Within 10 spots counts as agreeing.']]
   };
 
   function gap(p){ return p.y == null ? null : p.y - p.sr; }
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function fmt(v, d){ return (v > 0 ? '+' : '') + v.toFixed(d); }
   function sample(p){
-    if (p.role === 'H') return p.g + ' G · ' + p.pa + ' PA';
+    if (p.role === 'H') return p.gp + ' G · ' + p.pa + ' PA';
     if (p.role === 'SP') return p.gs + ' GS · ' + p.ip + ' IP';
-    return p.g + ' G · ' + p.ip + ' IP';
+    return p.gp + ' G · ' + p.ip + ' IP';
   }
 
   function list(){
@@ -199,7 +204,7 @@ td.ours{font-weight:600;color:var(--ink)}
     var key = state.sort;
     out.sort(function(a,b){
       if (key === 'age') return a.age - b.age;
-      if (key === 'k3') return b.k3 - a.k3;
+      if (key === 'k3') return (b.gk - a.gk) || (a.r - b.r);
       if (key === 'rd') { var sa = a.rd ? a.rd * 12 - a.r : -1e9, sb = b.rd ? b.rd * 12 - b.r : -1e9; return sb - sa; }
       if (key === 'gap' || key === 'gapd') {
         var ga = gap(a), gb = gap(b);
@@ -215,12 +220,12 @@ td.ours{font-weight:600;color:var(--ink)}
   function head(){
     var h = document.getElementById('head');
     if (state.tab === 'x27') {
-      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Draft value</th><th>Cats / wk</th><th title="Expected share of the season he is available">Healthy</th><th title="Chance he spends 2027 in the majors">MLB role</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th title="2027 + 2028 (x0.8) + 2029 (x0.6), each re-aged">Keeper 3 yr</th></tr>';
+      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Draft grade</th><th>Cats / wk</th><th title="Expected share of the season he is available">Healthy</th><th title="Chance he spends 2027 in the majors">MLB role</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th title="2027 + 2028 (x0.8) + 2029 (x0.6), each re-aged">Keeper 3 yr</th></tr>';
     } else if (state.tab === 'p27') {
-      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Per game</th><th>Cats / wk</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th>Track record</th></tr>';
+      h.innerHTML = '<tr><th>Rank</th><th class="l">Player</th><th>Per-game grade</th><th>Cats / wk</th><th>Age</th><th title="Round in our 2026 draft">\'26 FFC</th><th>Track record</th></tr>';
     } else {
       h.innerHTML = '<tr><th colspan="4"></th><th colspan="3" class="grp gs">Rank among hitters or among pitchers</th><th></th></tr>' +
-        '<tr><th title="Hitters and pitchers on one scale">Overall</th><th class="l">Player</th><th>Win value</th><th>Cats / wk</th>' +
+        '<tr><th title="Hitters and pitchers on one scale">Overall</th><th class="l">Player</th><th>2026 grade</th><th>Cats / wk</th>' +
         '<th class="gs">Ours</th><th>Yahoo</th><th class="l">Yahoo\'s view</th><th>Sample</th></tr>';
     }
   }
@@ -238,7 +243,7 @@ td.ours{font-weight:600;color:var(--ink)}
       .map(function(k){ var v = p.per[k];
         return '<span class="chip ' + (v > 0 ? 'up' : 'down') + '">' + (CAT_LABEL[k] || k) + ' ' + fmt(v * 100, 1) + '%</span>'; }).join('');
     return '<tr class="detail"><td colspan="' + ncols() + '"><div class="chips">' + (chips || '<span class="samp">No category moves by more than 0.1%.</span>') +
-      '</div><div class="note">Change in how often an average team wins each category, per week, versus replacement level.</div>' + extra(p) + '</td></tr>';
+      '</div><div class="note">Change in how often an average team wins each category in a week, compared with the replacement ' + (p.vs === 'Util' ? 'hitter' : esc(p.vs || '')) + '. Adds ' + fmt(p.wp, 2) + ' points of matchup win %.</div>' + extra(p) + '</td></tr>';
   }
 
   function extra(p){
@@ -257,15 +262,15 @@ td.ours{font-weight:600;color:var(--ink)}
     var rows = list(), shown = rows.slice(0, state.limit), max = MAX[state.tab];
     var html = shown.map(function(p){
       var key = state.tab + side(p) + p.r;
-      var w = Math.max(0, p.wp) / max * 100;
+      var w = Math.max(0, Math.min(1, (p.g - 70) / (max - 70))) * 100;
       var own = p.own ? '<span class="own">' + esc(p.own) + '</span>' : '<span class="own fa">FA</span>';
       var cells = '<td class="rk">' + p.r + '</td>' +
         '<td class="l"><span class="role ' + p.role + '">' + p.role + '</span><span class="nm">' + esc(p.n) + '</span>' + own +
           '<span class="sub">' + esc(p.pos) + (p.tm ? ' · ' + esc(p.tm) : '') + (p.rk && state.tab !== 'ss' ? ' · <b class="rook">Rookie</b>' : '') + (p.lt && state.tab !== 'ss' ? ' · <b class="hurt">Injured</b>' : '') + '</span></td>' +
-        '<td><div class="wv"><span class="num">' + fmt(p.wp, 2) + '</span><span class="track"><span class="fill' + (p.wp < 0 ? ' neg' : '') + '" style="width:' + (p.wp < 0 ? 4 : w) + '%"></span></span></div></td>' +
+        '<td><div class="wv"><span class="num grade">' + p.g + '</span><span class="track"><span class="fill' + (p.g < 80 ? ' neg' : '') + '" style="width:' + (p.g < 80 ? 4 : Math.max(4, w)) + '%"></span></span></div></td>' +
         '<td class="num">' + fmt(p.cw, 2) + '</td>';
       if (state.tab === 'x27') {
-        cells += '<td class="num">' + pct(p.av) + '</td><td class="num">' + (p.ms < 1 ? pct(p.ms) : '<span class="samp">yes</span>') + '</td><td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td><td class="num">' + fmt(p.k3, 1) + '</td>';
+        cells += '<td class="num">' + pct(p.av) + '</td><td class="num">' + (p.ms < 1 ? pct(p.ms) : '<span class="samp">yes</span>') + '</td><td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td><td class="num">' + p.gk + '</td>';
       } else if (state.tab === 'p27') {
         cells += '<td class="num">' + Math.floor(p.age) + '</td><td class="num">' + rdc(p) + '</td><td class="samp">' + track(p) + '</td>';
       } else {

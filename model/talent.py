@@ -19,10 +19,14 @@ H = '/home/claude/research/research_out/history'
 SEASONS = {2026: 5, 2025: 4, 2024: 3}
 DUR_W = {2026: 5, 2025: 4, 2024: 3, 2023: 2, 2022: 1}   # injury history reaches further back, older years count less
 MILB_W = {2026: 5, 2025: 4}
-MILB_DISC = 0.6            # a minor league PA counts as 0.6 of an MLB PA of information
+MILB_DISC = 0.3            # a minor league PA counts as 0.3 of an MLB PA of information (back-tested)
 LEVEL = {'AAA': 1.0, 'AA': 0.93, 'A+': 0.86}   # step-down on "good" rates vs AAA
-PRIOR_PA, PRIOR_BF = 1200, 1000
+PRIOR_PA, PRIOR_BF = 2000, 1700   # back-test: a stronger pull toward average cut 2026 error
 AGE_DATE = dt.date(2027, 7, 1)
+AGE_ON = True            # switches used by the back-test
+OUT_PRIOR_SP, OUT_PRIOR_RP, PAG_PRIOR = 30, 40, 60   # pulls on innings per outing, decisions per outing, PA per game
+FIELD_PRIOR_A, FIELD_PRIOR_E = 100, 600               # pull on assists / errors per game toward his position's average
+PEDIGREE_ON = True
 SEASON_27 = (dt.date(2027, 3, 25), dt.date(2027, 9, 26))
 
 # AAA -> MLB translation (measured on 2025-26 pairs)
@@ -74,8 +78,9 @@ def pcnt(s):
 def build():
     mlb_h = {y: rows(f'{H}/seasons/{y}_hitting.json') for y in SEASONS}
     mlb_p = {y: rows(f'{H}/seasons/{y}_pitching.json') for y in SEASONS}
-    milb_h = {(y, l): rows(f'{H}/milb/{y}_{l}_hitting.json') for y in MILB_W for l in LEVEL}
-    milb_p = {(y, l): rows(f'{H}/milb/{y}_{l}_pitching.json') for y in MILB_W for l in LEVEL}
+    Y0 = max(SEASONS)
+    milb_h = {(y, l): rows(f'{H}/milb/{y}_{l}_hitting.json') for y in MILB_W for l in LEVEL if os.path.exists(f'{H}/milb/{y}_{l}_hitting.json')}
+    milb_p = {(y, l): rows(f'{H}/milb/{y}_{l}_pitching.json') for y in MILB_W for l in LEVEL if os.path.exists(f'{H}/milb/{y}_{l}_pitching.json')}
 
     # league-average MLB rates (2024-26 regulars) for the pull toward average
     def lg(rowsets, cnt, unit, pick):
@@ -99,7 +104,7 @@ def build():
             if not r: continue
             s, x = r
             if x['position']['abbreviation'] == 'P': continue
-            c = hcnt(s); mlb_pa += c['PA']; name = x['player']['fullName']; team = x['team'].get('id') if y == 2026 or team is None else team
+            c = hcnt(s); mlb_pa += c['PA']; name = x['player']['fullName']; team = x['team'].get('id') if y == Y0 or team is None else team
             pos = x['position']['abbreviation']
             for k in HCOLS: acc[k] += w * c[k]
             wpa += w * c['PA']
@@ -124,22 +129,23 @@ def build():
         # Marcel age factor on the good rates; steals age faster
         fa = 1 + (29 - a) * (0.006 if a < 29 else 0.003)
         fsb = 1 + (26 - a) * 0.04
-        for k in ('H', 'D', 'T', 'HR', 'R', 'RBI', 'BB'): rate[k] *= fa
-        rate['SB'] *= max(0.3, fsb)
-        rate['T'] *= max(0.4, 1 + (26 - a) * 0.03)
+        if AGE_ON:
+            for k in ('H', 'D', 'T', 'HR', 'R', 'RBI', 'BB'): rate[k] *= fa
+            rate['SB'] *= max(0.3, fsb)
+            rate['T'] *= max(0.4, 1 + (26 - a) * 0.03)
         # pedigree: recent high draft pick, still young
         p = people.get(pid) or {}
-        if p.get('draft_round') in ('1', 1) and a < 26 and mlb_pa < 800:
+        if PEDIGREE_ON and p.get('draft_round') in ('1', 1) and a < 26 and mlb_pa < 800:
             bump = 1.03 if (p.get('draft_pick') or 99) <= 15 else 1.015
             for k in ('H', 'D', 'HR', 'BB', 'R', 'RBI'): rate[k] *= bump
         # PA per game: his own MLB rate, pulled toward a regular's 4.1
         g = sum(w * (mlb_h[y][pid][0]['gamesPlayed'] if pid in mlb_h[y] else 0) for y, w in SEASONS.items())
-        pa_g = (wpa + 4.1 * 60) / (g + 60) if g else 3.9
+        pa_g = (wpa + 4.1 * PAG_PRIOR) / (g + PAG_PRIOR) if g else 3.9
         rate['PA'] = 1.0
-        top = max([l for (yy, l), rs in milb_h.items() if yy == 2026 and pid in rs and rs[pid][0]['plateAppearances'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
-        pa26 = mlb_h[2026][pid][0]['plateAppearances'] if pid in mlb_h[2026] else 0
+        top = max([l for (yy, l), rs in milb_h.items() if yy == Y0 and pid in rs and rs[pid][0]['plateAppearances'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
+        pa26 = mlb_h[Y0][pid][0]['plateAppearances'] if pid in mlb_h[Y0] else 0
         share = 1.0 if pa26 >= 250 or mlb_pa >= 600 else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if pa26 >= 100 else 0)
-        out[('H', pid)] = dict(mlb_share=share, top_level=top, id=pid, name=name, role='H', pos=pos, team=team, age=round(a, 1), mlb_pa=mlb_pa, milb_pa=mi_pa,
+        out[('H', pid)] = dict(pa_y0=pa26, g_y0=(mlb_h[Y0][pid][0]['gamesPlayed'] if pid in mlb_h[Y0] else 0), mlb_share=share, top_level=top, id=pid, name=name, role='H', pos=pos, team=team, age=round(a, 1), mlb_pa=mlb_pa, milb_pa=mi_pa,
                                rate=rate, pa_g=pa_g, rookie=mlb_pa < 300)
 
     # ---------------- pitchers
@@ -151,7 +157,7 @@ def build():
             r = mlb_p[y].get(pid)
             if not r: continue
             s, x = r; c = pcnt(s); mlb_bf += c['BF']; name = x['player']['fullName']
-            team = x['team'].get('id') if y == 2026 or team is None else team
+            team = x['team'].get('id') if y == Y0 or team is None else team
             for k in PC: acc[k] += w * c[k]
             gs_share.append((w * c['G'], c['GS'] / max(c['G'], 1)))
         mi_bf = 0
@@ -177,26 +183,27 @@ def build():
         rate = {k: (acc[k] + P * L[k]) / (acc['BF'] + P) for k in ('K', 'BB', 'HA', 'ER', 'HR', 'IP')}
         a = age(pid)
         fa = 1 + (28 - a) * (0.006 if a < 28 else 0.004) - max(0.0, a - 33) * 0.012   # >1 = better; pitchers fade faster past 33
-        rate['K'] *= fa
-        for k in ('BB', 'HA', 'ER', 'HR'): rate[k] /= fa
+        if AGE_ON:
+            rate['K'] *= fa
+            for k in ('BB', 'HA', 'ER', 'HR'): rate[k] /= fa
         # workload per outing and decisions per outing (MLB only; minors don't transfer)
         g = acc['G'] if acc['G'] else 1
         if sp:
             gs = max(acc['GS'], 1)
-            ip_out = (acc['IP'] + 5.3 * 6 * 5) / (gs + 30) if acc['GS'] else 5.0
-            per = {k: (acc[k] + 30 * (L[k] / L['GS'] if L['GS'] else 0)) / (gs + 30) for k in ('W', 'L', 'CG')}
+            ip_out = (acc['IP'] + 5.3 * OUT_PRIOR_SP) / (gs + OUT_PRIOR_SP) if acc['GS'] else 5.0
+            per = {k: (acc[k] + OUT_PRIOR_SP * (L[k] / L['GS'] if L['GS'] else 0)) / (gs + OUT_PRIOR_SP) for k in ('W', 'L', 'CG')}
             per['SV'] = per['HLD'] = 0.0
         else:
-            ip_out = (acc['IP'] + 1.0 * 40) / (g + 40) if acc['G'] else 1.0
-            per = {k: (acc[k] + 40 * (L[k] / L['G'])) / (g + 40) for k in ('W', 'L', 'SV', 'HLD')}
+            ip_out = (acc['IP'] + 1.0 * OUT_PRIOR_RP) / (g + OUT_PRIOR_RP) if acc['G'] else 1.0
+            per = {k: (acc[k] + OUT_PRIOR_RP * (L[k] / L['G'])) / (g + OUT_PRIOR_RP) for k in ('W', 'L', 'SV', 'HLD')}
             per['CG'] = 0.0
         bf_out = ip_out / rate['IP']
-        top = max([l for (yy, l), rs in milb_p.items() if yy == 2026 and pid in rs and rs[pid][0]['battersFaced'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
-        bf26 = mlb_p[2026][pid][0]['battersFaced'] if pid in mlb_p[2026] else 0
+        top = max([l for (yy, l), rs in milb_p.items() if yy == Y0 and pid in rs and rs[pid][0]['battersFaced'] >= 100] or ['none'], key=lambda l: {'AAA': 3, 'AA': 2, 'A+': 1, 'none': 0}[l])
+        bf26 = mlb_p[Y0][pid][0]['battersFaced'] if pid in mlb_p[Y0] else 0
         share = 1.0 if bf26 >= 150 or mlb_bf >= 500 else max({'AAA': .45, 'AA': .2, 'A+': .05, 'none': .5}[top], .7 if bf26 >= 60 else 0)
-        out[('P', pid)] = dict(mlb_share=share, top_level=top, id=pid, name=name, role='SP' if sp else 'RP', pos='SP' if sp else 'RP', team=team,
+        out[('P', pid)] = dict(g_y0=(mlb_p[Y0][pid][0]['gamesPlayed'] if pid in mlb_p[Y0] else 0), gs_y0=(mlb_p[Y0][pid][0]['gamesStarted'] if pid in mlb_p[Y0] else 0), mlb_share=share, top_level=top, id=pid, name=name, role='SP' if sp else 'RP', pos='SP' if sp else 'RP', team=team,
                                age=round(a, 1), mlb_bf=mlb_bf, milb_bf=mi_bf, rate=rate, ip_out=ip_out, bf_out=bf_out,
-                               per=per, rookie=mlb_bf < 250)
+                               dec=per, rookie=mlb_bf < 250)
     return out, dict(LG_H=LG_H, LG_SP=LG_SP, LG_RP=LG_RP)
 
 
@@ -325,9 +332,9 @@ def team_context(T):
             p['team_off'] = round(off.get(t, 1.0), 3)
         else:
             w = wpct.get(t, 0.5)
-            p['per']['W'] *= (w / 0.5) ** 0.5; p['per']['L'] *= ((1 - w) / 0.5) ** 0.5
+            p['dec']['W'] *= (w / 0.5) ** 0.5; p['dec']['L'] *= ((1 - w) / 0.5) ** 0.5
             if p['role'] == 'RP':
-                p['per']['SV'] *= (w / 0.5) ** 0.5; p['per']['HLD'] *= (w / 0.5) ** 0.5
+                p['dec']['SV'] *= (w / 0.5) ** 0.5; p['dec']['HLD'] *= (w / 0.5) ** 0.5
             p['team_w'] = round(w, 3)
 
 
@@ -365,3 +372,53 @@ def pedigree(T):
             for k in ('BB', 'HA', 'ER', 'HR'): r[k] /= bump
         if p.get('mlb_share', 1) < 1:
             p['mlb_share'] = round(min(1.0, p['mlb_share'] + 0.35 * (b[0] / 100)), 2)
+
+
+# ------------------------------------------------------------------ fielding (assists, errors) and positions
+POSMAP = {'LF': 'OF', 'CF': 'OF', 'RF': 'OF', 'OF': 'OF', 'C': 'C', '1B': '1B', '2B': '2B', '3B': '3B', 'SS': 'SS'}
+
+
+def fielding(T):
+    """Assists and errors per game played, 5/4/3 over MLB seasons, pulled toward the average
+    at his main position (errors pulled harder: they are noisy). Also sets where he is eligible:
+    any position with 10+ games in the latest season, plus his main one."""
+    Y0 = max(SEASONS)
+    fld = {}
+    for y in SEASONS:
+        f = f'{H}/fielding/{y}.json'
+        if not os.path.exists(f): continue
+        for x in load(f)['stats'][0]['splits']:
+            pos = POSMAP.get(x['position']['abbreviation'])
+            if not pos: continue
+            st = x['stat']
+            d = fld.setdefault(x['player']['id'], {}).setdefault(y, collections.Counter())
+            d['A'] += st.get('assists', 0); d['E'] += st.get('errors', 0); d['g_' + pos] += st.get('gamesPlayed', 0)
+    tot = collections.defaultdict(collections.Counter)      # league rates by main position
+    main = {}
+    for pid, ys in fld.items():
+        g = collections.Counter()
+        for y, d in ys.items():
+            for k, v in d.items():
+                if k.startswith('g_'): g[k[2:]] += SEASONS[y] * v
+        if not g: continue
+        main[pid] = g.most_common(1)[0][0]
+        for y, d in ys.items():
+            gy = sum(v for k, v in d.items() if k.startswith('g_'))
+            tot[main[pid]]['A'] += d['A']; tot[main[pid]]['E'] += d['E']; tot[main[pid]]['G'] += gy
+    lg = {pos: (c['A'] / max(c['G'], 1), c['E'] / max(c['G'], 1)) for pos, c in tot.items()}
+    lg['DH'] = (0.0, 0.0)
+    hit_g = {y: {pid: s['gamesPlayed'] for pid, (s, x) in rows(f'{H}/seasons/{y}_hitting.json').items()} for y in SEASONS}
+    for key, p in T.items():
+        if p['role'] != 'H': continue
+        pid = p['id']; ys = fld.get(pid, {})
+        prim = main.get(pid) or POSMAP.get(p.get('pos') or (people.get(pid) or {}).get('pos') or '', 'DH')
+        A = sum(SEASONS[y] * d['A'] for y, d in ys.items()); E = sum(SEASONS[y] * d['E'] for y, d in ys.items())
+        G = sum(SEASONS[y] * hit_g[y].get(pid, 0) for y in SEASONS)
+        la, le = lg.get(prim, (0.0, 0.0))
+        p['a_g'] = (A + FIELD_PRIOR_A * la) / (G + FIELD_PRIOR_A)
+        p['e_g'] = (E + FIELD_PRIOR_E * le) / (G + FIELD_PRIOR_E)
+        el = {pos for pos in ('C', '1B', '2B', '3B', 'SS', 'OF') if ys.get(Y0, {}).get('g_' + pos, 0) >= 10}
+        if prim != 'DH': el.add(prim)
+        p['el'] = el; p['prim'] = prim
+        p['fld'] = {y: (d['A'], d['E']) for y, d in ys.items()}
+    return lg
