@@ -1,0 +1,784 @@
+{
+"url": "https://web.archive.org/web/20230325000000/https://www.mlb.com/prospects/top100/",
+"rows": [
+{
+"id": 683002,
+"name": "Gunnar Henderson",
+"rank": 1,
+"text": "1 Gunnar Henderson 3B/SS Baltimore Orioles MLB 2023 21 6' 3\" / 220 lbs L R"
+},
+{
+"id": 682998,
+"name": "Corbin Carroll",
+"rank": 2,
+"text": "2 Corbin Carroll OF Arizona Diamondbacks MLB 2023 22 5' 10\" / 165 lbs L L"
+},
+{
+"id": 682626,
+"name": "Francisco Álvarez",
+"rank": 3,
+"text": "3 Francisco Álvarez C New York Mets AAA 2023 21 5' 10\" / 233 lbs R R"
+},
+{
+"id": 691023,
+"name": "Jordan Walker",
+"rank": 4,
+"text": "4 Jordan Walker OF/3B St. Louis Cardinals AA 2023 20 6' 5\" / 220 lbs R R"
+},
+{
+"id": null,
+"name": "Anthony Volpe",
+"rank": 5,
+"text": "5 Anthony Volpe SS New York Yankees AAA 2023 21 5' 11\" / 180 lbs R R"
+},
+{
+"id": 691725,
+"name": "Andrew Painter",
+"rank": 6,
+"text": "6 Andrew Painter RHP Philadelphia Phillies AA 2023 19 6' 7\" / 215 lbs R R"
+},
+{
+"id": 680570,
+"name": "Grayson Rodriguez",
+"rank": 7,
+"text": "7 Grayson Rodriguez RHP Baltimore Orioles MLB 2023 23 6' 5\" / 230 lbs L R"
+},
+{
+"id": 694192,
+"name": "Jackson Chourio",
+"rank": 8,
+"text": "8 Jackson Chourio OF Milwaukee Brewers AA 2024 19 6' 1\" / 165 lbs R R"
+},
+{
+"id": null,
+"name": "Marcelo Mayer",
+"rank": 9,
+"text": "9 Marcelo Mayer SS Boston Red Sox A+ 2024 20 6' 3\" / 188 lbs L R"
+},
+{
+"id": 682829,
+"name": "Elly De La Cruz",
+"rank": 10,
+"text": "10 Elly De La Cruz SS/3B Cincinnati Reds AAA 2023 21 6' 5\" / 200 lbs S R"
+},
+{
+"id": 691783,
+"name": "Jordan Lawlar",
+"rank": 11,
+"text": "11 Jordan Lawlar SS Arizona Diamondbacks AA 2024 20 6' 2\" / 190 lbs R R"
+},
+{
+"id": null,
+"name": "Jackson Holliday",
+"rank": 12,
+"text": "12 Jackson Holliday SS Baltimore Orioles A 2025 19 6' 0\" / 185 lbs L R"
+},
+{
+"id": 691587,
+"name": "Eury Pérez",
+"rank": 13,
+"text": "13 Eury Pérez RHP Miami Marlins AA 2023 19 6' 8\" / 220 lbs R R"
+},
+{
+"id": 682616,
+"name": "Diego Cartaya",
+"rank": 14,
+"text": "14 Diego Cartaya C Los Angeles Dodgers AA 2024 21 6' 3\" / 219 lbs R R"
+},
+{
+"id": 702258,
+"name": "Druw Jones",
+"rank": 15,
+"text": "15 Druw Jones OF Arizona Diamondbacks ROK 2026 19 6' 4\" / 180 lbs R R"
+},
+{
+"id": null,
+"name": "Daniel Espino",
+"rank": 16,
+"text": "16 Daniel Espino RHP Cleveland Guardians AA 2023 22 6' 2\" / 225 lbs R R"
+},
+{
+"id": null,
+"name": "James Wood",
+"rank": 17,
+"text": "17 James Wood OF Washington Nationals A 2025 20 6' 7\" / 240 lbs L R"
+},
+{
+"id": 690986,
+"name": "Kyle Harrison",
+"rank": 18,
+"text": "18 Kyle Harrison LHP San Francisco Giants AA 2023 21 6' 2\" / 200 lbs R L"
+},
+{
+"id": 701538,
+"name": "Jackson Merrill",
+"rank": 19,
+"text": "19 Jackson Merrill SS San Diego Padres A 2024 19 6' 3\" / 195 lbs L R"
+},
+{
+"id": 671737,
+"name": "Taj Bradley",
+"rank": 20,
+"text": "20 Taj Bradley RHP Tampa Bay Rays AAA 2023 22 6' 2\" / 190 lbs R R"
+},
+{
+"id": 683146,
+"name": "Brett Baty",
+"rank": 21,
+"text": "21 Brett Baty 3B/OF New York Mets MLB 2023 23 6' 3\" / 210 lbs L R"
+},
+{
+"id": 682617,
+"name": "Marco Luciano",
+"rank": 22,
+"text": "22 Marco Luciano SS San Francisco Giants AA 2024 21 6' 2\" / 178 lbs R R"
+},
+{
+"id": 671213,
+"name": "Triston Casas",
+"rank": 23,
+"text": "23 Triston Casas 1B Boston Red Sox MLB 2023 23 6' 4\" / 252 lbs L R"
+},
+{
+"id": 676272,
+"name": "Bobby Miller",
+"rank": 24,
+"text": "24 Bobby Miller RHP Los Angeles Dodgers AAA 2023 23 6' 5\" / 220 lbs L R"
+},
+{
+"id": 678662,
+"name": "Ezequiel Tovar",
+"rank": 25,
+"text": "25 Ezequiel Tovar SS Colorado Rockies MLB 2023 21 6' 0\" / 162 lbs R R"
+},
+{
+"id": null,
+"name": "Termarr Johnson",
+"rank": 26,
+"text": "26 Termarr Johnson 2B Pittsburgh Pirates A 2025 18 5' 7\" / 175 lbs L R"
+},
+{
+"id": null,
+"name": "Zac Veen",
+"rank": 27,
+"text": "27 Zac Veen OF Colorado Rockies AA 2024 21 6' 4\" / 190 lbs L R"
+},
+{
+"id": 691718,
+"name": "Pete Crow-Armstrong",
+"rank": 28,
+"text": "28 Pete Crow-Armstrong OF Chicago Cubs A+ 2024 21 6' 0\" / 184 lbs L L"
+},
+{
+"id": 682622,
+"name": "Noelvi Marte",
+"rank": 29,
+"text": "29 Noelvi Marte SS/3B Cincinnati Reds AA 2024 21 6' 0\" / 216 lbs R R"
+},
+{
+"id": 686217,
+"name": "Sal Frelick",
+"rank": 30,
+"text": "30 Sal Frelick OF Milwaukee Brewers AAA 2023 22 5' 10\" / 182 lbs L R"
+},
+{
+"id": null,
+"name": "Brooks Lee",
+"rank": 31,
+"text": "31 Brooks Lee SS Minnesota Twins AA 2024 22 6' 2\" / 205 lbs S R"
+},
+{
+"id": 694357,
+"name": "Ricky Tiedemann",
+"rank": 32,
+"text": "32 Ricky Tiedemann LHP Toronto Blue Jays AA 2024 20 6' 4\" / 220 lbs L L"
+},
+{
+"id": null,
+"name": "Curtis Mead",
+"rank": 33,
+"text": "33 Curtis Mead 3B/2B Tampa Bay Rays AAA 2023 22 6' 2\" / 171 lbs R R"
+},
+{
+"id": 673962,
+"name": "Josh Jung",
+"rank": 34,
+"text": "34 Josh Jung 3B Texas Rangers MLB 2023 25 6' 2\" / 214 lbs R R"
+},
+{
+"id": 690987,
+"name": "Robert Hassell III",
+"rank": 35,
+"text": "35 Robert Hassell III OF Washington Nationals AA 2024 21 6' 2\" / 195 lbs L L"
+},
+{
+"id": null,
+"name": "Kevin Parada",
+"rank": 36,
+"text": "36 Kevin Parada C New York Mets A 2025 21 6' 1\" / 197 lbs R R"
+},
+{
+"id": 678246,
+"name": "Miguel Vargas",
+"rank": 37,
+"text": "37 Miguel Vargas 3B/OF/1B Los Angeles Dodgers MLB 2023 23 6' 3\" / 205 lbs R R"
+},
+{
+"id": null,
+"name": "Colson Montgomery",
+"rank": 38,
+"text": "38 Colson Montgomery SS Chicago White Sox AA 2024 21 6' 4\" / 205 lbs L R"
+},
+{
+"id": 691016,
+"name": "Tyler Soderstrom",
+"rank": 39,
+"text": "39 Tyler Soderstrom 1B/C Oakland Athletics AAA 2023 21 6' 2\" / 200 lbs L R"
+},
+{
+"id": null,
+"name": "Colton Cowser",
+"rank": 40,
+"text": "40 Colton Cowser OF Baltimore Orioles AAA 2023 23 6' 3\" / 220 lbs L R"
+},
+{
+"id": 694497,
+"name": "Evan Carter",
+"rank": 41,
+"text": "41 Evan Carter OF Texas Rangers AA 2024 20 6' 4\" / 190 lbs L R"
+},
+{
+"id": null,
+"name": "Gavin Williams",
+"rank": 42,
+"text": "42 Gavin Williams RHP Cleveland Guardians AA 2023 23 6' 6\" / 255 lbs L R"
+},
+{
+"id": 686613,
+"name": "Hunter Brown",
+"rank": 43,
+"text": "43 Hunter Brown RHP Houston Astros MLB 2023 24 6' 2\" / 212 lbs R R"
+},
+{
+"id": 695490,
+"name": "Edwin Arroyo",
+"rank": 44,
+"text": "44 Edwin Arroyo SS Cincinnati Reds A 2025 19 6' 0\" / 175 lbs S S"
+},
+{
+"id": 668904,
+"name": "Royce Lewis",
+"rank": 45,
+"text": "45 Royce Lewis SS Minnesota Twins MLB 2023 23 6' 2\" / 200 lbs R R"
+},
+{
+"id": null,
+"name": "Elijah Green",
+"rank": 46,
+"text": "46 Elijah Green OF Washington Nationals ROK 2026 19 6' 3\" / 225 lbs R R"
+},
+{
+"id": 691176,
+"name": "Jasson Domínguez",
+"rank": 47,
+"text": "47 Jasson Domínguez OF New York Yankees AA 2024 20 5' 10\" / 190 lbs S R"
+},
+{
+"id": 690953,
+"name": "Mick Abel",
+"rank": 48,
+"text": "48 Mick Abel RHP Philadelphia Phillies AA 2024 21 6' 5\" / 190 lbs R R"
+},
+{
+"id": null,
+"name": "Harry Ford",
+"rank": 49,
+"text": "49 Harry Ford C Seattle Mariners A 2025 20 5' 10\" / 200 lbs R R"
+},
+{
+"id": 691026,
+"name": "Masyn Winn",
+"rank": 50,
+"text": "50 Masyn Winn SS St. Louis Cardinals AA 2024 21 5' 11\" / 180 lbs R R"
+},
+{
+"id": 671655,
+"name": "George Valera",
+"rank": 51,
+"text": "51 George Valera OF Cleveland Guardians AAA 2023 22 6' 0\" / 195 lbs L L"
+},
+{
+"id": null,
+"name": "Oswald Peraza",
+"rank": 52,
+"text": "52 Oswald Peraza SS/2B New York Yankees MLB 2023 22 6' 0\" / 200 lbs R R"
+},
+{
+"id": 681351,
+"name": "Logan O'Hoppe",
+"rank": 53,
+"text": "53 Logan O'Hoppe C Los Angeles Angels MLB 2023 23 6' 2\" / 185 lbs R R"
+},
+{
+"id": 683737,
+"name": "Michael Busch",
+"rank": 54,
+"text": "54 Michael Busch 2B/OF Los Angeles Dodgers AAA 2023 25 6' 1\" / 210 lbs L R"
+},
+{
+"id": 682848,
+"name": "Endy Rodriguez",
+"rank": 55,
+"text": "55 Endy Rodriguez C/2B/OF Pittsburgh Pirates AAA 2023 22 6' 0\" / 170 lbs S R"
+},
+{
+"id": 694813,
+"name": "Gavin Stone",
+"rank": 56,
+"text": "56 Gavin Stone RHP Los Angeles Dodgers AAA 2023 24 6' 1\" / 175 lbs R R"
+},
+{
+"id": 680779,
+"name": "Henry Davis",
+"rank": 57,
+"text": "57 Henry Davis C Pittsburgh Pirates AA 2024 23 6' 2\" / 210 lbs R R"
+},
+{
+"id": 676917,
+"name": "Cade Cavalli",
+"rank": 58,
+"text": "58 Cade Cavalli RHP Washington Nationals MLB 2023 24 6' 4\" / 232 lbs R R"
+},
+{
+"id": 694297,
+"name": "Brandon Pfaadt",
+"rank": 59,
+"text": "59 Brandon Pfaadt RHP Arizona Diamondbacks AAA 2023 24 6' 4\" / 220 lbs R R"
+},
+{
+"id": 682990,
+"name": "Quinn Priester",
+"rank": 60,
+"text": "60 Quinn Priester RHP Pittsburgh Pirates AAA 2023 22 6' 3\" / 210 lbs R R"
+},
+{
+"id": null,
+"name": "Jacob Berry",
+"rank": 61,
+"text": "61 Jacob Berry 3B Miami Marlins A 2025 21 6' 0\" / 212 lbs S R"
+},
+{
+"id": null,
+"name": "Gavin Cross",
+"rank": 62,
+"text": "62 Gavin Cross OF Kansas City Royals A 2025 22 6' 3\" / 210 lbs L L"
+},
+{
+"id": null,
+"name": "Jackson Jobe",
+"rank": 63,
+"text": "63 Jackson Jobe RHP Detroit Tigers A+ 2025 20 6' 2\" / 190 lbs R R"
+},
+{
+"id": 666310,
+"name": "Bo Naylor",
+"rank": 64,
+"text": "64 Bo Naylor C Cleveland Guardians AAA 2023 23 6' 0\" / 205 lbs L R"
+},
+{
+"id": null,
+"name": "Tanner Bibee",
+"rank": 65,
+"text": "65 Tanner Bibee RHP Cleveland Guardians AA 2023 24 6' 2\" / 205 lbs R R"
+},
+{
+"id": null,
+"name": "Owen White",
+"rank": 66,
+"text": "66 Owen White RHP Texas Rangers AA 2023 23 6' 3\" / 199 lbs R R"
+},
+{
+"id": 676974,
+"name": "Max Meyer",
+"rank": 67,
+"text": "67 Max Meyer RHP Miami Marlins MLB 2024 24 6' 0\" / 196 lbs L R"
+},
+{
+"id": 691182,
+"name": "Adael Amador",
+"rank": 68,
+"text": "68 Adael Amador SS Colorado Rockies A 2025 19 6' 0\" / 160 lbs S R"
+},
+{
+"id": null,
+"name": "Cam Collier",
+"rank": 69,
+"text": "69 Cam Collier 3B Cincinnati Reds ROK 2025 18 6' 2\" / 210 lbs L R"
+},
+{
+"id": 686752,
+"name": "Ryan Pepiot",
+"rank": 70,
+"text": "70 Ryan Pepiot RHP Los Angeles Dodgers MLB 2023 25 6' 3\" / 215 lbs R R"
+},
+{
+"id": 682668,
+"name": "Luisangel Acuña",
+"rank": 71,
+"text": "71 Luisangel Acuña SS/2B Texas Rangers AA 2024 21 5' 10\" / 181 lbs R R"
+},
+{
+"id": null,
+"name": "Carson Williams",
+"rank": 72,
+"text": "72 Carson Williams SS Tampa Bay Rays A 2025 19 6' 2\" / 180 lbs R R"
+},
+{
+"id": 700932,
+"name": "Kyle Manzardo",
+"rank": 73,
+"text": "73 Kyle Manzardo 1B Tampa Bay Rays AA 2023 22 6' 1\" / 205 lbs L R"
+},
+{
+"id": 676059,
+"name": "Jordan Westburg",
+"rank": 74,
+"text": "74 Jordan Westburg INF Baltimore Orioles AAA 2023 24 6' 2\" / 210 lbs R R"
+},
+{
+"id": 677587,
+"name": "Brayan Rocchio",
+"rank": 75,
+"text": "75 Brayan Rocchio SS/2B Cleveland Guardians AAA 2023 22 5' 10\" / 170 lbs S R"
+},
+{
+"id": null,
+"name": "Ken Waldichuk",
+"rank": 76,
+"text": "76 Ken Waldichuk LHP Oakland Athletics MLB 2023 25 6' 4\" / 220 lbs L L"
+},
+{
+"id": 693311,
+"name": "Tink Hence",
+"rank": 77,
+"text": "77 Tink Hence RHP St. Louis Cardinals A 2024 20 6' 1\" / 175 lbs R R"
+},
+{
+"id": 683004,
+"name": "Jack Leiter",
+"rank": 78,
+"text": "78 Jack Leiter RHP Texas Rangers AA 2024 22 6' 1\" / 205 lbs R R"
+},
+{
+"id": 700669,
+"name": "Gordon Graceffo",
+"rank": 79,
+"text": "79 Gordon Graceffo RHP St. Louis Cardinals AA 2023 23 6' 4\" / 210 lbs R R"
+},
+{
+"id": null,
+"name": "Heston Kjerstad",
+"rank": 80,
+"text": "80 Heston Kjerstad OF Baltimore Orioles A+ 2024 24 6' 3\" / 205 lbs L R"
+},
+{
+"id": 681624,
+"name": "Andy Pages",
+"rank": 81,
+"text": "81 Andy Pages OF Los Angeles Dodgers AA 2023 22 6' 1\" / 212 lbs R R"
+},
+{
+"id": null,
+"name": "Chase DeLauter",
+"rank": 82,
+"text": "82 Chase DeLauter OF Cleveland Guardians ROK 2025 21 6' 4\" / 235 lbs L L"
+},
+{
+"id": null,
+"name": "Jace Jung",
+"rank": 83,
+"text": "83 Jace Jung 2B Detroit Tigers A+ 2025 22 6' 0\" / 205 lbs L R"
+},
+{
+"id": 691011,
+"name": "Drew Romo",
+"rank": 84,
+"text": "84 Drew Romo C Colorado Rockies A+ 2024 21 6' 1\" / 205 lbs S R"
+},
+{
+"id": null,
+"name": "Oscar Colas",
+"rank": 85,
+"text": "85 Oscar Colas OF Chicago White Sox AAA 2023 24 6' 1\" / 209 lbs L L"
+},
+{
+"id": 678882,
+"name": "Ceddanne Rafaela",
+"rank": 86,
+"text": "86 Ceddanne Rafaela OF/SS Boston Red Sox AAA 2023 22 5' 8\" / 152 lbs R R"
+},
+{
+"id": 682634,
+"name": "Kevin Alcántara",
+"rank": 87,
+"text": "87 Kevin Alcántara OF Chicago Cubs A+ 2024 20 6' 6\" / 188 lbs R R"
+},
+{
+"id": 691181,
+"name": "Emmanuel Rodriguez",
+"rank": 88,
+"text": "88 Emmanuel Rodriguez OF Minnesota Twins A 2025 20 5' 10\" / 210 lbs L L"
+},
+{
+"id": null,
+"name": "Zach Neto",
+"rank": 89,
+"text": "89 Zach Neto SS Los Angeles Angels AA 2024 22 6' 0\" / 185 lbs R R"
+},
+{
+"id": 686894,
+"name": "Joey Wiemer",
+"rank": 90,
+"text": "90 Joey Wiemer OF Milwaukee Brewers AAA 2023 24 6' 4\" / 220 lbs R R"
+},
+{
+"id": 676475,
+"name": "Alec Burleson",
+"rank": 91,
+"text": "91 Alec Burleson OF St. Louis Cardinals MLB 2023 24 6' 2\" / 212 lbs L L"
+},
+{
+"id": 680695,
+"name": "Brennen Davis",
+"rank": 92,
+"text": "92 Brennen Davis OF Chicago Cubs AAA 2023 23 6' 4\" / 210 lbs R R"
+},
+{
+"id": null,
+"name": "Miguel Bleis",
+"rank": 93,
+"text": "93 Miguel Bleis OF Boston Red Sox ROK 2026 19 6' 3\" / 170 lbs R R"
+},
+{
+"id": null,
+"name": "Brock Porter",
+"rank": 94,
+"text": "94 Brock Porter RHP Texas Rangers ROK 2025 19 6' 4\" / 208 lbs R R"
+},
+{
+"id": null,
+"name": "Wilmer Flores",
+"rank": 95,
+"text": "95 Wilmer Flores RHP Detroit Tigers AA 2023 22 6' 4\" / 225 lbs R R"
+},
+{
+"id": null,
+"name": "Alex Ramirez",
+"rank": 96,
+"text": "96 Alex Ramirez OF New York Mets A+ 2024 20 6' 3\" / 170 lbs R R"
+},
+{
+"id": 669084,
+"name": "DL Hall",
+"rank": 97,
+"text": "97 DL Hall LHP Baltimore Orioles MLB 2023 24 6' 2\" / 210 lbs L L"
+},
+{
+"id": null,
+"name": "Bryce Miller",
+"rank": 98,
+"text": "98 Bryce Miller RHP Seattle Mariners AA 2023 24 6' 2\" / 180 lbs R R"
+},
+{
+"id": null,
+"name": "Joey Ortiz",
+"rank": 99,
+"text": "99 Joey Ortiz SS/2B Baltimore Orioles AAA 2023 24 5' 10\" / 190 lbs R R"
+},
+{
+"id": 702266,
+"name": "Dylan Lesko",
+"rank": 100,
+"text": "100 Dylan Lesko RHP San Diego Padres ROK 2027 19 6' 2\" / 195 lbs R R"
+}
+],
+"debug": {
+"buttons": [
+"NEWS",
+"Rule Changes",
+"Probable Pitchers",
+"Starting Lineups",
+"Transactions",
+"Injury Report",
+"World Baseball Classic",
+"MLB Draft",
+"All-Star Game",
+"MLB Pipeline",
+"Postseason History",
+"WATCH",
+"Search",
+"Statcast",
+"MLB Network",
+"MLB Originals",
+"Podcasts",
+"Buy MLB.TV",
+"Buy At Bat",
+"MLB.TV ST Schedule",
+"Watch & Listen",
+"Help Center",
+"SCORES",
+"SCHEDULE",
+"2023 Regular Season",
+"2023 Spring Training",
+"2023 World Baseball Classic",
+"2022 Postseason",
+"Important Dates",
+"Team by Team Schedule",
+"STATS",
+"Statcast Leaders",
+"Baseball Savant",
+"Top Prospect Stats",
+"STANDINGS",
+"YOUTH",
+"Play Ball",
+"Youth Baseball & Softball",
+"PLAYERS",
+"Prospect Rankings",
+"Depth Charts",
+"MLB Players Association",
+"Negro Leagues",
+"MLB.TV",
+"Buy MLB.TV",
+"Buy At Bat",
+"MLB.TV ST Schedule",
+"Watch & Listen",
+"Help Center",
+"TICKETS",
+"All-Star Tickets",
+"Spring Training",
+"SeatGeek",
+"SHOP",
+"MLB Online Shop",
+"Auction",
+"Gift Cards",
+"MLB NYC Flagship Store",
+"European Shop",
+"Photo Store",
+"TEAMS",
+"Baltimore OriolesBaltimore",
+"Boston Red SoxBoston",
+"New York YankeesNY Yankees",
+"Tampa Bay RaysTampa Bay",
+"Toronto Blue JaysToronto",
+"Chicago White SoxChi White Sox",
+"Cleveland GuardiansCleveland",
+"Detroit TigersDetroit",
+"Kansas City RoyalsKansas City",
+"Minnesota TwinsMinnesota",
+"Houston AstrosHouston",
+"Los Angeles AngelsLA Angels",
+"Oakland AthleticsOakland",
+"Seattle MarinersSeattle",
+"Texas RangersTexas",
+"Atlanta BravesAtlanta",
+"Miami MarlinsMiami",
+"New York MetsNY Mets",
+"Philadelphia PhilliesPhiladelphia",
+"Washington NationalsWashington",
+"Chicago CubsChi Cubs",
+"Cincinnati RedsCincinnati",
+"Milwaukee BrewersMilwaukee",
+"Pittsburgh PiratesPittsburgh",
+"St. Louis CardinalsSt. Louis",
+"Arizona DiamondbacksArizona",
+"Colorado RockiesColorado",
+"Los Angeles DodgersLA Dodgers",
+"San Diego PadresSan Diego",
+"San Francisco GiantsSan Francisco",
+"ES",
+"LOG IN",
+"MLB.TV",
+"Tickets",
+"Shop",
+"News",
+"Watch",
+"Scores",
+"Schedule",
+"Stats",
+"Standings",
+"Youth",
+"Players",
+"Teams",
+"ES",
+"Top 100",
+"Draft",
+"International",
+"Stats",
+"Podcasts",
+"RANK",
+"LEVEL",
+"ETA",
+"AGE",
+"More Prospects News",
+"More Prospects Highlights",
+"OFFICIAL INFORMATION",
+"Official Info",
+"About MLB",
+"Team Information",
+"Official Rules",
+"Replay Review Regulations",
+"Umpires",
+"Advertise with Us",
+"Press Releases",
+"HELP/CONTACT US",
+"Accessibility Information",
+"Auctions Customer Service",
+"Harassment Policy",
+"Help/Contact Us",
+"MLB App FAQs",
+"MLB.com Account Information",
+"MLB.TV Help Center",
+"Shop Help",
+"MORE MLB SITES & AFFILIATES",
+"MLB Players Alumni Association",
+"MLB Players Association",
+"Minor League Baseball",
+"MLB Network",
+"Baseball Assistance Team",
+"Player Resource Center",
+"Tickets.com",
+"YES Network",
+"Australian Baseball League",
+"World Baseball Classic",
+"sabr.org",
+"College Baseball Hall of Fame",
+"Golden Spike Award",
+"USA Baseball",
+"LasMayores.com",
+"MLBCommunity.org",
+"AllStarGame.com",
+"MLB.com/Kids",
+"MLB Photostore",
+"PlayBall.org",
+"MLB Educators",
+"CAREERS",
+"Careers Home",
+"Terms of Use",
+"Privacy Policy",
+"Legal Notices",
+"Contact Us",
+"Do not Sell or Share My Personal Data",
+"Cookies Settings",
+"Accept All Cookies",
+"Privacy Policy",
+"Back Button",
+"Filter Button",
+"Clear",
+"Apply",
+"Cancel",
+"Confirm My Choices",
+"Allow All"
+],
+"captured": []
+}
+}
