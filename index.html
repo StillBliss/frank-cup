@@ -2131,6 +2131,8 @@ function gzBit(a){
       const mv=r.prev?r.prev-r.rank:0;
       return `<tr><td class="n">${r.rank}</td><td class="mv">${mv>0?`<span class="up">\u25b2${mv}</span>`:mv<0?`<span class="dn">\u25bc${-mv}</span>`:""}</td>
         <td class="l"><span class="dot" style="background:${col(r.m)}"></span><b>${esc(r.m)}</b>${r.line?`<div class="sm">${esc(r.line)}</div>`:""}</td></tr>`;}).join("")}</tbody></table>`;
+  }else if(b.type==="rules"&&d.items&&d.items.length){
+    inner+=`<ul class="gz-list">${d.items.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
   }else if(b.type==="history"&&d.items&&d.items.length){
     inner+=`<ul class="gz-list">${d.items.slice(0,6).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`;
   }else if(b.type==="waiver"&&d&&(d.hitters||d.pitchers)){
@@ -2155,7 +2157,7 @@ function vNews(){
   const day=new Date(cur.date+"T12:00:00").toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric",year:"numeric"});
   const phase=cur.phase?cur.phase.charAt(0).toUpperCase()+cur.phase.slice(1):"";
   const picks=done.map(i=>`<button type="button" data-iss="${esc(i.id)}" aria-pressed="${i.id===cur.id}">${
-    i.season!==cur.season||done.some(j=>j.season!==i.season)?i.season+" ":""}Wk ${i.week}</button>`).join("");
+    i.special?esc(i.label||"Special"):(i.season!==cur.season||done.some(j=>j.season!==i.season)?i.season+" ":"")+"Wk "+i.week}</button>`).join("");
   const toc=cur.articles.map(a=>`<a href="#gz-${esc(a.writer)}" data-jump="gz-${esc(a.writer)}"><span class="gz-w">${esc(a.name)}</span><span class="h">${esc(a.headline)}</span></a>`).join("");
   const arts=cur.articles.map(a=>`<article class="gz-art" id="gz-${esc(a.writer)}">
       <div class="gz-by"><i style="background:${esc(a.color)}"></i>${esc(a.name.toUpperCase())} <span>· ${esc(a.desk)}${a.day==="thursday"?" · Thursday":""}</span></div>
@@ -2173,7 +2175,7 @@ function vNews(){
     </details>`:"";
   el("v-news").innerHTML=`<div class="gz">
     <div class="gz-mast"><h2>THE FFC <span>GAZETTE</span></h2>
-      <div class="sub">${esc(day)} · Week ${cur.week}, ${cur.season} · ${esc(phase)}</div>
+      <div class="sub">${cur.special?`${esc(day)} · ${esc(cur.title||"Special Edition")}`:`${esc(day)} · Week ${cur.week}, ${cur.season} · ${esc(phase)}`}</div>
       <div class="ai">Written by AI from the league's real numbers. The writers are fictional; the stats aren't.</div></div>
     ${wire}
     <div class="gz-issues" role="group" aria-label="Issue">${picks}</div>

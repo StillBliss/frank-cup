@@ -6,6 +6,7 @@
     "Two Jacobs: through 2025 Jacob's team belonged to Jacob Winn, Andrew's friend. Since 2026 it belongs to Jacob Randall, Benny's high school friend. Both are just 'Jacob' in the notebook. Anything before 2026 (records, beatdowns, the 3-17 2025 season, trivia answers, head-to-head history) belongs to the previous Jacob; never pin it on the new one.",
     "Benny and Ben are two different managers. Never mix them up.",
     "The league is family and friends. The Frank siblings, oldest to youngest: Heidi, Ben, Adam, Gabe, Jed, Barak, Andrew (Frank is Heidi's maiden name, hence the name). Adam and Jed played in the redraft years but aren't in the league now. Benny is Heidi's son, so the Frank brothers are his uncles. Austin is Ben's oldest son, Benny's cousin, older than Benny. Todd is connected to Heidi; never write about the state of Todd and Heidi's relationship. Brian is Todd's friend. Jacob is Benny's high school friend. Joining in 2027: Robby (Jacob's younger brother) and Jonah (Jacob's best man, a grade below Benny and Jacob). Uncle vs nephew, brother vs brother, cousin vs cousin: these make great storylines when two of them meet or trade.",
+    "The 2 new managers for 2027, Jonah and Robby: Jacob got married in Idaho in 2026. Jonah was his best man; Benny and Robby (Jacob's younger brother) were groomsmen. Both newcomers played college baseball, both are into lifting and fitness, and both play MLB The Show. Robby was a left-handed pitcher in college; there are no stats on file for him, so never invent or guess any. Jonah was a hitter (bats left, throws right, outfield with some catcher) at College of Idaho, an NAIA school, from 2020 to 2023: a career .392 batting average, .474 on-base percentage and 1.089 OPS, with 22 home runs, 142 RBI, 60 doubles, 16 triples, 32 stolen bases, 97 walks and only 75 strikeouts in 178 games. His best year was 2022: .426 average, 12 home runs, 24 doubles, 7 triples, 76 runs and a 1.240 OPS in 57 games. In 2023 he hit .413 with 57 RBI in 48 games. He was All-Conference in 2021 and majored in math and physics. Jonah and Jacob were teammates at Timberline High School in Boise and won the Idaho 5A state title in 2018; Jonah hit .515 that season as a junior. Jonah is a friend of both Jacob and Benny. Neither has played in this league before, so they have no league record, no rivalries and no history here yet. Use first names only.",
     "The league expands from 10 to 12 teams in 2027.",
     "Name: the league is The Frank Family Classic (FFC). It was The Frank Cup through the 2026 season; use the new name, and mention the old one only as history."
   ],
@@ -114,5 +115,322 @@
     "color": "#E07A3F",
     "voice": "An over-the-top old-school radio announcer doing the morning sports update. Booming, breathless, dramatic, rapid-fire. Treats a two-homer game like the moon landing and a blown start like a five-alarm fire. Short punchy lines, big exclamations, radio sign-offs. Still, every fact is exact."
   },
-  "writers_note": "'monday' holds every Gazette writer; each has a 'day': monday writers run in the Monday issue, thursday writers are added to that issue on Thursday."
+  "writers_note": "'monday' holds every Gazette writer; each has a 'day': monday writers run in the Monday issue, thursday writers are added to that issue on Thursday. 'specials' are one-time editions (scripts/news.py write_special): each has a fact sheet and gives every writer an assigned set of facts; the box under each column prints those rules exactly, so the rules are right even if the prose wanders.",
+  "specials": [
+    {
+      "id": "rules2027",
+      "enabled": true,
+      "season": 2026,
+      "label": "2027 Rules",
+      "title": "Special Edition: The 2027 Rulebook",
+      "phase": "offseason special: every rule change for 2027",
+      "facts": {
+        "X1": {
+          "tag": "new",
+          "text": "The league grows from 10 teams to 12 for the 2027 season.",
+          "box": "The league goes from 10 teams to 12 in 2027."
+        },
+        "X2": {
+          "tag": "new",
+          "text": "The 2 new managers are Jonah and Robby. Their background is in the league notes.",
+          "box": "The new managers are Jonah and Robby."
+        },
+        "X3": {
+          "tag": "context",
+          "text": "This is not the league's first time at 12 teams. It had 12 in the redraft seasons of 2017 through 2022 (2020 was never played). The league file has those seasons, and what happened the last time 2 teams were added."
+        },
+        "X4": {
+          "tag": "new",
+          "text": "How the new teams get keepers: after the 10 current teams lock in their keepers, Jonah and Robby take turns claiming from every player who could have been kept but wasn't, at that player's keeper cost. A coin flip decides who claims first. The pool includes undrafted pickups who finished the season on a roster (those cost a 5th).",
+          "box": "New teams' keepers: after the 10 current teams lock in, Jonah and Robby take turns claiming players who could have been kept but weren't, at that player's keeper cost. A coin flip decides who claims first."
+        },
+        "X5": {
+          "tag": "new",
+          "text": "The new teams fill the same 4 keeper spots under the same rules as everyone else, and a claimed player counts as year 1 of his 3-year limit. This is the standing rule for any future expansion too.",
+          "box": "The new teams fill the same 4 keeper spots under the same rules, and a claimed player counts as year 1 of his 3 years."
+        },
+        "R1": {
+          "tag": "new",
+          "text": "Every team loses 3 roster spots: P slots go from 4 to 3, and bench spots go from 5 to 3.",
+          "box": "Every team loses 3 roster spots: P slots go from 4 to 3, and the bench goes from 5 to 3."
+        },
+        "R2": {
+          "tag": "same",
+          "text": "Everything else in the lineup stays: C, 1B, 2B, 3B, SS, 3 OF, 2 Util, 3 SP and 2 RP. Lineup plus bench goes from 24 spots to 21.",
+          "box": "Hitting slots, SP and RP don't change. Lineup plus bench goes from 24 spots to 21."
+        },
+        "R3": {
+          "tag": "same",
+          "text": "The limit of 4 adds per week does not change.",
+          "box": "The limit of 4 adds a week stays."
+        },
+        "R4": {
+          "tag": "why",
+          "text": "Why the cuts: the commissioner's goal, set before expansion was even planned, was to get better pitchers onto the waiver wire, so a manager who can't check the app every day still has a real shot in the pitching categories. Adding 2 teams works against that, because 2 more rosters would take more pitchers off the board. So the cuts have to cover the new teams and then some. That is why it is 3 spots.",
+          "box": "The goal: better pitchers left on the waiver wire, so managers who can't check every day can still compete, even with 2 more teams."
+        },
+        "R5": {
+          "tag": "why",
+          "text": "The math: about 140 pitchers are rostered today (10 teams, about 14 pitchers each). With 12 teams and no cuts it would be about 168. With the cuts it is about 132 (12 teams, 11 each). So even with 2 more teams, a few more good pitchers are available than there are now. This assumes bench spots hold pitchers, which is how this league uses them.",
+          "box": "The math: about 140 pitchers are rostered now. With 12 teams and no cuts it would be about 168. With the cuts it is about 132."
+        },
+        "R6": {
+          "tag": "why",
+          "text": "Why the bench took 2 of the 3 cuts: the commissioner did not want to limit anyone on a day when 6 of their starters pitch. With 3 SP slots and 3 P slots, a manager can still start 6 starters on the same day. And the bench in this league is mostly used for pitchers anyway.",
+          "box": "Why mostly bench: with 3 SP and 3 P slots you can still start 6 starters on the same day, and the bench mostly holds pitchers anyway."
+        },
+        "R7": {
+          "tag": "why",
+          "text": "The expected effect: nobody can stockpile as many starters, and every add now means dropping a player the manager actually wants. So bulk innings get a little harder to pile up, and the ratio categories (ERA, WHIP, K/BB) matter a little more next to the volume categories (IP, W, K, QS). The commissioner calls it a small shift, not an overhaul.",
+          "box": "Expected effect: starters are harder to stockpile and every add costs a player you want, so ERA, WHIP and K/BB matter a little more next to bulk innings."
+        },
+        "K1": {
+          "tag": "same",
+          "text": "A team can keep up to 4 players: 1 hitter, 1 pitcher, 1 more of either, and 1 player nobody drafted.",
+          "box": "Keep up to 4 players: 1 hitter, 1 pitcher, 1 more of either, and 1 player nobody drafted."
+        },
+        "K2": {
+          "tag": "same",
+          "text": "A kept player costs the round he was drafted in: the manager gives up that round's pick. Every year he is kept again, he costs one round earlier.",
+          "box": "A keeper costs the round he was drafted in, and one round earlier each year you keep him again."
+        },
+        "K3": {
+          "tag": "new",
+          "text": "Anyone drafted after round 10 costs a 10th to keep. Before this, a round-22 pick could be kept for a 22nd.",
+          "box": "Anyone drafted after round 10 costs a 10th."
+        },
+        "K4": {
+          "tag": "same",
+          "text": "1st-round picks can't be kept. Once a player's cost would reach round 1, he can't be kept anymore.",
+          "box": "1st-round picks can't be kept. Once a player's cost would hit round 1, he's done."
+        },
+        "K5": {
+          "tag": "same",
+          "text": "A player nobody drafted costs a 5th. If he is kept again, he moves into one of the drafted spots and costs a round earlier each year.",
+          "box": "A player nobody drafted costs a 5th. Keep him again and he moves to a drafted spot, a round earlier each year."
+        },
+        "K6": {
+          "tag": "same",
+          "text": "Traded or dropped players keep their original draft cost, no matter who has them now.",
+          "box": "Traded or dropped players keep their original draft cost."
+        },
+        "K7": {
+          "tag": "same",
+          "text": "If two of a team's keepers cost the same round, or the team traded that pick away, that keeper costs one round earlier.",
+          "box": "Two keepers in the same round, or a pick you traded away: that keeper costs one round earlier."
+        },
+        "K8": {
+          "tag": "new",
+          "text": "A player can be kept 3 years in a row at most. Everyone's count starts fresh with the 2027 keepers, so 2027 is year 1 for every player.",
+          "box": "A player can be kept 3 years in a row at most. Everyone's count starts fresh with 2027."
+        },
+        "K9": {
+          "tag": "new",
+          "text": "The 3-year count follows the player, not the team: a trade does not reset it. After 3 years he goes back into the draft, and whoever drafts him starts over with a fresh cost and a fresh count.",
+          "box": "The 3-year count follows the player, not the team. After 3 years he goes back into the draft with a fresh cost and count."
+        },
+        "K10": {
+          "tag": "new",
+          "text": "Starting with the 2027 season, a player must be on a team's roster continuously from the trade deadline through the end of the season to be kept by that team. This applies to keepers chosen after the 2027 season; it does not affect the keepers being picked this offseason.",
+          "box": "Starting with the 2027 season, a player must be on your roster from the trade deadline to the end of the season to be kept."
+        },
+        "K11": {
+          "tag": "new",
+          "text": "Grandfather rule: players who were kept in 2026 after round 10 get one more keep at their normal cost (a round-21 keeper costs a 20th), and that counts as year 1 of the 3. After that the round-10 rule applies to them.",
+          "box": "Players kept in 2026 after round 10 get one more keep at their normal cost (a round-21 keeper costs a 20th). It counts as year 1."
+        },
+        "K12": {
+          "tag": "set",
+          "text": "There are no offseason keeper trades.",
+          "box": "No offseason keeper trades."
+        },
+        "K13": {
+          "tag": "set",
+          "text": "Keepers are due 2 nights before the draft. The draft is the Saturday before MLB Opening Day.",
+          "box": "Keepers are due 2 nights before the draft. The draft is the Saturday before MLB Opening Day."
+        },
+        "K14": {
+          "tag": "set",
+          "text": "No special cases for injuries, on purpose: an injured star nobody drafts still costs a 5th like any undrafted player, and a star who slides in the draft because he is hurt costs the round he went in. The commissioner treats both as part of the game.",
+          "box": "No special cases for injuries: an injured star nobody drafts still costs a 5th, and a hurt star who slides in the draft costs the round he went in."
+        },
+        "O1": {
+          "tag": "new",
+          "text": "2027 payouts: the buy-in stays $100, so 12 teams makes a $1,200 pot. Regular season 1st $350, 2nd $250, 3rd $150, 4th $100, 5th $50. Playoff champion $300. Through 2026 it was a $1,000 pot: regular season $350, $250, $100, and $300 to the champion. So 1st, 2nd and the champion pay the same, 3rd goes up $50, and 4th and 5th are paid for the first time.",
+          "box": "Payouts from the $1,200 pot: regular season 1st $350, 2nd $250, 3rd $150, 4th $100, 5th $50. Playoff champion $300."
+        },
+        "O2": {
+          "tag": "new",
+          "text": "Starting in 2027 the league's playoffs end one week before MLB's regular season ends, because that last MLB week isn't representative: eliminated teams stop trying and contenders rest players.",
+          "box": "The playoffs end one week before MLB's regular season does."
+        }
+      },
+      "research": [
+        "In every season on file, the managers who made the most moves piled up the most innings, and innings track wins in the volume categories (innings pitched, wins, strikeouts, quality starts, saves, holds) almost one for one.",
+        "How many moves a manager makes has almost no relationship with winning ERA, WHIP and K/BB. If anything it leans slightly the other way.",
+        "In 3 of the 4 keeper seasons (2023, 2024 and 2026), the 3 teams with the fewest innings won the ratio categories more often than the 3 teams with the most innings. 2025 was the exception.",
+        "The last time the league had 12 teams (2017 to 2022), teams averaged about 64 innings and 4.5 quality starts per week. In the 10-team seasons just before (2013 to 2016), with the same roster size, it was about 76 innings and 6.5 quality starts. Part of that quality start drop is MLB starters going less deep in those years.",
+        "League-wide ERA and WHIP did not get worse with 12 teams. Compared with the MLB average, they were slightly better in the 12-team seasons than in the 10-team seasons before them.",
+        "In the keeper era (2023 to 2026, 10 teams, the bigger rosters), teams have averaged about 79 innings and 5.4 quality starts per week."
+      ],
+      "assignments": [
+        {
+          "writer": "buck",
+          "box": "Everything Changing in 2027",
+          "facts": [
+            "X1",
+            "X2",
+            "R1",
+            "R2",
+            "R3",
+            "K3",
+            "K8",
+            "K9",
+            "K10",
+            "K11",
+            "K12",
+            "K13",
+            "K14",
+            "X4",
+            "X5",
+            "O1",
+            "O2"
+          ],
+          "files": [
+            "standings"
+          ],
+          "angle": "The complete bulletin. Every change for 2027 in rapid-fire radio style, one or two lines each, in this order: expansion and the 2 new managers, roster cuts, keeper changes, how the new teams get keepers, payouts, playoff timing. Use a short bold tag to start each segment. Nothing gets skipped: a listener who only hears your bulletin should know every change."
+        },
+        {
+          "writer": "doug",
+          "box": "The Expansion in Plain English",
+          "facts": [
+            "X1",
+            "X2",
+            "X3"
+          ],
+          "files": [
+            "twelve",
+            "standings",
+            "history"
+          ],
+          "angle": "Two new managers arrive: Jonah and Robby. Introduce them properly from the league notes, then do what you do: 12 teams chasing the same 1 Cup means everybody's odds just got worse. Use the last expansion (2017) and how its 2 new teams fared as your omen."
+        },
+        {
+          "writer": "walt",
+          "box": "The League at 12 Teams",
+          "facts": [
+            "X1",
+            "X3"
+          ],
+          "files": [
+            "twelve",
+            "history",
+            "standings"
+          ],
+          "angle": "The league has been 12 teams before. Tell the story of the 12-team redraft seasons (2017 to 2022) from the league file: who won, who joined, where today's managers finished, and what the last expansion looked like. Label every bit of it as the redraft era, and keep it separate from keeper-era records."
+        },
+        {
+          "writer": "norm",
+          "box": "The Roster Cuts in Plain English",
+          "facts": [
+            "R1",
+            "R2",
+            "R4",
+            "R5",
+            "R7"
+          ],
+          "files": [
+            "research",
+            "pitching",
+            "standings"
+          ],
+          "angle": "The roster cuts and the math behind them. Walk through the pitcher count (about 140 now, about 168 with no cuts, about 132 with them) and the volume-versus-ratios research. Use the pitching tables to show, with names and numbers, who has been winning on bulk innings and who has been winning ratios on far fewer moves."
+        },
+        {
+          "writer": "kenny",
+          "box": "What Changes on the Wire",
+          "facts": [
+            "R1",
+            "R3",
+            "R6",
+            "R7"
+          ],
+          "files": [
+            "pitching",
+            "research"
+          ],
+          "angle": "What the roster cuts mean for the waiver wire and for streaming. 3 P slots, 3 bench spots, still 4 adds a week. Better arms should be sitting there, but every add now costs a player you want. Use the adds totals in the pitching tables to say whose style this changes most. This is strategy advice for 2027, not a list of specific free agents."
+        },
+        {
+          "writer": "sauce",
+          "box": "Keeper Costs in Plain English",
+          "facts": [
+            "K1",
+            "K2",
+            "K3",
+            "K4",
+            "K5",
+            "K6",
+            "K7",
+            "K11"
+          ],
+          "files": [
+            "keepers"
+          ],
+          "angle": "What a keeper costs. The 4 spots, the round a keeper costs and how it climbs, the new round-10 floor, the 1st-round ban, undrafted players at a 5th, and the 1 more year for 2026's late-round keepers. Use the keeper file for real examples: name actual players, what round they were taken or kept in, and what they cost for 2027. Your sources can whisper about who is thinking of keeping whom, but every cost must be exact."
+        },
+        {
+          "writer": "seymour",
+          "box": "The Keeper Limits in Plain English",
+          "facts": [
+            "K8",
+            "K9",
+            "K10",
+            "K12",
+            "K13",
+            "K14"
+          ],
+          "files": [
+            "keepers",
+            "history"
+          ],
+          "angle": "The keeper loopholes that just closed: the 3-year limit, the count following the player, the trade-deadline roster rule, no offseason keeper trades, the deadline, and no special cases for injuries. Roast the hoarding these rules end, using the keeper file for who has been sitting on cheap late-round keepers. Roast the strategy, never the person's real life."
+        },
+        {
+          "writer": "rosie",
+          "box": "How the New Teams Get Keepers",
+          "facts": [
+            "X4",
+            "X5",
+            "K1"
+          ],
+          "files": [
+            "keepers",
+            "standings"
+          ],
+          "angle": "How Jonah and Robby get their keepers, and why it is wonderful for everyone. Explain the claim process step by step, then find the bright side for the 10 current teams: the players they can't fit in their 4 spots get a good home."
+        },
+        {
+          "writer": "marcus",
+          "box": "The Changes That Move the Needle",
+          "facts": [
+            "X1",
+            "R1",
+            "K3",
+            "K8",
+            "K10"
+          ],
+          "files": [
+            "pitching",
+            "keepers",
+            "standings",
+            "research"
+          ],
+          "angle": "Winners and losers of the 2027 rule changes. Take the biggest changes (12 teams, 3 fewer roster spots, the round-10 keeper floor, the 3-year limit, the deadline roster rule) and rank who gains and who loses, by name, backing each call with the pitching tables and the keeper file. Hot takes welcome; label them as your opinion."
+        }
+      ],
+      "not_announced": "the 2027 playoff format and number of playoff teams, the schedule, the draft order, tiebreakers, IL and NA slots, team names for the new managers, and who anyone will keep or draft"
+    }
+  ]
 }

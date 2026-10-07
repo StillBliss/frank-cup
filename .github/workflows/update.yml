@@ -28,6 +28,14 @@ on:
         description: "Run the Thursday desk (Kenny, Tony, Marcus) now instead of waiting for Thursday"
         type: boolean
         default: false
+      news_only:
+        description: "Gazette only: skip the Yahoo pull (use in the offseason, e.g. to print a special edition)"
+        type: boolean
+        default: false
+      redo_special:
+        description: "Rewrite the special edition (the 2027 rulebook issue)"
+        type: boolean
+        default: false
 
 concurrency:
   group: refresh
@@ -50,6 +58,7 @@ jobs:
           python-version: "3.11"
 
       - name: Pull from Yahoo and rebuild data.js
+        if: ${{ !inputs.news_only }}
         env:
           YAHOO_CLIENT_ID: ${{ secrets.YAHOO_CLIENT_ID }}
           YAHOO_CLIENT_SECRET: ${{ secrets.YAHOO_CLIENT_SECRET }}
@@ -61,7 +70,7 @@ jobs:
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          NEWS_REDO: ${{ format('{0} {1}', inputs.redo_news && 'latest' || '', inputs.redo_daily && 'daily' || '') }}
+          NEWS_REDO: ${{ format('{0} {1} {2}', inputs.redo_news && 'latest' || '', inputs.redo_daily && 'daily' || '', inputs.redo_special && 'special' || '') }}
           NEWS_THURSDAY_NOW: ${{ inputs.thursday_now && '1' || '' }}
           NEWS_WIRE_DAY: ${{ inputs.wire_day }}
         run: python -u scripts/news.py

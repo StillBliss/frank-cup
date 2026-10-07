@@ -22,7 +22,10 @@ An ANTHROPIC_API_KEY secret works too, if one is ever added instead.
 
 Output: news.js at the repo root (window.NEWS = {...}), read by the News tab.
 First run writes the last 4 finished weeks; after that, one issue per week.
-NEWS_REDO=latest rewrites the newest issue.
+NEWS_REDO=latest rewrites the newest weekly issue. NEWS_REDO=special rewrites the special edition(s).
+
+Special editions (the 2027 rulebook, for one) are defined in writers.json under "specials" and written
+by write_special(): a fact sheet, an assignment per writer, and a league file built from the real data.
 """
 import datetime as dt
 import hashlib, json, math, os, random, re, sys, time, unicodedata
@@ -2032,6 +2035,287 @@ def write_daily(L, cfg, state, y, w, day):
     return True
 
 
+# ============================================================== special editions
+# One-time issues that aren't about a week of games (the 2027 rulebook, for one). Each is defined in
+# writers.json under "specials": a fact sheet, and for every writer an angle plus the facts he must
+# get across. The box under each column prints those facts word for word, so the rules on the page
+# are exact no matter what the prose does. The writers also get a league file built from the real
+# data (standings, pitching by manager, keeper costs, the 12-team redraft years) to report from.
+TAGS = {"new": "NEW for 2027", "same": "carried over, not new", "set": "confirmed for 2027",
+        "why": "the reasoning", "context": "background"}
+
+SPECIAL_RULES = """HARD RULES
+- This is a special offseason edition about the league's 2027 rule changes. You have two sources of fact: THE FACT SHEET (the rules) and THE LEAGUE FILE (real league history and numbers). Never invent a rule, a number, a stat, a quote from a real manager, or an event.
+- State every rule exactly as the fact sheet has it. Do not round, soften, stretch or combine rules, and do not guess at anything the sheet doesn't cover. NOT ANNOUNCED YET, so never state or imply it: NOTANNOUNCED. Each fact is marked 'NEW for 2027', 'carried over, not new' or 'confirmed for 2027': never call a carried-over rule new, and never call a confirmed one new or old.
+- YOUR ASSIGNMENT lists the facts that are yours. Get every one of them across clearly, with the reason behind it when the sheet gives one. A reader who reads only your column should come away knowing those rules.
+- Write like a real columnist, not a rulebook. Tie each rule to real people and real history from the league file: who it hits, who it helps, what happened in past seasons that makes it matter. Name names, seasons and numbers from the file, and check each one against the file before you write it.
+- Jonah and Robby are new: use only the background in the league notes. They have no league record, no team name and no roster yet. Robby has no stats on file; never invent any.
+- Predictions, opinions and jokes are encouraged, but a prediction must read as your opinion, never as a fact or a rule.
+- Use the category names from the glossary, never the codes: '3B' is triples (never 'third base'), 'A' is assists, 'E' is errors, 'K/BB' is strikeout-to-walk ratio.
+- Write every number as digits, never words: '3 roster spots', '12 teams', 'a 10th'. Records are written like 10-10-2. Rounds are written like 'round 10' or 'a 10th'.
+- Managers are referred to by first name exactly as given. 'Benny' and 'Ben' are two different managers; never mix them up. Benny is the commissioner.
+- The keeper era is 2023 on; the redraft era is 2011 to 2022. Label which era every record or season belongs to, and never mix their numbers.
+- Keep it PG-13 and about fantasy baseball. Family and friend ties between managers (in the league notes) are fair game as color; never comment on anyone's real life beyond that, and never on the state of Todd and Heidi's relationship.
+- Invented anonymous 'sources' are allowed only for Tony Russo, and must stay obviously playful.
+- Do not use em dashes. Headlines in normal title case. Never write a headline or sentence in all capital letters.
+- Never open with a stock line such as "Welcome to", "Buckle up", "Well, well, well", "Big changes are coming" or "Let's dive in". Open on a specific fact, image, or line only you would write.
+- Stay on your assignment. Your colleagues have the other rules (listed below); mention theirs only in passing and never lead with one.
+- Continuity matters. When it fits naturally, call back to earlier Gazette columns in the ledger. Don't force it.
+- Body: LENGTH, short paragraphs separated by blank lines. You may use **bold** sparingly.
+- The box under your column, titled "BOXNAME", is printed by the editor and already lists your assigned rules word for word. In the "bit" field write 2 to 4 sentences that go under that list: your bottom line on these rules, in your voice. Don't repeat the list.
+Return only JSON: {"headline": "...", "dek": "one-sentence subhead", "body": "...", "bit": "...", "ledger": "one or two sentences recording the specific claims, predictions, jokes or grudges in this column, for future callbacks"}"""
+
+
+def load_js(name):
+    p = os.path.join(ROOT, name)
+    if not os.path.exists(p): return None
+    s = open(p, encoding="utf-8").read()
+    try:
+        return json.loads(s[s.index("{"):s.rindex("}") + 1])
+    except ValueError:
+        return None
+
+
+def rnd_word(n):
+    """8 -> 'an 8th', 4 -> 'a 4th'"""
+    n = int(n)
+    o = f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+    return ("an " if n in (8, 11, 18) or 80 <= n <= 89 else "a ") + o
+
+
+def special_file(L):
+    """the league file: real numbers for the writers to report from, in named sections"""
+    D = L.D
+    y = L.seasons()[-1]
+    ix = {c: i for i, c in enumerate(L.cats)}
+    F = {}
+
+    # ---- standings and titles
+    st = D["seasons"][str(y)]["standings"]
+    fin = (D.get("finalPlace") or {}).get(str(y)) or []
+    rows = []
+    for i, r in enumerate(st):
+        place = f"; finished #{fin.index(r['manager']) + 1} after the playoffs" if r["manager"] in fin else ""
+        rows.append(f"#{i + 1} {r['manager']}: categories {r['w']}-{r['l']}-{r['t']}, "
+                    f"matchups {r['mw']}-{r['ml']}-{r['mt']}, {r['gb']:g} games back{place}")
+    F["standings"] = (f"{y} REGULAR SEASON, FINAL STANDINGS (10 teams; the season just finished)", rows)
+    try:
+        nb = Notebook(L, y, L.end_week(y))
+        hist = list(nb.sections.get("History angles (keeper era, 2023 on)") or [])
+    except Exception as e:  # noqa: BLE001
+        log("   special: no history angles:", e); hist = []
+    for m, v in (L.cfg.get("ownerChanges") or {}).items():
+        s0 = v.get("since")
+        ord0 = [r["manager"] for r in (D["seasons"].get(str(s0)) or {}).get("standings", [])]
+        if m in ord0:
+            hist.append(f"The most recent newcomer: today's {m} took over that team in {s0} and finished "
+                        f"#{ord0.index(m) + 1} of {len(ord0)} in the regular season in his first year.")
+    F["history"] = ("KEEPER-ERA HISTORY (2023 on)", hist)
+
+    # ---- pitching by manager, each keeper season
+    rows = []
+    for s in sorted(D["seasons"]):
+        ss = D["seasons"][s].get("seasonStats") or {}
+        order = [r["manager"] for r in D["seasons"][s]["standings"]]
+        mv = (D.get("moves") or {}).get(s) or {}
+        rows.append(f"{s} regular season, most innings first:")
+        for m, v in sorted(ss.items(), key=lambda kv: -float(kv[1][ix["IP"]])):
+            adds = sum(int(wk.get("add", 0)) for wk in (mv.get(m) or {}).values())
+            who = " (the previous Jacob)" if m == "Jacob" and int(s) < int(((L.cfg.get("ownerChanges") or {}).get("Jacob") or {}).get("since", 0)) else ""
+            rows.append(f"  {m}{who}: {float(v[ix['IP']]):.0f} innings, {v[ix['QS']]:.0f} quality starts, {v[ix['K']]:.0f} strikeouts, "
+                        f"{v[ix['W']]:.0f} wins, {v[ix['SV']]:.0f} saves, {v[ix['HLD']]:.0f} holds, {v[ix['ERA']]:.2f} ERA, "
+                        f"{v[ix['WHIP']]:.2f} WHIP, {v[ix['K/BB']]:.2f} K/BB, {adds} adds; finished #{order.index(m) + 1} "
+                        f"in the regular season")
+    F["pitching"] = ("PITCHING BY MANAGER, KEEPER ERA (season totals, regular season only; 'adds' is free agent and waiver "
+                     "pickups for the whole season; lower ERA and WHIP are better)", rows)
+
+    # ---- keeper costs for 2027, from the site's keeper helper (costs only)
+    K = load_js("keepers.js") or {}
+    rows = []
+    for m in K.get("managers") or []:
+        ps = (K.get("teams") or {}).get(m) or []
+        kept = [p for p in ps if p["how"].startswith("Kept in")]
+        first = [p["n"] for p in ps if not p.get("ok") and "1st-round" in (p.get("why") or "")]
+        late = sorted((p for p in ps if re.match(r"Drafted round (\d+)", p["how"]) and int(re.match(r"Drafted round (\d+)", p["how"]).group(1)) > 10),
+                      key=lambda p: -int(re.match(r"Drafted round (\d+)", p["how"]).group(1)))
+        und = [p for p in ps if p.get("slot") == "undrafted"]
+        bits = []
+        if kept:
+            bits.append("kept in 2026: " + ", ".join(
+                f"{p['n']} ({p['how'][len('Kept in 2026 '):].strip('()')}, costs {rnd_word(p['cost'])} for 2027"
+                + (", grandfathered" if "Grandfathered" in (p.get("note") or "") else "") + ")" for p in kept))
+        else:
+            bits.append("kept nobody in 2026")
+        if first: bits.append("1st-round picks who can't be kept: " + ", ".join(first))
+        if late:
+            bits.append(f"{len(late)} players drafted after round 10 who now cost a 10th, the latest picks being "
+                        + ", ".join(f"{p['n']} ({p['how'][0].lower() + p['how'][1:]})" for p in late[:3]))
+        if und: bits.append(f"{len(und)} undrafted pickups on the roster, each a 5th to keep")
+        rows.append(f"{m}: " + "; ".join(bits))
+    if rows:
+        rows.append(f"Rosters are as of {K.get('asof', 'the end of the season')}. Costs are for the 2027 draft. "
+                    f"Nobody has announced a keeper yet, so never say a player will be kept; say what he would cost.")
+    F["keepers"] = ("KEEPER FILE: WHAT KEEPING PLAYERS WOULD COST FOR 2027 (from the site's Keeper Helper)", rows)
+
+    # ---- the 12-team redraft years
+    R = load_js("redraft.js") or {}
+    rows = []
+    sizes = {int(k): v for k, v in (R.get("teamsBySeason") or {}).items()}
+    cur = set(L.managers)
+    prev, prev_s = None, None
+    for s in sorted(sizes):
+        S = R["seasons"][str(s)]
+        order = [r["manager"] for r in S["standings"]]
+        fp = (R.get("finalPlace") or {}).get(str(s)) or []
+        new = [m for m in order if prev is not None and m not in prev]
+        if sizes[s] == 12:
+            rec = {r["manager"]: r for r in S["standings"]}
+            today = ", ".join(f"{m} #{order.index(m) + 1} ({rec[m]['mw']}-{rec[m]['ml']}-{rec[m]['mt']})" for m in order if m in cur)
+            champ = fp[0] if fp else None
+            line = (f"{s} (12 teams, redraft era): {order[0]} won the regular season"
+                    + (" and the title" if champ == order[0] else f", {champ} won the title" if champ else "")
+                    + f". Today's managers in the regular season, with matchup records: {today}.")
+            how = lambda m: (f"{m} (#{order.index(m) + 1} of 12 in the regular season"
+                             + (f", #{fp.index(m) + 1} after the playoffs" if m in fp else "") + ")")
+            if new and prev is not None and len(prev) < len(order):
+                line += (f" THE LAST EXPANSION: the league went from {len(prev)} teams in {prev_s} to {len(order)} in {s}. "
+                         f"The teams added were " + " and ".join(how(m) for m in new) + ".")
+            elif new:
+                line += f" In the league that year but not the season before ({prev_s}): " + ", ".join(how(m) for m in new) + "."
+            rows.append(line)
+        prev, prev_s = set(order), s
+    if rows:
+        ys = sorted(sizes)
+        rows.insert(0, "Team counts by redraft season: " + ", ".join(f"{s}: {sizes[s]}" for s in ys)
+                    + ". 2020 was never played. The keeper era (2023 to 2026) has been 10 teams every year.")
+        rows.append("These are redraft-era seasons. Label them that way every time, and never add their numbers to keeper-era records.")
+    F["twelve"] = ("WHEN THE LEAGUE HAD 12 TEAMS (the redraft era, from the site's Archive)", rows)
+    return F
+
+
+def special_prompt(cfg, sp, wr, a, files, own_prev, ledger, allow_cody):
+    facts = sp["facts"]
+    by = {w["id"]: w for w in cfg["monday"]}
+    by[cfg["daily"]["id"]] = cfg["daily"]
+    is_wire = wr["id"] == cfg["daily"]["id"]
+    rules = (SPECIAL_RULES.replace("NOTANNOUNCED", sp.get("not_announced", "anything not on the fact sheet"))
+             .replace("BOXNAME", a["box"])
+             .replace("LENGTH", "300 to 450 words" if is_wire else "400 to 600 words"))
+    staff = ["THE REST OF THE GAZETTE STAFF THIS EDITION (their assignments, not yours):"]
+    for o in sp["assignments"]:
+        if o["writer"] == wr["id"] or o["writer"] not in by: continue
+        staff.append(f"- {by[o['writer']]['name']} ({by[o['writer']]['desk']}): {o['angle'].split('. ')[0]}.")
+    system = (f"You are {wr['name']}, columnist for The Frank Family Classic Gazette ({wr['desk']}), the paper of a fantasy "
+              f"baseball league of family and friends: 10 managers through 2026, 12 starting in 2027.\nVOICE: {wr['voice']}\n\n"
+              f"{rules}\n\n{glossary_text()}\n\n{notes_text(cfg, allow_cody)}\n\n" + "\n".join(staff))
+    parts = [f"THE FRANK FAMILY CLASSIC GAZETTE, {sp['title']}. Dated {sp['date']}. The {sp['season']} season is over "
+             f"(the league file has how it ended) and the league has announced its changes for 2027.",
+             "\n# THE FACT SHEET: EVERYTHING CHANGING FOR 2027 (and the keeper rules that stay)"]
+    for fid, f in facts.items():
+        parts.append(f"- [{fid}] ({TAGS.get(f['tag'], f['tag'])}) {f['text']}")
+    parts.append("\n# YOUR ASSIGNMENT")
+    parts.append(a["angle"])
+    parts.append("Your facts, every one of which your column must get across: " + ", ".join(a["facts"]) + ".")
+    parts.append("\n# THE LEAGUE FILE (real numbers; report from these)")
+    for key in a.get("files") or []:
+        if key == "research":
+            parts.append("\n## THE COMMISSIONER'S RESEARCH (from the league's own weekly data, 2011 to 2026)")
+            parts += [f"- {x}" for x in sp.get("research") or []]
+        elif files.get(key) and files[key][1]:
+            parts.append(f"\n## {files[key][0]}")
+            parts += [f"- {x}" for x in files[key][1]]
+    if own_prev:
+        parts.append("\n# YOUR RECENT COLUMNS (most recent last)")
+        for p in own_prev:
+            parts.append(f"- {p['when']}: \"{p['headline']}\". {p['excerpt']}")
+    if ledger:
+        parts.append("\n# GAZETTE LEDGER (notes on past columns, oldest first; call back to these when it fits)")
+        parts += [f"- {x['season']} wk {x['week']}, {x['name']}: {x['line']}" for x in ledger]
+    parts.append("\nWrite your column for the special edition now.")
+    return system, "\n".join(parts)
+
+
+def special_check(sp, a, d):
+    """flag the obvious ways a column can get a rule wrong; logged, never fatal"""
+    txt = " ".join(str(d.get(k) or "") for k in ("headline", "dek", "body", "bit"))
+    notes = []
+    for pat, why in ((r"\b(?:1[13-9]|2\d)\s+teams\b", "a team count other than 10 or 12"),
+                     (r"\bround[- ]1[1-9] floor\b", "a keeper floor other than round 10"),
+                     (r"\b(?:2|4|5|6)\s+(?:years|seasons) in a row\b", "a keeper limit other than 3 years"),
+                     (r"\b(?:3|5|6|7)\s+adds\b", "an adds limit other than 4")):
+        if re.search(pat, txt, re.I): notes.append(why)
+    return notes
+
+
+def write_special(L, cfg, state, sp):
+    """writes (or finishes) one special edition; safe to call every run"""
+    iid = f"{sp['season']}-special-{sp['id']}"
+    issue = next((i for i in state["issues"] if i["id"] == iid), None)
+    roster = [a["writer"] for a in sp["assignments"]]
+    if issue and set(roster) <= {a["writer"] for a in issue["articles"]}:
+        return issue
+    S = int(sp["season"])
+    week = L.end_week(S) + 1            # sorts after the season's last week in the ledger
+    if issue is None:
+        issue = {"id": iid, "season": S, "week": week, "special": True, "label": sp["label"], "title": sp["title"],
+                 "date": sources.today_pt().isoformat(), "phase": sp.get("phase", ""), "articles": [], "roster": roster}
+        state["issues"].append(issue)
+        state["issues"].sort(key=lambda i: i["id"])
+    sp = dict(sp, date=issue["date"])
+    by = {w["id"]: w for w in cfg["monday"]}
+    by[cfg["daily"]["id"]] = cfg["daily"]
+    files = special_file(L)
+    have = {a["writer"] for a in issue["articles"]}
+    cody = random.Random(f"cody-{iid}").choice([r for r in roster if r != cfg["daily"]["id"]])
+    print(f"special edition {iid}: {len(roster) - len(have)} of {len(roster)} columns to write")
+    for a in sp["assignments"]:
+        wid = a["writer"]
+        if wid in have or wid not in by: continue
+        if time.time() > DEADLINE:
+            raise TimeUp()
+        wr = by[wid]
+        own = [dict(when=(i.get("label") or f"{i['season']} week {i['week']}"), headline=x["headline"], excerpt=excerpt(x["body"]))
+               for i in state["issues"] if i["id"] < iid for x in i["articles"] if x["writer"] == wid][-2:]
+        led = [x for x in state["ledger"] if (x["season"], x["week"]) < (S, week)]
+        mine = [x for x in led if x["writer"] == wid]
+        recent = [x for x in led if (x["season"], x["week"]) >= (S, week - 3)]
+        pick = {id(x): x for x in mine[-8:] + recent[-16:]}
+        led = sorted(pick.values(), key=lambda x: (x["season"], x["week"]))
+        system, user = special_prompt(cfg, sp, wr, a, files, own, led, wid == cody)
+        try:
+            d = parse_json(ai(system, user))
+        except (NoAI, OutOfAI, TimeUp):
+            raise
+        except Exception as e:  # noqa: BLE001
+            log(f"   {wr['name']}: failed ({e}); will retry next run")
+            continue
+        for why in special_check(sp, a, d):
+            log(f"   {wr['name']}: CHECK THIS COLUMN, it may state {why}")
+        bit = {"type": "rules", "name": a["box"], "text": d.get("bit", ""),
+               "data": {"items": [sp["facts"][f]["box"] for f in a["facts"] if sp["facts"][f].get("box")]}}
+        issue["articles"].append({"writer": wid, "name": wr["name"], "desk": wr["desk"], "color": wr["color"],
+                                  "day": "special", "headline": d["headline"], "dek": d.get("dek", ""),
+                                  "body": d["body"], "bit": bit})
+        issue["articles"].sort(key=lambda x: roster.index(x["writer"]) if x["writer"] in roster else 99)
+        state["ledger"].append({"season": S, "week": week, "writer": wid, "name": wr["name"],
+                                "line": d.get("ledger") or d["headline"]})
+        print(f"   {wr['name']}: \"{d['headline']}\"")
+        save_state(state)
+        if not os.environ.get("NEWS_FAKE_AI"):
+            time.sleep(int(os.environ.get("NEWS_PAUSE", "13")))   # free tier allows 5 a minute
+    state["ledger"] = state["ledger"][-400:]
+    return issue
+
+
+def drop_special(state, sp):
+    iid = f"{sp['season']}-special-{sp['id']}"
+    gone = next((i for i in state["issues"] if i["id"] == iid), None)
+    if not gone: return
+    state["issues"] = [i for i in state["issues"] if i["id"] != iid]
+    state["ledger"] = [x for x in state["ledger"] if (x["season"], x["week"]) != (gone["season"], gone["week"])]
+    print("rewriting special edition", iid)
+
+
 # ============================================================== state
 RENAMES = [("Rosie Outlook", "Rosie Callahan"), ("Norm Distribution", "Norm Becker"), ("Seymour Burns", "Sam Kessler"),
            ("Doug Graves", "Doug Mercer"), ("Anonymous Sauce", "Tony Russo"), ("Seymour", "Sam")]
@@ -2151,13 +2435,16 @@ def write_issue(L, cfg, state, y, w, day="monday"):
 
 
 def redo_latest(state):
-    last = state["issues"].pop()
+    weekly = [i for i in state["issues"] if not i.get("special")]
+    if not weekly: return
+    last = weekly[-1]
+    state["issues"].remove(last)
     state["ledger"] = [x for x in state["ledger"] if (x["season"], x["week"]) != (last["season"], last["week"])]
     # roll the weekly features back to where they stood before that issue
     log = state.get("trivia_log", {})
     gone = log.pop(last["id"], None)
     if gone and gone["id"] in state.get("trivia_used", []): state["trivia_used"].remove(gone["id"])
-    prev = state["issues"][-1] if state["issues"] else None
+    prev = weekly[-2] if len(weekly) > 1 else None
     state["trivia_open"] = log.get(prev["id"]) if prev else None
     state["odds_prev"] = state["rumor_prev"] = state["rank_prev"] = None
     for a in (prev or {}).get("articles", []):
@@ -2190,17 +2477,17 @@ def main():
         def complete(i):
             return set(i.get("roster") or [a["writer"] for a in i["articles"]]) <= {a["writer"] for a in i["articles"]}
         if done:
-            if not state["issues"]:
+            if not [i for i in state["issues"] if not i.get("special")]:
                 todo = done[-BACKFILL:]
             else:
-                mine = [i for i in state["issues"] if i["season"] == y]
+                mine = [i for i in state["issues"] if i["season"] == y and not i.get("special")]
                 latest = max((i["week"] for i in mine), default=0)
                 todo = sorted({w for w in done if w > latest} | {i["week"] for i in mine if not complete(i)})
             for w in todo:
                 write_issue(L, cfg, state, y, w, "monday")
         # 2) Thursday: the midweek desk joins the latest issue (catches up Fri to Sun if a run was missed)
         today = sources.today_pt()
-        mine = [i for i in state["issues"] if i["season"] == y]
+        mine = [i for i in state["issues"] if i["season"] == y and not i.get("special")]
         if mine:
             last = max(mine, key=lambda i: i["week"])
             thu = [x["id"] for x in cfg["monday"] if x.get("day") == "thursday"]
@@ -2217,6 +2504,11 @@ def main():
         else:
             if time.time() > DEADLINE: raise TimeUp()
             write_daily(L, cfg, state, y, wk, day)
+        # 4) special editions (writers.json "specials"): written once, finished on a later run if cut short
+        for sp in cfg.get("specials") or []:
+            if not sp.get("enabled"): continue
+            if "special" in redo: drop_special(state, sp)
+            write_special(L, cfg, state, sp)
     except OutOfAI:
         log("Gemini is used up or unavailable for now; the rest will be written next run.")
     except TimeUp:
